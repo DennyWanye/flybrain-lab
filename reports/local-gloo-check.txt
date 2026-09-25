@@ -1,0 +1,4 @@
+[Gloo] Rank [Gloo] Rank 1 is connected to 1 peer ranks. Expected number of connected peer ranks is : 10
+ is connected to 1 peer ranks. Expected number of connected peer ranks is : 1
+{"rank": 1, "world_size": 2, "backend": "gloo/CPU", "sum": 3.0, "status": "PASS"}
+{"rank": 0, "world_size": 2, "backend": "gloo/CPU", "sum": 3.0, "status": "PASS"}

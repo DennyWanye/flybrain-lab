@@ -1,0 +1,17 @@
+{
+  "mode": "brain",
+  "device": "cpu",
+  "batch_envs": 4,
+  "internal_steps_per_env_step": 4,
+  "batched_calls": 20,
+  "seconds": 0.005105662000005395,
+  "aggregate_env_steps_per_second": 15668.878981788348,
+  "last_spike_fraction": 0.19287109375,
+  "mean_spike_fraction": 0.1592041015625,
+  "saturation_warning": false,
+  "reset_input_contrast_mean_abs": 0.013922130689024925,
+  "cuda_peak_allocated_bytes": null,
+  "graph_sha256": "be43d1e7d581b4079af059a3112212228202e297eca4776078c97d6b74599a66",
+  "mapping_sha256": "867109e67e3022892493383c15aa90bc24540ed27d3b39b49f3f9932aee4f4a8",
+  "warning": "Reservoir-only benchmark including feature transfer; not PPO/FlyGym throughput."
+}

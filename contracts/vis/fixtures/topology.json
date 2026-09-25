@@ -1,0 +1,32 @@
+{
+  "schema_version": "1.0.0",
+  "dataset_id": "synthetic-fixture-8",
+  "graph_sha256": "e7b58f6c38f5c0af645a4f639f1c2d4cd230eccd6c644e8efc78abd520e5fa89",
+  "weight_direction": "W[post,pre]",
+  "interpretation": "structural_connections_not_causality",
+  "neighborhoods": [
+    {
+      "center_id": "9007199254740995",
+      "node_ids": [
+        "9007199254740993",
+        "9007199254740995",
+        "9007199254740997"
+      ],
+      "edges": [
+        {
+          "source_id": "9007199254740993",
+          "target_id": "9007199254740995",
+          "signed_weight": 0.2
+        },
+        {
+          "source_id": "9007199254740995",
+          "target_id": "9007199254740997",
+          "signed_weight": -0.1
+        }
+      ],
+      "total_incoming_edges": 1,
+      "total_outgoing_edges": 1,
+      "truncated": false
+    }
+  ]
+}

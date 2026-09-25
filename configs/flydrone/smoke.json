@@ -1,0 +1,8 @@
+{
+  "schema_version": 1,
+  "sim_only": true,
+  "env": {"id":"FlyToTarget2D-v1","curriculum":"C1","room_half_extent_m":2.0,"body_radius_m":0.15,"sample_half_extent_m":1.2,"start_goal_min_m":0.8,"start_goal_max_m":2.5,"physics_dt_s":0.02,"action_duration_s":1.0,"waypoint_step_m":0.2,"speed_max_mps":0.3,"accel_max_mps2":0.8,"velocity_tau_s":0.2,"position_kp":2.0,"deadline_s":8.0,"goal_radius_m":0.2,"settle_speed_mps":0.08,"dwell_s":0.2},
+  "brain": {"graph":"reports/p1/synthetic-graph.npz","device":"cpu","mapping_seed":64,"inputs_per_channel":2,"readout_neurons":32,"internal_steps":4,"gain":1.0,"tonic":0.14,"input_gain":0.8},
+  "normalizer": {"artifact":"reports/p1/synthetic-calibration/artifact.npz","std_floor":0.001,"clip_abs":5.0,"freeze":true},
+  "train": {"mode":"brain","policy_device":"cpu","seed":11,"envs":1,"rollout_steps":16,"minibatch":16,"epochs":2,"learning_rate":0.0003,"gamma":0.99,"gae_lambda":0.95,"clip_ratio":0.2,"value_coef":0.5,"entropy_coef":0.01,"max_grad_norm":0.5,"target_kl":0.03,"total_env_steps":1024,"cpu_threads":2}
+}

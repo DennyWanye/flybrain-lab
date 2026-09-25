@@ -1,0 +1,10 @@
+# Build natively on ARM64 Spark. No replacement PyTorch wheel and no host driver changes.
+ARG BASE_IMAGE=nvcr.io/nvidia/pytorch:25.11-py3
+FROM ${BASE_IMAGE}
+USER root
+RUN python -c "import torch,numpy,scipy; print(torch.__version__, numpy.__version__, scipy.__version__)"
+# Preserve NVIDIA's inherited PIP_CONSTRAINT and installed torch/numba/numpy stack.
+RUN python -m pip install --no-cache-dir 'pandas>=2.2,<3' 'pyarrow>=17,<23' 'pytest>=8,<9'
+RUN mkdir -p /opt/flylab && python -m pip freeze > /opt/flylab/pip-freeze.txt
+WORKDIR /work
+ENV PYTHONUNBUFFERED=1

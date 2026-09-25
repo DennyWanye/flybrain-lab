@@ -1,0 +1,10 @@
+.git
+upstream
+runs
+data
+cache
+reports
+__pycache__
+.pytest_cache
+*.zip
+*.tar

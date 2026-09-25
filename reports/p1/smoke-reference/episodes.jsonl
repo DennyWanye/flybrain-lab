@@ -1,0 +1,8 @@
+{"case_id": "validation-0000", "return": 0.26202365312765696, "end_reason": "deadline"}
+{"case_id": "validation-0001", "return": 11.46781276147245, "end_reason": "success"}
+{"case_id": "validation-0002", "return": -0.33063093174139646, "end_reason": "deadline"}
+{"case_id": "validation-0003", "return": 0.13231302396828815, "end_reason": "deadline"}
+{"case_id": "validation-0004", "return": 0.01578887294137843, "end_reason": "deadline"}
+{"case_id": "validation-0005", "return": -0.12494256276794236, "end_reason": "deadline"}
+{"case_id": "validation-0006", "return": -0.13097516947528232, "end_reason": "deadline"}
+{"case_id": "validation-0007", "return": 0.40672951144141756, "end_reason": "deadline"}

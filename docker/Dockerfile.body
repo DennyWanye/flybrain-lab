@@ -1,0 +1,16 @@
+# Optional environment: no changes to the core training image or host packages.
+ARG BASE_IMAGE=nvcr.io/nvidia/pytorch:25.11-py3
+FROM ${BASE_IMAGE}
+USER root
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    git ffmpeg libegl1 libgl1 libglfw3 build-essential \
+    && rm -rf /var/lib/apt/lists/*
+RUN python -m venv /opt/body-venv
+# No system-site-packages: FlyGym can resolve its newer numpy/numba separately.
+# Ignore NGC pip constraints ONLY inside this isolated optional environment.
+RUN PIP_CONSTRAINT=/dev/null /opt/body-venv/bin/python -m pip install --no-cache-dir \
+    'flygym[examples,warp] @ git+https://github.com/NeLy-EPFL/flygym.git@ca65a510c2afe6ac61c51df4f274c8d190c2f95f'
+RUN /opt/body-venv/bin/python -m pip freeze > /opt/body-pip-freeze.txt
+ENV PATH=/opt/body-venv/bin:$PATH \
+    MUJOCO_GL=egl PYOPENGL_PLATFORM=egl PYTHONUNBUFFERED=1
+WORKDIR /work

@@ -1,0 +1,112 @@
+{
+  "schema_version": "1.0.0",
+  "dataset_id": "synthetic-fixture-8",
+  "graph_sha256": "e7b58f6c38f5c0af645a4f639f1c2d4cd230eccd6c644e8efc78abd520e5fa89",
+  "mapping_sha256": "27c4d97a298bfadc39449e1d92dff3f424dfeebdda18b3ce904132f4c2b858f3",
+  "nodes": [
+    {
+      "neuron_index": 0,
+      "neuron_id": "9007199254740993",
+      "dataset_id": "synthetic-fixture-8",
+      "roles": [
+        "engineered_input"
+      ],
+      "cell_type": null,
+      "region_labels": [],
+      "metadata_source": null,
+      "position": null,
+      "dynamic_recorded": false
+    },
+    {
+      "neuron_index": 1,
+      "neuron_id": "9007199254740994",
+      "dataset_id": "synthetic-fixture-8",
+      "roles": [
+        "engineered_input"
+      ],
+      "cell_type": null,
+      "region_labels": [],
+      "metadata_source": null,
+      "position": null,
+      "dynamic_recorded": false
+    },
+    {
+      "neuron_index": 2,
+      "neuron_id": "9007199254740995",
+      "dataset_id": "synthetic-fixture-8",
+      "roles": [
+        "engineered_readout"
+      ],
+      "cell_type": null,
+      "region_labels": [],
+      "metadata_source": null,
+      "position": null,
+      "dynamic_recorded": true
+    },
+    {
+      "neuron_index": 3,
+      "neuron_id": "9007199254740996",
+      "dataset_id": "synthetic-fixture-8",
+      "roles": [
+        "engineered_readout"
+      ],
+      "cell_type": null,
+      "region_labels": [],
+      "metadata_source": null,
+      "position": null,
+      "dynamic_recorded": true
+    },
+    {
+      "neuron_index": 4,
+      "neuron_id": "9007199254740997",
+      "dataset_id": "synthetic-fixture-8",
+      "roles": [
+        "background"
+      ],
+      "cell_type": null,
+      "region_labels": [],
+      "metadata_source": null,
+      "position": null,
+      "dynamic_recorded": false
+    },
+    {
+      "neuron_index": 5,
+      "neuron_id": "9007199254740998",
+      "dataset_id": "synthetic-fixture-8",
+      "roles": [
+        "background"
+      ],
+      "cell_type": null,
+      "region_labels": [],
+      "metadata_source": null,
+      "position": null,
+      "dynamic_recorded": false
+    },
+    {
+      "neuron_index": 6,
+      "neuron_id": "9007199254740999",
+      "dataset_id": "synthetic-fixture-8",
+      "roles": [
+        "background"
+      ],
+      "cell_type": null,
+      "region_labels": [],
+      "metadata_source": null,
+      "position": null,
+      "dynamic_recorded": false
+    },
+    {
+      "neuron_index": 7,
+      "neuron_id": "9007199254741000",
+      "dataset_id": "synthetic-fixture-8",
+      "roles": [
+        "background"
+      ],
+      "cell_type": null,
+      "region_labels": [],
+      "metadata_source": null,
+      "position": null,
+      "dynamic_recorded": false
+    }
+  ]
+}

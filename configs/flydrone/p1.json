@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "sim_only": true,
+  "env": {"id":"FlyToTarget2D-v1","curriculum":"C1","room_half_extent_m":2.0,"body_radius_m":0.15,"sample_half_extent_m":1.2,"start_goal_min_m":0.8,"start_goal_max_m":2.5,"height_m":1.0,"yaw_rad":0.0,"physics_dt_s":0.02,"action_duration_s":1.0,"waypoint_step_m":0.2,"speed_max_mps":0.3,"accel_max_mps2":0.8,"velocity_tau_s":0.2,"position_kp":2.0,"deadline_s":60.0,"goal_radius_m":0.2,"settle_speed_mps":0.08,"dwell_s":2.0},
+  "reward": {"progress_scale":2.0,"step_cost":-0.02,"success_bonus":10.0,"boundary_cost":-10.0,"deadline_cost":-2.0},
+  "brain": {"graph":"data/male-v1.npz","device":"cuda","layout":"csr","dtype":"float32","mapping_seed":64,"inputs_per_channel":16,"readout_neurons":128,"internal_steps":4,"gain":1.0,"tonic":0.14,"input_gain":0.8,"membrane_dt":0.02,"membrane_tau":0.1,"trace_decay":0.8},
+  "normalizer": {"artifact":"reports/p1/calibration/artifact.npz","std_floor":0.001,"clip_abs":5.0,"freeze":true},
+  "train": {"mode":"brain","policy_device":"cpu","seed":11,"envs":4,"rollout_steps":128,"minibatch":128,"epochs":4,"learning_rate":0.0003,"gamma":0.99,"gae_lambda":0.95,"clip_ratio":0.2,"value_coef":0.5,"entropy_coef":0.01,"max_grad_norm":0.5,"target_kl":0.03,"total_env_steps":131072,"max_env_steps_per_seed":1048576,"eval_every_env_steps":32768,"cpu_threads":4},
+  "evaluation": {"validation_cases":"reports/p1/cases/validation.jsonl","test_cases":"reports/p1/cases/test.jsonl","action_selection":"greedy"},
+  "recording": {"training_neural_trace":false,"max_neurons":64,"max_trace_episodes":3,"max_bytes":104857600}
+}

@@ -1,0 +1,16 @@
+{
+  "episodes": 5,
+  "seed": 900001,
+  "successes": 4,
+  "success_rate": 0.8,
+  "wilson_95_interval_descriptive": [
+    0.3755282641185388,
+    0.9637768390302125
+  ],
+  "mean_return": 0.1840002179145813,
+  "mean_length": 38.4,
+  "action_selection": "sampled",
+  "graph_sha256": "be43d1e7d581b4079af059a3112212228202e297eca4776078c97d6b74599a66",
+  "mode": "brain",
+  "warning": "Same fixed map; varying start/goal. Not an unseen-map generalization test."
+}

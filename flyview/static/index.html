@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>FlyBrain 仿真观察器</title>
+  <style>
+    :root { color-scheme: dark; --bg:#10151b; --panel:#18212b; --line:#2b3948; --text:#e8eef4; --muted:#9eafbd; --accent:#70c7ff; --good:#77d69a; --warn:#f5c46b; }
+    * { box-sizing:border-box; }
+    body { margin:0; background:var(--bg); color:var(--text); font:14px/1.45 system-ui,-apple-system,"Segoe UI",sans-serif; }
+    header { padding:14px 18px; border-bottom:1px solid var(--line); background:#131b24; display:flex; gap:18px; align-items:center; flex-wrap:wrap; }
+    header h1 { font-size:18px; margin:0; }
+    .source { color:var(--warn); font-weight:600; }
+    .meta { color:var(--muted); }
+    main { display:grid; grid-template-columns:minmax(360px,1.2fr) minmax(320px,1fr); gap:12px; padding:12px; max-width:1500px; margin:auto; }
+    section { background:var(--panel); border:1px solid var(--line); border-radius:6px; padding:12px; min-width:0; }
+    section h2 { font-size:15px; margin:0 0 10px; }
+    #world { width:100%; aspect-ratio:1.3; background:#0e141b; display:block; }
+    .scene-heading { display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap; }
+    .scene-heading h2 { margin-bottom:0; }
+    .legend { display:flex; gap:10px; align-items:center; flex-wrap:wrap; color:var(--muted); font-size:12px; }
+    .legend-item { display:inline-flex; align-items:center; gap:5px; white-space:nowrap; }
+    .swatch { width:12px; height:12px; display:inline-block; flex:none; }
+    .swatch-agent { border-radius:50%; background:var(--accent); }
+    .swatch-goal { border:2px solid var(--good); border-radius:50%; }
+    .swatch-velocity { width:16px; height:2px; background:var(--accent); }
+    .grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:8px; }
+    .metric { border:1px solid var(--line); padding:8px; min-height:58px; }
+    .metric b { display:block; color:var(--muted); font-size:12px; font-weight:500; }
+    .metric span { display:block; margin-top:4px; font-size:16px; }
+    .reward { display:grid; grid-template-columns:repeat(5,1fr); gap:5px; }
+    .reward div { border-left:3px solid var(--accent); padding:5px 6px; background:#111a22; min-width:0; }
+    .reward small { display:block; color:var(--muted); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+    .actions { display:grid; gap:5px; }
+    .action { display:grid; grid-template-columns:62px 1fr 64px; gap:8px; align-items:center; }
+    .bar { height:10px; background:#0e141b; border:1px solid var(--line); }
+    .bar i { display:block; height:100%; background:var(--accent); width:0; }
+    button, select { color:var(--text); background:#243342; border:1px solid #3b5265; border-radius:4px; padding:6px 9px; cursor:pointer; }
+    button:hover { border-color:var(--accent); }
+    .controls { display:flex; gap:7px; align-items:center; flex-wrap:wrap; margin-top:10px; }
+    input[type=range] { flex:1; min-width:120px; }
+    table { width:100%; border-collapse:collapse; font-size:12px; }
+    th,td { text-align:left; padding:5px; border-bottom:1px solid var(--line); }
+    th { color:var(--muted); font-weight:500; }
+    #neurons tr { cursor:pointer; }
+    #neurons tr:hover, #neurons tr.selected { background:#243342; }
+    #neurons button { border:0; background:transparent; padding:0; color:var(--accent); font:inherit; cursor:pointer; }
+    .notice { color:var(--warn); min-height:22px; }
+    pre { max-height:210px; overflow:auto; white-space:pre-wrap; color:#c9d7e2; background:#111820; padding:8px; }
+    @media(max-width:850px) { main { grid-template-columns:1fr; } .reward { grid-template-columns:repeat(2,1fr); } }
+  </style>
+</head>
+<body>
+<header>
+  <h1>FlyBrain 仿真观察器</h1>
+  <span class="source" id="source">正在连接</span>
+  <span class="meta" id="viewMeta"></span>
+  <label class="meta">视图 <select id="views"></select></label>
+</header>
+<main>
+  <section>
+    <div class="scene-heading">
+      <h2>当前场景</h2>
+      <div class="legend" aria-label="场景图例">
+        <span class="legend-item"><i class="swatch swatch-agent"></i>飞行器</span>
+        <span class="legend-item"><i class="swatch swatch-velocity"></i>速度</span>
+        <span class="legend-item"><i class="swatch swatch-goal"></i>目标</span>
+      </div>
+    </div>
+    <canvas id="world"></canvas>
+    <div class="grid" style="margin-top:10px">
+      <div class="metric"><b>局 / 决策步</b><span id="episodeStep">-</span></div>
+      <div class="metric"><b>实际动作</b><span id="action">-</span></div>
+      <div class="metric"><b>终止原因</b><span id="end">-</span></div>
+      <div class="metric"><b>数据状态</b><span id="dataState">-</span></div>
+    </div>
+    <div class="controls">
+      <button id="play">播放</button><button id="prev">上一决策</button><button id="next">下一决策</button>
+      <select id="speed"><option value="1600">0.25×</option><option value="800" selected>1×</option><option value="200">4×</option></select>
+      <input id="timeline" type="range" min="0" value="0">
+    </div>
+    <div class="notice" id="notice"></div>
+  </section>
+  <section>
+    <h2>这一步发生了什么</h2>
+    <div class="metric"><b>模型输入（8维）</b><pre id="obs">-</pre></div>
+    <h2 style="margin-top:12px">动作概率</h2>
+    <div class="actions" id="actions"></div>
+    <div class="metric" style="margin-top:8px"><b>Value estimate</b><span id="value">未记录</span></div>
+    <h2 style="margin-top:12px">奖励分项</h2>
+    <div class="reward" id="reward"></div>
+  </section>
+  <section>
+    <h2>已记录读出神经元</h2>
+    <div class="notice">仅显示本条记录中实际采集的节点；缺少生物元数据时标记为未标注。</div>
+    <table><thead><tr><th>ID</th><th>v（复位前）</th><th>spike</th><th>trace</th></tr></thead><tbody id="neurons"></tbody></table>
+  </section>
+  <section>
+    <h2>来源与完整性</h2>
+    <pre id="manifest">-</pre>
+  </section>
+  <section>
+    <h2>训练 / 验证成绩</h2>
+    <div class="notice">成绩来自只读报告或训练指标，不由页面触发评估。</div>
+    <pre id="metrics">未记录成绩</pre>
+  </section>
+  <section>
+    <h2>局部结构</h2>
+    <div class="notice">边表示模型 signed weight；结构邻居不等于因果路径。</div>
+    <div class="meta" id="topologySelection">尚未选择神经元</div>
+    <pre id="topology">未导出局部拓扑</pre>
+  </section>
+</main>
+<script>
+const ACTIONS=['HOLD','POS_X','NEG_X','POS_Y','NEG_Y'];
+let events=[], index=0, timer=null, liveTimer=null, liveSocket=null, manifest=null, selectedNeuronId=null, currentViewId=null;
+const $=id=>document.getElementById(id);
+function fmt(v){ return v===null||v===undefined?'未记录':(typeof v==='number'?v.toFixed(4):String(v)); }
+function setNotice(t){ $('notice').textContent=t||''; }
+function safeText(value){ return String(value).replace(/[&<>"']/g, ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch])); }
+async function loadTopology(centerId=null){
+  if(!currentViewId)return;
+  const query=centerId===null?'':`?center_id=${encodeURIComponent(centerId)}`;
+  try{
+    const data=await fetch(`/api/views/${currentViewId}/topology${query}`).then(r=>r.ok?r.json():null);
+    if(!data){$('topologySelection').textContent='当前视图未提供局部结构';$('topology').textContent='未导出局部拓扑';return;}
+    if(centerId!==null){
+      $('topologySelection').textContent=data.selection_status==='matched'?`已选择节点 ${centerId}：${data.edges.length} 条相邻边`:`已选择节点 ${centerId}，但该节点不在当前局部导出中`;
+      $('topology').textContent=JSON.stringify({center_id:data.center_id,selection_status:data.selection_status,nodes:data.node_ids?.length||0,edges:data.edges||[],truncated:data.truncated},null,2);
+    }else{
+      $('topologySelection').textContent='未选择神经元';
+      $('topology').textContent=JSON.stringify({nodes:data.node_ids?.length||0,edges:data.edges?.length||0,truncated:data.truncated,source_edges:data.total_edges_in_source},null,2);
+    }
+  }catch(_){$('topologySelection').textContent='局部结构读取失败';$('topology').textContent='当前视图的拓扑数据不可用';}
+}
+function selectNeuron(id){
+  selectedNeuronId=String(id);
+  document.querySelectorAll('#neurons tr[data-neuron-id]').forEach(row=>row.classList.toggle('selected',row.dataset.neuronId===selectedNeuronId));
+  loadTopology(selectedNeuronId);
+}
+function drawWorld(p){
+  const c=$('world'), r=c.getBoundingClientRect(), d=devicePixelRatio||1; c.width=r.width*d;c.height=r.height*d;
+  const x=c.getContext('2d');x.scale(d,d);const w=r.width,h=r.height,s=Math.min(w,h)/4.4;
+  x.fillStyle='#0e141b';x.fillRect(0,0,w,h);
+  const pt=v=>[w/2-v[1]*s,h/2-v[0]*s]; const goal=pt(p.state_after.goal_xy_m), pos=pt(p.state_after.position_xy_m);
+  x.strokeStyle='#77d69a';x.beginPath();x.arc(goal[0],goal[1],9,0,Math.PI*2);x.stroke();x.fillStyle='#70c7ff';x.beginPath();x.arc(pos[0],pos[1],7,0,Math.PI*2);x.fill();
+  x.strokeStyle='#70c7ff';x.beginPath();x.moveTo(pos[0],pos[1]);x.lineTo(pos[0]-p.state_after.velocity_xy_mps[1]*s*2,pos[1]-p.state_after.velocity_xy_mps[0]*s*2);x.stroke();
+  x.fillStyle='#9eafbd';x.fillText('+X 向上 / +Y 向左',10,18);
+}
+function render(){
+  if(!events.length)return; const e=events[index],p=e.payload; drawWorld(p);
+  $('episodeStep').textContent=`${p.episode_id} / ${p.decision_step}`; $('action').textContent=`${p.action_name}（${p.action_selection||'未记录'}）`; $('end').textContent=p.end_reason||'进行中'; $('dataState').textContent=`seq ${e.seq} / ${manifest.trace_complete?'完整':'不完整'}`;
+  $('obs').textContent=JSON.stringify(p.observation,null,2); $('value').textContent=fmt(p.value_estimate);
+  const probs=p.action_probabilities; $('actions').innerHTML=ACTIONS.map((a,i)=>{const v=Array.isArray(probs)?Number(probs[i]||0):null;return `<div class="action"><span>${a}</span><div class="bar"><i style="width:${v===null?0:Math.max(0,Math.min(100,v*100))}%"></i></div><span>${v===null?'未记录':(v*100).toFixed(1)+'%'}</span></div>`}).join('');
+  const rp=p.reward_parts||{}; $('reward').innerHTML=['progress','step_cost','success_bonus','boundary_cost','deadline_cost'].map(k=>`<div><small>${k}</small><strong>${fmt(rp[k])}</strong></div>`).join('');
+  const ns=(p.readout_snapshot&&p.readout_snapshot.neurons)||[]; $('neurons').innerHTML=ns.map(n=>{const id=safeText(n.neuron_id);return `<tr data-neuron-id="${id}" class="${String(n.neuron_id)===selectedNeuronId?'selected':''}" onclick="selectNeuron('${id}')"><td><button type="button">${id}</button></td><td>${fmt(n.v_before_reset??n.v)}</td><td>${n.spike===null||n.spike===undefined?'未记录':n.spike}</td><td>${fmt(n.trace_after_update??n.trace)}</td></tr>`}).join('')||'<tr><td colspan="4">本条记录未采集神经状态</td></tr>';
+  $('timeline').value=index; setNotice(p.action_probabilities?'':'动作概率未记录；页面不做推断。');
+}
+function startLivePolling(id){if(liveTimer)return;liveTimer=setInterval(async()=>{try{const next=await fetch(`/api/views/${id}/latest`).then(r=>r.ok?r.json():null);if(next&&next.kind==='transition'){events=[next];index=0;render();}}catch(_){setNotice('实时源暂时不可用');}},1000);}
+async function loadView(id){ if(liveTimer){clearInterval(liveTimer);liveTimer=null;} if(liveSocket){liveSocket.close();liveSocket=null;} currentViewId=id; selectedNeuronId=null; const m=await fetch(`/api/views/${id}/manifest`).then(r=>r.json()); const live=m.descriptor_kind==='live'||m.source_kind==='simulation_live'; const [e,t,score]=await Promise.all([live?fetch(`/api/views/${id}/latest`).then(r=>r.ok?r.json():null):fetch(`/api/views/${id}/events?kind=transition&limit=256`).then(r=>r.json()),fetch(`/api/views/${id}/topology`).then(r=>r.ok?r.json():null).catch(()=>null),fetch(`/api/views/${id}/metrics`).then(r=>r.ok?r.json():null).catch(()=>null)]);manifest=m;events=live?(e&&e.kind==='transition'?[e]:[]):(e.events||[]);index=0;$('viewMeta').textContent=`${m.source_kind} · ${m.event_count||'实时'}`;$('manifest').textContent=JSON.stringify(m,null,2);$('metrics').textContent=score?JSON.stringify(score,null,2):'未记录成绩';$('topologySelection').textContent='未选择神经元';$('topology').textContent=t?JSON.stringify({nodes:t.node_ids?.length||0,edges:t.edges?.length||0,truncated:t.truncated,source_edges:t.total_edges_in_source},null,2):'未导出局部拓扑';$('timeline').max=Math.max(0,events.length-1);if(live){$('dataState').textContent='实时等待';const scheme=location.protocol==='https:'?'wss':'ws';try{const ws=new WebSocket(`${scheme}://${location.host}/ws/views/${id}`);liveSocket=ws;ws.onmessage=ev=>{const next=JSON.parse(ev.data);if(next.kind==='transition'){events=[next];index=0;render();}};ws.onerror=()=>{if(liveSocket===ws){ws.close();liveSocket=null;startLivePolling(id);}};ws.onclose=()=>{if(liveSocket===ws){liveSocket=null;startLivePolling(id);}};}catch(_){startLivePolling(id);}}render(); }
+async function init(){ const data=await fetch('/api/views').then(r=>r.json()); const sel=$('views'); sel.innerHTML=(data.views||[]).map(v=>`<option value="${v.view_id}">${v.view_id} · ${v.source_kind||'ERROR'}</option>`).join(''); if(!sel.value){$('source').textContent='没有已注册视图';return;} $('source').textContent='仿真 / 只读观察'; await loadView(sel.value); }
+$('views').onchange=()=>loadView($('views').value);$('timeline').oninput=()=>{index=Number($('timeline').value);render()};$('next').onclick=()=>{index=Math.min(events.length-1,index+1);render()};$('prev').onclick=()=>{index=Math.max(0,index-1);render()};$('play').onclick=()=>{if(timer){clearInterval(timer);timer=null;$('play').textContent='播放';}else{timer=setInterval(()=>{if(index>=events.length-1){clearInterval(timer);timer=null;$('play').textContent='播放';return;}index++;render()},Number($('speed').value));$('play').textContent='暂停';}};window.addEventListener('resize',()=>events.length&&render());init().catch(err=>{$('source').textContent='连接失败';setNotice(String(err));});
+</script>
+</body>
+</html>

@@ -1,0 +1,10 @@
+{
+  "schema_version": "1.0.0",
+  "telemetry_enabled": true,
+  "live_publish_hz_max": 10,
+  "live_dir": "reports/vis/live/p1-brain-smoke",
+  "live_env_index": 0,
+  "live_neuron_count": 64,
+  "allow_training_control": false,
+  "allow_hardware_control": false
+}

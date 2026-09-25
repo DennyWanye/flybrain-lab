@@ -1,0 +1,9 @@
+{
+  "count": 100,
+  "success_rate": 0.0,
+  "end_reasons": {
+    "success": 0,
+    "boundary": 85,
+    "deadline": 15
+  }
+}

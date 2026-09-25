@@ -1,0 +1,4 @@
+Attempt 1 failed: The read operation timed out; retrying
+Attempt 2 failed: The read operation timed out; retrying
+Downloaded and verified: data/raw/male/brain.npz
+Downloaded and verified: data/raw/male/weights.npz

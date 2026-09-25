@@ -1,0 +1,12 @@
+{
+  "version": "0.1.0",
+  "source": "synthetic",
+  "synthetic": true,
+  "neurons": 2048,
+  "nonzero_neuron_pair_edges": 32642,
+  "orientation": "W[postsynaptic, presynaptic]",
+  "normalization": "divide each row by max(absolute incoming sum, 1)",
+  "file_sha256": "f2e444c225a8358e154c0a245d79b597f398decc2db631d65fcc276b259ee6f3",
+  "input_sha256": {},
+  "warning": "Engineered reservoir, not a biologically validated whole-brain digital twin."
+}

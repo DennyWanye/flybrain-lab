@@ -1,0 +1,8 @@
+[Gloo] Rank [Gloo] Rank 1 is connected to 01 is connected to  peer ranks. Expected number of connected peer ranks is : 11 peer ranks. 
+Expected number of connected peer ranks is : 1
+/mnt/data/flybrain_lab_4spark_v0_1/flylab.py:201: UserWarning: Sparse CSR tensor support is in beta state. If you miss a functionality in the sparse tensor support, please submit a feature request to https://github.com/pytorch/pytorch/issues. (Triggered internally at /pytorch/aten/src/ATen/SparseCsrTensorImpl.cpp:49.)
+  self.w = torch.sparse_csr_tensor(
+/mnt/data/flybrain_lab_4spark_v0_1/flylab.py:201: UserWarning: Sparse CSR tensor support is in beta state. If you miss a functionality in the sparse tensor support, please submit a feature request to https://github.com/pytorch/pytorch/issues. (Triggered internally at /pytorch/aten/src/ATen/SparseCsrTensorImpl.cpp:49.)
+  self.w = torch.sparse_csr_tensor(
+{"update": 1, "env_steps": 64, "episodes": 2, "success_rate": 1.0, "mean_return": 0.8250000178813934, "loss": 0.05917298700660467, "approx_kl": 4.3526291847229004e-05, "last_spike_fraction_rank0": 0.123046875, "wall_seconds": 0.022284894999984317, "policy_sha256": "175df1af90b1d8e671b2306bf2fc6b807f7a9a3d8f35c7040afbbb374eda6b65"}
+{"update": 2, "env_steps": 128, "episodes": 0, "success_rate": null, "mean_return": null, "loss": 0.05235862731933594, "approx_kl": 1.4048069715499878e-05, "last_spike_fraction_rank0": 0.1416015625, "wall_seconds": 0.0436745570000312, "policy_sha256": "42237128003b029f529478cc9970b7f563bd6722483ea110dea1374e0a665ccb"}

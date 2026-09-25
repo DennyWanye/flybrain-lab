@@ -1,0 +1,9 @@
+{
+  "device": "cpu",
+  "torch": "2.10.0+cpu",
+  "cuda_runtime": null,
+  "architecture": "x86_64",
+  "gpu": null,
+  "capability": null,
+  "csr_spmm": "PASS"
+}

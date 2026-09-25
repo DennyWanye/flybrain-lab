@@ -1,0 +1,67 @@
+.............                                                            [100%]
+=============================== warnings summary ===============================
+tests/test_flylab.py::test_reservoir_determinism_and_reset
+  /mnt/data/flybrain_lab_4spark_v0_1/flylab.py:201: UserWarning: Sparse CSR tensor support is in beta state. If you miss a functionality in the sparse tensor support, please submit a feature request to https://github.com/pytorch/pytorch/issues. (Triggered internally at /pytorch/aten/src/ATen/SparseCsrTensorImpl.cpp:49.)
+    self.w = torch.sparse_csr_tensor(
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+13 passed, 1 warning in 1.17s
+{
+  "version": "0.1.0",
+  "source": "synthetic",
+  "synthetic": true,
+  "neurons": 512,
+  "nonzero_neuron_pair_edges": 8068,
+  "orientation": "W[postsynaptic, presynaptic]",
+  "normalization": "divide each row by max(absolute incoming sum, 1)",
+  "file_sha256": "be43d1e7d581b4079af059a3112212228202e297eca4776078c97d6b74599a66",
+  "input_sha256": {},
+  "warning": "Engineered reservoir, not a biologically validated whole-brain digital twin."
+}
+/mnt/data/flybrain_lab_4spark_v0_1/flylab.py:576: UserWarning: Sparse CSR tensor support is in beta state. If you miss a functionality in the sparse tensor support, please submit a feature request to https://github.com/pytorch/pytorch/issues. (Triggered internally at /pytorch/aten/src/ATen/SparseCsrTensorImpl.cpp:49.)
+  w = torch.sparse_csr_tensor(crow, col, val, size=(2, 2), device=device)
+{
+  "device": "cpu",
+  "torch": "2.10.0+cpu",
+  "cuda_runtime": null,
+  "architecture": "x86_64",
+  "gpu": null,
+  "capability": null,
+  "csr_spmm": "PASS"
+}
+/mnt/data/flybrain_lab_4spark_v0_1/flylab.py:201: UserWarning: Sparse CSR tensor support is in beta state. If you miss a functionality in the sparse tensor support, please submit a feature request to https://github.com/pytorch/pytorch/issues. (Triggered internally at /pytorch/aten/src/ATen/SparseCsrTensorImpl.cpp:49.)
+  self.w = torch.sparse_csr_tensor(
+{"update": 1, "env_steps": 64, "episodes": 0, "success_rate": null, "mean_return": null, "loss": 0.042247409699484706, "approx_kl": 0.00021748198196291924, "last_spike_fraction_rank0": 0.11474609375, "wall_seconds": 0.020759698999881948, "policy_sha256": "f570ac4cdd24087137f60e854d23cd7cbbd277341bbfa9545c3afbd6464fcbf4"}
+{"update": 2, "env_steps": 128, "episodes": 1, "success_rate": 1.0, "mean_return": 0.5800000429153442, "loss": 0.04642951022833586, "approx_kl": 9.677838534116745e-05, "last_spike_fraction_rank0": 0.15625, "wall_seconds": 0.03833583200002977, "policy_sha256": "b9b1de36244db62156ad62ceed05da4979faed3d86051df93379dba82d0537f3"}
+{"update": 3, "env_steps": 192, "episodes": 1, "success_rate": 1.0, "mean_return": 0.2600002884864807, "loss": 0.0262870981823653, "approx_kl": 6.56861811876297e-05, "last_spike_fraction_rank0": 0.12158203125, "wall_seconds": 0.05664445299998988, "policy_sha256": "b8b13a8b6e4c22a231769dfccd451732c5fbf65463da10bbfde3c9eb3df58c56"}
+/mnt/data/flybrain_lab_4spark_v0_1/flylab.py:201: UserWarning: Sparse CSR tensor support is in beta state. If you miss a functionality in the sparse tensor support, please submit a feature request to https://github.com/pytorch/pytorch/issues. (Triggered internally at /pytorch/aten/src/ATen/SparseCsrTensorImpl.cpp:49.)
+  self.w = torch.sparse_csr_tensor(
+{
+  "episodes": 5,
+  "seed": 900001,
+  "successes": 4,
+  "success_rate": 0.8,
+  "wilson_95_interval_descriptive": [
+    0.3755282641185388,
+    0.9637768390302125
+  ],
+  "mean_return": 0.1840002179145813,
+  "mean_length": 38.4,
+  "action_selection": "sampled",
+  "graph_sha256": "be43d1e7d581b4079af059a3112212228202e297eca4776078c97d6b74599a66",
+  "mode": "brain",
+  "warning": "Same fixed map; varying start/goal. Not an unseen-map generalization test."
+}
+[Gloo] Rank [Gloo] Rank 1 is connected to 1 peer ranks. Expected number of connected peer ranks is : 10 is connected to 1 peer ranks. Expected number of connected peer ranks is : 1
+
+{"rank": 0, "world_size": 2, "backend": "gloo/CPU", "sum": 3.0, "status": "PASS"}
+{"rank": 1, "world_size": 2, "backend": "gloo/CPU", "sum": 3.0, "status": "PASS"}
+[Gloo] Rank 1 is connected to 1 peer ranks. Expected number of connected peer ranks is : 1
+[Gloo] Rank 0 is connected to 1 peer ranks. Expected number of connected peer ranks is : 1
+/mnt/data/flybrain_lab_4spark_v0_1/flylab.py:201: UserWarning: Sparse CSR tensor support is in beta state. If you miss a functionality in the sparse tensor support, please submit a feature request to https://github.com/pytorch/pytorch/issues. (Triggered internally at /pytorch/aten/src/ATen/SparseCsrTensorImpl.cpp:49.)
+  self.w = torch.sparse_csr_tensor(
+/mnt/data/flybrain_lab_4spark_v0_1/flylab.py:201: UserWarning: Sparse CSR tensor support is in beta state. If you miss a functionality in the sparse tensor support, please submit a feature request to https://github.com/pytorch/pytorch/issues. (Triggered internally at /pytorch/aten/src/ATen/SparseCsrTensorImpl.cpp:49.)
+  self.w = torch.sparse_csr_tensor(
+{"update": 1, "env_steps": 64, "episodes": 2, "success_rate": 1.0, "mean_return": 0.8250000178813934, "loss": 0.05917298700660467, "approx_kl": 4.3526291847229004e-05, "last_spike_fraction_rank0": 0.123046875, "wall_seconds": 0.021975435999820547, "policy_sha256": "175df1af90b1d8e671b2306bf2fc6b807f7a9a3d8f35c7040afbbb374eda6b65"}
+{"update": 2, "env_steps": 128, "episodes": 0, "success_rate": null, "mean_return": null, "loss": 0.05235862731933594, "approx_kl": 1.4048069715499878e-05, "last_spike_fraction_rank0": 0.1416015625, "wall_seconds": 0.039353808999976536, "policy_sha256": "42237128003b029f529478cc9970b7f563bd6722483ea110dea1374e0a665ccb"}
+Software-only validation completed: /mnt/data/flybrain_work/full-validation

@@ -1,0 +1,6 @@
+{
+  "graph_sha256": "badc33a247894fe12c4d68d3ff791393857cffa39ff2ab81869608a11fa1e0c9",
+  "mapping_sha256": "889bc1968cc1d3f058f9dabd16129cdd83309347950dee96c196f3c53825e3a2",
+  "feature_dim": 256,
+  "steps": 4096
+}

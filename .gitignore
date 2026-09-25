@@ -1,0 +1,43 @@
+# Python and local environments
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/
+venv/
+env/
+*.egg-info/
+
+# Local data and model artifacts. These can be hundreds of MB and may have
+# separate upstream licenses; download or generate them locally instead.
+data/raw/
+data/*.npz
+reports/**/*.npz
+runs/
+checkpoints/
+*.pt
+*.pth
+*.ckpt
+
+# Generated reports, traces, and live viewer state
+reports/vis/live/
+reports/vis/views/
+reports/vis/real-trace-*/
+reports/vis/real-view-*/
+reports/vis/*.jsonl
+reports/vis/*.log
+logs/
+reports/*tests*.txt
+reports/vis-baseline-tests.txt
+reports/vis/views/index.json
+logs/
+
+# Local viewer and frontend dependencies
+node_modules/
+frontend/dist/
+*.log
+
+# OS/editor files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

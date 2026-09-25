@@ -1,0 +1,867 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "FlyBrain Browser Observation Event 1.0.0",
+  "oneOf": [
+    {
+      "type": "object",
+      "properties": {
+        "schema_version": {
+          "const": "1.0.0"
+        },
+        "source_kind": {
+          "enum": [
+            "synthetic_demo",
+            "simulation_live",
+            "simulation_recorded"
+          ]
+        },
+        "run_id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9_-]{1,80}$"
+        },
+        "source_epoch": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9_-]{1,80}$"
+        },
+        "seq": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "emitted_at_utc": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "kind": {
+          "const": "transition"
+        },
+        "payload": {
+          "type": "object",
+          "properties": {
+            "env_index": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 9007199254740991
+            },
+            "episode_id": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9_-]{1,80}$"
+            },
+            "case_id": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9_-]{1,80}$"
+            },
+            "decision_step": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 9007199254740991
+            },
+            "policy_update": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 9007199254740991
+            },
+            "policy_state_id": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9_-]{1,80}$"
+            },
+            "sim_tick_before": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 9007199254740991
+            },
+            "sim_tick_after": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 9007199254740991
+            },
+            "physics_dt_s": {
+              "const": 0.02
+            },
+            "state_before": {
+              "type": "object",
+              "properties": {
+                "position_xy_m": {
+                  "type": "array",
+                  "items": {
+                    "type": "number"
+                  },
+                  "minItems": 2,
+                  "maxItems": 2
+                },
+                "velocity_xy_mps": {
+                  "type": "array",
+                  "items": {
+                    "type": "number"
+                  },
+                  "minItems": 2,
+                  "maxItems": 2
+                },
+                "goal_xy_m": {
+                  "type": "array",
+                  "items": {
+                    "type": "number"
+                  },
+                  "minItems": 2,
+                  "maxItems": 2
+                },
+                "dwell_s": {
+                  "type": "number",
+                  "minimum": 0
+                },
+                "remaining_s": {
+                  "type": "number",
+                  "minimum": 0
+                }
+              },
+              "required": [
+                "position_xy_m",
+                "velocity_xy_mps",
+                "goal_xy_m",
+                "dwell_s",
+                "remaining_s"
+              ],
+              "additionalProperties": false
+            },
+            "observation": {
+              "type": "array",
+              "items": {
+                "type": "number",
+                "minimum": -1,
+                "maximum": 1
+              },
+              "minItems": 8,
+              "maxItems": 8
+            },
+            "encoded_observation": {
+              "type": "array",
+              "items": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 1
+              },
+              "minItems": 14,
+              "maxItems": 14
+            },
+            "action_id": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 4
+            },
+            "action_name": {
+              "enum": [
+                "HOLD",
+                "POS_X",
+                "NEG_X",
+                "POS_Y",
+                "NEG_Y"
+              ]
+            },
+            "action_probabilities": {
+              "anyOf": [
+                {
+                  "type": "array",
+                  "items": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 1
+                  },
+                  "minItems": 5,
+                  "maxItems": 5
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "value_estimate": {
+              "anyOf": [
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "action_selection": {
+              "enum": [
+                "sampled",
+                "greedy",
+                "reference",
+                "random",
+                "scripted_fixture"
+              ]
+            },
+            "local_waypoint_xy_m": {
+              "type": "array",
+              "items": {
+                "type": "number"
+              },
+              "minItems": 2,
+              "maxItems": 2
+            },
+            "state_after": {
+              "type": "object",
+              "properties": {
+                "position_xy_m": {
+                  "type": "array",
+                  "items": {
+                    "type": "number"
+                  },
+                  "minItems": 2,
+                  "maxItems": 2
+                },
+                "velocity_xy_mps": {
+                  "type": "array",
+                  "items": {
+                    "type": "number"
+                  },
+                  "minItems": 2,
+                  "maxItems": 2
+                },
+                "goal_xy_m": {
+                  "type": "array",
+                  "items": {
+                    "type": "number"
+                  },
+                  "minItems": 2,
+                  "maxItems": 2
+                },
+                "dwell_s": {
+                  "type": "number",
+                  "minimum": 0
+                },
+                "remaining_s": {
+                  "type": "number",
+                  "minimum": 0
+                }
+              },
+              "required": [
+                "position_xy_m",
+                "velocity_xy_mps",
+                "goal_xy_m",
+                "dwell_s",
+                "remaining_s"
+              ],
+              "additionalProperties": false
+            },
+            "reward_parts": {
+              "type": "object",
+              "properties": {
+                "progress": {
+                  "type": "number"
+                },
+                "step_cost": {
+                  "type": "number"
+                },
+                "success_bonus": {
+                  "type": "number"
+                },
+                "boundary_cost": {
+                  "type": "number"
+                },
+                "deadline_cost": {
+                  "type": "number"
+                },
+                "total": {
+                  "type": "number"
+                }
+              },
+              "required": [
+                "progress",
+                "step_cost",
+                "success_bonus",
+                "boundary_cost",
+                "deadline_cost",
+                "total"
+              ],
+              "additionalProperties": false
+            },
+            "terminated": {
+              "type": "boolean"
+            },
+            "truncated": {
+              "type": "boolean"
+            },
+            "end_reason": {
+              "anyOf": [
+                {
+                  "enum": [
+                    "success",
+                    "boundary",
+                    "deadline",
+                    "external_truncation"
+                  ]
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "physics_path": {
+              "anyOf": [
+                {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "physics_tick": {
+                        "type": "integer",
+                        "minimum": 0,
+                        "maximum": 9007199254740991
+                      },
+                      "position_xy_m": {
+                        "type": "array",
+                        "items": {
+                          "type": "number"
+                        },
+                        "minItems": 2,
+                        "maxItems": 2
+                      },
+                      "velocity_xy_mps": {
+                        "type": "array",
+                        "items": {
+                          "type": "number"
+                        },
+                        "minItems": 2,
+                        "maxItems": 2
+                      }
+                    },
+                    "required": [
+                      "physics_tick",
+                      "position_xy_m",
+                      "velocity_xy_mps"
+                    ],
+                    "additionalProperties": false
+                  },
+                  "minItems": 2,
+                  "maxItems": 51
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "readout_snapshot": {
+              "anyOf": [
+                {
+                  "type": "object",
+                  "properties": {
+                    "phase": {
+                      "const": "post_reset_final_substep"
+                    },
+                    "substep_index": {
+                      "const": 3
+                    },
+                    "model_state_unit": {
+                      "const": "arbitrary_model_units"
+                    },
+                    "neurons": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "neuron_index": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "maximum": 9007199254740991
+                          },
+                          "neuron_id": {
+                            "type": "string",
+                            "pattern": "^[A-Za-z0-9_.:-]{1,100}$"
+                          },
+                          "v": {
+                            "type": "number"
+                          },
+                          "spike": {
+                            "anyOf": [
+                              {
+                                "enum": [
+                                  0,
+                                  1
+                                ]
+                              },
+                              {
+                                "type": "null"
+                              }
+                            ]
+                          },
+                          "trace": {
+                            "type": "number"
+                          }
+                        },
+                        "required": [
+                          "neuron_index",
+                          "neuron_id",
+                          "v",
+                          "spike",
+                          "trace"
+                        ],
+                        "additionalProperties": false
+                      },
+                      "minItems": 1,
+                      "maxItems": 64
+                    },
+                    "wholebrain_final_spike_fraction": {
+                      "anyOf": [
+                        {
+                          "type": "number",
+                          "minimum": 0,
+                          "maximum": 1
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ]
+                    }
+                  },
+                  "required": [
+                    "phase",
+                    "substep_index",
+                    "model_state_unit",
+                    "neurons",
+                    "wholebrain_final_spike_fraction"
+                  ],
+                  "additionalProperties": false
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "neural_capture": {
+              "enum": [
+                "final_readout_only",
+                "selected_substeps",
+                "not_recorded"
+              ]
+            }
+          },
+          "required": [
+            "env_index",
+            "episode_id",
+            "case_id",
+            "decision_step",
+            "policy_update",
+            "policy_state_id",
+            "sim_tick_before",
+            "sim_tick_after",
+            "physics_dt_s",
+            "state_before",
+            "observation",
+            "encoded_observation",
+            "action_id",
+            "action_name",
+            "action_probabilities",
+            "value_estimate",
+            "action_selection",
+            "local_waypoint_xy_m",
+            "state_after",
+            "reward_parts",
+            "terminated",
+            "truncated",
+            "end_reason",
+            "physics_path",
+            "readout_snapshot",
+            "neural_capture"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "schema_version",
+        "source_kind",
+        "run_id",
+        "source_epoch",
+        "seq",
+        "emitted_at_utc",
+        "kind",
+        "payload"
+      ],
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "properties": {
+        "schema_version": {
+          "const": "1.0.0"
+        },
+        "source_kind": {
+          "enum": [
+            "synthetic_demo",
+            "simulation_live",
+            "simulation_recorded"
+          ]
+        },
+        "run_id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9_-]{1,80}$"
+        },
+        "source_epoch": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9_-]{1,80}$"
+        },
+        "seq": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "emitted_at_utc": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "kind": {
+          "const": "neural_sample"
+        },
+        "payload": {
+          "type": "object",
+          "properties": {
+            "env_index": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 9007199254740991
+            },
+            "episode_id": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9_-]{1,80}$"
+            },
+            "case_id": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9_-]{1,80}$"
+            },
+            "decision_step": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 9007199254740991
+            },
+            "policy_update": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 9007199254740991
+            },
+            "neural_substep": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 3
+            },
+            "phase": {
+              "const": "pre_action_before_reset"
+            },
+            "state_tick": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 9007199254740991
+            },
+            "model_neural_dt_s": {
+              "const": 0.02
+            },
+            "neurons": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "neuron_index": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 9007199254740991
+                  },
+                  "neuron_id": {
+                    "type": "string",
+                    "pattern": "^[A-Za-z0-9_.:-]{1,100}$"
+                  },
+                  "v_before_reset": {
+                    "type": "number"
+                  },
+                  "spike": {
+                    "enum": [
+                      0,
+                      1
+                    ]
+                  },
+                  "trace_after_update": {
+                    "type": "number"
+                  }
+                },
+                "required": [
+                  "neuron_index",
+                  "neuron_id",
+                  "v_before_reset",
+                  "spike",
+                  "trace_after_update"
+                ],
+                "additionalProperties": false
+              },
+              "minItems": 1,
+              "maxItems": 64
+            }
+          },
+          "required": [
+            "env_index",
+            "episode_id",
+            "case_id",
+            "decision_step",
+            "policy_update",
+            "neural_substep",
+            "phase",
+            "state_tick",
+            "model_neural_dt_s",
+            "neurons"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "schema_version",
+        "source_kind",
+        "run_id",
+        "source_epoch",
+        "seq",
+        "emitted_at_utc",
+        "kind",
+        "payload"
+      ],
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "properties": {
+        "schema_version": {
+          "const": "1.0.0"
+        },
+        "source_kind": {
+          "enum": [
+            "synthetic_demo",
+            "simulation_live",
+            "simulation_recorded"
+          ]
+        },
+        "run_id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9_-]{1,80}$"
+        },
+        "source_epoch": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9_-]{1,80}$"
+        },
+        "seq": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "emitted_at_utc": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "kind": {
+          "const": "training_metric"
+        },
+        "payload": {
+          "type": "object",
+          "properties": {
+            "policy_update": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 9007199254740991
+            },
+            "total_env_steps": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 9007199254740991
+            },
+            "split": {
+              "enum": [
+                "training_window",
+                "validation",
+                "sealed_test"
+              ]
+            },
+            "window_episodes": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 9007199254740991
+            },
+            "successes": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 9007199254740991
+            },
+            "success_rate": {
+              "anyOf": [
+                {
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 1
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "mean_return": {
+              "anyOf": [
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "evaluation_manifest_sha256": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "pattern": "^[0-9a-f]{64}$"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "checkpoint_sha256": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "pattern": "^[0-9a-f]{64}$"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "required": [
+            "policy_update",
+            "total_env_steps",
+            "split",
+            "window_episodes",
+            "successes",
+            "success_rate",
+            "mean_return",
+            "evaluation_manifest_sha256",
+            "checkpoint_sha256"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "schema_version",
+        "source_kind",
+        "run_id",
+        "source_epoch",
+        "seq",
+        "emitted_at_utc",
+        "kind",
+        "payload"
+      ],
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "properties": {
+        "schema_version": {
+          "const": "1.0.0"
+        },
+        "source_kind": {
+          "enum": [
+            "synthetic_demo",
+            "simulation_live",
+            "simulation_recorded"
+          ]
+        },
+        "run_id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9_-]{1,80}$"
+        },
+        "source_epoch": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9_-]{1,80}$"
+        },
+        "seq": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "emitted_at_utc": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "kind": {
+          "const": "session_status"
+        },
+        "payload": {
+          "type": "object",
+          "properties": {
+            "trainer_state": {
+              "enum": [
+                "running",
+                "optimizer_update",
+                "finished",
+                "failed",
+                "unknown"
+              ]
+            },
+            "last_transition_seq": {
+              "anyOf": [
+                {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 9007199254740991
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "dropped_live_frames": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 9007199254740991
+            },
+            "trace_status": {
+              "enum": [
+                "not_recording",
+                "recording",
+                "complete",
+                "incomplete",
+                "quota_reached"
+              ]
+            },
+            "reason": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 160
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "required": [
+            "trainer_state",
+            "last_transition_seq",
+            "dropped_live_frames",
+            "trace_status",
+            "reason"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "schema_version",
+        "source_kind",
+        "run_id",
+        "source_epoch",
+        "seq",
+        "emitted_at_utc",
+        "kind",
+        "payload"
+      ],
+      "additionalProperties": false
+    }
+  ]
+}

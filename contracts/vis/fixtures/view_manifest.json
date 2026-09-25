@@ -1,0 +1,57 @@
+{
+  "schema_version": "1.0.0",
+  "view_id": "fixture-view",
+  "run_id": "fixture-run",
+  "source_epoch": "fixture-epoch-01",
+  "source_kind": "synthetic_demo",
+  "dataset_id": "synthetic-fixture-8",
+  "graph_sha256": "e7b58f6c38f5c0af645a4f639f1c2d4cd230eccd6c644e8efc78abd520e5fa89",
+  "mapping_sha256": "27c4d97a298bfadc39449e1d92dff3f424dfeebdda18b3ce904132f4c2b858f3",
+  "source_checkpoint_sha256": null,
+  "p1_config_sha256": null,
+  "source_code_sha256": null,
+  "node_count": 8,
+  "edge_count": 5,
+  "p1_mode": "fixture",
+  "environment_id": "FlyToTarget2D-v1",
+  "world_axes": "+X forward; +Y left; +Z up",
+  "fixed_height_m": 1.0,
+  "fixed_yaw_rad": 0.0,
+  "connectome_trainable": false,
+  "policy_learning_status": "fixture_only",
+  "capabilities": {
+    "live_readout": true,
+    "substep_spikes": true,
+    "physics_path": false,
+    "topology": true,
+    "anatomy": false
+  },
+  "recorded_neuron_ids": [
+    "9007199254740995",
+    "9007199254740996"
+  ],
+  "catalog_file": "neurons.json",
+  "topology_file": "topology.json",
+  "events_file": "events.jsonl",
+  "event_count": 7,
+  "trace_complete": false,
+  "source_trace_limit_reason": "synthetic fixture contains one nonterminal transition only",
+  "synthetic_warning": "SYNTHETIC DEMO ONLY — 人工合同样例，不是训练轨迹、神经动力学验证或成功率证据。",
+  "files": [
+    {
+      "path": "events.jsonl",
+      "sha256": "824ddb069e6901a7c3ec9f1aa9ee6262145f08e44ddc375243398e2e4df18356",
+      "bytes": 5187
+    },
+    {
+      "path": "neurons.json",
+      "sha256": "ca7606318b5ad6148dd0f06c8e1503601348112c6a9ff179525a842a5d55d7a5",
+      "bytes": 2736
+    },
+    {
+      "path": "topology.json",
+      "sha256": "dd28b9e70a78cd9af36810156e5f80cbad30e6d72da1d3d40b0a407ba77ad46d",
+      "bytes": 836
+    }
+  ]
+}

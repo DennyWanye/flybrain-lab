@@ -1,0 +1,25 @@
+{
+  "checked_date": "2026-09-18",
+  "shiu_model": {
+    "repository": "https://github.com/philshiu/Drosophila_brain_model",
+    "commit": "91bdd1e7dcf193f3e7ca5a8933497fcef63b7960",
+    "default_paper_dataset": "FlyWire v630",
+    "additional_engineering_dataset": "v783"
+  },
+  "fly_ai_preprocessing": {
+    "repository": "https://github.com/alextitonis/fly.ai",
+    "commit": "95a3dbcb05241b0a5c07028ca8ad945b23fbbe6e",
+    "asset_release": "brain-v1",
+    "brain.npz_sha256": "cc9bd1ecd00bd703a6fa648bc6ad145c93c7c1ee53debdcc9ce0d1f4305e6aca",
+    "weights.npz_sha256": "c29919aa44069a271b1ee978abe05fa9bf6e45e4ba3e436e92b624ef1b5be40c"
+  },
+  "flygym": {
+    "repository": "https://github.com/NeLy-EPFL/flygym",
+    "tag": "v2.1.0",
+    "commit": "ca65a510c2afe6ac61c51df4f274c8d190c2f95f"
+  },
+  "core_base_image": {
+    "tag": "nvcr.io/nvidia/pytorch:25.11-py3",
+    "digest": "Resolve on the user's Spark before building; not fabricated here."
+  }
+}

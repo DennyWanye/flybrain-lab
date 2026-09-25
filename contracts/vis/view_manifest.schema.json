@@ -1,0 +1,265 @@
+{
+  "type": "object",
+  "properties": {
+    "schema_version": {
+      "const": "1.0.0"
+    },
+    "view_id": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9_-]{1,80}$"
+    },
+    "run_id": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9_-]{1,80}$"
+    },
+    "source_epoch": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9_-]{1,80}$"
+    },
+    "source_kind": {
+      "enum": [
+        "synthetic_demo",
+        "simulation_recorded"
+      ]
+    },
+    "dataset_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 160
+    },
+    "graph_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "mapping_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "source_checkpoint_sha256": {
+      "anyOf": [
+        {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "p1_config_sha256": {
+      "anyOf": [
+        {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "source_code_sha256": {
+      "anyOf": [
+        {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "node_count": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "edge_count": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "p1_mode": {
+      "enum": [
+        "brain",
+        "direct",
+        "reference",
+        "random",
+        "fixture"
+      ]
+    },
+    "environment_id": {
+      "const": "FlyToTarget2D-v1"
+    },
+    "world_axes": {
+      "const": "+X forward; +Y left; +Z up"
+    },
+    "fixed_height_m": {
+      "const": 1.0
+    },
+    "fixed_yaw_rad": {
+      "const": 0.0
+    },
+    "connectome_trainable": {
+      "const": false
+    },
+    "policy_learning_status": {
+      "enum": [
+        "not_evaluated",
+        "learned_per_p1_report",
+        "not_learned",
+        "fixture_only"
+      ]
+    },
+    "capabilities": {
+      "type": "object",
+      "properties": {
+        "live_readout": {
+          "type": "boolean"
+        },
+        "substep_spikes": {
+          "type": "boolean"
+        },
+        "physics_path": {
+          "type": "boolean"
+        },
+        "topology": {
+          "type": "boolean"
+        },
+        "anatomy": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "live_readout",
+        "substep_spikes",
+        "physics_path",
+        "topology",
+        "anatomy"
+      ],
+      "additionalProperties": false
+    },
+    "recorded_neuron_ids": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^[A-Za-z0-9_.:-]{1,100}$"
+      },
+      "minItems": 0,
+      "maxItems": 64,
+      "uniqueItems": true
+    },
+    "catalog_file": {
+      "const": "neurons.json"
+    },
+    "topology_file": {
+      "anyOf": [
+        {
+          "const": "topology.json"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "events_file": {
+      "const": "events.jsonl"
+    },
+    "event_count": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 9007199254740991
+    },
+    "trace_complete": {
+      "type": "boolean"
+    },
+    "source_trace_limit_reason": {
+      "anyOf": [
+        {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "synthetic_warning": {
+      "anyOf": [
+        {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "files": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "path": {
+            "enum": [
+              "events.jsonl",
+              "neurons.json",
+              "topology.json"
+            ]
+          },
+          "sha256": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{64}$"
+          },
+          "bytes": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 9007199254740991
+          }
+        },
+        "required": [
+          "path",
+          "sha256",
+          "bytes"
+        ],
+        "additionalProperties": false
+      },
+      "minItems": 2,
+      "maxItems": 3
+    }
+  },
+  "required": [
+    "schema_version",
+    "view_id",
+    "run_id",
+    "source_epoch",
+    "source_kind",
+    "dataset_id",
+    "graph_sha256",
+    "mapping_sha256",
+    "source_checkpoint_sha256",
+    "p1_config_sha256",
+    "source_code_sha256",
+    "node_count",
+    "edge_count",
+    "p1_mode",
+    "environment_id",
+    "world_axes",
+    "fixed_height_m",
+    "fixed_yaw_rad",
+    "connectome_trainable",
+    "policy_learning_status",
+    "capabilities",
+    "recorded_neuron_ids",
+    "catalog_file",
+    "topology_file",
+    "events_file",
+    "event_count",
+    "trace_complete",
+    "source_trace_limit_reason",
+    "synthetic_warning",
+    "files"
+  ],
+  "additionalProperties": false,
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "View manifest 1.0.0"
+}

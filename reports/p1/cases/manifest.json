@@ -1,0 +1,11 @@
+{
+  "config_hash": "6c58e2d486bd998ae0b30d528b993a5fb6161856a0fc3be4a8702b39fbd2c445",
+  "counts": {
+    "validation": 100,
+    "test": 500
+  },
+  "files": {
+    "validation": "17833c091611ef0622e1e38cae46c1eec71bba0e33a0b0bccba8ffdd07549e67",
+    "test": "c6261f55f8aac5b924a1d98a2f290ac9f780e4a56c63a12ca499def0fcf125d3"
+  }
+}
