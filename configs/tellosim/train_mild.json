@@ -1,0 +1,99 @@
+{
+  "profile_id": "ts1_mild_randomized",
+  "world_config": "configs/tellosim/world_room6.json",
+  "sdk_profile": "configs/tellosim/sdk3_subset_profile.json",
+  "action_catalog": "configs/tellosim/actions9.json",
+  "stage": "C0",
+  "clock": {
+    "physics_hz": 120,
+    "sensor_hz": 10,
+    "brain_observation_hz": 10,
+    "brain_internal_steps_per_observation": 4,
+    "viewer_max_hz_wall": 10
+  },
+  "device": {
+    "backend": "sim_inprocess",
+    "default_speed_cm_s": 20,
+    "non_loopback_network_allowed": false,
+    "real_adapter_enabled": false
+  },
+  "observation": {
+    "schema": "tellosim.obs/1.0",
+    "vector_dim": 26,
+    "encoded_dim": 34,
+    "position_source": "external_pose_mock",
+    "ground_truth_in_policy": false,
+    "pose_loss_deadline_s": 0.3
+  },
+  "task": {
+    "deadline_s": 60,
+    "success_radius_m": 0.2,
+    "success_speed_mps": 0.08,
+    "success_hold_s": 2.0,
+    "success_height_tolerance_m": 0.1,
+    "start_goal_xy_bounds_m": [
+      -2.0,
+      2.0
+    ],
+    "start_goal_distance_range_m": [
+      0.6,
+      2.5
+    ],
+    "height_m": 1.0
+  },
+  "brain": {
+    "graph": "data/male-v1.npz",
+    "frozen": true,
+    "readout": 128,
+    "gain": 1.0,
+    "tonic": 0.14,
+    "policy_device": "cpu",
+    "brain_device": "cuda",
+    "raw_observation_bypass": false
+  },
+  "ppo": {
+    "gamma_per_100ms": 0.99,
+    "gae_lambda_per_option": 0.95,
+    "lr": 0.0003,
+    "clip": 0.2,
+    "epochs": 4,
+    "rollout_options_per_env": 128,
+    "minibatch": 256,
+    "entropy": 0.01,
+    "max_grad_norm": 0.5
+  },
+  "training": {
+    "envs": 4,
+    "pilot_options": 10000,
+    "pilot_wall_limit_s": 7200,
+    "formal_options_per_seed": 100000,
+    "formal_wall_limit_s_per_seed": 86400,
+    "train_seeds": [
+      11,
+      22,
+      33
+    ],
+    "validation_cases": 100,
+    "test_cases": 300
+  },
+  "noise": {
+    "pose_sigma_m": 0.01,
+    "pose_delay_ticks_max": 1,
+    "request_delay_physics_ticks_max": 6,
+    "response_delay_physics_ticks_max": 6,
+    "request_drop_prob": 0.0,
+    "response_drop_prob": 0.0,
+    "pose_drop_prob": 0.0,
+    "axis_gain_range": [
+      0.95,
+      1.05
+    ],
+    "constant_wind_accel_max_mps2": 0.02
+  },
+  "recording": {
+    "dynamic_neurons_max": 64,
+    "live_queue_frames_max": 2,
+    "frame_bytes_max": 65536,
+    "trace_quota_mib_per_run": 256
+  }
+}

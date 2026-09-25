@@ -1,0 +1,58 @@
+{
+  "profile_id": "sdk3_subset_engineering_v1",
+  "hardware_verified": false,
+  "source_sdk": "Tello SDK 3.0 / 2021.04 V1.0",
+  "motion_distance_cm": [
+    20,
+    500
+  ],
+  "rotation_deg": [
+    1,
+    360
+  ],
+  "speed_cm_s": [
+    10,
+    100
+  ],
+  "go_axis_cm": [
+    -500,
+    500
+  ],
+  "go_requires_any_axis_abs_gt_cm": 20,
+  "go_boundary_policy": "conservative_inclusive_dead_zone_engineering_choice",
+  "relative_axes": "FLU_at_command_receive_yaw",
+  "cw_yaw_sign": -1,
+  "state_velocity_unit": "dm/s",
+  "state_velocity_scale_to_mps": 0.1,
+  "state_velocity_frame": "profile_assumed_body_FLU_requires_hardware_calibration",
+  "policy_velocity_source": "external_pose_mock",
+  "height_cm_to_m": 0.01,
+  "barometer_unit": "m",
+  "idle_autoland_s": 15,
+  "idle_rule": "after_command_complete_without_new_qualifying_command",
+  "request_retry_motion": false,
+  "real_transport_available": false,
+  "udp_bind_host": "127.0.0.1",
+  "udp_command_port": 18889,
+  "udp_state_port": 18890,
+  "unsupported_commands": [
+    "rc",
+    "emergency",
+    "flip",
+    "curve",
+    "mon",
+    "moff",
+    "mdirection",
+    "streamon",
+    "streamoff",
+    "wifi",
+    "ap",
+    "reboot",
+    "motoron",
+    "motoroff",
+    "throwfly",
+    "port",
+    "EXT"
+  ],
+  "idle_excluded_tt_controller_command": "[TELLO] battery? (unsupported extension; do not confuse with SDK battery?)"
+}

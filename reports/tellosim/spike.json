@@ -1,0 +1,50 @@
+{
+  "sdk_codec": {
+    "accepted": [
+      "command",
+      "takeoff",
+      "speed 20",
+      "forward 40",
+      "cw 90",
+      "stop",
+      "land"
+    ],
+    "rejected": {
+      "forward 15": "range_error",
+      "go 20 0 0 20": "range_error",
+      "rc 0 0 0 0": "unsupported_command"
+    }
+  },
+  "operation_state": {
+    "completed_without_ack": {
+      "operation_id": "op-1",
+      "device_execution": "completed",
+      "phase": "unknown_execution"
+    },
+    "reply_loss": {
+      "operation_id": "op-2",
+      "device_execution": "not_observed",
+      "phase": "unknown_execution"
+    }
+  },
+  "physics": {
+    "mujoco_version": "3.3.7",
+    "physics_hz": 120,
+    "steps": 600,
+    "final": {
+      "sim_tick": 600,
+      "time_s": 4.999999999998065,
+      "x_m": 0.7556112185819804,
+      "y_m": 0.0,
+      "z_m": 0.999798147932799,
+      "speed_mps": 0.028776115832841915
+    },
+    "target": [
+      0.8,
+      0.0,
+      1.0
+    ],
+    "controller_model": "bounded_body_axis_thrust_surrogate",
+    "calibration": "NOT_TELLO_CALIBRATED"
+  }
+}

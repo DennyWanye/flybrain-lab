@@ -1,0 +1,49 @@
+{
+  "schema_version": "tellosim.world/1.0",
+  "world_id": "room6_obstacles_demo_v1",
+  "calibration": "engineering_assumption_not_tello_calibrated",
+  "physics_backend": "mujoco_cpu",
+  "physics_hz": 120,
+  "world_frame": "right_handed_z_up",
+  "room_size_m": [
+    6,
+    6,
+    3
+  ],
+  "floor_z_m": 0,
+  "vehicle": {
+    "mass_kg": 0.1,
+    "collision_half_extents_m": [
+      0.1,
+      0.1,
+      0.045
+    ],
+    "takeoff_height_m": 1.0,
+    "max_accel_mps2": 0.6,
+    "max_tilt_deg": 15,
+    "max_yaw_rate_deg_s": 45,
+    "max_thrust_weight_ratio": 2.0
+  },
+  "obstacles": [
+    {
+      "id": "box_a",
+      "center_m": [
+        1.0,
+        0.0,
+        0.5
+      ],
+      "half_extents_m": [
+        0.2,
+        0.5,
+        0.5
+      ]
+    }
+  ],
+  "landing_pad": {
+    "center_xy_m": [
+      0,
+      0
+    ],
+    "radius_m": 0.35
+  }
+}

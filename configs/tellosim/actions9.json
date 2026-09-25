@@ -1,0 +1,138 @@
+{
+  "catalog_id": "sdk9-v1",
+  "wire_hover_command_exists": false,
+  "entries": [
+    {
+      "id": 0,
+      "name": "STOP_HOLD_500MS",
+      "command": {
+        "verb": "stop",
+        "args": []
+      },
+      "post_ack_client_wait_s": 0.5
+    },
+    {
+      "id": 1,
+      "name": "FORWARD_20",
+      "command": {
+        "verb": "forward",
+        "args": [
+          20
+        ]
+      },
+      "post_ack_client_wait_s": 0
+    },
+    {
+      "id": 2,
+      "name": "BACK_20",
+      "command": {
+        "verb": "back",
+        "args": [
+          20
+        ]
+      },
+      "post_ack_client_wait_s": 0
+    },
+    {
+      "id": 3,
+      "name": "LEFT_20",
+      "command": {
+        "verb": "left",
+        "args": [
+          20
+        ]
+      },
+      "post_ack_client_wait_s": 0
+    },
+    {
+      "id": 4,
+      "name": "RIGHT_20",
+      "command": {
+        "verb": "right",
+        "args": [
+          20
+        ]
+      },
+      "post_ack_client_wait_s": 0
+    },
+    {
+      "id": 5,
+      "name": "UP_20",
+      "command": {
+        "verb": "up",
+        "args": [
+          20
+        ]
+      },
+      "post_ack_client_wait_s": 0
+    },
+    {
+      "id": 6,
+      "name": "DOWN_20",
+      "command": {
+        "verb": "down",
+        "args": [
+          20
+        ]
+      },
+      "post_ack_client_wait_s": 0
+    },
+    {
+      "id": 7,
+      "name": "CW_30",
+      "command": {
+        "verb": "cw",
+        "args": [
+          30
+        ]
+      },
+      "post_ack_client_wait_s": 0
+    },
+    {
+      "id": 8,
+      "name": "CCW_30",
+      "command": {
+        "verb": "ccw",
+        "args": [
+          30
+        ]
+      },
+      "post_ack_client_wait_s": 0
+    }
+  ],
+  "stage_masks": {
+    "C0": [
+      true,
+      true,
+      true,
+      true,
+      true,
+      false,
+      false,
+      false,
+      false
+    ],
+    "C1": [
+      true,
+      true,
+      true,
+      true,
+      true,
+      false,
+      false,
+      true,
+      true
+    ],
+    "C2": [
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
+    ]
+  }
+}

@@ -1,0 +1,48 @@
+{
+  "profile_id": "sdk3_subset_engineering_v1",
+  "source": "script_not_learned_policy",
+  "real_device_allowed": false,
+  "wait_for_each_operation": true,
+  "commands": [
+    {
+      "verb": "command",
+      "args": []
+    },
+    {
+      "verb": "takeoff",
+      "args": []
+    },
+    {
+      "verb": "speed",
+      "args": [
+        20
+      ]
+    },
+    {
+      "verb": "forward",
+      "args": [
+        40
+      ]
+    },
+    {
+      "verb": "cw",
+      "args": [
+        90
+      ]
+    },
+    {
+      "verb": "forward",
+      "args": [
+        40
+      ]
+    },
+    {
+      "verb": "stop",
+      "args": []
+    },
+    {
+      "verb": "land",
+      "args": []
+    }
+  ]
+}
