@@ -15,7 +15,7 @@
     main { display:grid; grid-template-columns:minmax(360px,1.2fr) minmax(320px,1fr); gap:12px; padding:12px; max-width:1500px; margin:auto; }
     section { background:var(--panel); border:1px solid var(--line); border-radius:6px; padding:12px; min-width:0; }
     section h2 { font-size:15px; margin:0 0 10px; }
-    #world { width:100%; aspect-ratio:1.3; background:#0e141b; display:block; }
+    #world,#simCanvas { width:100%; aspect-ratio:1.3; background:#0e141b; display:block; } .sim-world { position:relative; margin-top:10px; } .sim-caption { position:absolute; top:8px; left:10px; color:var(--muted); font-size:12px; pointer-events:none; }
     .scene-heading { display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap; }
     .scene-heading h2 { margin-bottom:0; }
     .legend { display:flex; gap:10px; align-items:center; flex-wrap:wrap; color:var(--muted); font-size:12px; }
@@ -67,7 +67,7 @@
         <span class="legend-item"><i class="swatch swatch-goal"></i>目标</span>
       </div>
     </div>
-    <canvas id="world"></canvas>
+    <canvas id="world"></canvas><div class="sim-world"><canvas id="simCanvas"></canvas><div class="sim-caption">TelloSim MuJoCo surrogate · 只读模拟</div></div>
     <div class="grid" style="margin-top:10px">
       <div class="metric"><b>局 / 决策步</b><span id="episodeStep">-</span></div>
       <div class="metric"><b>实际动作</b><span id="action">-</span></div>
@@ -138,8 +138,10 @@ function selectNeuron(id){
   document.querySelectorAll('#neurons tr[data-neuron-id]').forEach(row=>row.classList.toggle('selected',row.dataset.neuronId===selectedNeuronId));
   loadTopology(selectedNeuronId);
 }
+function drawSimWorld(p){const c=document.getElementById('simCanvas');const r=c.getBoundingClientRect();const d=devicePixelRatio||1;c.width=r.width*d;c.height=r.height*d;const x=c.getContext('2d');x.scale(d,d);const w=r.width,h=r.height,s=Math.min(w,h)/7,cx=w/2,cy=h*.68,pos=p.state_after.position_xy_m||[0,0],z=p.state_after.z_m||0,sx=cx+pos[1]*s,sy=cy-pos[0]*s-z*s*.5;x.fillStyle='#0b1118';x.fillRect(0,0,w,h);x.strokeStyle='#31495d';x.strokeRect(cx-3*s,cy-3*s,6*s,3*s);x.fillStyle='#70c7ff';x.beginPath();x.arc(sx,sy,8,0,Math.PI*2);x.fill();x.fillStyle='#77d69a';x.fillText('MuJoCo room 6m × 6m · z='+z.toFixed(2)+'m',10,h-12);}
 function drawWorld(p){
   if(!p.state_after.position_xy_m) return;
+  drawSimWorld(p);
   const c=$('world'), r=c.getBoundingClientRect(), d=devicePixelRatio||1; c.width=r.width*d;c.height=r.height*d;
   const x=c.getContext('2d');x.scale(d,d);const w=r.width,h=r.height,s=Math.min(w,h)/4.4;
   x.fillStyle='#0e141b';x.fillRect(0,0,w,h);
