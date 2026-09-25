@@ -138,12 +138,12 @@ function selectNeuron(id){
   document.querySelectorAll('#neurons tr[data-neuron-id]').forEach(row=>row.classList.toggle('selected',row.dataset.neuronId===selectedNeuronId));
   loadTopology(selectedNeuronId);
 }
-function drawSimWorld(p){const c=document.getElementById('simCanvas');const r=c.getBoundingClientRect();const d=devicePixelRatio||1;c.width=r.width*d;c.height=r.height*d;const x=c.getContext('2d');x.scale(d,d);const w=r.width,h=r.height,s=Math.min(w,h)/7,cx=w/2,cy=h*.68,pos=p.state_after.position_xy_m||[0,0],z=p.state_after.z_m||0,sx=cx+pos[1]*s,sy=cy-pos[0]*s-z*s*.5;x.fillStyle='#0b1118';x.fillRect(0,0,w,h);x.strokeStyle='#31495d';x.strokeRect(cx-3*s,cy-3*s,6*s,3*s);x.fillStyle='#70c7ff';x.beginPath();x.arc(sx,sy,8,0,Math.PI*2);x.fill();x.fillStyle='#77d69a';x.fillText('MuJoCo room 6m × 6m · z='+z.toFixed(2)+'m',10,h-12);}
+function drawSimWorld(p){const c=document.getElementById('simCanvas');const r=c.getBoundingClientRect();const d=devicePixelRatio||1;c.width=r.width*d;c.height=r.height*d;const x=c.getContext('2d');x.scale(d,d);const w=r.width,h=r.height,s=Math.min(w,h)/1.8,cx=w/2,cy=h*.68,pos=p.state_after.position_xy_m||[0,0],z=p.state_after.z_m||0,sx=cx+pos[1]*s,sy=cy-pos[0]*s-z*s*.5;x.fillStyle='#0b1118';x.fillRect(0,0,w,h);x.strokeStyle='#31495d';x.strokeRect(cx-3*s,cy-3*s,6*s,3*s);x.fillStyle='#70c7ff';x.beginPath();x.arc(sx,sy,8,0,Math.PI*2);x.fill();x.fillStyle='#77d69a';x.fillText('MuJoCo room 6m × 6m · z='+z.toFixed(2)+'m',10,h-12);}
 function drawWorld(p){
   if(!p.state_after.position_xy_m) return;
   drawSimWorld(p);
   const c=$('world'), r=c.getBoundingClientRect(), d=devicePixelRatio||1; c.width=r.width*d;c.height=r.height*d;
-  const x=c.getContext('2d');x.scale(d,d);const w=r.width,h=r.height,s=Math.min(w,h)/4.4;
+  const x=c.getContext('2d');x.scale(d,d);const w=r.width,h=r.height,s=Math.min(w,h)/1.8;
   x.fillStyle='#0e141b';x.fillRect(0,0,w,h);
   const pt=v=>[w/2-v[1]*s,h/2-v[0]*s]; const goal=pt(p.state_after.goal_xy_m), pos=pt(p.state_after.position_xy_m);
   x.strokeStyle='#77d69a';x.beginPath();x.arc(goal[0],goal[1],9,0,Math.PI*2);x.stroke();x.fillStyle='#70c7ff';x.beginPath();x.arc(pos[0],pos[1],7,0,Math.PI*2);x.fill();
