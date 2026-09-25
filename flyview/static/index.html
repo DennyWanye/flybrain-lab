@@ -145,8 +145,8 @@ function drawWorld(p){
   const c=$('world'), r=c.getBoundingClientRect(), d=devicePixelRatio||1; c.width=r.width*d;c.height=r.height*d;
   const x=c.getContext('2d');x.scale(d,d);const w=r.width,h=r.height,s=Math.min(w,h)/1.8;
   x.fillStyle='#0e141b';x.fillRect(0,0,w,h);
-  const pt=v=>[w/2-v[1]*s,h/2-v[0]*s]; const goal=pt(p.state_after.goal_xy_m), pos=pt(p.state_after.position_xy_m);
-  x.strokeStyle='#77d69a';x.beginPath();x.arc(goal[0],goal[1],9,0,Math.PI*2);x.stroke();x.fillStyle='#70c7ff';x.beginPath();x.arc(pos[0],pos[1],7,0,Math.PI*2);x.fill();
+  const pt=v=>[w/2-v[1]*s,h/2-v[0]*s]; const goal=pt(p.state_after.goal_xy_m||[0,0]), pos=pt(p.state_after.position_xy_m);
+  x.strokeStyle='#77d69a';x.beginPath();x.arc(goal[0],goal[1],10,0,Math.PI*2);x.stroke();x.fillStyle='#70c7ff';x.beginPath();x.arc(pos[0],pos[1],7,0,Math.PI*2);x.fill();
   x.strokeStyle='#70c7ff';x.beginPath();x.moveTo(pos[0],pos[1]);x.lineTo(pos[0]-p.state_after.velocity_xy_mps[1]*s*2,pos[1]-p.state_after.velocity_xy_mps[0]*s*2);x.stroke();
   x.fillStyle='#9eafbd';x.fillText('+X 向上 / +Y 向左',10,18);
 }
