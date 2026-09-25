@@ -28,6 +28,7 @@ reports/vis/*.log
 logs/
 reports/*tests*.txt
 reports/vis-baseline-tests.txt
+reports/pytest.txt
 reports/vis/views/index.json
 logs/
 
