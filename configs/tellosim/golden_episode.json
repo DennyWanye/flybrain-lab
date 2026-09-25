@@ -1,0 +1,1 @@
+{"schema_version":"tellosim.golden_episode/1.0","sim_only":true,"real_flight_authorized":false,"scenario_id":"room6_start_neg15_neg10_target_pos15_pos10","seed":11,"world":{"room_size_m":[6,6,3],"start_xyz_m":[-1.5,-1.0,1.2],"target_xyz_m":[1.5,1.0,1.2],"yaw_rad":0},"success":{"target_radius_m":0.30,"stable_hold_s":1.0,"speed_mps":0.15}}
