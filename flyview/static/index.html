@@ -72,7 +72,7 @@
       <div class="metric"><b>局 / 决策步</b><span id="episodeStep">-</span></div>
       <div class="metric"><b>实际动作</b><span id="action">-</span></div>
       <div class="metric"><b>终止原因</b><span id="end">-</span></div>
-      <div class="metric"><b>数据状态</b><span id="dataState">-</span></div>
+      <div class="metric"><b>数据状态</b><span id="dataState">-</span></div><div class="metric"><b>高度 / 偏航</b><span id="poseState">-</span></div>
     </div>
     <div class="controls">
       <button id="play">播放</button><button id="prev">上一决策</button><button id="next">下一决策</button>
@@ -112,7 +112,7 @@
   </section>
 </main>
 <script>
-const ACTIONS=['HOLD','POS_X','NEG_X','POS_Y','NEG_Y'];
+const ACTIONS=["STOP_HOLD_500MS","FORWARD_20","BACK_20","LEFT_20","RIGHT_20","UP_20","DOWN_20","CW_30","CCW_30"];
 let events=[], index=0, timer=null, liveTimer=null, liveSocket=null, manifest=null, selectedNeuronId=null, currentViewId=null;
 const $=id=>document.getElementById(id);
 function fmt(v){ return v===null||v===undefined?'未记录':(typeof v==='number'?v.toFixed(4):String(v)); }
@@ -139,6 +139,7 @@ function selectNeuron(id){
   loadTopology(selectedNeuronId);
 }
 function drawWorld(p){
+  if(!p.state_after.position_xy_m) return;
   const c=$('world'), r=c.getBoundingClientRect(), d=devicePixelRatio||1; c.width=r.width*d;c.height=r.height*d;
   const x=c.getContext('2d');x.scale(d,d);const w=r.width,h=r.height,s=Math.min(w,h)/4.4;
   x.fillStyle='#0e141b';x.fillRect(0,0,w,h);
@@ -149,7 +150,7 @@ function drawWorld(p){
 }
 function render(){
   if(!events.length)return; const e=events[index],p=e.payload; drawWorld(p);
-  $('episodeStep').textContent=`${p.episode_id} / ${p.decision_step}`; $('action').textContent=`${p.action_name}（${p.action_selection||'未记录'}）`; $('end').textContent=p.end_reason||'进行中'; $('dataState').textContent=`seq ${e.seq} / ${manifest.trace_complete?'完整':'不完整'}`;
+  document.getElementById('episodeStep').textContent=String(p.episode_id)+' / '+String(p.decision_step); const pose=p.state_after||{}; document.getElementById('poseState').textContent=pose.z_m===undefined?'未记录':fmt(pose.z_m)+' m / '+fmt(pose.yaw_rad)+' rad'; document.getElementById('action').textContent=String(p.action_name)+'（'+(p.action_selection||'未记录')+'）'; document.getElementById('end').textContent=p.end_reason||'进行中'; document.getElementById('dataState').textContent='seq '+e.seq+' / '+(manifest.trace_complete?'完整':'不完整');
   $('obs').textContent=JSON.stringify(p.observation,null,2); $('value').textContent=fmt(p.value_estimate);
   const probs=p.action_probabilities; $('actions').innerHTML=ACTIONS.map((a,i)=>{const v=Array.isArray(probs)?Number(probs[i]||0):null;return `<div class="action"><span>${a}</span><div class="bar"><i style="width:${v===null?0:Math.max(0,Math.min(100,v*100))}%"></i></div><span>${v===null?'未记录':(v*100).toFixed(1)+'%'}</span></div>`}).join('');
   const rp=p.reward_parts||{}; $('reward').innerHTML=['progress','step_cost','success_bonus','boundary_cost','deadline_cost'].map(k=>`<div><small>${k}</small><strong>${fmt(rp[k])}</strong></div>`).join('');
