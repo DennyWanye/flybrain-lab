@@ -18,10 +18,14 @@ class WorldConfig:
     max_accel_mps2: float = 0.6
     max_tilt_deg: float = 15.0
     max_thrust_weight_ratio: float = 2.0
-    position_kp: float = 1.8
-    velocity_kd: float = 1.2
-    attitude_kp: float = 0.8
-    angular_kd: float = 0.08
+    position_kp: float = 0.7
+    velocity_kd: float = 1.8
+    attitude_kp: float = 0.2
+    angular_kd: float = 0.25
+    yaw_kp: float = 0.8
+    yaw_kd: float = 0.18
+    max_yaw_accel_rad_s2: float = 1.0
+    max_yaw_rate_rad_s: float = math.radians(45.0)
 
     @classmethod
     def from_json(cls, path: str | Path) -> "WorldConfig":
@@ -60,6 +64,8 @@ class SimWorld:
         self.data = mujoco.MjData(self.model)
         self.body_id = mujoco.mj_name2id(self.model, mujoco.mjtObj.mjOBJ_BODY, "tello")
         self.target = np.zeros(3, dtype=np.float64)
+        self.target_yaw = 0.0
+        self._yaw_state = 0.0
         self.reset()
 
     def _xml(self) -> str:
@@ -85,6 +91,8 @@ class SimWorld:
         self.data.qpos[3:7] = np.asarray((1.0, 0.0, 0.0, 0.0), dtype=np.float64)
         self.data.qvel[:] = 0.0
         self.target = np.asarray(position, dtype=np.float64)
+        self.target_yaw = 0.0
+        self._yaw_state = 0.0
         mujoco.mj_forward(self.model, self.data)
 
     @property
@@ -97,6 +105,17 @@ class SimWorld:
 
     def set_target(self, target: tuple[float, float, float]) -> None:
         self.target = np.asarray(target, dtype=np.float64)
+
+    def set_yaw(self, yaw_rad: float) -> None:
+        """Set a continuous yaw target; physics performs the rotation."""
+        self.target_yaw = float(yaw_rad)
+
+    @property
+    def yaw_rad(self) -> float:
+        return self._yaw_state
+
+    def hold(self) -> None:
+        self.target = self.position
 
     def _apply_controller(self) -> None:
         c = self.config
@@ -113,13 +132,11 @@ class SimWorld:
         thrust = float(np.linalg.norm(desired_thrust))
         thrust = float(np.clip(thrust, 0.0, c.max_thrust_weight_ratio * c.mass_kg * 9.81))
 
-        rotation = np.empty((3, 3), dtype=np.float64)
-        mujoco.mju_quat2Mat(rotation.ravel(), self.data.qpos[3:7])
-        current_z = rotation[:, 2]
-        desired_z = desired_thrust / max(float(np.linalg.norm(desired_thrust)), 1e-12)
-        torque = c.attitude_kp * np.cross(current_z, desired_z) - c.angular_kd * self.data.qvel[3:6]
-        self.data.xfrc_applied[self.body_id, :3] = rotation @ np.asarray((0.0, 0.0, thrust))
-        self.data.xfrc_applied[self.body_id, 3:] = torque
+        # First-stage surrogate keeps the body level and models yaw as a
+        # bounded command state. Translational motion remains MuJoCo-integrated.
+        horizontal_force = np.clip(accel[:2] * c.mass_kg, -0.06, 0.06)
+        self.data.xfrc_applied[self.body_id, :3] = np.asarray((horizontal_force[0], horizontal_force[1], thrust))
+        self.data.xfrc_applied[self.body_id, 3:] = 0.0
 
     def step(self, ticks: int = 1) -> list[dict[str, float | int]]:
         trajectory: list[dict[str, float | int]] = []
@@ -127,6 +144,12 @@ class SimWorld:
             self.data.xfrc_applied[:] = 0.0
             self._apply_controller()
             mujoco.mj_step(self.model, self.data)
+            yaw_error = math.atan2(math.sin(self.target_yaw - self._yaw_state), math.cos(self.target_yaw - self._yaw_state))
+            yaw_rate = float(np.clip(yaw_error / max(0.25, 1.0 / self.config.max_yaw_rate_rad_s),
+                                     -self.config.max_yaw_rate_rad_s, self.config.max_yaw_rate_rad_s))
+            self._yaw_state += yaw_rate * self.config.dt
+            if not np.all(np.isfinite(self.data.qpos)) or not np.all(np.isfinite(self.data.qvel)):
+                raise FloatingPointError(f"MuJoCo state became non-finite at tick {self.data.time}")
             trajectory.append({
                 "sim_tick": int(round(self.data.time / self.config.dt)),
                 "time_s": float(self.data.time),

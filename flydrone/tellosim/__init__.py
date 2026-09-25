@@ -7,8 +7,11 @@ from .sdk import (
     CommandError, DeviceExecution, OperationManager, OperationPhase,
     OperationSnapshot, TelloCommand, decode_command, encode_command,
 )
+from .pose import PoseProvider, PoseSnapshot
+from .env import TelloSimEnv, VariableDurationConfig
 
 __all__ = [
     "CommandError", "DeviceExecution", "OperationManager", "OperationPhase",
     "OperationSnapshot", "TelloCommand", "decode_command", "encode_command",
+    "PoseProvider", "PoseSnapshot", "TelloSimEnv", "VariableDurationConfig",
 ]

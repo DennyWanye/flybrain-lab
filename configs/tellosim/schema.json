@@ -1,0 +1,10 @@
+{
+  "schema_version": "tellosim.ts1.contract/1.0",
+  "observation_dim": 26,
+  "observation_fields": ["goal_dx", "goal_dy", "goal_dz", "vx", "vy", "vz", "forward_error", "right_error", "sin_yaw", "cos_yaw", "x", "y", "z", "airborne", "sim_tick", "reserved_00", "reserved_01", "reserved_02", "reserved_03", "reserved_04", "reserved_05", "reserved_06", "reserved_07", "reserved_08", "reserved_09", "reserved_10"],
+  "action_dim": 9,
+  "actions_file": "actions9.json",
+  "variable_duration_seconds": [0.5, 1.0, 2.0],
+  "sim_only": true,
+  "real_flight_authorized": false
+}
