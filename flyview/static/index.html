@@ -150,7 +150,6 @@ function drawWorld(p){
   x.strokeStyle='#70c7ff';x.beginPath();x.moveTo(pos[0],pos[1]);x.lineTo(pos[0]-p.state_after.velocity_xy_mps[1]*s*2,pos[1]-p.state_after.velocity_xy_mps[0]*s*2);x.stroke();
   x.fillStyle='#9eafbd';x.fillText('+X 向上 / +Y 向左',10,18);
 }
-  if(index%20===0){document.title='FlyBrain frame '+index;}
 function render(){
   if(!events.length)return; const e=events[index],p=e.payload; drawWorld(p); document.title='FlyBrain · frame '+String(index+1)+'/'+String(events.length);
   document.getElementById('episodeStep').textContent=String(p.episode_id)+' / '+String(p.decision_step); const pose=p.state_after||{}; document.getElementById('poseState').textContent=pose.z_m===undefined?'未记录':fmt(pose.z_m)+' m / '+fmt(pose.yaw_rad)+' rad'; document.getElementById('action').textContent=String(p.action_name)+'（'+(p.action_selection||'未记录')+'）'; document.getElementById('end').textContent=p.end_reason||'进行中'; document.getElementById('dataState').textContent='seq '+e.seq+' / '+(manifest.trace_complete?'完整':'不完整');
