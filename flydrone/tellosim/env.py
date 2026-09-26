@@ -77,9 +77,12 @@ class TelloSimEnv(gym.Env[np.ndarray, int]):
             self.stable_hold_s += duration
         else:
             self.stable_hold_s = 0.0
-        target_bonus = 1.0 if self.config.stable_hold_s > 0 and self.stable_hold_s >= self.config.stable_hold_s else 0.0
+        if self.config.stable_hold_s > 0:
+            terminated = self.stable_hold_s >= self.config.stable_hold_s
+        else:
+            terminated = distance_after <= self.config.target_radius_m
+        target_bonus = 1.0 if terminated else 0.0
         reward = progress_reward + time_penalty + target_bonus
-        terminated = bool(target_bonus)
         truncated = self.steps >= self.config.max_episode_steps
         return after.observation26(self.goal), float(reward), terminated, truncated, {
             "duration_s": duration, "distance_m": distance_after, "sim_tick": after.sim_tick,
