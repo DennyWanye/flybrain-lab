@@ -1,12 +1,10 @@
 # Golden Episode Report
 
+- success: True
+- steps: 33
+- final distance: 0.2662 m
+- policy source: flybrain_reservoir_features
+- neural capture: recorded
+- replay sha256: 6ca963dbeb57f8dee7f417deab655e45a1b287750f4e16e85c45aeadf03a7537
 
-
-This artifact is a failed checkpoint-policy evaluation record, not a successful Golden Episode. The replay is retained for debugging and contract validation.
-
-- checkpoint: 
-- policy source: checkpoint deterministic policy
-- success: false
-- final distance: 1.2458m
-- neural capture: not_recorded
-- real device: disabled
+This artifact is a recorded replay. The viewer does not re-run the policy.

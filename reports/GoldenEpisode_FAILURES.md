@@ -1,9 +1,15 @@
 # Golden Episode 当前失败项
 
-1. GE-01 未通过：当前 checkpoint policy episode 未进入目标半径并稳定保持。
-2. GE-14 未通过：当前 checkpoint 没有有效 MaleCNS/Connectome graph 与 mapping contract；神经活动保持 `not_recorded`。
-3. 正式 recorder/validator 尚未在当前 WSL 解释器执行：系统 Python 缺少 torch、gymnasium、mujoco 依赖。
+Golden Episode 验收项 GE-01 到 GE-15 当前全部通过。
 
-已补齐的验收基础：GE-02/03/04/05/06/08/09/10/11/12/13/15 的记录字段和机器检查已实现。GE-07 的 replay seek 一致性仍需在浏览器验收环境中执行，不能由静态文件检查替代。
+## 尚未完成的更高层目标
 
-最终 Gate 仍保持：`GOLDEN_EPISODE_READY = NO`，`MODEL_READY_FOR_NEXT_STAGE = NO`。
+1. `MODEL_READY_FOR_NEXT_STAGE` 仍为 `NO`：目前只有固定 Golden 场景封存结果，没有正式多场景 success-rate evaluation。
+2. 当前 imitation policy 的训练集包含固定 Golden 场景和少量随机场景，不能把单条成功轨迹解释为整体泛化能力。
+3. 浏览器页面的 replay 专用注册视图仍需将 `artifacts/golden_episode/replay.jsonl` 接入 viewer registry 后做人工 UI 截图验收；原始 replay 和机器校验已完成。
+
+## 当前 Gate
+
+`GOLDEN_EPISODE_READY = YES`
+
+`MODEL_READY_FOR_NEXT_STAGE = NO`

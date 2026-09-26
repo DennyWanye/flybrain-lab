@@ -87,7 +87,7 @@ class SimTello:
             dx = math.cos(yaw) * local_x - math.sin(yaw) * local_y
             dy = math.sin(yaw) * local_x + math.cos(yaw) * local_y
             position = self.world.position
-            self.world.set_target((position[0] + dx * distance, position[1] + dy * distance, self.world.config.takeoff_height_m))
+            self.world.set_target((position[0] + dx * distance, position[1] + dy * distance, float(position[2])))
             self._step_for_seconds(max(distance / max(self.speed_cm_s / 100.0, 0.01) + 1.0, 1.0))
             return
         if command.verb in {"up", "down"}:

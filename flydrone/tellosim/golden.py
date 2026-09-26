@@ -41,7 +41,8 @@ def _brain_snapshot(brain: FrozenReservoir | None) -> dict[str, Any]:
                          for i in range(len(selected))]}
 
 def record_golden(out: str | Path, seed: int = 11, checkpoint: str | Path | None = None,
-                  scenario: str | Path | None = None, brain_graph: str | Path | None = None) -> dict[str, Any]:
+                  scenario: str | Path | None = None, brain_graph: str | Path | None = None,
+                  brain_readout_neurons: int = 64) -> dict[str, Any]:
     if checkpoint is None or not Path(checkpoint).is_file():
         raise FileNotFoundError("a real policy checkpoint is required")
     out = Path(out)
@@ -70,14 +71,14 @@ def record_golden(out: str | Path, seed: int = 11, checkpoint: str | Path | None
     brain = None
     graph_digest, mapping_digest = payload.get("graph_sha256"), payload.get("mapping_sha256")
     if brain_graph is not None:
-        brain = FrozenReservoir(str(brain_graph), batch=1, readout_neurons=64)
+        brain = FrozenReservoir(str(brain_graph), batch=1, readout_neurons=brain_readout_neurons)
         graph_digest, mapping_digest = brain.graph_sha256, brain.mapping_sha256
     policy_hash = sha256(checkpoint)
     obs, _ = env.reset(seed=seed)
     rows, total_return = [], 0.0
     for step in range(env.config.max_episode_steps):
         if brain is not None:
-            brain.advance(brain.encoder(np.asarray([obs], dtype=np.float32)))
+            brain.advance(brain.encoder(np.asarray([env.brain_observation()], dtype=np.float32)))
         feature_array = brain.current_features() if brain is not None and feature_dim == brain.feature_dim else np.asarray([obs], dtype=np.float32)
         features = torch.as_tensor(feature_array, dtype=torch.float32)
         if features.shape[1] != feature_dim:
@@ -105,7 +106,7 @@ def record_golden(out: str | Path, seed: int = 11, checkpoint: str | Path | None
             "policy": {"action_space_version": "tellosim.actions9/1.0", "selected_action": int(action.item()),
                        "selected_action_name": ACTION_NAMES[int(action.item())] if int(action.item()) < len(ACTION_NAMES) else "UNKNOWN",
                        "probabilities": [float(v) for v in probs], "value_estimate": float(value.item()), "entropy": entropy,
-                       "input_source": "direct_observation" if brain is None else "direct_observation_with_brain_observer"},
+                       "input_source": "direct_observation" if brain is None else "flybrain_reservoir_features"},
             "command": {"command_id": meta["command_id"], "command_type": meta["command"], "command_args": list(meta["command_args"]),
                         "issued_at_sim_time": meta["issued_sim_tick"] * world.config.dt,
                         "started_at_sim_time": meta["started_sim_tick"] * world.config.dt,

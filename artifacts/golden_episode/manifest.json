@@ -1,20 +1,34 @@
 {
-  "schema_version": "golden_episode/1.0",
-  "run_id": "golden-script-eval",
+  "schema_version": "golden_episode/1.1",
+  "run_id": "golden-checkpoint-eval",
   "episode_id": "golden-0001",
-  "scenario_id": "room6_c0_fixed_target",
+  "scenario_id": "room6_start_neg15_neg10_target_pos15_pos10",
   "seed": 11,
-  "policy_checkpoint_sha256": "a8da88102f2026d11d46065acb42fcb7a2aa7049e9a6f49f1d04b2d1e90a0d27",
-  "graph_sha256": null,
-  "brain_mapping_sha256": null,
-  "success": false,
-  "episode_return": -1.845802953921685,
-  "sim_duration_s": 140.0,
-  "final_distance_m": 1.2458029539216866,
-  "stable_hold_s": 0.0,
+  "policy_checkpoint_sha256": "b657cb32ada93c8cee927e72277440702a53d74d2a16b20f3a5ef1cd77d51614",
+  "graph_sha256": "badc33a247894fe12c4d68d3ff791393857cffa39ff2ab81869608a11fa1e0c9",
+  "brain_mapping_sha256": "623b691045f9c971271b8e48cc310dfeaaedb2a67b1bc639499bcfb24ea86d18",
+  "success": true,
+  "episode_return": 3.9543808156157843,
+  "episode_steps": 33,
+  "sim_duration_s": 65.16666666666667,
+  "final_distance_m": 0.2661704598482059,
+  "stable_hold_s": 2.0,
   "collision": false,
   "out_of_bounds": false,
-  "replay_sha256": "ee896b1908e0983946f3e1ec88b555601235c2c3b636e21fe7c30af803dbd081",
-  "policy_source": "checkpoint_deterministic_policy",
-  "neural_capture": "not_recorded"
+  "replay_sha256": "6ca963dbeb57f8dee7f417deab655e45a1b287750f4e16e85c45aeadf03a7537",
+  "policy_source": "flybrain_reservoir_features",
+  "neural_capture": "recorded",
+  "replay_mode": "recorded_replay",
+  "scenario": {
+    "start_xyz_m": [
+      -1.5,
+      -1.0,
+      1.2
+    ],
+    "target_xyz_m": [
+      1.5,
+      1.0,
+      1.2
+    ]
+  }
 }

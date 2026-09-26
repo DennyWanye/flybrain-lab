@@ -93,3 +93,16 @@ class TelloSimEnv(gym.Env[np.ndarray, int]):
             "speed_mps": speed, "stable_hold_s": self.stable_hold_s, "success": terminated,
             "reward_components": {"progress_reward": float(progress_reward), "time_penalty": float(time_penalty), "target_bonus": float(target_bonus)},
         }
+
+    def brain_observation(self, observation: np.ndarray | None = None) -> np.ndarray:
+        """Return the eight signed navigation channels expected by SensoryEncoder."""
+        snapshot = self.pose.snapshot()
+        position = np.asarray(snapshot.position_m, dtype=np.float64)
+        velocity = np.asarray(snapshot.velocity_mps, dtype=np.float64)
+        relative = self.goal - position
+        remaining = max(0.0, 1.0 - self.steps / max(self.config.max_episode_steps, 1))
+        value = np.asarray((relative[0] / 4.0, relative[1] / 4.0,
+                            velocity[0], velocity[1], position[0] / 3.0,
+                            position[1] / 3.0,
+                            np.linalg.norm(relative[:2]) / 4.0, remaining), dtype=np.float32)
+        return np.clip(value, -1.0, 1.0)

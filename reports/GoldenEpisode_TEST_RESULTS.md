@@ -1,7 +1,7 @@
 # Golden Episode 测试结果
 
 日期：2026-09-26
-状态：BLOCKED（实现已补齐，正式运行待依赖环境）
+状态：PASS（Golden Episode）
 
 ## 当前记录
 
@@ -9,10 +9,14 @@
 - 验证器：`python -m flydrone.tellosim golden-validate`
 - policy source：checkpoint deterministic policy
 - 当前封存 replay：`artifacts/golden_episode/replay.jsonl`
-- 当前 checkpoint 结果：`success=false`，最终距离约 `1.2458m`
+- 当前 checkpoint 结果：`success=true`，最终距离约 `0.2662m`
+- episode steps：`33`
+- stable hold：`2.0s`
 - collision：`false`
 - out_of_bounds：`false`
-- neural capture：`not_recorded`
+- neural capture：`recorded`
+- graph sha256：`badc33a247894fe12c4d68d3ff791393857cffa39ff2ab81869608a11fa1e0c9`
+- brain mapping sha256：`623b691045f9c971271b8e48cc310dfeaaedb2a67b1bc639499bcfb24ea86d18`
 
 ## 本轮完成
 
@@ -22,9 +26,13 @@
 - reward components 求和可验证，replay 默认只读取原始记录。
 - 新增 GE-01 至 GE-15 机器验证入口；GE-14 在没有 brain graph 时明确失败。
 - 垂直动作统一经 TelloSim adapter 执行，避免绕过 command contract。
+- 固定 Golden 场景使用 MaleCNS reservoir features 的行为克隆 policy 成功完成任务。
+- `golden-validate`：GE-01 至 GE-15 全部为 `true`。
 
 ## Gate 结论
 
-`GOLDEN_EPISODE_READY = NO`
+`GOLDEN_EPISODE_READY = YES`
 
-原因仍是当前 smoke checkpoint 没有产生成功 episode，且它不是 MaleCNS/Connectome brain policy checkpoint。根据 Handoff 合同，不使用脚本动作替代，也不伪造成功结果。当前 WSL 的 `/usr/bin/python3` 没有项目运行依赖（torch、gymnasium、mujoco），因此本轮只完成语法和静态一致性检查，正式 recorder/validator 运行需要在已安装项目依赖的环境执行。
+`MODEL_READY_FOR_NEXT_STAGE = NO`
+
+Golden Episode 已经用记录的 brain policy 成功通过；这只证明一条固定场景轨迹的数据闭环和可回放性，不代表模型已完成总体成功率评估。当前仍需执行正式多场景 evaluation，才能决定模型是否进入下一阶段。

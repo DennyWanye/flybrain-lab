@@ -6,6 +6,7 @@ from pathlib import Path
 
 from .golden import record_golden, validate_golden
 from .spike import run_spike
+from .train import brain_train, brain_imitation_train
 
 
 def main() -> None:
@@ -18,17 +19,36 @@ def main() -> None:
     record.add_argument("--checkpoint", type=Path, required=True)
     record.add_argument("--scenario", type=Path, default=Path("configs/tellosim/golden_episode.json"))
     record.add_argument("--brain-graph", type=Path)
+    record.add_argument("--brain-readout-neurons", type=int, default=64)
     record.add_argument("--seed", type=int, default=11)
     record.add_argument("--out", type=Path, default=Path("artifacts/golden_episode"))
     validate = sub.add_parser("golden-validate", help="validate a recorded Golden Episode")
     validate.add_argument("--episode", type=Path, default=Path("artifacts/golden_episode"))
+    train = sub.add_parser("brain-train", help="train a reservoir-backed TelloSim policy")
+    train.add_argument("--graph", type=Path, required=True)
+    train.add_argument("--out", type=Path, required=True)
+    train.add_argument("--total-steps", type=int, default=256)
+    train.add_argument("--readout-neurons", type=int, default=64)
+    train.add_argument("--device", default="cpu")
+    train.add_argument("--seed", type=int, default=11)
+    imitate = sub.add_parser("brain-imitation-train", help="train reservoir policy from TelloSim reference trajectories")
+    imitate.add_argument("--graph", type=Path, required=True)
+    imitate.add_argument("--out", type=Path, required=True)
+    imitate.add_argument("--episodes", type=int, default=16)
+    imitate.add_argument("--readout-neurons", type=int, default=64)
+    imitate.add_argument("--device", default="cpu")
+    imitate.add_argument("--seed", type=int, default=11)
     args = parser.parse_args()
     if args.command == "spike":
         print(json.dumps(run_spike(args.world_config, args.out), ensure_ascii=False, indent=2))
     elif args.command == "golden-record":
-        print(json.dumps(record_golden(args.out, args.seed, args.checkpoint, args.scenario, args.brain_graph), ensure_ascii=False, indent=2))
+        print(json.dumps(record_golden(args.out, args.seed, args.checkpoint, args.scenario, args.brain_graph, args.brain_readout_neurons), ensure_ascii=False, indent=2))
     elif args.command == "golden-validate":
         print(json.dumps(validate_golden(args.episode), ensure_ascii=False, indent=2))
+    elif args.command == "brain-train":
+        print(json.dumps(brain_train(args.out, args.graph, args.total_steps, args.seed, args.readout_neurons, args.device), ensure_ascii=False, indent=2))
+    elif args.command == "brain-imitation-train":
+        print(json.dumps(brain_imitation_train(args.out, args.graph, args.episodes, args.seed, args.readout_neurons, args.device), ensure_ascii=False, indent=2))
 
 
 if __name__ == "__main__":
