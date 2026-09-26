@@ -31,7 +31,7 @@ def smoke_train(out: str | Path, total_steps: int = 64, seed: int = 11, brain=No
                 _, nv = model(torch.as_tensor(no[None],dtype=torch.float32))
             features.append(ft[0]); actions.append(action[0]); old_log_probs.append(logp[0]); values.append(value[0]); rewards.append(reward); next_values.append(nv[0]); terms.append(term); truncs.append(trunc)
             obs = no
-            rows.append({"duration_s": info["duration_s"], "reward": float(reward), "distance_m": info["distance_m"]})
+            rows.append({"step":len(rows),"duration_s":info["duration_s"],"reward":float(reward),"distance_m":info["distance_m"],"action":int(action.item()),"command":info["command"],"command_args":info["command_args"],"sim_tick":info["sim_tick"]})
             if term or trunc:
                 obs, _ = env.reset(seed=seed + len(rows))
         if not features: break

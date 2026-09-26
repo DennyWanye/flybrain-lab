@@ -1,0 +1,11 @@
+{
+  "schema_version": "tellosim.policy_smoke/1.0",
+  "sim_only": true,
+  "real_flight_authorized": false,
+  "total_env_steps": 64,
+  "seed": 11,
+  "observation_dim": 26,
+  "action_dim": 9,
+  "duration_schedule_s": [0.5, 1.0, 2.0],
+  "scenario_id": "room6_c0_fixed_target"
+}

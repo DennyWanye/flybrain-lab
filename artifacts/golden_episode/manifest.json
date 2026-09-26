@@ -1,0 +1,20 @@
+{
+  "schema_version": "golden_episode/1.0",
+  "run_id": "golden-script-eval",
+  "episode_id": "golden-0001",
+  "scenario_id": "room6_c0_fixed_target",
+  "seed": 11,
+  "policy_checkpoint_sha256": "a8da88102f2026d11d46065acb42fcb7a2aa7049e9a6f49f1d04b2d1e90a0d27",
+  "graph_sha256": null,
+  "brain_mapping_sha256": null,
+  "success": false,
+  "episode_return": -1.845802953921685,
+  "sim_duration_s": 140.0,
+  "final_distance_m": 1.2458029539216866,
+  "stable_hold_s": 0.0,
+  "collision": false,
+  "out_of_bounds": false,
+  "replay_sha256": "ee896b1908e0983946f3e1ec88b555601235c2c3b636e21fe7c30af803dbd081",
+  "policy_source": "checkpoint_deterministic_policy",
+  "neural_capture": "not_recorded"
+}
