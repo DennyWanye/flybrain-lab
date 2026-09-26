@@ -5,6 +5,7 @@ import json
 import math
 from pathlib import Path
 from typing import Any
+import numpy as np
 
 from .physics import SimWorld, WorldConfig
 from .sdk import OperationManager, OperationPhase, TelloCommand, decode_command
@@ -37,7 +38,7 @@ class SimTello:
             raise RuntimeError("sdk_mode_required")
         if command.verb == "takeoff" and self.airborne:
             raise RuntimeError("already_airborne")
-        if command.verb not in {"takeoff", "land", "stop", "speed", "forward", "back", "left", "right", "cw", "ccw"}:
+        if command.verb not in {"takeoff", "land", "stop", "speed", "forward", "back", "left", "right", "up", "down", "cw", "ccw"}:
             raise RuntimeError("unsupported_command")
         if command.verb in {"forward", "back", "left", "right", "cw", "ccw"} and not self.airborne:
             raise RuntimeError("not_airborne")
@@ -87,6 +88,14 @@ class SimTello:
             dy = math.sin(yaw) * local_x + math.cos(yaw) * local_y
             position = self.world.position
             self.world.set_target((position[0] + dx * distance, position[1] + dy * distance, self.world.config.takeoff_height_m))
+            self._step_for_seconds(max(distance / max(self.speed_cm_s / 100.0, 0.01) + 1.0, 1.0))
+            return
+        if command.verb in {"up", "down"}:
+            distance = command.args[0] / 100.0
+            position = self.world.position
+            sign = 1.0 if command.verb == "up" else -1.0
+            self.world.set_target((float(position[0]), float(position[1]),
+                                   float(np.clip(position[2] + sign * distance, 0.045, 2.8))))
             self._step_for_seconds(max(distance / max(self.speed_cm_s / 100.0, 0.01) + 1.0, 1.0))
             return
         if command.verb in {"cw", "ccw"}:

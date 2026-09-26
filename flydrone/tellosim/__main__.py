@@ -4,6 +4,7 @@ import argparse
 import json
 from pathlib import Path
 
+from .golden import record_golden, validate_golden
 from .spike import run_spike
 
 
@@ -13,9 +14,21 @@ def main() -> None:
     spike = sub.add_parser("spike", help="run SDK, operation, and headless physics spikes")
     spike.add_argument("--world-config", type=Path)
     spike.add_argument("--out", type=Path, default=Path("reports/tellosim/spike.json"))
+    record = sub.add_parser("golden-record", help="record one deterministic policy episode")
+    record.add_argument("--checkpoint", type=Path, required=True)
+    record.add_argument("--scenario", type=Path, default=Path("configs/tellosim/golden_episode.json"))
+    record.add_argument("--brain-graph", type=Path)
+    record.add_argument("--seed", type=int, default=11)
+    record.add_argument("--out", type=Path, default=Path("artifacts/golden_episode"))
+    validate = sub.add_parser("golden-validate", help="validate a recorded Golden Episode")
+    validate.add_argument("--episode", type=Path, default=Path("artifacts/golden_episode"))
     args = parser.parse_args()
     if args.command == "spike":
         print(json.dumps(run_spike(args.world_config, args.out), ensure_ascii=False, indent=2))
+    elif args.command == "golden-record":
+        print(json.dumps(record_golden(args.out, args.seed, args.checkpoint, args.scenario, args.brain_graph), ensure_ascii=False, indent=2))
+    elif args.command == "golden-validate":
+        print(json.dumps(validate_golden(args.episode), ensure_ascii=False, indent=2))
 
 
 if __name__ == "__main__":

@@ -14,7 +14,11 @@ from .sdk import TelloCommand
 class VariableDurationConfig:
     action_duration_s: tuple[float, ...] = (0.5, 1.0, 2.0)
     max_episode_steps: int = 120
+    start_m: tuple[float, float, float] = (0.0, 0.0, 1.0)
     goal_m: tuple[float, float, float] = (0.8, 0.0, 1.0)
+    target_radius_m: float = 0.15
+    stable_hold_s: float = 0.0
+    stable_speed_mps: float = 0.15
 
 
 class TelloSimEnv(gym.Env[np.ndarray, int]):
@@ -28,15 +32,17 @@ class TelloSimEnv(gym.Env[np.ndarray, int]):
         self.observation_space = spaces.Box(-np.inf, np.inf, shape=(26,), dtype=np.float32)
         self.pose = PoseProvider(sim.world, lambda: sim.airborne, lambda: sim.sim_tick)
         self.steps = 0
+        self.stable_hold_s = 0.0
         self.goal = np.asarray(self.config.goal_m, dtype=np.float64)
 
     def reset(self, *, seed: int | None = None, options: dict[str, Any] | None = None):
         super().reset(seed=seed)
-        self.sim.world.reset()
+        self.sim.world.reset(position=tuple(self.config.start_m))
         self.sim.sdk_mode = True
         self.sim.airborne = False
         self.sim.sim_tick = 0
         self.steps = 0
+        self.stable_hold_s = 0.0
         return self.pose.snapshot().observation26(self.goal), {"goal_m": self.goal.copy()}
 
     def step(self, action: int):
@@ -54,21 +60,33 @@ class TelloSimEnv(gym.Env[np.ndarray, int]):
             TelloCommand("ccw", (30,)),
         )
         command = commands[int(action)]
-        if command.verb in {"up", "down"}:
-            current = self.sim.world.position
-            dz = 0.20 if command.verb == "up" else -0.20
-            self.sim.world.set_target((float(current[0]), float(current[1]), float(np.clip(current[2] + dz, 0.045, 2.8))))
-            self.sim._step_for_seconds(duration)
-        else:
-            if not self.sim.airborne:
-                self.sim.airborne = True
-            self.sim.submit(" ".join([command.verb, *(str(v) for v in command.args)]), f"env-step-{self.steps}")
+        issued_tick = int(self.sim.sim_tick)
+        command_result = {"phase": "completed", "device_execution": "completed", "raw_response": "ok"}
+        if not self.sim.airborne:
+            self.sim.airborne = True
+        command_result = self.sim.submit(" ".join([command.verb, *(str(v) for v in command.args)]), f"env-step-{self.steps}")
 
         after = self.pose.snapshot()
         self.steps += 1
         distance_before = float(np.linalg.norm(np.asarray(before.position_m) - self.goal))
         distance_after = float(np.linalg.norm(np.asarray(after.position_m) - self.goal))
-        reward = distance_before - distance_after - 0.01 * duration
-        terminated = distance_after < 0.15
+        progress_reward = distance_before - distance_after
+        time_penalty = -0.01 * duration
+        speed = float(np.linalg.norm(after.velocity_mps))
+        if distance_after <= self.config.target_radius_m and speed <= self.config.stable_speed_mps:
+            self.stable_hold_s += duration
+        else:
+            self.stable_hold_s = 0.0
+        target_bonus = 1.0 if self.config.stable_hold_s > 0 and self.stable_hold_s >= self.config.stable_hold_s else 0.0
+        reward = progress_reward + time_penalty + target_bonus
+        terminated = bool(target_bonus)
         truncated = self.steps >= self.config.max_episode_steps
-        return after.observation26(self.goal), float(reward), terminated, truncated, {"duration_s": duration, "distance_m": distance_after, "sim_tick": after.sim_tick, "command": command.verb, "command_args": list(command.args)}
+        return after.observation26(self.goal), float(reward), terminated, truncated, {
+            "duration_s": duration, "distance_m": distance_after, "sim_tick": after.sim_tick,
+            "command": command.verb, "command_args": list(command.args),
+            "command_id": command_result.get("operation_id", f"env-step-{self.steps - 1}"),
+            "issued_sim_tick": issued_tick, "started_sim_tick": issued_tick,
+            "completed_sim_tick": int(after.sim_tick), "command_result": command_result,
+            "speed_mps": speed, "stable_hold_s": self.stable_hold_s, "success": terminated,
+            "reward_components": {"progress_reward": float(progress_reward), "time_penalty": float(time_penalty), "target_bonus": float(target_bonus)},
+        }
