@@ -1,15 +1,12 @@
-# Golden Episode 当前失败项
+# Golden Episode 当前失败项与边界
 
-Golden Episode 验收项 GE-01 到 GE-15 当前全部通过。
+GOLDEN_EPISODE_READY = YES
+MODEL_READY_FOR_NEXT_STAGE = NO
 
-## 尚未完成的更高层目标
+浏览器Golden回放和GE-01～GE-15验收已完成，证据见GoldenEpisode_TEST_RESULTS.md及GoldenEpisode_ACCEPTANCE.json。
 
-1. `MODEL_READY_FOR_NEXT_STAGE` 仍为 `NO`：目前只有固定 Golden 场景封存结果，没有正式多场景 success-rate evaluation。
-2. 当前 imitation policy 的训练集包含固定 Golden 场景和少量随机场景，不能把单条成功轨迹解释为整体泛化能力。
-3. 浏览器页面的 replay 专用注册视图仍需将 `artifacts/golden_episode/replay.jsonl` 接入 viewer registry 后做人工 UI 截图验收；原始 replay 和机器校验已完成。
+模型评估未通过：固定32场景仅8个成功（25%），24个越界（75%），0碰撞、0超时。训练分布附近7/8，反向0/8，横跨房间0/8，短距离1/8。失败明细和动作轨迹见golden_evaluation_final/episodes.jsonl。
 
-## 当前 Gate
+未达到预先固定的诊断成功率>=90%、碰撞/越界率<=1%。更不能宣称通过TS1三训练seed×300封存case及随机基线比较的正式门槛。本轮不重训，不为凑成功率修改测试场景。
 
-`GOLDEN_EPISODE_READY = YES`
-
-`MODEL_READY_FOR_NEXT_STAGE = NO`
+已知边界：固定高度、空房间、模拟pose输入、首个动作直接设置airborne；只记录最后一个神经子步。未测试噪声、障碍、起飞流程、真实硬件或Live训练期间断开浏览器。这些没有被伪装为通过。

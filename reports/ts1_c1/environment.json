@@ -1,0 +1,13 @@
+{
+  "python": "3.12.3 (main, Aug 31 2026, 10:18:26) [GCC 13.3.0]",
+  "platform": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.39",
+  "packages": {
+    "torch": "2.14.0",
+    "numpy": "2.5.3",
+    "scipy": "1.18.1",
+    "mujoco": "3.3.7",
+    "pytest": "9.1.1"
+  },
+  "git_head": "cd32d73988cae500476981445f7923f9f03e014b",
+  "runtime_note": "This workspace already had changes; BEFORE.diff preserves starting diff; no commits/reset performed."
+}

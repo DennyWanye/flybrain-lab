@@ -1,0 +1,72 @@
+{
+  "passed": true,
+  "duration_s": 120.10389439900064,
+  "readers": [
+    {
+      "reader": 0,
+      "requests": 1176,
+      "max_frame_bytes": 22062,
+      "p95_latency_s": 0.0029184957500092423,
+      "distinct_episodes": 16,
+      "last_sequences": {
+        "c1-s11-learn-f303c2d2-e0": 1314,
+        "c1-s11-learn-f303c2d2-e1": 1316,
+        "c1-s11-learn-f303c2d2-e2": 1316,
+        "c1-s11-learn-f303c2d2-e3": 1319
+      }
+    },
+    {
+      "reader": 1,
+      "requests": 1176,
+      "max_frame_bytes": 22062,
+      "p95_latency_s": 0.0027997827501167194,
+      "distinct_episodes": 16,
+      "last_sequences": {
+        "c1-s11-learn-f303c2d2-e0": 1313,
+        "c1-s11-learn-f303c2d2-e1": 1316,
+        "c1-s11-learn-f303c2d2-e2": 1315,
+        "c1-s11-learn-f303c2d2-e3": 1319
+      }
+    },
+    {
+      "reader": 2,
+      "requests": 1175,
+      "max_frame_bytes": 22062,
+      "p95_latency_s": 0.003142571699663676,
+      "distinct_episodes": 16,
+      "last_sequences": {
+        "c1-s11-learn-f303c2d2-e0": 1315,
+        "c1-s11-learn-f303c2d2-e1": 1317,
+        "c1-s11-learn-f303c2d2-e2": 1316,
+        "c1-s11-learn-f303c2d2-e3": 1316
+      }
+    },
+    {
+      "reader": 3,
+      "requests": 2310,
+      "max_frame_bytes": 22062,
+      "p95_latency_s": 0.002399495849749654,
+      "distinct_episodes": 16,
+      "last_sequences": {
+        "c1-s11-learn-f303c2d2-e0": 1316,
+        "c1-s11-learn-f303c2d2-e1": 1318,
+        "c1-s11-learn-f303c2d2-e2": 1315,
+        "c1-s11-learn-f303c2d2-e3": 1319
+      }
+    },
+    {
+      "reader": 4,
+      "requests": 171,
+      "max_frame_bytes": 22011,
+      "p95_latency_s": 0.0026647929998944164,
+      "distinct_episodes": 16,
+      "last_sequences": {
+        "c1-s11-learn-f303c2d2-e0": 1301,
+        "c1-s11-learn-f303c2d2-e1": 1308,
+        "c1-s11-learn-f303c2d2-e2": 1311,
+        "c1-s11-learn-f303c2d2-e3": 1298
+      }
+    }
+  ],
+  "scope": "five concurrent real HTTP consumers, one slow; new connections each request; not five browser-renderer FPS variants"
+}

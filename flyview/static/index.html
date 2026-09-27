@@ -15,7 +15,7 @@
     main { display:grid; grid-template-columns:minmax(360px,1.2fr) minmax(320px,1fr); gap:12px; padding:12px; max-width:1500px; margin:auto; }
     section { background:var(--panel); border:1px solid var(--line); border-radius:6px; padding:12px; min-width:0; }
     section h2 { font-size:15px; margin:0 0 10px; }
-    #world,#simCanvas { width:100%; aspect-ratio:1.3; background:#0e141b; display:block; } .sim-world { position:relative; margin-top:10px; } .sim-caption { position:absolute; top:8px; left:10px; color:var(--muted); font-size:12px; pointer-events:none; }
+    #world,#simCanvas { touch-action:none; cursor:grab; width:100%; aspect-ratio:1.3; max-height:300px; background:#0e141b; display:block; } .sim-world { position:relative; margin-top:10px; } .sim-caption { position:absolute; top:8px; left:10px; color:var(--muted); font-size:12px; pointer-events:none; }
     .scene-heading { display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap; }
     .scene-heading h2 { margin-bottom:0; }
     .legend { display:flex; gap:10px; align-items:center; flex-wrap:wrap; color:var(--muted); font-size:12px; }
@@ -24,15 +24,15 @@
     .swatch-agent { border-radius:50%; background:var(--accent); }
     .swatch-goal { border:2px solid var(--good); border-radius:50%; }
     .swatch-velocity { width:16px; height:2px; background:var(--accent); }
-    .grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:8px; }
+    .grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:8px; }
     .metric { border:1px solid var(--line); padding:8px; min-height:58px; }
     .metric b { display:block; color:var(--muted); font-size:12px; font-weight:500; }
     .metric span { display:block; margin-top:4px; font-size:16px; }
-    .reward { display:grid; grid-template-columns:repeat(5,1fr); gap:5px; }
+    .reward { display:grid; grid-template-columns:repeat(auto-fit,minmax(140px,1fr)); gap:5px; }
     .reward div { border-left:3px solid var(--accent); padding:5px 6px; background:#111a22; min-width:0; }
-    .reward small { display:block; color:var(--muted); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+    .reward small { display:block; color:var(--muted); overflow-wrap:anywhere; }
     .actions { display:grid; gap:5px; }
-    .action { display:grid; grid-template-columns:62px 1fr 64px; gap:8px; align-items:center; }
+    .action { display:grid; grid-template-columns:145px 1fr 64px; gap:8px; align-items:center; }
     .bar { height:10px; background:#0e141b; border:1px solid var(--line); }
     .bar i { display:block; height:100%; background:var(--accent); width:0; }
     button, select { color:var(--text); background:#243342; border:1px solid #3b5265; border-radius:4px; padding:6px 9px; cursor:pointer; }
@@ -67,7 +67,7 @@
         <span class="legend-item"><i class="swatch swatch-goal"></i>目标</span>
       </div>
     </div>
-    <canvas id="world"></canvas><div class="sim-world"><canvas id="simCanvas"></canvas><div class="sim-caption">TelloSim MuJoCo surrogate · 只读模拟</div></div>
+    <canvas id="world"></canvas>
     <div class="grid" style="margin-top:10px">
       <div class="metric"><b>局 / 决策步</b><span id="episodeStep">-</span></div>
       <div class="metric"><b>实际动作</b><span id="action">-</span></div>
@@ -76,24 +76,28 @@
     </div>
     <div class="controls">
       <button id="play">播放</button><button id="prev">上一决策</button><button id="next">下一决策</button>
-      <select id="speed"><option value="1600">0.25×</option><option value="800" selected>1×</option><option value="200">4×</option></select>
-      <input id="timeline" type="range" min="0" value="0">
+      <label>速度 <select id="speed"><option value="0.25">0.25×</option><option value="0.5">0.5×</option><option value="1" selected>1×</option><option value="2">2×</option></select></label><button id="resetCamera">重置视角</button><span id="frameLabel"></span>
+      <input aria-label="回放时间轴" id="timeline" type="range" min="0" value="0">
     </div>
-    <div class="notice" id="notice"></div>
+    <div class="notice" id="notice"></div><div class="meta" id="clock"></div><div class="meta">拖动画布平移，滚轮缩放。世界显示当前物理时刻；决策面板显示该步动作前输入及动作完成后的结果。</div><div class="sim-world"><canvas id="simCanvas"></canvas><div class="sim-caption">TelloSim MuJoCo surrogate · 侧视 · 只读模拟</div></div>
   </section>
   <section>
     <h2>这一步发生了什么</h2>
-    <div class="metric"><b>模型输入（8维）</b><pre id="obs">-</pre></div>
+    <div class="metric"><b>记录的遥测观测（动作前）</b><pre id="obs">-</pre></div>
     <h2 style="margin-top:12px">动作概率</h2>
     <div class="actions" id="actions"></div>
     <div class="metric" style="margin-top:8px"><b>Value estimate</b><span id="value">未记录</span></div>
     <h2 style="margin-top:12px">奖励分项</h2>
     <div class="reward" id="reward"></div>
+    <div class="metric"><b>本步奖励 / 累计回报</b><span id="returns"></span></div>
+    <h2>SDK 命令（记录的执行结果）</h2><pre id="command"></pre>
+    <h2>实际脑输入 / 策略输入</h2><pre id="brainInput"></pre>
+    <h2>神经活动（动作前，最后一个神经子步）</h2><pre id="brainSummary"></pre>
   </section>
   <section>
     <h2>已记录读出神经元</h2>
     <div class="notice">仅显示本条记录中实际采集的节点；缺少生物元数据时标记为未标注。</div>
-    <table><thead><tr><th>ID</th><th>v（复位前）</th><th>spike</th><th>trace</th></tr></thead><tbody id="neurons"></tbody></table>
+    <div style="max-height:360px;overflow:auto"><table><thead><tr><th>ID</th><th>v（记录值）</th><th>spike</th><th>trace</th></tr></thead><tbody id="neurons"></tbody></table></div>
   </section>
   <section>
     <h2>来源与完整性</h2>
@@ -115,7 +119,7 @@
 const ACTIONS=["STOP_HOLD_500MS","FORWARD_20","BACK_20","LEFT_20","RIGHT_20","UP_20","DOWN_20","CW_30","CCW_30"];
 let events=[], index=0, timer=null, liveTimer=null, liveSocket=null, manifest=null, selectedNeuronId=null, currentViewId=null;
 const $=id=>document.getElementById(id);
-function fmt(v){ return v===null||v===undefined?'未记录':(typeof v==='number'?v.toFixed(4):String(v)); }
+function fmt(v){ return v===null||v===undefined?'not_recorded':(typeof v==='number'?v.toFixed(4):String(v)); }
 function setNotice(t){ $('notice').textContent=t||''; }
 function safeText(value){ return String(value).replace(/[&<>"']/g, ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch])); }
 async function loadTopology(centerId=null){
@@ -138,31 +142,90 @@ function selectNeuron(id){
   document.querySelectorAll('#neurons tr[data-neuron-id]').forEach(row=>row.classList.toggle('selected',row.dataset.neuronId===selectedNeuronId));
   loadTopology(selectedNeuronId);
 }
-function drawSimWorld(p){const c=document.getElementById('simCanvas');const r=c.getBoundingClientRect();const d=devicePixelRatio||1;c.width=r.width*d;c.height=r.height*d;const x=c.getContext('2d');x.scale(d,d);const w=r.width,h=r.height,s=Math.min(w,h)/1.8,cx=w/2,cy=h*.68,pos=p.state_after.position_xy_m||[0,0],z=p.state_after.z_m||0,sx=cx+pos[1]*s,sy=cy-pos[0]*s-z*s*.5;x.fillStyle='#0b1118';x.fillRect(0,0,w,h);x.strokeStyle='#31495d';x.strokeRect(cx-3*s,cy-3*s,6*s,3*s);x.fillStyle='#70c7ff';x.beginPath();x.arc(sx,sy,8,0,Math.PI*2);x.fill();x.fillStyle='#77d69a';x.fillText('MuJoCo room 6m × 6m · z='+z.toFixed(2)+'m',10,h-12);}
-function drawWorld(p){
-  if(!p.state_after.position_xy_m) return;
-  drawSimWorld(p);
-  const c=$('world'), r=c.getBoundingClientRect(), d=devicePixelRatio||1; c.width=r.width*d;c.height=r.height*d;
-  const x=c.getContext('2d');x.scale(d,d);const w=r.width,h=r.height,s=Math.min(w,h)/1.8;
-  x.fillStyle='#0e141b';x.fillRect(0,0,w,h);
-  const pt=v=>[w/2-v[1]*s,h/2-v[0]*s]; const goal=pt(p.state_after.goal_xy_m||[1,0]), pos=pt(p.state_after.position_xy_m);
-  x.strokeStyle='#77d69a';x.beginPath();x.arc(goal[0],goal[1],18,0,Math.PI*2);x.stroke();x.fillStyle='#70c7ff';x.beginPath();x.arc(pos[0],pos[1],10,0,Math.PI*2);x.fill();
-  x.strokeStyle='#70c7ff';x.beginPath();x.moveTo(pos[0],pos[1]);x.lineTo(pos[0]-p.state_after.velocity_xy_mps[1]*s*2,pos[1]-p.state_after.velocity_xy_mps[0]*s*2);x.stroke();
-  x.fillStyle='#9eafbd';x.fillText('+X 向上 / +Y 向左',10,18);
+let playing=false, playTime=0, lastWall=null, loadVersion=0, currentSample=null;
+const cameras={world:{x:0,y:0,zoom:1},simCanvas:{x:0,y:0,zoom:1}};
+function positionOf(p){return p.golden?.world?.position_xyz_m||[...(p.state_after.position_xy_m||[0,0]),p.state_after.z_m||0];}
+function endTime(p){return p.sim_time_s??((p.sim_tick_after||0)*(p.physics_dt_s||.02));}
+function startTime(p){return p.decision_time_s??((p.sim_tick_before||0)*(p.physics_dt_s||.02));}
+function canvasDraw(id,p,sample=null){
+  const c=$(id),r=c.getBoundingClientRect(),d=devicePixelRatio||1;
+  c.width=r.width*d;c.height=r.height*d;const x=c.getContext('2d');x.scale(d,d);
+  const cam=cameras[id],w=r.width,h=r.height,scale=Math.min(w,h)/7.5*cam.zoom;
+  const pt=v=>id==='world'?[w/2+cam.x-v[1]*scale,h/2+cam.y-v[0]*scale]:[w/2+cam.x+v[0]*scale,h*.75+cam.y-v[2]*scale];
+  x.fillStyle='#0e141b';x.fillRect(0,0,w,h);x.strokeStyle='#293d50';x.lineWidth=1;
+  for(let i=-3;i<=3;i++){const a=id==='world'?pt([i,-3,0]):pt([i,0,0]),b=id==='world'?pt([i,3,0]):pt([i,0,3]);x.beginPath();x.moveTo(...a);x.lineTo(...b);x.stroke();}
+  for(let i=id==='world'?-3:0;i<=3;i++){const a=id==='world'?pt([-3,i,0]):pt([-3,0,i]),b=id==='world'?pt([3,i,0]):pt([3,0,i]);x.beginPath();x.moveTo(...a);x.lineTo(...b);x.stroke();}
+  x.strokeStyle='#577993';x.beginPath();
+  let started=false;
+  for(let j=0;j<=index;j++){
+    const q=events[j].payload,rows=q.golden?.physics_samples;
+    const points=rows?.length?rows.filter(v=>j!==index||!sample||v.sim_tick<=sample.sim_tick).map(v=>[v.x_m,v.y_m,v.z_m]):[positionOf(q)];
+    for(const v of points){const a=pt(v);if(!started){x.moveTo(...a);started=true;}else x.lineTo(...a);}
+  } x.stroke();
+  const goal=p.golden?.world?.target_xyz_m||[...(p.state_after.goal_xy_m||[0,0]),p.state_after.z_m||0];
+  x.strokeStyle='#77d69a';x.lineWidth=2;x.beginPath();x.arc(...pt(goal),(manifest.target_radius_m||.3)*scale,0,Math.PI*2);x.stroke();
+  const pos=sample?[sample.x_m,sample.y_m,sample.z_m]:positionOf(p),xy=pt(pos);
+  x.fillStyle='#70c7ff';x.beginPath();x.arc(...xy,7,0,Math.PI*2);x.fill();
+  const velocity=sample?.velocity_mps||p.golden?.world.velocity_xyz_mps||[...(p.state_after.velocity_xy_mps||[0,0]),0];x.strokeStyle='#70c7ff';x.beginPath();x.moveTo(...xy);x.lineTo(...pt(pos.map((v,i)=>v+velocity[i]*2)));x.stroke();
+  x.fillStyle='#b8c9d8';x.fillText(id==='world'?'+X 向上 / +Y 向左 · 俯视':'X / Z · 侧视',12,20);
+  c.dataset.position=JSON.stringify(pos);c.dataset.camera=JSON.stringify(cam);c.dataset.step=p.decision_step;
+}
+function drawWorld(p,sample=null){currentSample=sample;canvasDraw('world',p,sample);canvasDraw('simCanvas',p,sample);const g=p.golden;
+  $('poseState').textContent=`${fmt(sample?.z_m??p.state_after.z_m)} m / ${fmt(sample?.yaw_rad??p.state_after.yaw_rad)} rad`;
+  const t=sample?sample.sim_tick*(g?.physics_dt_s||1/120):endTime(p);
+  const speed=sample?.speed_mps??(g?Math.hypot(...g.world.velocity_xyz_mps):null);
+  $('clock').textContent=`世界时间 ${t.toFixed(3)} s · 速度 ${fmt(speed)} m/s · 决策 ${p.decision_step}`;
 }
 function render(){
-  if(!events.length)return; const e=events[index],p=e.payload; drawWorld(p); document.getElementById('timeline').value=index; document.getElementById('play').textContent='帧 '+(index+1)+' / '+events.length; document.title='FlyBrain · frame '+String(index+1)+'/'+String(events.length);
-  document.getElementById('episodeStep').textContent=String(p.episode_id)+' / '+String(p.decision_step); const pose=p.state_after||{}; document.getElementById('poseState').textContent=pose.z_m===undefined?'未记录':fmt(pose.z_m)+' m / '+fmt(pose.yaw_rad)+' rad'; document.getElementById('action').textContent=String(p.action_name)+'（'+(p.action_selection||'未记录')+'）'; document.getElementById('end').textContent=p.end_reason||'进行中'; document.getElementById('dataState').textContent='seq '+e.seq+' / '+(manifest.trace_complete?'完整':'不完整');
-  $('obs').textContent=JSON.stringify(p.observation,null,2); $('value').textContent=fmt(p.value_estimate);
-  const probs=p.action_probabilities; $('actions').innerHTML=ACTIONS.map((a,i)=>{const v=Array.isArray(probs)?Number(probs[i]||0):null;return `<div class="action"><span>${a}</span><div class="bar"><i style="width:${v===null?0:Math.max(0,Math.min(100,v*100))}%"></i></div><span>${v===null?'未记录':(v*100).toFixed(1)+'%'}</span></div>`}).join('');
-  const rp=p.reward_parts||{}; $('reward').innerHTML=['progress','step_cost','success_bonus','boundary_cost','deadline_cost'].map(k=>`<div><small>${k}</small><strong>${fmt(rp[k])}</strong></div>`).join('');
-  const ns=(p.readout_snapshot&&p.readout_snapshot.neurons)||[]; $('neurons').innerHTML=ns.map(n=>{const id=safeText(n.neuron_id);return `<tr data-neuron-id="${id}" class="${String(n.neuron_id)===selectedNeuronId?'selected':''}" onclick="selectNeuron('${id}')"><td><button type="button">${id}</button></td><td>${fmt(n.v_before_reset??n.v)}</td><td>${n.spike===null||n.spike===undefined?'未记录':n.spike}</td><td>${fmt(n.trace_after_update??n.trace)}</td></tr>`}).join('')||'<tr><td colspan="4">本条记录未采集神经状态</td></tr>';
-  $('timeline').value=index; setNotice(p.action_probabilities?'':'动作概率未记录；页面不做推断。');
+  if(!events.length)return;const e=events[index],p=e.payload,g=p.golden;
+  drawWorld(p);$('timeline').value=index;$('frameLabel').textContent=`${index+1} / ${events.length}`;
+  $('play').textContent=playing?'暂停':'播放';document.title=`FlyBrain · ${index+1}/${events.length}`;
+  $('episodeStep').textContent=`${p.episode_id} / ${p.decision_step}`;
+  $('poseState').textContent=`${fmt(p.state_after.z_m)} m / ${fmt(p.state_after.yaw_rad)} rad`;
+  $('action').textContent=p.action_name;$('end').textContent=p.end_reason||'进行中';$('dataState').textContent=`seq ${e.seq} / ${manifest.trace_complete?'完整':'不完整'}`;
+  $('obs').textContent=JSON.stringify(p.observation,null,2);$('value').textContent=fmt(p.value_estimate);
+  const probs=p.action_probabilities,names=manifest.actions||ACTIONS;
+  $('actions').innerHTML=names.map((a,i)=>{const v=probs?.[i];return `<div class="action"><span>${safeText(a)}</span><div class="bar"><i style="width:${v==null?0:v*100}%"></i></div><span>${v==null?'not_recorded':(v*100).toFixed(2)+'%'}</span></div>`}).join('');
+  $('reward').innerHTML=Object.entries(p.reward_parts||{}).map(([k,v])=>`<div><small>${safeText(k)}</small><strong>${fmt(v)}</strong></div>`).join('')||'not_recorded';
+  $('returns').textContent=`${fmt(p.reward_total)} / ${fmt(p.cumulative_return)}`;
+  $('command').textContent=g?JSON.stringify(g.command,null,2):'not_recorded';
+  $('brainInput').textContent=JSON.stringify({brain_observation:g?.brain_observation??'not_recorded',encoded_observation:g?.encoded_observation??'not_recorded',policy_features:g?.policy_features??'not_recorded'},null,2);
+  $('brainSummary').textContent=JSON.stringify({neural_substep:g?.neural_substep??'not_recorded',sample_phase:g?.brain?.sample_phase??'not_recorded',whole_brain_spike_fraction:g?.brain?.whole_brain_spike_fraction??'not_recorded',other_neural_substeps:'not_recorded',anatomical_regions:'not_recorded',top_n:g?.brain?.top_n??'not_recorded'},null,2);
+  const ns=p.readout_snapshot?.neurons||[];
+  $('neurons').innerHTML=ns.map(n=>`<tr data-neuron-id="${safeText(n.neuron_id)}"><td><button type="button">${safeText(n.neuron_id)}</button></td><td>${fmt(n.v_before_reset??n.v)}</td><td>${fmt(n.spike)}</td><td>${fmt(n.trace_after_update??n.trace)}</td></tr>`).join('')||'<tr><td colspan="4">not_recorded</td></tr>';
+  document.querySelectorAll('#neurons tr[data-neuron-id]').forEach(row=>row.onclick=()=>selectNeuron(row.dataset.neuronId));
+  setNotice(g?`到目标 ${fmt(g.world.distance_to_target_m)} m · 稳定保持 ${fmt(g.stable_hold_s)} s · 回放不运行策略`:(!probs?'动作概率 not_recorded':''));
+  $('episodeStep').dataset.state=JSON.stringify(p);
 }
-function startLivePolling(id){if(liveTimer)return;liveTimer=setInterval(async()=>{try{const next=await fetch(`/api/views/${id}/latest`).then(r=>r.ok?r.json():null);if(next&&next.kind==='transition'){events=[next];index=0;render();}}catch(_){setNotice('实时源暂时不可用');}},1000);}
-async function loadView(id){ if(liveTimer){clearInterval(liveTimer);liveTimer=null;} if(liveSocket){liveSocket.close();liveSocket=null;} currentViewId=id; selectedNeuronId=null; const m=await fetch(`/api/views/${id}/manifest`).then(r=>r.json()); const live=m.descriptor_kind==='live'||m.source_kind==='simulation_live'; const [e,t,score]=await Promise.all([live?fetch(`/api/views/${id}/latest`).then(r=>r.ok?r.json():null):fetch(`/api/views/${id}/events?kind=transition&limit=256`).then(r=>r.json()),fetch(`/api/views/${id}/topology`).then(r=>r.ok?r.json():null).catch(()=>null),fetch(`/api/views/${id}/metrics`).then(r=>r.ok?r.json():null).catch(()=>null)]);manifest=m;events=live?(e&&e.kind==='transition'?[e]:[]):(e.events||[]);index=0;$('viewMeta').textContent=`${m.source_kind} · ${m.event_count||'实时'}`;$('manifest').textContent=JSON.stringify(m,null,2);$('metrics').textContent=score?JSON.stringify(score,null,2):'未记录成绩';$('topologySelection').textContent='未选择神经元';$('topology').textContent=t?JSON.stringify({nodes:t.node_ids?.length||0,edges:t.edges?.length||0,truncated:t.truncated,source_edges:t.total_edges_in_source},null,2):'未导出局部拓扑';$('timeline').max=Math.max(0,events.length-1);if(live){$('dataState').textContent='实时等待';const scheme=location.protocol==='https:'?'wss':'ws';try{const ws=new WebSocket(`${scheme}://${location.host}/ws/views/${id}`);liveSocket=ws;ws.onmessage=ev=>{const next=JSON.parse(ev.data);if(next.kind==='transition'){events=[next];index=0;render();}};ws.onerror=()=>{if(liveSocket===ws){ws.close();liveSocket=null;startLivePolling(id);}};ws.onclose=()=>{if(liveSocket===ws){liveSocket=null;startLivePolling(id);}};}catch(_){startLivePolling(id);}}render(); }
-async function init(){ const data=await fetch('/api/views').then(r=>r.json()); const sel=$('views'); sel.innerHTML=(data.views||[]).map(v=>`<option value="${v.view_id}">${v.view_id} · ${v.source_kind||'ERROR'}</option>`).join(''); if(!sel.value){$('source').textContent='没有已注册视图';return;} $('source').textContent='仿真 / 只读观察'; await loadView(sel.value); }
-document.getElementById('views').onchange=()=>loadView(document.getElementById('views').value);document.getElementById('timeline').oninput=()=>{index=Number(document.getElementById('timeline').value);render()};document.getElementById('next').onclick=()=>{index=Math.min(events.length-1,index+1);render()};document.getElementById('prev').onclick=()=>{index=Math.max(0,index-1);render()};document.getElementById('play').onclick=()=>{if(!events.length){setNotice('当前视图没有可播放轨迹');return;}if(index>=events.length-1){index=0;render();}if(timer){clearInterval(timer);timer=null;document.getElementById('play').textContent='播放';}else{timer=setInterval(()=>{if(index>=events.length-1){clearInterval(timer);timer=null;document.getElementById('play').textContent='播放';return;}index++;render()},Math.max(30, Number(document.getElementById('speed').value)/ 8));document.getElementById('play').textContent='暂停';}};window.addEventListener('resize',()=>events.length&&render());init().catch(err=>{document.getElementById('source').textContent='连接失败';setNotice(String(err));});
-</script>
-</body>
-</html>
+function pause(){playing=false;lastWall=null;if(timer!==null)cancelAnimationFrame(timer);timer=null;$('play').textContent='播放';}
+function animate(now){
+  if(!playing)return;if(lastWall!==null)playTime+=(now-lastWall)/1000*Number($('speed').value);lastWall=now;
+  const previous=index;while(index<events.length-1&&playTime>endTime(events[index].payload))index++;
+  if(index!==previous)render();const p=events[index].payload,rows=p.golden?.physics_samples||[];
+  const sample=rows.find(v=>v.sim_tick*(p.golden.physics_dt_s||1/120)>=playTime)||rows.at(-1);
+  drawWorld(p,sample);$('timeline').value=index;
+  if(playTime>=endTime(events.at(-1).payload)){pause();render();return;}timer=requestAnimationFrame(animate);
+}
+function seek(i){pause();index=Math.max(0,Math.min(events.length-1,i));playTime=endTime(events[index].payload);render();}
+function startLivePolling(id){liveTimer=setInterval(async()=>{const e=await fetch(`/api/views/${id}/latest`).then(r=>r.json());if(id===currentViewId&&e.kind==='transition'){events=[e];index=0;render();}},1000);}
+async function loadView(id){
+  pause();const version=++loadVersion;if(liveTimer){clearInterval(liveTimer);liveTimer=null;}if(liveSocket){liveSocket.close();liveSocket=null;}
+  currentViewId=id;events=[];const m=await fetch(`/api/views/${id}/manifest`).then(r=>{if(!r.ok)throw Error('manifest unavailable');return r.json()});
+  const live=m.descriptor_kind==='live'||m.source_kind==='simulation_live';let all=[];
+  if(live){const e=await fetch(`/api/views/${id}/latest`).then(r=>r.json());if(e.kind==='transition')all=[e];}
+  else{let offset=0;while(offset!==null){const page=await fetch(`/api/views/${id}/events?kind=transition&limit=256&offset=${offset}`).then(r=>{if(!r.ok)throw Error('events unavailable');return r.json()});all.push(...page.events);offset=page.next_offset??null;}}
+  if(version!==loadVersion)return;manifest=m;events=all;index=0;playTime=events.length?startTime(events[0].payload):0;
+  $('source').textContent=live?'MODE: LIVE':'MODE: REPLAY';$('viewMeta').textContent=`${m.episode_id||id} · ${m.scenario_id||''} · ${events.length} steps`;
+  $('manifest').textContent=JSON.stringify(m,null,2);$('timeline').max=Math.max(0,events.length-1);$('play').disabled=live||!events.length;
+  $('topology').textContent=m.capabilities?.topology?'选择神经元查看':'not_recorded';$('topologySelection').textContent='';
+  fetch(`/api/views/${id}/metrics`).then(r=>r.json()).then(v=>{if(version===loadVersion)$('metrics').textContent=JSON.stringify(v,null,2)});
+  if(live)startLivePolling(id);if(m.capabilities?.topology)loadTopology();render();
+}
+async function init(){const data=await fetch('/api/views').then(r=>r.json());$('views').innerHTML=data.views.map(v=>`<option value="${safeText(v.view_id)}">${safeText(v.view_id)}</option>`).join('');const requested=new URLSearchParams(location.search).get('view');if(data.views.some(v=>v.view_id===requested))$('views').value=requested;await loadView($('views').value);}
+$('views').onchange=()=>loadView($('views').value).catch(e=>setNotice(String(e)));
+$('timeline').oninput=()=>seek(Number($('timeline').value));$('next').onclick=()=>seek(index+1);$('prev').onclick=()=>seek(index-1);
+$('play').onclick=()=>{if(playing){pause();return;}if(!events.length)return;if(index===events.length-1){index=0;playTime=startTime(events[0].payload);}playing=true;lastWall=null;$('play').textContent='暂停';timer=requestAnimationFrame(animate);};
+for(const id of ['world','simCanvas']){const c=$(id);let drag=null;c.onpointerdown=e=>{drag={x:e.clientX,y:e.clientY};c.setPointerCapture(e.pointerId)};c.onpointermove=e=>{if(!drag)return;cameras[id].x+=e.clientX-drag.x;cameras[id].y+=e.clientY-drag.y;drag={x:e.clientX,y:e.clientY};if(events.length)drawWorld(events[index].payload,currentSample)};c.onpointerup=c.onpointercancel=()=>drag=null;c.addEventListener('wheel',e=>{e.preventDefault();cameras[id].zoom=Math.max(.3,Math.min(5,cameras[id].zoom*Math.exp(-e.deltaY*.001)));if(events.length)drawWorld(events[index].payload,currentSample)},{passive:false});}
+$('resetCamera').onclick=()=>{for(const c of Object.values(cameras)){c.x=0;c.y=0;c.zoom=1;}if(events.length)drawWorld(events[index].payload,currentSample)};
+window.addEventListener('resize',()=>events.length&&drawWorld(events[index].payload,currentSample));init().catch(e=>{$('source').textContent='连接失败';setNotice(String(e))});
+</script></body></html>

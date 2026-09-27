@@ -3,6 +3,7 @@ from __future__ import annotations
 from dataclasses import dataclass
 import math
 from pathlib import Path
+from typing import Any
 
 import mujoco
 import numpy as np
@@ -10,6 +11,8 @@ import numpy as np
 
 @dataclass(frozen=True)
 class WorldConfig:
+    controller_profile: str = "bounded_level_body_surrogate"
+    max_torque_nm: float = .01
     physics_hz: int = 120
     room_half_extent_m: float = 3.0
     floor_z_m: float = 0.0
@@ -63,6 +66,7 @@ class SimWorld:
         self.model = mujoco.MjModel.from_xml_string(self._xml())
         self.data = mujoco.MjData(self.model)
         self.body_id = mujoco.mj_name2id(self.model, mujoco.mjtObj.mjOBJ_BODY, "tello")
+        self.last_control = {}
         self.target = np.zeros(3, dtype=np.float64)
         self.target_yaw = 0.0
         self._yaw_state = 0.0
@@ -93,6 +97,7 @@ class SimWorld:
         self.target = np.asarray(position, dtype=np.float64)
         self.target_yaw = 0.0
         self._yaw_state = 0.0
+        self.last_control = {}
         mujoco.mj_forward(self.model, self.data)
 
     @property
@@ -115,7 +120,7 @@ class SimWorld:
         return self._yaw_state
 
     def hold(self) -> None:
-        self.target = self.position
+        self.set_target(tuple(self.position))
 
     def _apply_controller(self) -> None:
         c = self.config
@@ -123,6 +128,8 @@ class SimWorld:
         vel = self.data.qvel[:3]
         error = self.target - pos
         accel = c.position_kp * error - c.velocity_kd * vel
+        if c.controller_profile == "rigid_body_thrust_v2":
+            accel += c.velocity_kd * getattr(self,"reference_velocity",np.zeros(3)) + getattr(self,"reference_acceleration",np.zeros(3))
         horizontal = np.linalg.norm(accel[:2])
         horizontal_limit = 9.81 * math.tan(math.radians(c.max_tilt_deg))
         if horizontal > min(c.max_accel_mps2, horizontal_limit):
@@ -132,14 +139,20 @@ class SimWorld:
         thrust = float(np.linalg.norm(desired_thrust))
         thrust = float(np.clip(thrust, 0.0, c.max_thrust_weight_ratio * c.mass_kg * 9.81))
 
+        if self.config.controller_profile == 'rigid_body_thrust_v2':
+            from .rigid import wrench
+            force,torque,self.last_control=wrench(self,accel)
+            self.data.xfrc_applied[self.body_id,:3]=force
+            self.data.xfrc_applied[self.body_id,3:]=torque
+            return
         # First-stage surrogate keeps the body level and models yaw as a
         # bounded command state. Translational motion remains MuJoCo-integrated.
         horizontal_force = np.clip(accel[:2] * c.mass_kg, -0.06, 0.06)
         self.data.xfrc_applied[self.body_id, :3] = np.asarray((horizontal_force[0], horizontal_force[1], thrust))
         self.data.xfrc_applied[self.body_id, 3:] = 0.0
 
-    def step(self, ticks: int = 1) -> list[dict[str, float | int]]:
-        trajectory: list[dict[str, float | int]] = []
+    def step(self, ticks: int = 1) -> list[dict[str, Any]]:
+        trajectory: list[dict[str, Any]] = []
         for _ in range(int(ticks)):
             self.data.xfrc_applied[:] = 0.0
             self._apply_controller()
@@ -147,7 +160,12 @@ class SimWorld:
             yaw_error = math.atan2(math.sin(self.target_yaw - self._yaw_state), math.cos(self.target_yaw - self._yaw_state))
             yaw_rate = float(np.clip(yaw_error / max(0.25, 1.0 / self.config.max_yaw_rate_rad_s),
                                      -self.config.max_yaw_rate_rad_s, self.config.max_yaw_rate_rad_s))
-            self._yaw_state += yaw_rate * self.config.dt
+            if self.config.controller_profile == 'rigid_body_thrust_v2':
+                from .rigid import heading
+                measured=heading(self.data.qpos[3:7])
+                self._yaw_state += math.atan2(math.sin(measured-self._yaw_state),math.cos(measured-self._yaw_state))
+            else:
+                self._yaw_state += yaw_rate * self.config.dt
             if not np.all(np.isfinite(self.data.qpos)) or not np.all(np.isfinite(self.data.qvel)):
                 raise FloatingPointError(f"MuJoCo state became non-finite at tick {self.data.time}")
             trajectory.append({
@@ -157,5 +175,41 @@ class SimWorld:
                 "y_m": float(self.data.qpos[1]),
                 "z_m": float(self.data.qpos[2]),
                 "speed_mps": float(np.linalg.norm(self.data.qvel[:3])),
+                "velocity_mps": self.velocity.tolist(),
+                "yaw_rad": self.yaw_rad,
+                "quaternion_wxyz": self.data.qpos[3:7].copy().tolist(),
+                "angular_velocity_body_rad_s": self.data.qvel[3:6].copy().tolist(),
+                "controller": self.config.controller_profile,
+                "control": self.last_control.copy(),
+                "collision": bool(self.data.ncon),
+                "out_of_bounds": bool(max(abs(self.data.qpos[0]), abs(self.data.qpos[1])) > self.config.room_half_extent_m or self.data.qpos[2] > 3 or self.data.qpos[2] < self.config.floor_z_m),
             })
         return trajectory
+
+    def export_state(self):
+        from dataclasses import asdict
+        mask=mujoco.mjtState.mjSTATE_INTEGRATION
+        state=np.empty(mujoco.mj_stateSize(self.model,mask))
+        mujoco.mj_getState(self.model,self.data,state,mask)
+        return {'format':'tellosim.world_state/2','mujoco_version':mujoco.__version__,
+            'config':asdict(self.config),'xml':self._xml(),'mask':int(mask),'integration':state,
+            'target':self.target.copy(),'target_yaw':self.target_yaw,'yaw_unwrapped':self._yaw_state,
+            'last_control':self.last_control.copy(),
+            'trajectory':__import__('copy').deepcopy(getattr(self,'trajectory',None)),
+            'powered':getattr(self,'powered',None),'speed_limit':getattr(self,'speed_limit',None)}
+
+    def restore_state(self,state):
+        from dataclasses import asdict
+        if state['format']!='tellosim.world_state/2' or state['mujoco_version']!=mujoco.__version__ or state['config']!=asdict(self.config) or state['xml']!=self._xml():
+            raise ValueError('physics checkpoint contract mismatch')
+        mask=mujoco.mjtState.mjSTATE_INTEGRATION
+        if state['mask']!=int(mask) or len(state['integration'])!=mujoco.mj_stateSize(self.model,mask):raise ValueError('physics state mask mismatch')
+        mujoco.mj_setState(self.model,self.data,np.asarray(state['integration']),mask)
+        mujoco.mj_forward(self.model,self.data)
+        # mj_forward computes solver intermediates and can overwrite warmstart.
+        # Restore the complete integration inputs again before the next step.
+        mujoco.mj_setState(self.model,self.data,np.asarray(state['integration']),mask)
+        self.target=np.asarray(state['target']).copy();self.target_yaw=state['target_yaw'];self._yaw_state=state['yaw_unwrapped']
+        self.last_control=state['last_control'].copy()
+        if hasattr(self,'trajectory'):self.trajectory=__import__('copy').deepcopy(state['trajectory'])
+        if state['powered'] is not None:self.powered=state['powered'];self.speed_limit=state['speed_limit']

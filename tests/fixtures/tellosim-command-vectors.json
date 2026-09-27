@@ -1,0 +1,505 @@
+{
+  "source_kind": "synthetic_fixture",
+  "profile_id": "sdk3_subset_engineering_v1",
+  "cases": [
+    {
+      "wire": "command",
+      "valid": true,
+      "canonical": {
+        "verb": "command",
+        "args": []
+      }
+    },
+    {
+      "wire": "takeoff",
+      "valid": true,
+      "canonical": {
+        "verb": "takeoff",
+        "args": []
+      }
+    },
+    {
+      "wire": "land",
+      "valid": true,
+      "canonical": {
+        "verb": "land",
+        "args": []
+      }
+    },
+    {
+      "wire": "stop",
+      "valid": true,
+      "canonical": {
+        "verb": "stop",
+        "args": []
+      }
+    },
+    {
+      "wire": "speed?",
+      "valid": true,
+      "canonical": {
+        "verb": "speed?",
+        "args": []
+      }
+    },
+    {
+      "wire": "battery?",
+      "valid": true,
+      "canonical": {
+        "verb": "battery?",
+        "args": []
+      }
+    },
+    {
+      "wire": "time?",
+      "valid": true,
+      "canonical": {
+        "verb": "time?",
+        "args": []
+      }
+    },
+    {
+      "wire": "sdk?",
+      "valid": true,
+      "canonical": {
+        "verb": "sdk?",
+        "args": []
+      }
+    },
+    {
+      "wire": "sn?",
+      "valid": true,
+      "canonical": {
+        "verb": "sn?",
+        "args": []
+      }
+    },
+    {
+      "wire": "hardware?",
+      "valid": true,
+      "canonical": {
+        "verb": "hardware?",
+        "args": []
+      }
+    },
+    {
+      "wire": "forward 19",
+      "valid": false,
+      "canonical": null
+    },
+    {
+      "wire": "forward 20",
+      "valid": true,
+      "canonical": {
+        "verb": "forward",
+        "args": [
+          20
+        ]
+      }
+    },
+    {
+      "wire": "forward 500",
+      "valid": true,
+      "canonical": {
+        "verb": "forward",
+        "args": [
+          500
+        ]
+      }
+    },
+    {
+      "wire": "forward 501",
+      "valid": false,
+      "canonical": null
+    },
+    {
+      "wire": "back 19",
+      "valid": false,
+      "canonical": null
+    },
+    {
+      "wire": "back 20",
+      "valid": true,
+      "canonical": {
+        "verb": "back",
+        "args": [
+          20
+        ]
+      }
+    },
+    {
+      "wire": "back 500",
+      "valid": true,
+      "canonical": {
+        "verb": "back",
+        "args": [
+          500
+        ]
+      }
+    },
+    {
+      "wire": "back 501",
+      "valid": false,
+      "canonical": null
+    },
+    {
+      "wire": "left 19",
+      "valid": false,
+      "canonical": null
+    },
+    {
+      "wire": "left 20",
+      "valid": true,
+      "canonical": {
+        "verb": "left",
+        "args": [
+          20
+        ]
+      }
+    },
+    {
+      "wire": "left 500",
+      "valid": true,
+      "canonical": {
+        "verb": "left",
+        "args": [
+          500
+        ]
+      }
+    },
+    {
+      "wire": "left 501",
+      "valid": false,
+      "canonical": null
+    },
+    {
+      "wire": "right 19",
+      "valid": false,
+      "canonical": null
+    },
+    {
+      "wire": "right 20",
+      "valid": true,
+      "canonical": {
+        "verb": "right",
+        "args": [
+          20
+        ]
+      }
+    },
+    {
+      "wire": "right 500",
+      "valid": true,
+      "canonical": {
+        "verb": "right",
+        "args": [
+          500
+        ]
+      }
+    },
+    {
+      "wire": "right 501",
+      "valid": false,
+      "canonical": null
+    },
+    {
+      "wire": "up 19",
+      "valid": false,
+      "canonical": null
+    },
+    {
+      "wire": "up 20",
+      "valid": true,
+      "canonical": {
+        "verb": "up",
+        "args": [
+          20
+        ]
+      }
+    },
+    {
+      "wire": "up 500",
+      "valid": true,
+      "canonical": {
+        "verb": "up",
+        "args": [
+          500
+        ]
+      }
+    },
+    {
+      "wire": "up 501",
+      "valid": false,
+      "canonical": null
+    },
+    {
+      "wire": "down 19",
+      "valid": false,
+      "canonical": null
+    },
+    {
+      "wire": "down 20",
+      "valid": true,
+      "canonical": {
+        "verb": "down",
+        "args": [
+          20
+        ]
+      }
+    },
+    {
+      "wire": "down 500",
+      "valid": true,
+      "canonical": {
+        "verb": "down",
+        "args": [
+          500
+        ]
+      }
+    },
+    {
+      "wire": "down 501",
+      "valid": false,
+      "canonical": null
+    },
+    {
+      "wire": "cw 0",
+      "valid": false,
+      "canonical": null
+    },
+    {
+      "wire": "cw 1",
+      "valid": true,
+      "canonical": {
+        "verb": "cw",
+        "args": [
+          1
+        ]
+      }
+    },
+    {
+      "wire": "cw 360",
+      "valid": true,
+      "canonical": {
+        "verb": "cw",
+        "args": [
+          360
+        ]
+      }
+    },
+    {
+      "wire": "cw 361",
+      "valid": false,
+      "canonical": null
+    },
+    {
+      "wire": "ccw 0",
+      "valid": false,
+      "canonical": null
+    },
+    {
+      "wire": "ccw 1",
+      "valid": true,
+      "canonical": {
+        "verb": "ccw",
+        "args": [
+          1
+        ]
+      }
+    },
+    {
+      "wire": "ccw 360",
+      "valid": true,
+      "canonical": {
+        "verb": "ccw",
+        "args": [
+          360
+        ]
+      }
+    },
+    {
+      "wire": "ccw 361",
+      "valid": false,
+      "canonical": null
+    },
+    {
+      "wire": "speed 9",
+      "valid": false,
+      "canonical": null
+    },
+    {
+      "wire": "speed 10",
+      "valid": true,
+      "canonical": {
+        "verb": "speed",
+        "args": [
+          10
+        ]
+      }
+    },
+    {
+      "wire": "speed 100",
+      "valid": true,
+      "canonical": {
+        "verb": "speed",
+        "args": [
+          100
+        ]
+      }
+    },
+    {
+      "wire": "speed 101",
+      "valid": false,
+      "canonical": null
+    },
+    {
+      "wire": "go 0 0 0 20",
+      "valid": false,
+      "canonical": null
+    },
+    {
+      "wire": "go 20 0 0 20",
+      "valid": false,
+      "canonical": null
+    },
+    {
+      "wire": "go 21 0 0 20",
+      "valid": true,
+      "canonical": {
+        "verb": "go",
+        "args": [
+          21,
+          0,
+          0,
+          20
+        ]
+      }
+    },
+    {
+      "wire": "go 0 -21 0 20",
+      "valid": true,
+      "canonical": {
+        "verb": "go",
+        "args": [
+          0,
+          -21,
+          0,
+          20
+        ]
+      }
+    },
+    {
+      "wire": "go 500 500 500 100",
+      "valid": true,
+      "canonical": {
+        "verb": "go",
+        "args": [
+          500,
+          500,
+          500,
+          100
+        ]
+      }
+    },
+    {
+      "wire": "go 501 0 0 20",
+      "valid": false,
+      "canonical": null
+    },
+    {
+      "wire": "go 50 0 0 9",
+      "valid": false,
+      "canonical": null
+    },
+    {
+      "wire": "forward 15",
+      "valid": false,
+      "canonical": null
+    },
+    {
+      "wire": "forward 20.0",
+      "valid": false,
+      "canonical": null
+    },
+    {
+      "wire": "forward +20",
+      "valid": false,
+      "canonical": null
+    },
+    {
+      "wire": "forward 020",
+      "valid": false,
+      "canonical": null
+    },
+    {
+      "wire": "forward true",
+      "valid": false,
+      "canonical": null
+    },
+    {
+      "wire": "forward 20 30",
+      "valid": false,
+      "canonical": null
+    },
+    {
+      "wire": "forward 20\nland",
+      "valid": false,
+      "canonical": null
+    },
+    {
+      "wire": "FORWARD 20",
+      "valid": false,
+      "canonical": null
+    },
+    {
+      "wire": "hover",
+      "valid": false,
+      "canonical": null
+    },
+    {
+      "wire": "rc 0 0 0 0",
+      "valid": false,
+      "canonical": null
+    },
+    {
+      "wire": "emergency",
+      "valid": false,
+      "canonical": null
+    },
+    {
+      "wire": "curve 0 0 0 1 1 1 30",
+      "valid": false,
+      "canonical": null
+    },
+    {
+      "wire": "go 30 0 0 20 m1",
+      "valid": false,
+      "canonical": null
+    },
+    {
+      "wire": "forward ２０",
+      "valid": false,
+      "canonical": null
+    },
+    {
+      "wire": "forward NaN",
+      "valid": false,
+      "canonical": null
+    },
+    {
+      "wire": "forward Infinity",
+      "valid": false,
+      "canonical": null
+    },
+    {
+      "wire": "",
+      "valid": false,
+      "canonical": null
+    },
+    {
+      "wire": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+      "valid": false,
+      "canonical": null
+    }
+  ]
+}

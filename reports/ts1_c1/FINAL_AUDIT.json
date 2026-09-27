@@ -1,0 +1,87 @@
+{
+  "utc": "2026-09-27T05:08:54.699067+00:00",
+  "frozen_model_hashes_unchanged": true,
+  "all_splits_disjoint": true,
+  "training_examples_disjoint": true,
+  "resume_source_checks": {
+    "11": {
+      "../brain.py": true,
+      "../encoder.py": true,
+      "../policy.py": true,
+      "training/checkpoint.py": true,
+      "training/parallel.py": true,
+      "training/continuation.py": true,
+      "training/runtime.py": true,
+      "training/contracts.py": true,
+      "training/env.py": true,
+      "training/observer.py": true,
+      "visual.py": true,
+      "physics/world.py": true,
+      "physics/rigid.py": true,
+      "sdk/channels.py": true,
+      "sdk/codec.py": true
+    },
+    "22": {
+      "../brain.py": true,
+      "../encoder.py": true,
+      "../policy.py": true,
+      "training/checkpoint.py": true,
+      "training/parallel.py": true,
+      "training/continuation.py": true,
+      "training/runtime.py": true,
+      "training/contracts.py": true,
+      "training/env.py": true,
+      "training/observer.py": true,
+      "visual.py": true,
+      "physics/world.py": true,
+      "physics/rigid.py": true,
+      "sdk/channels.py": true,
+      "sdk/codec.py": true
+    },
+    "33": {
+      "../brain.py": true,
+      "../encoder.py": true,
+      "../policy.py": true,
+      "training/checkpoint.py": true,
+      "training/parallel.py": true,
+      "training/continuation.py": true,
+      "training/runtime.py": true,
+      "training/contracts.py": true,
+      "training/env.py": true,
+      "training/observer.py": true,
+      "visual.py": true,
+      "physics/world.py": true,
+      "physics/rigid.py": true,
+      "sdk/channels.py": true,
+      "sdk/codec.py": true
+    }
+  },
+  "sealed_action_counts": {
+    "11": {
+      "0": 767,
+      "1": 895,
+      "2": 1007,
+      "3": 981,
+      "4": 961
+    },
+    "22": {
+      "0": 814,
+      "1": 861,
+      "2": 975,
+      "3": 938,
+      "4": 944
+    },
+    "33": {
+      "0": 773,
+      "1": 914,
+      "2": 1003,
+      "3": 990,
+      "4": 1024
+    }
+  },
+  "training_options": {
+    "11": 1536,
+    "22": 1536,
+    "33": 1536
+  }
+}

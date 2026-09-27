@@ -23,7 +23,8 @@ class FrozenReservoir:
 
     def __init__(self, graph: str, batch: int, device="cpu", mapping_seed=64,
                  inputs_per_channel=16, readout_neurons=128, internal_steps=4,
-                 gain=1.0, tonic=.14, input_gain=.8, normalizer=None):
+                 gain=1.0, tonic=.14, input_gain=.8, normalizer=None,
+                 encoded_dim=14, encoder=None, readout_strategy="random_neighbors"):
         self.device = torch.device(device)
         if self.device.type == "cuda" and not torch.cuda.is_available():
             raise RuntimeError("CUDA requested but unavailable")
@@ -35,7 +36,10 @@ class FrozenReservoir:
         self.n, self.batch, self.graph = n, batch, graph
         self.graph_sha256 = graph_hash(graph)
         rng = np.random.default_rng(mapping_seed)
-        channels = 14
+        channels = int(encoded_dim)
+        if channels < 1:
+            raise ValueError("encoded_dim must be positive")
+        self.encoded_dim = channels
         total_inputs = channels * inputs_per_channel
         if total_inputs > n:
             raise ValueError("graph too small for requested input mapping")
@@ -45,7 +49,31 @@ class FrozenReservoir:
         candidates = np.setdiff1d(candidates, inputs, assume_unique=False)
         if len(candidates) < readout_neurons:
             raise ValueError("not enough readout candidates")
-        readouts = rng.choice(candidates, readout_neurons, replace=False)
+        if readout_strategy == "random_neighbors":
+            readouts = rng.choice(candidates, readout_neurons, replace=False)
+        elif readout_strategy == "channel_balanced":
+            if readout_neurons < channels:
+                raise ValueError("channel-balanced readout needs at least one neuron per channel")
+            # Select downstream cells, never the directly driven input cells.
+            # Round-robin coverage is determined by connectivity, not task labels.
+            strengths = []
+            for channel in range(channels):
+                source = inputs[channel * inputs_per_channel:(channel + 1) * inputs_per_channel]
+                score = np.asarray(abs(w[:, source]).sum(axis=1)).ravel()
+                score[inputs] = 0
+                strengths.append(score)
+            selected = []
+            for index in range(readout_neurons):
+                score = strengths[index % channels].copy()
+                score[selected] = 0
+                cell = int(np.argmax(score))
+                if score[cell] <= 0:
+                    raise ValueError("insufficient distinct downstream cells for channel coverage")
+                selected.append(cell)
+            readouts = np.asarray(selected, dtype=np.int64)
+        else:
+            raise ValueError("unknown readout strategy")
+        self.readout_strategy = readout_strategy
         self.input_indices = inputs.astype(np.int64)
         self.input_channels = np.repeat(np.arange(channels), inputs_per_channel).astype(np.int64)
         self.readout_indices = readouts.astype(np.int64)
@@ -53,7 +81,7 @@ class FrozenReservoir:
         self.mapping_sha256 = hashlib.sha256(inputs.tobytes() + self.input_channels.tobytes() + readouts.tobytes()).hexdigest()
         self.feature_dim = 2 * readout_neurons
         self.internal_steps, self.gain, self.tonic = internal_steps, gain, tonic
-        self.encoder = SensoryEncoder(input_gain)
+        self.encoder = encoder or SensoryEncoder(input_gain)
         self.normalizer = normalizer or FeatureNormalizer.identity(self.feature_dim)
         self.w = torch.sparse_csr_tensor(torch.as_tensor(w.indptr, dtype=torch.int64, device=self.device),
             torch.as_tensor(w.indices, dtype=torch.int64, device=self.device),
@@ -75,8 +103,8 @@ class FrozenReservoir:
     @torch.no_grad()
     def advance(self, encoded_obs: np.ndarray, mask=None):
         encoded = torch.as_tensor(encoded_obs, dtype=torch.float32, device=self.device)
-        if encoded.shape != (self.batch, 14):
-            raise ValueError(f"expected {(self.batch, 14)} encoded observations")
+        if encoded.shape != (self.batch, self.encoded_dim):
+            raise ValueError(f"expected {(self.batch, self.encoded_dim)} encoded observations")
         active = torch.ones(self.batch, dtype=torch.bool, device=self.device) if mask is None else torch.as_tensor(mask, dtype=torch.bool, device=self.device)
         active_idx = torch.nonzero(active, as_tuple=False).flatten()
         if active_idx.numel() == 0:
@@ -84,7 +112,9 @@ class FrozenReservoir:
         drive = .8 * encoded[:, self.channels].T
         decay = float(np.exp(-.020 / .100))
         for _ in range(self.internal_steps):
-            current = torch.sparse.mm(self.w, self.s[:, active_idx])
+            # Versioned exact-resume backends may accumulate the SAME edge
+            # weights in float64 before returning to the float32 LIF state.
+            current = torch.sparse.mm(self.w, self.s[:, active_idx].to(self.w.dtype)).to(self.v.dtype)
             v_active = self.v[:, active_idx] * decay + self.gain * current + self.tonic
             v_active[self.inputs] += drive[:, active_idx]
             fired = v_active >= 1.

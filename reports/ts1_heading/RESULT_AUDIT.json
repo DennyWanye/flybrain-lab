@@ -1,0 +1,374 @@
+{
+  "models": {
+    "11": {
+      "readout_change_l2": 8.002818207175043,
+      "critic_weights_unchanged": true,
+      "instruction_first_turns": [
+        7,
+        8,
+        7,
+        8
+      ],
+      "instruction_shortest_direction_correct": true,
+      "train_options": 1280,
+      "train_elapsed_s": 1491.0934228079986,
+      "stage_accuracies": [
+        0.9765625,
+        0.9807692170143127,
+        0.985156238079071
+      ],
+      "checkpoint_sha256": "9f537507d9c6cdfdc84334eb7aa7ace7beb2814fc98fa46bc15d2af26d32d842",
+      "failure_reasons": {
+        "task_deadline": 11
+      },
+      "zero_features_successes": 0,
+      "instruction_pairs": [
+        {
+          "case_id": "instruction-0--1",
+          "seed": 53000000,
+          "reason": "success",
+          "success": true,
+          "return": 5.524685860663995,
+          "steps": 5,
+          "duration_s": 17.4,
+          "distance_m": 0.0006074582816720797,
+          "heading_error_deg": 2.2506821632147043,
+          "initial_error_deg": -90.0,
+          "angular_speed_rad_s": 0.0001653749495835351,
+          "stable_hold_s": 2.0000000000000004,
+          "run_id": null,
+          "actions": [
+            0,
+            7,
+            7,
+            7,
+            0
+          ]
+        },
+        {
+          "case_id": "instruction-0-1",
+          "seed": 53000000,
+          "reason": "success",
+          "success": true,
+          "return": 5.522255930170145,
+          "steps": 6,
+          "duration_s": 19.4,
+          "distance_m": 0.0006074582909287862,
+          "heading_error_deg": 2.24770583268542,
+          "initial_error_deg": 90.0,
+          "angular_speed_rad_s": 0.00016696451084290506,
+          "stable_hold_s": 2.0000000000000004,
+          "run_id": null,
+          "actions": [
+            0,
+            8,
+            8,
+            0,
+            8,
+            0
+          ]
+        },
+        {
+          "case_id": "instruction-1--1",
+          "seed": 53000001,
+          "reason": "success",
+          "success": true,
+          "return": 5.524685860663994,
+          "steps": 5,
+          "duration_s": 17.4,
+          "distance_m": 0.0006074582816720797,
+          "heading_error_deg": 2.2506821632148704,
+          "initial_error_deg": -90.0,
+          "angular_speed_rad_s": 0.0001653749495826941,
+          "stable_hold_s": 2.0000000000000004,
+          "run_id": null,
+          "actions": [
+            0,
+            7,
+            7,
+            7,
+            0
+          ]
+        },
+        {
+          "case_id": "instruction-1-1",
+          "seed": 53000001,
+          "reason": "success",
+          "success": true,
+          "return": 5.522255930170145,
+          "steps": 6,
+          "duration_s": 19.4,
+          "distance_m": 0.0006074582909287862,
+          "heading_error_deg": 2.2477058326854853,
+          "initial_error_deg": 90.00000000000001,
+          "angular_speed_rad_s": 0.0001669645108421736,
+          "stable_hold_s": 2.0000000000000004,
+          "run_id": null,
+          "actions": [
+            0,
+            8,
+            8,
+            0,
+            8,
+            0
+          ]
+        }
+      ],
+      "training_roundtrip_exact": true
+    },
+    "22": {
+      "readout_change_l2": 8.040829160338197,
+      "critic_weights_unchanged": true,
+      "instruction_first_turns": [
+        7,
+        8,
+        7,
+        8
+      ],
+      "instruction_shortest_direction_correct": true,
+      "train_options": 1280,
+      "train_elapsed_s": 1465.9630495590009,
+      "stage_accuracies": [
+        0.9765625,
+        0.9759615659713745,
+        0.9703124761581421
+      ],
+      "checkpoint_sha256": "9c594d2830bb94354d32aa862a9b6e7bcfc92af70e7a048a37048daa96ed060c",
+      "failure_reasons": {
+        "task_deadline": 6
+      },
+      "zero_features_successes": 0,
+      "instruction_pairs": [
+        {
+          "case_id": "instruction-0--1",
+          "seed": 53000000,
+          "reason": "success",
+          "success": true,
+          "return": 5.524685860663995,
+          "steps": 5,
+          "duration_s": 17.4,
+          "distance_m": 0.0006074582816720797,
+          "heading_error_deg": 2.2506821632147043,
+          "initial_error_deg": -90.0,
+          "angular_speed_rad_s": 0.0001653749495835351,
+          "stable_hold_s": 2.0000000000000004,
+          "run_id": null,
+          "actions": [
+            0,
+            7,
+            7,
+            7,
+            0
+          ]
+        },
+        {
+          "case_id": "instruction-0-1",
+          "seed": 53000000,
+          "reason": "success",
+          "success": true,
+          "return": 5.524685860663995,
+          "steps": 5,
+          "duration_s": 17.4,
+          "distance_m": 0.0006074582816720797,
+          "heading_error_deg": 2.2506821632147043,
+          "initial_error_deg": 90.0,
+          "angular_speed_rad_s": 0.0001653749495835351,
+          "stable_hold_s": 2.0000000000000004,
+          "run_id": null,
+          "actions": [
+            0,
+            8,
+            8,
+            8,
+            0
+          ]
+        },
+        {
+          "case_id": "instruction-1--1",
+          "seed": 53000001,
+          "reason": "success",
+          "success": true,
+          "return": 5.524685860663994,
+          "steps": 5,
+          "duration_s": 17.4,
+          "distance_m": 0.0006074582816720797,
+          "heading_error_deg": 2.2506821632148704,
+          "initial_error_deg": -90.0,
+          "angular_speed_rad_s": 0.0001653749495826941,
+          "stable_hold_s": 2.0000000000000004,
+          "run_id": null,
+          "actions": [
+            0,
+            7,
+            7,
+            7,
+            0
+          ]
+        },
+        {
+          "case_id": "instruction-1-1",
+          "seed": 53000001,
+          "reason": "success",
+          "success": true,
+          "return": 5.524685860663993,
+          "steps": 5,
+          "duration_s": 17.4,
+          "distance_m": 0.0006074582816720797,
+          "heading_error_deg": 2.2506821632147953,
+          "initial_error_deg": 90.00000000000001,
+          "angular_speed_rad_s": 0.00016537494958293917,
+          "stable_hold_s": 2.0000000000000004,
+          "run_id": null,
+          "actions": [
+            0,
+            8,
+            8,
+            8,
+            0
+          ]
+        }
+      ],
+      "training_roundtrip_exact": true
+    },
+    "33": {
+      "readout_change_l2": 8.389208599354232,
+      "critic_weights_unchanged": true,
+      "instruction_first_turns": [
+        7,
+        8,
+        7,
+        8
+      ],
+      "instruction_shortest_direction_correct": true,
+      "train_options": 1280,
+      "train_elapsed_s": 1484.631401050001,
+      "stage_accuracies": [
+        0.9817708134651184,
+        0.9831730723381042,
+        0.985156238079071
+      ],
+      "checkpoint_sha256": "7622a7958cfaaaa957ce34395bff86d92b555e8b26a444a0d92cca1be1cc92b3",
+      "failure_reasons": {
+        "task_deadline": 3
+      },
+      "zero_features_successes": 0,
+      "instruction_pairs": [
+        {
+          "case_id": "instruction-0--1",
+          "seed": 53000000,
+          "reason": "success",
+          "success": true,
+          "return": 5.524685860663995,
+          "steps": 5,
+          "duration_s": 17.4,
+          "distance_m": 0.0006074582816720797,
+          "heading_error_deg": 2.2506821632147043,
+          "initial_error_deg": -90.0,
+          "angular_speed_rad_s": 0.0001653749495835351,
+          "stable_hold_s": 2.0000000000000004,
+          "run_id": null,
+          "actions": [
+            0,
+            7,
+            7,
+            7,
+            0
+          ]
+        },
+        {
+          "case_id": "instruction-0-1",
+          "seed": 53000000,
+          "reason": "success",
+          "success": true,
+          "return": 5.524685860663995,
+          "steps": 5,
+          "duration_s": 17.4,
+          "distance_m": 0.0006074582816720797,
+          "heading_error_deg": 2.2506821632147043,
+          "initial_error_deg": 90.0,
+          "angular_speed_rad_s": 0.0001653749495835351,
+          "stable_hold_s": 2.0000000000000004,
+          "run_id": null,
+          "actions": [
+            0,
+            8,
+            8,
+            8,
+            0
+          ]
+        },
+        {
+          "case_id": "instruction-1--1",
+          "seed": 53000001,
+          "reason": "success",
+          "success": true,
+          "return": 5.524685860663994,
+          "steps": 5,
+          "duration_s": 17.4,
+          "distance_m": 0.0006074582816720797,
+          "heading_error_deg": 2.2506821632148704,
+          "initial_error_deg": -90.0,
+          "angular_speed_rad_s": 0.0001653749495826941,
+          "stable_hold_s": 2.0000000000000004,
+          "run_id": null,
+          "actions": [
+            0,
+            7,
+            7,
+            7,
+            0
+          ]
+        },
+        {
+          "case_id": "instruction-1-1",
+          "seed": 53000001,
+          "reason": "success",
+          "success": true,
+          "return": 5.524685860663993,
+          "steps": 5,
+          "duration_s": 17.4,
+          "distance_m": 0.0006074582816720797,
+          "heading_error_deg": 2.2506821632147953,
+          "initial_error_deg": 90.00000000000001,
+          "angular_speed_rad_s": 0.00016537494958293917,
+          "stable_hold_s": 2.0000000000000004,
+          "run_id": null,
+          "actions": [
+            0,
+            8,
+            8,
+            8,
+            0
+          ]
+        }
+      ],
+      "training_roundtrip_exact": true
+    }
+  },
+  "tests": {
+    "pytest.xml": 88,
+    "pytest-flylab.xml": 13
+  },
+  "protocol_sha256": "f3dcd06697fdc17b98708c59d3a7bc90894e455ce687e91645ba57dff045c065",
+  "frozen": {
+    "models": [
+      {
+        "seed": 11,
+        "path": "runs/tellosim-sdk9/heading-s11/checkpoint.pt",
+        "sha256": "9f537507d9c6cdfdc84334eb7aa7ace7beb2814fc98fa46bc15d2af26d32d842"
+      },
+      {
+        "seed": 22,
+        "path": "runs/tellosim-sdk9/heading-s22/checkpoint.pt",
+        "sha256": "9c594d2830bb94354d32aa862a9b6e7bcfc92af70e7a048a37048daa96ed060c"
+      },
+      {
+        "seed": 33,
+        "path": "runs/tellosim-sdk9/heading-s33/checkpoint.pt",
+        "sha256": "7622a7958cfaaaa957ce34395bff86d92b555e8b26a444a0d92cca1be1cc92b3"
+      }
+    ],
+    "case_hash": "3d0200798692b5b8dbf84e455228211c945bc3b7a45f86c2eb3f51652fcd8e70"
+  },
+  "utc": "2026-09-27T06:45:15.012868+00:00"
+}

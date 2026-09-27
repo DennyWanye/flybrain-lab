@@ -1,0 +1,94 @@
+{
+  "schema": "tellosim.c1_result/1",
+  "status": "evaluated",
+  "C1_TASK_LEARNED": true,
+  "MODEL_READY_FOR_NEXT_STAGE": true,
+  "C0_RETENTION_PASSED": true,
+  "C1_ACCEPTANCE": {
+    "passed": true,
+    "reasons": []
+  },
+  "models": [
+    {
+      "seed": 11,
+      "validation": "91/100",
+      "sealed": "278/300",
+      "success_rate": 0.9266666666666666,
+      "wilson95": [
+        0.8914686583942826,
+        0.9510760061607713
+      ],
+      "collision_or_bounds": 0,
+      "retention_before": 94,
+      "retention_after": 94,
+      "retention_passed": true,
+      "run_id": "c1-s11-sealed_test-0",
+      "sample_outcome": "task_deadline"
+    },
+    {
+      "seed": 22,
+      "validation": "95/100",
+      "sealed": "286/300",
+      "success_rate": 0.9533333333333334,
+      "wilson95": [
+        0.923202639772079,
+        0.9720010663176659
+      ],
+      "collision_or_bounds": 0,
+      "retention_before": 94,
+      "retention_after": 94,
+      "retention_passed": true,
+      "run_id": "c1-s22-sealed_test-0",
+      "sample_outcome": "success"
+    },
+    {
+      "seed": 33,
+      "validation": "95/100",
+      "sealed": "278/300",
+      "success_rate": 0.9266666666666666,
+      "wilson95": [
+        0.8914686583942826,
+        0.9510760061607713
+      ],
+      "collision_or_bounds": 0,
+      "retention_before": 90,
+      "retention_after": 99,
+      "retention_passed": true,
+      "run_id": "c1-s33-sealed_test-0",
+      "sample_outcome": "success"
+    }
+  ],
+  "random_successes": 3,
+  "C2": "NOT_RUN",
+  "REAL_FLIGHT_READY": false,
+  "FULL_TS1_READY": false,
+  "note": "C1 随机朝向、允许转向；三个模型封存：11=278/300、22=286/300、33=278/300。C1 与 C0 保持门槛均通过。起降由任务管理器执行；连接图冻结；不是学会真实飞行。本次三组封存评估的转向动作均为0；仅验证随机初始朝向导航，未证明主动转向到指定角度。",
+  "comparison": [
+    {
+      "label": "训练前",
+      "run_id": "c1-paired-before-0",
+      "case_id": "c1-val-000",
+      "success": true,
+      "distance_m": 0.10223330989872935,
+      "return": 5.044590862731326,
+      "checkpoint_sha256": "e3111ad5dc9134676e754953038302aa62527d629de6ca8d971b177f69cc87d3"
+    },
+    {
+      "label": "训练后",
+      "run_id": "c1-paired-after-0",
+      "case_id": "c1-val-000",
+      "success": true,
+      "distance_m": 0.17901350953407305,
+      "return": 5.004687448171934,
+      "checkpoint_sha256": "c564a52b871c70f134371607a6e54685b41de0474adcbb39dba061495a46b3c7"
+    }
+  ],
+  "readiness_scope": "random_initial_heading_navigation_with_C0_retention",
+  "C1_CONTROLLED_TURNING_VERIFIED": false,
+  "sealed_turn_actions": {
+    "11": 0,
+    "22": 0,
+    "33": 0
+  },
+  "next_experiment": "target_heading_control_curriculum_before_claiming_learned_turning"
+}

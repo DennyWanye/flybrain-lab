@@ -1,0 +1,20 @@
+{
+  "utc": "2026-09-27T02:56:31.192881+00:00",
+  "selection": "fixed final weights after bounded adaptation; no sealed results observed; no subsequent weight changes",
+  "seeds": [
+    11,
+    22,
+    33
+  ],
+  "case_hash": "1ee5050170c16ba77949883280305875dbedaa1f3afaae3a2bd3820c52fb81b4",
+  "checkpoint_hashes": [
+    "31a57ddf58594f652ea18891242c3c44bf0287d915082ea6c22f22f26c472020",
+    "3219dd394edf97bdbffd0e93dfbb1021afbb5bbec2597e4cac99f2207c9d90b9",
+    "2656f64c2000b1d0ead62a5746d73ee9d2615b1fd124f62c0f430848c7ba7f14"
+  ],
+  "checkpoints": [
+    "runs/tellosim-sdk9/rigid-final-s11/checkpoint.pt",
+    "runs/tellosim-sdk9/rigid-final-s22/checkpoint.pt",
+    "runs/tellosim-sdk9/rigid-final-s33/checkpoint.pt"
+  ]
+}

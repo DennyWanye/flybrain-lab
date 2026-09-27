@@ -1,0 +1,19 @@
+{
+  "utc": "2026-09-27T03:27:01.897244+00:00",
+  "superseded_pids_exist": {
+    "2255": false,
+    "2280": false,
+    "2306": false,
+    "2901": false,
+    "2926": false,
+    "2952": false
+  },
+  "workspace_python_processes": [
+    {
+      "pid": 422,
+      "cmd": "/home/denny/projects/flybrain-env/bin/python -u -m flyview serve --project-root /home/denny/projects/flybrain_lab_4spark_v0_1 --port 8765 "
+    }
+  ],
+  "viewer_kept": 422,
+  "scope": "Training/evaluation stopped or completed; local viewer intentionally kept for user"
+}

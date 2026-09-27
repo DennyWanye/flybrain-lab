@@ -1,0 +1,10 @@
+{
+  "status": "PASS",
+  "test": "replay_state_test.cjs",
+  "assertions": [
+    "latest measured heading and observation preserved over older option result",
+    "latest stable hold shown",
+    "prior option reward preserved"
+  ],
+  "node_syntax_check": "PASS"
+}

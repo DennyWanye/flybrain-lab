@@ -1,0 +1,35 @@
+{
+  "passed": true,
+  "results": [
+    {
+      "mode": "sigint",
+      "pid": 12206,
+      "exited": true,
+      "status": "interrupted_use_last_committed_boundary",
+      "committed": 8,
+      "attempted": 9
+    },
+    {
+      "mode": "sigterm",
+      "pid": 12878,
+      "exited": true,
+      "status": "interrupted_use_last_committed_boundary",
+      "committed": 8,
+      "attempted": 12
+    },
+    {
+      "mode": "wall",
+      "pid": 13548,
+      "exited": true,
+      "status": "wall_budget",
+      "committed": 0,
+      "attempted": 0,
+      "wall_resume_cannot_reset_budget": true
+    }
+  ],
+  "resume_after_real_sigint": {
+    "completed_options": 64,
+    "new_options": 56,
+    "status": "completed"
+  }
+}

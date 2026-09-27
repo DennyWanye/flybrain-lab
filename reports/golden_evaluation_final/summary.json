@@ -1,0 +1,45 @@
+{
+  "case_set_sha256": "8a347ba513df85b3d0368c56eaf136609893b04dd2317d4518227b97e20b12be",
+  "checkpoint_sha256": "b657cb32ada93c8cee927e72277440702a53d74d2a16b20f3a5ef1cd77d51614",
+  "graph_sha256": "badc33a247894fe12c4d68d3ff791393857cffa39ff2ab81869608a11fa1e0c9",
+  "mapping_sha256": "623b691045f9c971271b8e48cc310dfeaaedb2a67b1bc639499bcfb24ea86d18",
+  "device": "cpu",
+  "scope": "32 diagnostic cases, fixed altitude, no obstacles/noise; distinct from Golden training case; not sealed TS1 formal test",
+  "criteria": {
+    "diagnostic_success_rate": 0.9,
+    "diagnostic_collision_boundary_rate_max": 0.01,
+    "stage_ready_requires": "3 independent training seeds x 300 sealed cases, per-seed >=90% success, <=1% collision/boundary, >=20 percentage point improvement over random"
+  },
+  "episodes": 32,
+  "successes": 8,
+  "success_rate": 0.25,
+  "mean_return": -0.6064496768834989,
+  "collisions": 0,
+  "out_of_bounds": 24,
+  "timeouts": 0,
+  "groups": {
+    "cross_room": {
+      "episodes": 8,
+      "successes": 0,
+      "success_rate": 0.0
+    },
+    "near_training_distribution": {
+      "episodes": 8,
+      "successes": 7,
+      "success_rate": 0.875
+    },
+    "reverse_direction": {
+      "episodes": 8,
+      "successes": 0,
+      "success_rate": 0.0
+    },
+    "short_range": {
+      "episodes": 8,
+      "successes": 1,
+      "success_rate": 0.125
+    }
+  },
+  "MODEL_READY_FOR_NEXT_STAGE": false,
+  "reason": "Diagnostic success/safety criteria failed. Diagnostic single-checkpoint evaluation only. TS1 stage gate requires 3 independently trained seeds, 300 sealed cases per seed, >=90% success, <=1% collision/boundary and >=20 percentage point gain over random for each seed.",
+  "diagnostic_pass": false
+}

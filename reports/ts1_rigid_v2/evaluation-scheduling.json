@@ -1,0 +1,41 @@
+[
+  {
+    "pid": 2901,
+    "cmd": [
+      "/home/denny/projects/flybrain-env/bin/python",
+      "-u",
+      "-m",
+      "reports.ts1_rigid_v2.final_eval",
+      "--seed",
+      "11"
+    ],
+    "elapsed_s": 961.0199999999998,
+    "reason": "case-boundary evaluation scheduling changed to batch64; weights and cases unchanged"
+  },
+  {
+    "pid": 2926,
+    "cmd": [
+      "/home/denny/projects/flybrain-env/bin/python",
+      "-u",
+      "-m",
+      "reports.ts1_rigid_v2.final_eval",
+      "--seed",
+      "22"
+    ],
+    "elapsed_s": 960.7399999999998,
+    "reason": "case-boundary evaluation scheduling changed to batch64; weights and cases unchanged"
+  },
+  {
+    "pid": 2952,
+    "cmd": [
+      "/home/denny/projects/flybrain-env/bin/python",
+      "-u",
+      "-m",
+      "reports.ts1_rigid_v2.final_eval",
+      "--seed",
+      "33"
+    ],
+    "elapsed_s": 960.4999999999998,
+    "reason": "case-boundary evaluation scheduling changed to batch64; weights and cases unchanged"
+  }
+]

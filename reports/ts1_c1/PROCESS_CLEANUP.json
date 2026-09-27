@@ -1,0 +1,11 @@
+{
+  "utc": "2026-09-27T05:11:37.951124+00:00",
+  "training_and_evaluation_processes_gone": true,
+  "kept_viewer": [
+    {
+      "pid": 6505,
+      "command": "/home/denny/projects/flybrain-env/bin/python -u -m flyview serve --project-root /home/denny/projects/flybrain_lab_4spark_v0_1 --port 8765 "
+    }
+  ],
+  "note": "Completed jobs exited and all exec sessions reaped; no broad process-name kill."
+}

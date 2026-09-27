@@ -1,0 +1,602 @@
+[
+  {
+    "test_id": "T01",
+    "status": "NOT_RUN",
+    "input": "合法/非法 wire 与 typed 往返",
+    "actual": "wire 向量已通过；完整 typed 往返矩阵未覆盖",
+    "artifact": "approved_command_vectors",
+    "code_version": "implementation-hashes.json",
+    "elapsed_s": 0.001,
+    "timing_note": "pytest 匹配项耗时；null 表示独立日志无单项计时，未补造"
+  },
+  {
+    "test_id": "T02",
+    "status": "NOT_RUN",
+    "input": "typed 类型与 JSON 语义拒绝",
+    "actual": "重复键、NaN 等已覆盖；typed float/bool/Inf 全组合未覆盖",
+    "artifact": "ambiguous_or_unknown_json",
+    "code_version": "implementation-hashes.json",
+    "elapsed_s": 2.016,
+    "timing_note": "pytest 匹配项耗时；null 表示独立日志无单项计时，未补造"
+  },
+  {
+    "test_id": "T03",
+    "status": "NOT_RUN",
+    "input": "握手/地面/重复起降状态",
+    "actual": "部分状态机回归通过，完整逐状态矩阵未执行",
+    "artifact": "lost_ack_idempotency",
+    "code_version": "implementation-hashes.json",
+    "elapsed_s": 0.121,
+    "timing_note": "pytest 匹配项耗时；null 表示独立日志无单项计时，未补造"
+  },
+  {
+    "test_id": "T04",
+    "status": "NOT_RUN",
+    "input": "20/500 cm 与 speed 10/100",
+    "actual": "大房间 500 cm 实际跟踪通过；两种速度边界未全部重测",
+    "artifact": "physics-edges.json",
+    "code_version": "implementation-hashes.json",
+    "elapsed_s": null,
+    "timing_note": "pytest 匹配项耗时；null 表示独立日志无单项计时，未补造"
+  },
+  {
+    "test_id": "T05",
+    "status": "PASS",
+    "input": "go 20 拒绝、21 允许",
+    "actual": "合同向量拒绝 20；physics-edges.json 中 go21 实际执行",
+    "artifact": "approved_command_vectors",
+    "code_version": "implementation-hashes.json",
+    "elapsed_s": 0.001,
+    "timing_note": "pytest 匹配项耗时；null 表示独立日志无单项计时，未补造"
+  },
+  {
+    "test_id": "T06",
+    "status": "PASS",
+    "input": "yaw0/90 下坐标与锁定目标",
+    "actual": "新物理四元数、目标和转向后移动对照通过",
+    "artifact": "rigid_body_route_rotates",
+    "code_version": "implementation-hashes.json",
+    "elapsed_s": 0.668,
+    "timing_note": "pytest 匹配项耗时；null 表示独立日志无单项计时，未补造"
+  },
+  {
+    "test_id": "T07",
+    "status": "PASS",
+    "input": "cw/ccw 实际 360°",
+    "actual": "两个方向完整转动、非零耗时",
+    "artifact": "physics-edges.json",
+    "code_version": "implementation-hashes.json",
+    "elapsed_s": null,
+    "timing_note": "pytest 匹配项耗时；null 表示独立日志无单项计时，未补造"
+  },
+  {
+    "test_id": "T08",
+    "status": "PASS",
+    "input": "运动期间查询/busy",
+    "actual": "查询不移动目标；忙请求与回执归属通过",
+    "artifact": "go_query_share",
+    "code_version": "implementation-hashes.json",
+    "elapsed_s": 0.149,
+    "timing_note": "pytest 匹配项耗时；null 表示独立日志无单项计时，未补造"
+  },
+  {
+    "test_id": "T09",
+    "status": "PASS",
+    "input": "request 丢失",
+    "actual": "不执行，不重试，unknown",
+    "artifact": "request_and_reply_loss",
+    "code_version": "implementation-hashes.json",
+    "elapsed_s": 0.744,
+    "timing_note": "pytest 匹配项耗时；null 表示独立日志无单项计时，未补造"
+  },
+  {
+    "test_id": "T10",
+    "status": "PASS",
+    "input": "reply 丢失",
+    "actual": "执行但客户端 unknown，不重试",
+    "artifact": "request_and_reply_loss",
+    "code_version": "implementation-hashes.json",
+    "elapsed_s": 0.744,
+    "timing_note": "pytest 匹配项耗时；null 表示独立日志无单项计时，未补造"
+  },
+  {
+    "test_id": "T11",
+    "status": "NOT_RUN",
+    "input": "迟到 ack 与后一请求",
+    "actual": "延迟与取消回归已过；指定迟到 ack 错配矩阵未完整执行",
+    "artifact": "delayed_channel",
+    "code_version": "implementation-hashes.json",
+    "elapsed_s": 0.004,
+    "timing_note": "pytest 匹配项耗时；null 表示独立日志无单项计时，未补造"
+  },
+  {
+    "test_id": "T12",
+    "status": "PASS",
+    "input": "request_id 本地幂等",
+    "actual": "同一本地请求只执行一次，不声明原生 wire 幂等",
+    "artifact": "lost_ack_idempotency",
+    "code_version": "implementation-hashes.json",
+    "elapsed_s": 0.121,
+    "timing_note": "pytest 匹配项耗时；null 表示独立日志无单项计时，未补造"
+  },
+  {
+    "test_id": "T13",
+    "status": "PASS",
+    "input": "运动中保护 stop",
+    "actual": "停止与旧请求状态回归通过；模拟能力",
+    "artifact": "lost_ack_idempotency",
+    "code_version": "implementation-hashes.json",
+    "elapsed_s": 0.121,
+    "timing_note": "pytest 匹配项耗时；null 表示独立日志无单项计时，未补造"
+  },
+  {
+    "test_id": "T14",
+    "status": "NOT_RUN",
+    "input": "取消 Future/关闭 UI 不等于停止",
+    "actual": "取消排队请求已测；执行中 Future 和关闭 UI 全矩阵未测",
+    "artifact": "delayed_channel",
+    "code_version": "implementation-hashes.json",
+    "elapsed_s": 0.004,
+    "timing_note": "pytest 匹配项耗时；null 表示独立日志无单项计时，未补造"
+  },
+  {
+    "test_id": "T15",
+    "status": "NOT_RUN",
+    "input": "15s watchdog 与查询/busy 计时",
+    "actual": "loopback 已有实现，本轮未完整执行 15s 矩阵",
+    "artifact": "SDK_COMPATIBILITY_MATRIX.md",
+    "code_version": "implementation-hashes.json",
+    "elapsed_s": null,
+    "timing_note": "pytest 匹配项耗时；null 表示独立日志无单项计时，未补造"
+  },
+  {
+    "test_id": "T16",
+    "status": "PASS",
+    "input": "不支持命令无副作用",
+    "actual": "不支持命令拒绝，真实设备不开放",
+    "artifact": "approved_command_vectors",
+    "code_version": "implementation-hashes.json",
+    "elapsed_s": 0.001,
+    "timing_note": "pytest 匹配项耗时；null 表示独立日志无单项计时，未补造"
+  },
+  {
+    "test_id": "T17",
+    "status": "PASS",
+    "input": "loopback 与真实 IP 拒绝",
+    "actual": "地址限制与真实 IP JSON 拒绝通过",
+    "artifact": "loopback_address",
+    "code_version": "implementation-hashes.json",
+    "elapsed_s": 0.053,
+    "timing_note": "pytest 匹配项耗时；null 表示独立日志无单项计时，未补造"
+  },
+  {
+    "test_id": "T18",
+    "status": "NOT_RUN",
+    "input": "inprocess/UDP 同列表逐项等价",
+    "actual": "两种通道已有独立测试，完整同列表对照未执行",
+    "artifact": "training_channel",
+    "code_version": "implementation-hashes.json",
+    "elapsed_s": 0.817,
+    "timing_note": "pytest 匹配项耗时；null 表示独立日志无单项计时，未补造"
+  },
+  {
+    "test_id": "T19",
+    "status": "PASS",
+    "input": "自由落体/推力悬停",
+    "actual": "重力积分和悬停通过，不靠覆盖 qpos 移动",
+    "artifact": "preflight.json",
+    "code_version": "implementation-hashes.json",
+    "elapsed_s": null,
+    "timing_note": "pytest 匹配项耗时；null 表示独立日志无单项计时，未补造"
+  },
+  {
+    "test_id": "T20",
+    "status": "PASS",
+    "input": "连续起飞/转向/平移/降落",
+    "actual": "8 命令全 ack、无碰撞；真实轨迹可回放",
+    "artifact": "preflight.json",
+    "code_version": "implementation-hashes.json",
+    "elapsed_s": null,
+    "timing_note": "pytest 匹配项耗时；null 表示独立日志无单项计时，未补造"
+  },
+  {
+    "test_id": "T21",
+    "status": "PASS",
+    "input": "5 扰动场景悬停 10s",
+    "actual": "位置和高度误差均在 0.1m 内",
+    "artifact": "preflight.json",
+    "code_version": "implementation-hashes.json",
+    "elapsed_s": null,
+    "timing_note": "pytest 匹配项耗时；null 表示独立日志无单项计时，未补造"
+  },
+  {
+    "test_id": "T22",
+    "status": "PASS",
+    "input": "六向/go/整圈/大房间",
+    "actual": "大场景范围和稳定窗口检查通过",
+    "artifact": "physics-edges.json",
+    "code_version": "implementation-hashes.json",
+    "elapsed_s": null,
+    "timing_note": "pytest 匹配项耗时；null 表示独立日志无单项计时，未补造"
+  },
+  {
+    "test_id": "T23",
+    "status": "PASS",
+    "input": "薄障碍穿越",
+    "actual": "0.02m 薄障碍被发现，命令失败而非穿墙成功",
+    "artifact": "physics-edges.json",
+    "code_version": "implementation-hashes.json",
+    "elapsed_s": null,
+    "timing_note": "pytest 匹配项耗时；null 表示独立日志无单项计时，未补造"
+  },
+  {
+    "test_id": "T24",
+    "status": "PASS",
+    "input": "起降地面与碰墙分开",
+    "actual": "起降脚本无失败，障碍碰撞失败",
+    "artifact": "scene_collision",
+    "code_version": "implementation-hashes.json",
+    "elapsed_s": 0.184,
+    "timing_note": "pytest 匹配项耗时；null 表示独立日志无单项计时，未补造"
+  },
+  {
+    "test_id": "T25",
+    "status": "NOT_RUN",
+    "input": "推力/倾角/加速度/角速率与外力",
+    "actual": "推力和力矩受限实测；尚无风力分离/饱和全矩阵",
+    "artifact": "physics-edges.json",
+    "code_version": "implementation-hashes.json",
+    "elapsed_s": null,
+    "timing_note": "pytest 匹配项耗时；null 表示独立日志无单项计时，未补造"
+  },
+  {
+    "test_id": "T26",
+    "status": "PASS",
+    "input": "SDK 单位换算",
+    "actual": "h/vgx/baro 合同单位与有限值通过",
+    "artifact": "state_units",
+    "code_version": "implementation-hashes.json",
+    "elapsed_s": 0.0,
+    "timing_note": "pytest 匹配项耗时；null 表示独立日志无单项计时，未补造"
+  },
+  {
+    "test_id": "T27",
+    "status": "PASS",
+    "input": "无外部定位不可伪造 XYZ",
+    "actual": "缺失通道为 null/invalid，丢定位终止",
+    "artifact": "invalid_sensor",
+    "code_version": "implementation-hashes.json",
+    "elapsed_s": 0.035,
+    "timing_note": "pytest 匹配项耗时；null 表示独立日志无单项计时，未补造"
+  },
+  {
+    "test_id": "T28",
+    "status": "NOT_RUN",
+    "input": "pose 延迟/丢失/不同 frame",
+    "actual": "延迟、丢失和状态恢复已测；不同 frame 拒绝专项未跑",
+    "artifact": "delayed_inflight",
+    "code_version": "implementation-hashes.json",
+    "elapsed_s": 0.501,
+    "timing_note": "pytest 匹配项耗时；null 表示独立日志无单项计时，未补造"
+  },
+  {
+    "test_id": "T29",
+    "status": "PASS",
+    "input": "26 观测到 34 编码",
+    "actual": "顺序/旋转/符号/有效性和 mask 回归通过",
+    "artifact": "observation_rotation",
+    "code_version": "implementation-hashes.json",
+    "elapsed_s": 0.001,
+    "timing_note": "pytest 匹配项耗时；null 表示独立日志无单项计时，未补造"
+  },
+  {
+    "test_id": "T30",
+    "status": "NOT_RUN",
+    "input": "policy/critic 真值泄漏接口攻击",
+    "actual": "接口设计隔离已审读，完整逆向依赖攻击未跑",
+    "artifact": "checkpoint_contract",
+    "code_version": "implementation-hashes.json",
+    "elapsed_s": 0.011,
+    "timing_note": "pytest 匹配项耗时；null 表示独立日志无单项计时，未补造"
+  },
+  {
+    "test_id": "T31",
+    "status": "PASS",
+    "input": "整数物理/观测/神经时钟",
+    "actual": "120Hz/10Hz/4 子步共享执行器回归通过",
+    "artifact": "shared_executor_clock",
+    "code_version": "implementation-hashes.json",
+    "elapsed_s": 0.097,
+    "timing_note": "pytest 匹配项耗时；null 表示独立日志无单项计时，未补造"
+  },
+  {
+    "test_id": "T32",
+    "status": "NOT_RUN",
+    "input": "0/30/60FPS 与断线确定性",
+    "actual": "仅回放交互，不冒充渲染开关同轨迹对照",
+    "artifact": "BROWSER_CHECK.md",
+    "code_version": "implementation-hashes.json",
+    "elapsed_s": null,
+    "timing_note": "pytest 匹配项耗时；null 表示独立日志无单项计时，未补造"
+  },
+  {
+    "test_id": "T33",
+    "status": "NOT_RUN",
+    "input": "多环境完整状态/RNG 独立",
+    "actual": "脑/世界/传感器/队列独立已测；策略采样仍用全局 Torch RNG",
+    "artifact": "masked_batch",
+    "code_version": "implementation-hashes.json",
+    "elapsed_s": 0.012,
+    "timing_note": "pytest 匹配项耗时；null 表示独立日志无单项计时，未补造"
+  },
+  {
+    "test_id": "T34",
+    "status": "PASS",
+    "input": "记录 copy 保持历史帧",
+    "actual": "分块重建与只读导出回归通过",
+    "artifact": "route_physics_and_chunk",
+    "code_version": "implementation-hashes.json",
+    "elapsed_s": 0.536,
+    "timing_note": "pytest 匹配项耗时；null 表示独立日志无单项计时，未补造"
+  },
+  {
+    "test_id": "T35",
+    "status": "PASS",
+    "input": "SMDP 手算 R/Gamma/delta",
+    "actual": "手算 reward/discount/terminal 对照通过",
+    "artifact": "smdp_discount",
+    "code_version": "implementation-hashes.json",
+    "elapsed_s": 0.0,
+    "timing_note": "pytest 匹配项耗时；null 表示独立日志无单项计时，未补造"
+  },
+  {
+    "test_id": "T36",
+    "status": "PASS",
+    "input": "变时长折扣",
+    "actual": "实际持续时间改变折扣目标",
+    "artifact": "smdp_discount",
+    "code_version": "implementation-hashes.json",
+    "elapsed_s": 0.0,
+    "timing_note": "pytest 匹配项耗时；null 表示独立日志无单项计时，未补造"
+  },
+  {
+    "test_id": "T37",
+    "status": "PASS",
+    "input": "terminal/truncation/GAE",
+    "actual": "terminal 与截断 bootstrap 分离；批量 lane 截断防跨局",
+    "artifact": "gae_terminal",
+    "code_version": "implementation-hashes.json",
+    "elapsed_s": 0.001,
+    "timing_note": "pytest 匹配项耗时；null 表示独立日志无单项计时，未补造"
+  },
+  {
+    "test_id": "T38",
+    "status": "PASS",
+    "input": "stop/无效动作时间与奖励",
+    "actual": "时间推进、成功奖励一次、deadline 回归通过",
+    "artifact": "stop_dwell",
+    "code_version": "implementation-hashes.json",
+    "elapsed_s": 0.048,
+    "timing_note": "pytest 匹配项耗时；null 表示独立日志无单项计时，未补造"
+  },
+  {
+    "test_id": "T39",
+    "status": "PASS",
+    "input": "稳定保持而非高速掠过",
+    "actual": "停留门槛与飞出重置回归通过",
+    "artifact": "dwell_success",
+    "code_version": "implementation-hashes.json",
+    "elapsed_s": 0.001,
+    "timing_note": "pytest 匹配项耗时；null 表示独立日志无单项计时，未补造"
+  },
+  {
+    "test_id": "T40",
+    "status": "PASS",
+    "input": "PPO 缓存与冻结脑",
+    "actual": "PPO 更新读出；冻结连接图与缓存回归通过",
+    "artifact": "ppo_changes",
+    "code_version": "implementation-hashes.json",
+    "elapsed_s": 0.84,
+    "timing_note": "pytest 匹配项耗时；null 表示独立日志无单项计时，未补造"
+  },
+  {
+    "test_id": "T41",
+    "status": "PASS",
+    "input": "checkpoint 不兼容拒绝",
+    "actual": "动作/编码/图/源码执行合同检查通过",
+    "artifact": "checkpoint_contract",
+    "code_version": "implementation-hashes.json",
+    "elapsed_s": 0.011,
+    "timing_note": "pytest 匹配项耗时；null 表示独立日志无单项计时，未补造"
+  },
+  {
+    "test_id": "T42",
+    "status": "PASS",
+    "input": "安全边界恢复对照",
+    "actual": "完整图连续/恢复和 3 次重复逐项一致；限定锁定配置",
+    "artifact": "repeat-resume.json",
+    "code_version": "implementation-hashes.json",
+    "elapsed_s": null,
+    "timing_note": "pytest 匹配项耗时；null 表示独立日志无单项计时，未补造"
+  },
+  {
+    "test_id": "T43",
+    "status": "PASS",
+    "input": "规则及随机基线",
+    "actual": "规则 100/100，随机封存 5/300",
+    "artifact": "rule-validation.json",
+    "code_version": "implementation-hashes.json",
+    "elapsed_s": null,
+    "timing_note": "pytest 匹配项耗时；null 表示独立日志无单项计时，未补造"
+  },
+  {
+    "test_id": "T44",
+    "status": "NOT_RUN",
+    "input": "MLP 与 MaleCNS pilot 来源分开",
+    "actual": "本轮真实 MaleCNS 已运行，新环境独立 MLP pilot 未运行",
+    "artifact": "IMPLEMENTATION.md",
+    "code_version": "implementation-hashes.json",
+    "elapsed_s": null,
+    "timing_note": "pytest 匹配项耗时；null 表示独立日志无单项计时，未补造"
+  },
+  {
+    "test_id": "T45",
+    "status": "PASS",
+    "input": "3 seed 同 300 封存场景",
+    "actual": "同一封存集每种子 300 场：284/276/279 成功，碰撞越界均 0；冻结哈希一致",
+    "artifact": "final-s*-sealed_test.json",
+    "code_version": "implementation-hashes.json",
+    "elapsed_s": 1896.801531051,
+    "timing_note": "pytest 匹配项耗时；null 表示独立日志无单项计时，未补造"
+  },
+  {
+    "test_id": "T46",
+    "status": "NOT_RUN",
+    "input": "options/wall/Ctrl-C 完整停止矩阵",
+    "actual": "option 边界与恢复已过，wall/Ctrl-C 完整矩阵未跑",
+    "artifact": "full-graph-check.json",
+    "code_version": "implementation-hashes.json",
+    "elapsed_s": null,
+    "timing_note": "pytest 匹配项耗时；null 表示独立日志无单项计时，未补造"
+  },
+  {
+    "test_id": "T47",
+    "status": "NOT_RUN",
+    "input": "无 GPU/无图模式",
+    "actual": "GPU 不可用报错已有单测，缺图全流程模式未跑",
+    "artifact": "gpu_unavailable",
+    "code_version": "implementation-hashes.json",
+    "elapsed_s": 0.0,
+    "timing_note": "pytest 匹配项耗时；null 表示独立日志无单项计时，未补造"
+  },
+  {
+    "test_id": "T48",
+    "status": "PASS",
+    "input": "浏览器真实脚本与来源",
+    "actual": "实际浏览器播放真实物理记录；明确脚本非模型",
+    "artifact": "BROWSER_CHECK.md",
+    "code_version": "implementation-hashes.json",
+    "elapsed_s": null,
+    "timing_note": "pytest 匹配项耗时；null 表示独立日志无单项计时，未补造"
+  },
+  {
+    "test_id": "T49",
+    "status": "PASS",
+    "input": "世界/机体/画面坐标",
+    "actual": "实际四元数可视化，旋转和平移路线验证",
+    "artifact": "BROWSER_CHECK.md",
+    "code_version": "implementation-hashes.json",
+    "elapsed_s": null,
+    "timing_note": "pytest 匹配项耗时；null 表示独立日志无单项计时，未补造"
+  },
+  {
+    "test_id": "T50",
+    "status": "NOT_RUN",
+    "input": "噪声 ghost/无效 pose 浏览器",
+    "actual": "真值/观测分层已有实现，本轮未逐状态注入 UI 验证",
+    "artifact": "BROWSER_CHECK.md",
+    "code_version": "implementation-hashes.json",
+    "elapsed_s": null,
+    "timing_note": "pytest 匹配项耗时；null 表示独立日志无单项计时，未补造"
+  },
+  {
+    "test_id": "T51",
+    "status": "NOT_RUN",
+    "input": "reply loss 双状态 UI",
+    "actual": "后端回归通过，本轮未浏览器注入复核",
+    "artifact": "request_and_reply_loss",
+    "code_version": "implementation-hashes.json",
+    "elapsed_s": 0.744,
+    "timing_note": "pytest 匹配项耗时；null 表示独立日志无单项计时，未补造"
+  },
+  {
+    "test_id": "T52",
+    "status": "NOT_RUN",
+    "input": "切换 lane/episode 实时观察",
+    "actual": "只导出 lane 0，没有实时四 lane 切换",
+    "artifact": "IMPLEMENTATION.md",
+    "code_version": "implementation-hashes.json",
+    "elapsed_s": null,
+    "timing_note": "pytest 匹配项耗时；null 表示独立日志无单项计时，未补造"
+  },
+  {
+    "test_id": "T53",
+    "status": "PASS",
+    "input": "暂停/拖动只读回放",
+    "actual": "实测 tick 跳转与暂停；独立训练仍持续运行",
+    "artifact": "BROWSER_CHECK.md",
+    "code_version": "implementation-hashes.json",
+    "elapsed_s": null,
+    "timing_note": "pytest 匹配项耗时；null 表示独立日志无单项计时，未补造"
+  },
+  {
+    "test_id": "T54",
+    "status": "NOT_RUN",
+    "input": "慢客户端/五观看者/断线",
+    "actual": "未执行压力矩阵，不声明吞吐门槛达标",
+    "artifact": "IMPLEMENTATION.md",
+    "code_version": "implementation-hashes.json",
+    "elapsed_s": null,
+    "timing_note": "pytest 匹配项耗时；null 表示独立日志无单项计时，未补造"
+  },
+  {
+    "test_id": "T55",
+    "status": "NOT_RUN",
+    "input": "长回放/256MiB 配额",
+    "actual": "分块与缩小配额有效前缀单测通过，完整 256MiB 压力未跑",
+    "artifact": "recording_quota",
+    "code_version": "implementation-hashes.json",
+    "elapsed_s": 0.001,
+    "timing_note": "pytest 匹配项耗时；null 表示独立日志无单项计时，未补造"
+  },
+  {
+    "test_id": "T56",
+    "status": "PASS",
+    "input": "沙盒隔离训练源",
+    "actual": "后端只读来源与 epoch 隔离通过",
+    "artifact": "sandbox_epoch",
+    "code_version": "implementation-hashes.json",
+    "elapsed_s": 0.525,
+    "timing_note": "pytest 匹配项耗时；null 表示独立日志无单项计时，未补造"
+  },
+  {
+    "test_id": "T57",
+    "status": "PASS",
+    "input": "Host/Origin/path/真实 IP 安全",
+    "actual": "拒绝恶意来源与非授权变更；API 路径白名单",
+    "artifact": "post_security",
+    "code_version": "implementation-hashes.json",
+    "elapsed_s": 2.027,
+    "timing_note": "pytest 匹配项耗时；null 表示独立日志无单项计时，未补造"
+  },
+  {
+    "test_id": "T58",
+    "status": "NOT_RUN",
+    "input": "旧/新/未知 schema",
+    "actual": "旧与新分入口保留，完整未知版本切换验收未跑",
+    "artifact": "BROWSER_CHECK.md",
+    "code_version": "implementation-hashes.json",
+    "elapsed_s": null,
+    "timing_note": "pytest 匹配项耗时；null 表示独立日志无单项计时，未补造"
+  },
+  {
+    "test_id": "T59",
+    "status": "NOT_RUN",
+    "input": "初始/训练后同 case 双回放",
+    "actual": "同 case 旧权重与新权重逐场景结果已有；浏览器配对对照未完成",
+    "artifact": "s11-validation.json",
+    "code_version": "implementation-hashes.json",
+    "elapsed_s": null,
+    "timing_note": "pytest 匹配项耗时；null 表示独立日志无单项计时，未补造"
+  },
+  {
+    "test_id": "T60",
+    "status": "PASS",
+    "input": "新目录解包复核",
+    "actual": "新临时目录加载解包源码、API/静态依赖/三个模型回放及 Golden 注册均通过；使用现有 WSL 依赖，未测全新机器",
+    "artifact": "PACKAGE_AUDIT.json",
+    "code_version": "implementation-hashes.json",
+    "elapsed_s": null,
+    "timing_note": "pytest 匹配项耗时；null 表示独立日志无单项计时，未补造"
+  }
+]

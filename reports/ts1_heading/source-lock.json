@@ -1,0 +1,12 @@
+{
+  "files": {
+    "flydrone/tellosim/training/heading.py": "3bfb5dd33722414954a4d28db6d3b78c5282dad4deea6aabc16e081cc6190e92",
+    "flydrone/tellosim/training/heading_campaign.py": "f8eda7bcb0797cb3e522c2d114efade2562e6d5d683fe1578ba9648bb6086a42",
+    "flydrone/tellosim/training/env.py": "bebe355bb55945bfc9b0809f0c5e38d3111cdfcafc0371f1200dc5e48229b16f",
+    "flydrone/tellosim/training/runtime.py": "bca5dc339cd3326c1903ca13b76ff70bf27e1bccb97cd611c5d90485620f9f68",
+    "flydrone/tellosim/training/contracts.py": "086a20e0e0e301172fbd3999c20b00924c222b539fa654777660d74517ba4511",
+    "flydrone/tellosim/physics/rigid.py": "b02716b73fce0c138ecda3ac960fa6000020df662f95fa11003378938cd9f3ed"
+  },
+  "purpose": "Task/core source lock while training and evaluating",
+  "utc": "2026-09-27T06:06:20.323734+00:00"
+}

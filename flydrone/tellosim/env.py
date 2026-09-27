@@ -43,6 +43,7 @@ class TelloSimEnv(gym.Env[np.ndarray, int]):
         self.sim.sim_tick = 0
         self.steps = 0
         self.stable_hold_s = 0.0
+        self.sim.events.clear()
         return self.pose.snapshot().observation26(self.goal), {"goal_m": self.goal.copy()}
 
     def step(self, action: int):
@@ -61,36 +62,46 @@ class TelloSimEnv(gym.Env[np.ndarray, int]):
         )
         command = commands[int(action)]
         issued_tick = int(self.sim.sim_tick)
+        event_start = len(self.sim.events)
         command_result = {"phase": "completed", "device_execution": "completed", "raw_response": "ok"}
         if not self.sim.airborne:
             self.sim.airborne = True
         command_result = self.sim.submit(" ".join([command.verb, *(str(v) for v in command.args)]), f"env-step-{self.steps}")
 
         after = self.pose.snapshot()
+        trajectory = [r for r in self.sim.events[event_start:] if r["kind"] == "trajectory"]
+        duration = (after.sim_tick - issued_tick) * self.sim.world.config.dt
         self.steps += 1
         distance_before = float(np.linalg.norm(np.asarray(before.position_m) - self.goal))
         distance_after = float(np.linalg.norm(np.asarray(after.position_m) - self.goal))
         progress_reward = distance_before - distance_after
         time_penalty = -0.01 * duration
         speed = float(np.linalg.norm(after.velocity_mps))
-        if distance_after <= self.config.target_radius_m and speed <= self.config.stable_speed_mps:
-            self.stable_hold_s += duration
-        else:
-            self.stable_hold_s = 0.0
+        for sample in trajectory:
+            distance = float(np.linalg.norm(np.asarray([sample["x_m"], sample["y_m"], sample["z_m"]]) - self.goal))
+            if distance <= self.config.target_radius_m and sample["speed_mps"] <= self.config.stable_speed_mps:
+                self.stable_hold_s += self.sim.world.config.dt
+            else:
+                self.stable_hold_s = 0.0
+        collision = any(r["collision"] for r in trajectory)
+        out_of_bounds = any(r["out_of_bounds"] for r in trajectory)
         if self.config.stable_hold_s > 0:
-            terminated = self.stable_hold_s >= self.config.stable_hold_s
+            terminated = self.stable_hold_s + 1e-9 >= self.config.stable_hold_s
         else:
             terminated = distance_after <= self.config.target_radius_m
-        target_bonus = 1.0 if terminated else 0.0
+        success = terminated and not collision and not out_of_bounds
+        terminated = success or collision or out_of_bounds
+        target_bonus = 1.0 if success else 0.0
         reward = progress_reward + time_penalty + target_bonus
-        truncated = self.steps >= self.config.max_episode_steps
+        truncated = self.steps >= self.config.max_episode_steps and not terminated
         return after.observation26(self.goal), float(reward), terminated, truncated, {
             "duration_s": duration, "distance_m": distance_after, "sim_tick": after.sim_tick,
             "command": command.verb, "command_args": list(command.args),
             "command_id": command_result.get("operation_id", f"env-step-{self.steps - 1}"),
             "issued_sim_tick": issued_tick, "started_sim_tick": issued_tick,
             "completed_sim_tick": int(after.sim_tick), "command_result": command_result,
-            "speed_mps": speed, "stable_hold_s": self.stable_hold_s, "success": terminated,
+            "speed_mps": speed, "stable_hold_s": self.stable_hold_s, "success": success,
+            "collision": collision, "out_of_bounds": out_of_bounds, "physics_samples": trajectory,
             "reward_components": {"progress_reward": float(progress_reward), "time_penalty": float(time_penalty), "target_bonus": float(target_bonus)},
         }
 

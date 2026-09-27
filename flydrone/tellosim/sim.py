@@ -108,7 +108,7 @@ class SimTello:
         ticks = max(1, math.ceil(seconds * self.world.config.physics_hz))
         for row in self.world.step(ticks):
             self.sim_tick = int(row["sim_tick"])
-            self._event("trajectory", **row, yaw_rad=self.world.yaw_rad, airborne=self.airborne)
+            self._event("trajectory", **row, airborne=self.airborne)
 
 
 def run_script(commands_path: str | Path, world_config: str | Path, out: str | Path) -> dict[str, Any]:

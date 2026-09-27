@@ -36,9 +36,11 @@ def decode_command(text: str) -> TelloCommand:
         raise CommandError("syntax_error", "command must be a non-empty ASCII string")
     if len(text.encode("ascii", errors="ignore")) != len(text) or len(text.encode("ascii")) > 256:
         raise CommandError("syntax_error", "command must be at most 256 ASCII bytes")
-    if any(char in text for char in "\r\n\t;\x00"):
+    if any(ord(char)<32 or ord(char)==127 or char==";" for char in text):
         raise CommandError("syntax_error", "control characters and separators are not allowed")
     parts = text.strip().split()
+    if not parts:
+        raise CommandError("syntax_error", "command must contain a verb")
     verb = parts[0]
     if verb in _NO_ARG or verb in _QUERY:
         if len(parts) != 1:

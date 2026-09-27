@@ -1,0 +1,12 @@
+{
+  "diagnostic_only": true,
+  "graph_sha256": "badc33a247894fe12c4d68d3ff791393857cffa39ff2ab81869608a11fa1e0c9",
+  "options": 8,
+  "base_ticks": 260,
+  "metrics": {
+    "gradient_steps": 2,
+    "training_examples": 8,
+    "training_label_accuracy": 1.0
+  },
+  "checkpoint_roundtrip": true
+}

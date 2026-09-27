@@ -1,0 +1,44 @@
+[
+  {
+    "seed": 11,
+    "completed_options": 1536,
+    "training_elapsed_s": 1265.8089669930005,
+    "supervised_label_accuracy": [
+      0.9765625,
+      0.9787946343421936,
+      0.9786931872367859
+    ],
+    "ppo_process_peak_rss_mib": 1768.67578125,
+    "ppo_process_peak_cuda_mib": 1098.0185546875,
+    "ppo_options": 128,
+    "notes": "3 simultaneous seed processes; 4 independent lanes per seed. Peaks are PPO process metrics, not whole-campaign telemetry."
+  },
+  {
+    "seed": 22,
+    "completed_options": 1536,
+    "training_elapsed_s": 1267.9032103620002,
+    "supervised_label_accuracy": [
+      0.9947916865348816,
+      0.9799107313156128,
+      0.9737215638160706
+    ],
+    "ppo_process_peak_rss_mib": 1763.84765625,
+    "ppo_process_peak_cuda_mib": 1098.0185546875,
+    "ppo_options": 128,
+    "notes": "3 simultaneous seed processes; 4 independent lanes per seed. Peaks are PPO process metrics, not whole-campaign telemetry."
+  },
+  {
+    "seed": 33,
+    "completed_options": 1536,
+    "training_elapsed_s": 1268.2568971799992,
+    "supervised_label_accuracy": [
+      0.9895833134651184,
+      0.9799107313156128,
+      0.9829545617103577
+    ],
+    "ppo_process_peak_rss_mib": 1768.0859375,
+    "ppo_process_peak_cuda_mib": 1098.0185546875,
+    "ppo_options": 128,
+    "notes": "3 simultaneous seed processes; 4 independent lanes per seed. Peaks are PPO process metrics, not whole-campaign telemetry."
+  }
+]

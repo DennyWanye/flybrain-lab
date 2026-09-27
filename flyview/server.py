@@ -55,17 +55,22 @@ class Viewer:
         path = directory / ("live_descriptor.json" if (directory / "live_descriptor.json").exists() else "view_manifest.json")
         return json.loads(path.read_text(encoding="utf-8"))
 
-    def events(self, view_id: str, limit: int = 256, kind: str | None = None) -> list[dict]:
+    def events(self, view_id: str, limit: int = 256, kind: str | None = None, offset: int = 0) -> list[dict]:
         limit = max(1, min(int(limit), 256))
         path = self.view_dir(view_id) / "events.jsonl"
         if not path.exists():
             return []
         rows = []
+        skipped = 0
+        offset = max(0, int(offset))
         with path.open(encoding="utf-8") as handle:
             for line in handle:
                 if line.strip():
                     event = json.loads(line)
                     if kind and event.get("kind") != kind:
+                        continue
+                    if skipped < offset:
+                        skipped += 1
                         continue
                     rows.append(event)
                     if len(rows) >= limit:
@@ -105,6 +110,14 @@ class Viewer:
             if path.exists():
                 result["view"] = json.loads(path.read_text(encoding="utf-8"))
                 break
+
+        if self.manifest(view_id).get("schema_version") == "golden_view/1.0":
+            evaluation = self.project_root / "reports" / "golden_evaluation_final" / "summary.json"
+            if evaluation.exists():
+                summary = json.loads(evaluation.read_text())
+                if summary.get("checkpoint_sha256") == self.manifest(view_id).get("policy_checkpoint_sha256"):
+                    result["evaluation"] = summary
+            return result
 
         validation: list[dict] = []
         report_root = self.project_root / "reports" / "p1"
@@ -238,6 +251,8 @@ class Handler(BaseHTTPRequestHandler):
             return
 
     def do_POST(self) -> None:  # noqa: N802
+        if self.command == "POST" and hasattr(self.server, "tellosim") and self.server.tellosim.handle(self, post=True):
+            return
         self._error(HTTPStatus.METHOD_NOT_ALLOWED, "viewer is read-only")
 
     do_PUT = do_POST
@@ -250,6 +265,8 @@ class Handler(BaseHTTPRequestHandler):
             return
         parsed = urlparse(self.path)
         path = unquote(parsed.path)
+        if hasattr(self.server, "tellosim") and self.server.tellosim.handle(self):
+            return
         ws_match = re.fullmatch(r"/ws/views/([^/]+)", path)
         if ws_match:
             self._websocket(ws_match.group(1))
@@ -279,7 +296,10 @@ class Handler(BaseHTTPRequestHandler):
                 query = parse_qs(parsed.query)
                 limit = query.get("limit", ["256"])[0]
                 kind = query.get("kind", [None])[0]
-                self._send(200, _json_bytes({"events": self.viewer.events(match.group(1), int(limit), kind), "source_complete": True}))
+                offset = max(0, int(query.get("offset", ["0"])[0]))
+                rows = self.viewer.events(match.group(1), int(limit), kind, offset)
+                more = bool(self.viewer.events(match.group(1), 1, kind, offset + len(rows)))
+                self._send(200, _json_bytes({"events": rows, "source_complete": not more, "next_offset": offset + len(rows) if more else None}))
                 return
             match = re.fullmatch(r"/api/views/([^/]+)/latest", path)
             if match:
@@ -304,6 +324,9 @@ class Handler(BaseHTTPRequestHandler):
             match = re.fullmatch(r"/api/views/([^/]+)/metrics", path)
             if match:
                 self._send(200, _json_bytes(self.viewer.metrics(match.group(1))))
+                return
+            if path == "/tellosim":
+                self._send(200, (STATIC_ROOT / "tellosim.html").read_bytes(), "text/html; charset=utf-8")
                 return
             if path == "/" or path == "/index.html":
                 body = (STATIC_ROOT / "index.html").read_bytes()
@@ -332,15 +355,20 @@ class Handler(BaseHTTPRequestHandler):
 
 
 def serve(project_root: str | Path, host: str = "127.0.0.1", port: int = 8765) -> None:
+    if host not in {"127.0.0.1", "localhost"}:
+        raise ValueError("viewer must bind loopback")
+    from .tellosim_api import Observatory
     root = Path(project_root).resolve()
     viewer = Viewer(root, root / "reports" / "vis" / "views")
     httpd = ThreadingHTTPServer((host, port), Handler)
     httpd.viewer = viewer  # type: ignore[attr-defined]
+    httpd.tellosim = Observatory(root)
     print(f"FlyBrain viewer: http://{host}:{port}", flush=True)
-    print("Read-only mode: browser requests cannot control training or hardware.", flush=True)
+    print("Training/replays read-only; /tellosim provides isolated simulated sandboxes.", flush=True)
     try:
         httpd.serve_forever()
     except KeyboardInterrupt:
         pass
     finally:
+        httpd.tellosim.close()
         httpd.server_close()

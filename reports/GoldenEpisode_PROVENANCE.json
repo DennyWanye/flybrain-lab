@@ -1,0 +1,22 @@
+{
+  "base_commit": "cd32d73988cae500476981445f7923f9f03e014b",
+  "source_state": "uncommitted Golden replay changes over base commit",
+  "python": "3.12.3",
+  "platform": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.39",
+  "torch": "2.14.0+cu130",
+  "mujoco": "3.3.7",
+  "recording_and_evaluation_device": "cpu, OMP_NUM_THREADS=4, MKL_NUM_THREADS=4",
+  "source_sha256": {
+    "flydrone/tellosim/golden.py": "c354f2092d156139391e01cbfdc708d69c142244a66a2e3cb223e04ee2acbe13",
+    "flydrone/tellosim/replay.py": "24a1f9452dd95c9392e43d16a3513a511e96b7889da84dfc1919ed2fbe096753",
+    "flydrone/tellosim/env.py": "72c1b7bf0900e828a12ca1c1844f9aabd919eb7cb12dd61ac769c4aeed07e085",
+    "flydrone/tellosim/sim.py": "5aa38749fd265e46c45e1fd9bf13f157336867e9f1bae36218caf621e267fcec",
+    "flydrone/tellosim/physics/world.py": "558c2d8baac0ece35c76a67000238196a9b2410e685b358d63706e9852018684",
+    "flydrone/tellosim/__main__.py": "f8c3626905f69da02a10d09bac1f258f6a7d53b44f3aa4fed3fd0aeb57f50e75",
+    "flyview/server.py": "6fd61681e5204df13bb3b7ec339052623951b334dda298a9a503b9fe93dc1597",
+    "flyview/static/index.html": "e1c868525b9102ec14d7f7f88975163e87f9a9b42de4cc80243d3645b3c1efbe",
+    "configs/tellosim/golden_evaluation.json": "8a347ba513df85b3d0368c56eaf136609893b04dd2317d4518227b97e20b12be"
+  },
+  "source_replay_sha256": "6ca963dbeb57f8dee7f417deab655e45a1b287750f4e16e85c45aeadf03a7537",
+  "verified_replay_sha256": "08bebe5164ae67a8b66577d17c88552a5d6aed39e5ca386977d5d05ea2e04a7e"
+}

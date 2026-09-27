@@ -31,5 +31,10 @@
       0
     ],
     "radius_m": 0.35
+  },
+  "low_level": {
+    "position_kp": 2.0,
+    "velocity_kd": 2.4,
+    "profile": "bounded_pd_v2_engineering_not_calibrated"
   }
 }

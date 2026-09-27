@@ -1,0 +1,47 @@
+[
+  {
+    "pid": 2255,
+    "cmd": [
+      "/home/denny/projects/flybrain-env/bin/python",
+      "-u",
+      "-m",
+      "flydrone.tellosim.training.campaign_v2",
+      "evaluate",
+      "--checkpoint",
+      "runs/tellosim-sdk9/rigid-adapt-s11/ppo/checkpoint.pt",
+      "--out",
+      "reports/ts1_rigid_v2/adapted-s11-validation.json"
+    ],
+    "reason": "superseded by final FP64 resume-compatible candidate evaluation"
+  },
+  {
+    "pid": 2280,
+    "cmd": [
+      "/home/denny/projects/flybrain-env/bin/python",
+      "-u",
+      "-m",
+      "flydrone.tellosim.training.campaign_v2",
+      "evaluate",
+      "--checkpoint",
+      "runs/tellosim-sdk9/rigid-adapt-s22/ppo/checkpoint.pt",
+      "--out",
+      "reports/ts1_rigid_v2/adapted-s22-validation.json"
+    ],
+    "reason": "superseded by final FP64 resume-compatible candidate evaluation"
+  },
+  {
+    "pid": 2306,
+    "cmd": [
+      "/home/denny/projects/flybrain-env/bin/python",
+      "-u",
+      "-m",
+      "flydrone.tellosim.training.campaign_v2",
+      "evaluate",
+      "--checkpoint",
+      "runs/tellosim-sdk9/rigid-adapt-s33/ppo/checkpoint.pt",
+      "--out",
+      "reports/ts1_rigid_v2/adapted-s33-validation.json"
+    ],
+    "reason": "superseded by final FP64 resume-compatible candidate evaluation"
+  }
+]
