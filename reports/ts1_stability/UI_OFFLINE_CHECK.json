@@ -1,0 +1,6 @@
+{
+  "javascript_syntax": true,
+  "replay_latest_measured_state": true,
+  "browser_interaction": false,
+  "note": "Node source-level seek regression passed; this is not browser interaction evidence."
+}

@@ -1,0 +1,140 @@
+{
+  "all_passed": true,
+  "runs": [
+    {
+      "run_id": "stability-before-s11-3",
+      "outcome": "phase_deadline",
+      "profile": "combined",
+      "chunks_verified": 40,
+      "disturbance_evidence_verified": true,
+      "identity_and_policy_sources_verified": true,
+      "force_rows_found": 1200
+    },
+    {
+      "run_id": "stability-before-s22-3",
+      "outcome": "success",
+      "profile": "combined",
+      "chunks_verified": 48,
+      "disturbance_evidence_verified": true,
+      "identity_and_policy_sources_verified": true,
+      "force_rows_found": 1440
+    },
+    {
+      "run_id": "stability-before-s33-3",
+      "outcome": "success",
+      "profile": "combined",
+      "chunks_verified": 46,
+      "disturbance_evidence_verified": true,
+      "identity_and_policy_sources_verified": true,
+      "force_rows_found": 1440
+    },
+    {
+      "run_id": "stability-s11-sealed_test-0",
+      "outcome": "success",
+      "profile": "clean",
+      "chunks_verified": 26,
+      "disturbance_evidence_verified": true,
+      "identity_and_policy_sources_verified": true,
+      "force_rows_found": 0
+    },
+    {
+      "run_id": "stability-s11-sealed_test-1",
+      "outcome": "success",
+      "profile": "pose",
+      "chunks_verified": 43,
+      "disturbance_evidence_verified": true,
+      "identity_and_policy_sources_verified": true,
+      "force_rows_found": 0
+    },
+    {
+      "run_id": "stability-s11-sealed_test-2",
+      "outcome": "success",
+      "profile": "force",
+      "chunks_verified": 34,
+      "disturbance_evidence_verified": true,
+      "identity_and_policy_sources_verified": true,
+      "force_rows_found": 960
+    },
+    {
+      "run_id": "stability-s11-sealed_test-3",
+      "outcome": "success",
+      "profile": "combined",
+      "chunks_verified": 34,
+      "disturbance_evidence_verified": true,
+      "identity_and_policy_sources_verified": true,
+      "force_rows_found": 960
+    },
+    {
+      "run_id": "stability-s22-sealed_test-0",
+      "outcome": "success",
+      "profile": "clean",
+      "chunks_verified": 35,
+      "disturbance_evidence_verified": true,
+      "identity_and_policy_sources_verified": true,
+      "force_rows_found": 0
+    },
+    {
+      "run_id": "stability-s22-sealed_test-1",
+      "outcome": "success",
+      "profile": "pose",
+      "chunks_verified": 44,
+      "disturbance_evidence_verified": true,
+      "identity_and_policy_sources_verified": true,
+      "force_rows_found": 0
+    },
+    {
+      "run_id": "stability-s22-sealed_test-2",
+      "outcome": "success",
+      "profile": "force",
+      "chunks_verified": 35,
+      "disturbance_evidence_verified": true,
+      "identity_and_policy_sources_verified": true,
+      "force_rows_found": 960
+    },
+    {
+      "run_id": "stability-s22-sealed_test-3",
+      "outcome": "success",
+      "profile": "combined",
+      "chunks_verified": 39,
+      "disturbance_evidence_verified": true,
+      "identity_and_policy_sources_verified": true,
+      "force_rows_found": 1200
+    },
+    {
+      "run_id": "stability-s33-sealed_test-0",
+      "outcome": "success",
+      "profile": "clean",
+      "chunks_verified": 28,
+      "disturbance_evidence_verified": true,
+      "identity_and_policy_sources_verified": true,
+      "force_rows_found": 0
+    },
+    {
+      "run_id": "stability-s33-sealed_test-1",
+      "outcome": "success",
+      "profile": "pose",
+      "chunks_verified": 41,
+      "disturbance_evidence_verified": true,
+      "identity_and_policy_sources_verified": true,
+      "force_rows_found": 0
+    },
+    {
+      "run_id": "stability-s33-sealed_test-2",
+      "outcome": "success",
+      "profile": "force",
+      "chunks_verified": 36,
+      "disturbance_evidence_verified": true,
+      "identity_and_policy_sources_verified": true,
+      "force_rows_found": 960
+    },
+    {
+      "run_id": "stability-s33-sealed_test-3",
+      "outcome": "success",
+      "profile": "combined",
+      "chunks_verified": 34,
+      "disturbance_evidence_verified": true,
+      "identity_and_policy_sources_verified": true,
+      "force_rows_found": 960
+    }
+  ]
+}

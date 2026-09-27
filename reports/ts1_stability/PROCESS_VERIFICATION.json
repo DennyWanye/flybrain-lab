@@ -1,0 +1,43 @@
+{
+  "all_campaign_children_reaped": true,
+  "all_recorded_pids_absent": true,
+  "jobs": {
+    "train-11": {
+      "pid": 5381,
+      "returncode": 0,
+      "reaped": true
+    },
+    "train-22": {
+      "pid": 5382,
+      "returncode": 0,
+      "reaped": true
+    },
+    "train-33": {
+      "pid": 5383,
+      "returncode": 0,
+      "reaped": true
+    },
+    "baselines": {
+      "pid": 6103,
+      "returncode": 0,
+      "reaped": true
+    },
+    "evaluate-11": {
+      "pid": 6104,
+      "returncode": 0,
+      "reaped": true
+    },
+    "evaluate-22": {
+      "pid": 6105,
+      "returncode": 0,
+      "reaped": true
+    },
+    "evaluate-33": {
+      "pid": 6106,
+      "returncode": 0,
+      "reaped": true
+    }
+  },
+  "observed_private_kib_before_exit": 5067456,
+  "memory_note": "Snapshot of these owned evaluation processes before exit; all corresponding PIDs now absent."
+}

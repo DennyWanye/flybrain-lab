@@ -1,0 +1,18 @@
+{
+  "evidence": "offline inference on fixed prior development trajectories; not closed-loop success or training data",
+  "seed": 11,
+  "closed_loop": false,
+  "checkpoint_selection": false,
+  "results": {
+    "navigation": {
+      "decisions": 156,
+      "old_teacher_agreement": 80,
+      "new_teacher_agreement": 93
+    },
+    "heading": {
+      "decisions": 60,
+      "old_teacher_agreement": 42,
+      "new_teacher_agreement": 45
+    }
+  }
+}

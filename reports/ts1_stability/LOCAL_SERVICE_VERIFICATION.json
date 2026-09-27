@@ -1,0 +1,9 @@
+{
+  "pid": 7513,
+  "port": 8765,
+  "previous_viewer_pid_absent": true,
+  "current_source_catalog_stage": "J2R",
+  "all_six_shortcuts_resolve": true,
+  "check_scope": "TCP listener and direct source catalog only; no browser or HTTP page inspection",
+  "browser_interaction_verified": false
+}

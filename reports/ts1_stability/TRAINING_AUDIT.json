@@ -1,0 +1,74 @@
+[
+  {
+    "seed": 11,
+    "skill": "navigation",
+    "real_training_actions": 1250,
+    "new_neural_examples": 15312,
+    "intermediate_examples": 14062,
+    "parameter_delta_l2": 14.914602279663086,
+    "heldout_overlap": 0,
+    "old_checkpoint_unchanged": true,
+    "base_contract_unchanged": true,
+    "roundtrip_exact": true
+  },
+  {
+    "seed": 11,
+    "skill": "heading",
+    "real_training_actions": 798,
+    "new_neural_examples": 14803,
+    "intermediate_examples": 14005,
+    "parameter_delta_l2": 8.157299041748047,
+    "heldout_overlap": 0,
+    "old_checkpoint_unchanged": true,
+    "base_contract_unchanged": true,
+    "roundtrip_exact": true
+  },
+  {
+    "seed": 22,
+    "skill": "navigation",
+    "real_training_actions": 1259,
+    "new_neural_examples": 15451,
+    "intermediate_examples": 14192,
+    "parameter_delta_l2": 14.784181594848633,
+    "heldout_overlap": 0,
+    "old_checkpoint_unchanged": true,
+    "base_contract_unchanged": true,
+    "roundtrip_exact": true
+  },
+  {
+    "seed": 22,
+    "skill": "heading",
+    "real_training_actions": 789,
+    "new_neural_examples": 14863,
+    "intermediate_examples": 14074,
+    "parameter_delta_l2": 8.15431022644043,
+    "heldout_overlap": 0,
+    "old_checkpoint_unchanged": true,
+    "base_contract_unchanged": true,
+    "roundtrip_exact": true
+  },
+  {
+    "seed": 33,
+    "skill": "navigation",
+    "real_training_actions": 1274,
+    "new_neural_examples": 15590,
+    "intermediate_examples": 14316,
+    "parameter_delta_l2": 14.125310897827148,
+    "heldout_overlap": 0,
+    "old_checkpoint_unchanged": true,
+    "base_contract_unchanged": true,
+    "roundtrip_exact": true
+  },
+  {
+    "seed": 33,
+    "skill": "heading",
+    "real_training_actions": 774,
+    "new_neural_examples": 14435,
+    "intermediate_examples": 13661,
+    "parameter_delta_l2": 7.994544982910156,
+    "heldout_overlap": 0,
+    "old_checkpoint_unchanged": true,
+    "base_contract_unchanged": true,
+    "roundtrip_exact": true
+  }
+]

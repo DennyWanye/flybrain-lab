@@ -1,0 +1,29 @@
+{
+  "status": "completed",
+  "smoke_only": true,
+  "real_actions": 128,
+  "elapsed_s": 20.795030588999907,
+  "readouts": {
+    "navigation": {
+      "examples": 6934,
+      "rehearsal_examples": 5504,
+      "new_examples": 1430,
+      "options": 117,
+      "updates": 106,
+      "parameter_delta_l2": 0.681043803691864,
+      "roundtrip_exact": true,
+      "checkpoint_sha256": "75a60623d36099d7956d2507c55301218a80eaa8711f8cde1603e820e06ec307"
+    },
+    "heading": {
+      "examples": 2757,
+      "rehearsal_examples": 2560,
+      "new_examples": 197,
+      "options": 11,
+      "updates": 44,
+      "parameter_delta_l2": 0.17826056480407715,
+      "roundtrip_exact": true,
+      "checkpoint_sha256": "9ef7744cb7f31e33d824400baab6b2f8a80020e42e06a031618b25fc836ba80e"
+    }
+  },
+  "formal_weights_exclude_smoke": true
+}

@@ -1,0 +1,5 @@
+{
+  "status": "not_verified",
+  "reason": "Prior URL policy rejection remains unresolved; no browser access retried or bypassed.",
+  "scope": "J2R browser playback/pause/seek/camera interaction not verified. Offline replay data and source checks are separate evidence."
+}
