@@ -1,0 +1,60 @@
+{
+  "run_id": "joint-refined-s11-sealed_test-0",
+  "browser": "Codex in-app browser",
+  "url": "http://127.0.0.1:8765/tellosim",
+  "utc": "2026-09-27T09:05:25.574113+00:00",
+  "playback": {
+    "start_tick": 0,
+    "playing_tick": 30,
+    "paused_tick": 1824,
+    "paused_tick_followup": 1824
+  },
+  "seek_end": {
+    "tick": 6348,
+    "phase": "heading",
+    "distance_display_m": 0.11,
+    "heading_error_display_deg": -7.3,
+    "stable_hold_display_s": 2.0
+  },
+  "camera": {
+    "original": "7.000,-9.000,7.000",
+    "rotated": "3.065,-9.993,8.533",
+    "pan_target": "-0.505,0.229,1.144",
+    "reset": "7.000,-9.000,7.000",
+    "reset_target": "0.000,0.000,1.000"
+  },
+  "summary_ui_pending": false,
+  "additional_fixed_first_replays": [
+    {
+      "seed": 22,
+      "tick": 8220,
+      "distance_display_m": 0.16,
+      "heading_error_display_deg": -7.3,
+      "stable_hold_display_s": 2.0
+    },
+    {
+      "seed": 33,
+      "tick": 7140,
+      "distance_display_m": 0.16,
+      "heading_error_display_deg": -7.3,
+      "stable_hold_display_s": 2.0
+    }
+  ],
+  "browser_console_errors_or_warnings": [],
+  "summary_ui": {
+    "ready": "J1R · 组合任务通过",
+    "sealed": [
+      "280/300",
+      "277/300",
+      "285/300"
+    ],
+    "shortcuts": [
+      "J1R 联合任务 11 · 样例成功",
+      "J1R 联合任务 22 · 样例成功",
+      "J1R 联合任务 33 · 样例成功"
+    ],
+    "shortcut_11_starts_playback": true
+  },
+  "screenshot": "joint-refined-result.png",
+  "user_tab_refreshed": true
+}

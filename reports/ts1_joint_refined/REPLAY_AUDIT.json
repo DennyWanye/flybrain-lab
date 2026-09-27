@@ -1,0 +1,101 @@
+{
+  "runs": [
+    {
+      "run_id": "joint-refined-s11-instruction_pairs-0",
+      "chunks_verified": 35,
+      "phase_changes": 1,
+      "outcome": "success",
+      "identity_verified": true,
+      "phase_policy_source_verified": true
+    },
+    {
+      "run_id": "joint-refined-s11-instruction_pairs-1",
+      "chunks_verified": 36,
+      "phase_changes": 1,
+      "outcome": "success",
+      "identity_verified": true,
+      "phase_policy_source_verified": true
+    },
+    {
+      "run_id": "joint-refined-s11-sealed_test-0",
+      "chunks_verified": 34,
+      "phase_changes": 1,
+      "outcome": "success",
+      "identity_verified": true,
+      "phase_policy_source_verified": true
+    },
+    {
+      "run_id": "joint-refined-s11-sealed_test-1",
+      "chunks_verified": 52,
+      "phase_changes": 1,
+      "outcome": "success",
+      "identity_verified": true,
+      "phase_policy_source_verified": true
+    },
+    {
+      "run_id": "joint-refined-s22-instruction_pairs-0",
+      "chunks_verified": 25,
+      "phase_changes": 1,
+      "outcome": "success",
+      "identity_verified": true,
+      "phase_policy_source_verified": true
+    },
+    {
+      "run_id": "joint-refined-s22-instruction_pairs-1",
+      "chunks_verified": 25,
+      "phase_changes": 1,
+      "outcome": "success",
+      "identity_verified": true,
+      "phase_policy_source_verified": true
+    },
+    {
+      "run_id": "joint-refined-s22-sealed_test-0",
+      "chunks_verified": 42,
+      "phase_changes": 1,
+      "outcome": "success",
+      "identity_verified": true,
+      "phase_policy_source_verified": true
+    },
+    {
+      "run_id": "joint-refined-s22-sealed_test-1",
+      "chunks_verified": 40,
+      "phase_changes": 1,
+      "outcome": "success",
+      "identity_verified": true,
+      "phase_policy_source_verified": true
+    },
+    {
+      "run_id": "joint-refined-s33-instruction_pairs-0",
+      "chunks_verified": 25,
+      "phase_changes": 1,
+      "outcome": "success",
+      "identity_verified": true,
+      "phase_policy_source_verified": true
+    },
+    {
+      "run_id": "joint-refined-s33-instruction_pairs-1",
+      "chunks_verified": 25,
+      "phase_changes": 1,
+      "outcome": "success",
+      "identity_verified": true,
+      "phase_policy_source_verified": true
+    },
+    {
+      "run_id": "joint-refined-s33-sealed_test-0",
+      "chunks_verified": 37,
+      "phase_changes": 1,
+      "outcome": "success",
+      "identity_verified": true,
+      "phase_policy_source_verified": true
+    },
+    {
+      "run_id": "joint-refined-s33-sealed_test-1",
+      "chunks_verified": 67,
+      "phase_changes": 1,
+      "outcome": "phase_deadline",
+      "identity_verified": true,
+      "phase_policy_source_verified": true
+    }
+  ],
+  "all_passed": true
+}

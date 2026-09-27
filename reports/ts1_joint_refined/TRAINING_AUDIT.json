@@ -1,0 +1,29 @@
+[
+  {
+    "seed": 11,
+    "new_training_actions": 2816,
+    "parameter_delta_l2": 13.053263664245605,
+    "heldout_overlap": 0,
+    "original_navigation_and_heading_unchanged": true,
+    "same_graph_mapping_physics_contract": true,
+    "roundtrip_exact": true
+  },
+  {
+    "seed": 22,
+    "new_training_actions": 2816,
+    "parameter_delta_l2": 13.399916648864746,
+    "heldout_overlap": 0,
+    "original_navigation_and_heading_unchanged": true,
+    "same_graph_mapping_physics_contract": true,
+    "roundtrip_exact": true
+  },
+  {
+    "seed": 33,
+    "new_training_actions": 2816,
+    "parameter_delta_l2": 12.983409881591797,
+    "heldout_overlap": 0,
+    "original_navigation_and_heading_unchanged": true,
+    "same_graph_mapping_physics_contract": true,
+    "roundtrip_exact": true
+  }
+]

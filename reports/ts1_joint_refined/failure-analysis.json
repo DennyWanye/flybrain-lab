@@ -1,0 +1,679 @@
+{
+  "11": {
+    "reasons": {
+      "phase_deadline": 20
+    },
+    "final_phase": {
+      "heading": 9,
+      "navigation": 11
+    },
+    "cases": [
+      {
+        "case_id": "j1r-test-009",
+        "reason": "phase_deadline",
+        "final_phase": "heading",
+        "horizontal_distance_m": 0.06391825915989285,
+        "heading_error_deg": 13.77004632285536,
+        "phase_events": [
+          {
+            "tick": 6336,
+            "from": "navigation",
+            "to": "heading",
+            "reason": "position_settled",
+            "source": "external_pose_mock",
+            "physics_state_unchanged": true,
+            "neural_tick_preserved": 1892
+          }
+        ]
+      },
+      {
+        "case_id": "j1r-test-021",
+        "reason": "phase_deadline",
+        "final_phase": "navigation",
+        "horizontal_distance_m": 0.36511140550102517,
+        "heading_error_deg": 69.16597043314852,
+        "phase_events": []
+      },
+      {
+        "case_id": "j1r-test-043",
+        "reason": "phase_deadline",
+        "final_phase": "navigation",
+        "horizontal_distance_m": 0.08615219451006413,
+        "heading_error_deg": 83.74190460472761,
+        "phase_events": []
+      },
+      {
+        "case_id": "j1r-test-074",
+        "reason": "phase_deadline",
+        "final_phase": "navigation",
+        "horizontal_distance_m": 0.20261390066704113,
+        "heading_error_deg": 130.32552534564863,
+        "phase_events": []
+      },
+      {
+        "case_id": "j1r-test-082",
+        "reason": "phase_deadline",
+        "final_phase": "navigation",
+        "horizontal_distance_m": 0.13103692590709523,
+        "heading_error_deg": 112.45817831141856,
+        "phase_events": []
+      },
+      {
+        "case_id": "j1r-test-096",
+        "reason": "phase_deadline",
+        "final_phase": "navigation",
+        "horizontal_distance_m": 0.41923392114420854,
+        "heading_error_deg": 78.59887693550698,
+        "phase_events": []
+      },
+      {
+        "case_id": "j1r-test-109",
+        "reason": "phase_deadline",
+        "final_phase": "heading",
+        "horizontal_distance_m": 0.06360170975939163,
+        "heading_error_deg": 17.61901955447905,
+        "phase_events": [
+          {
+            "tick": 7440,
+            "from": "navigation",
+            "to": "heading",
+            "reason": "position_settled",
+            "source": "external_pose_mock",
+            "physics_state_unchanged": true,
+            "neural_tick_preserved": 2260
+          }
+        ]
+      },
+      {
+        "case_id": "j1r-test-137",
+        "reason": "phase_deadline",
+        "final_phase": "heading",
+        "horizontal_distance_m": 0.1287844077252329,
+        "heading_error_deg": 12.464057859933872,
+        "phase_events": [
+          {
+            "tick": 3744,
+            "from": "navigation",
+            "to": "heading",
+            "reason": "position_settled",
+            "source": "external_pose_mock",
+            "physics_state_unchanged": true,
+            "neural_tick_preserved": 1028
+          }
+        ]
+      },
+      {
+        "case_id": "j1r-test-142",
+        "reason": "phase_deadline",
+        "final_phase": "heading",
+        "horizontal_distance_m": 0.10745940825352043,
+        "heading_error_deg": 11.21454889390873,
+        "phase_events": [
+          {
+            "tick": 3456,
+            "from": "navigation",
+            "to": "heading",
+            "reason": "position_settled",
+            "source": "external_pose_mock",
+            "physics_state_unchanged": true,
+            "neural_tick_preserved": 932
+          }
+        ]
+      },
+      {
+        "case_id": "j1r-test-145",
+        "reason": "phase_deadline",
+        "final_phase": "heading",
+        "horizontal_distance_m": 0.14347590515535424,
+        "heading_error_deg": 24.890909778676036,
+        "phase_events": [
+          {
+            "tick": 3408,
+            "from": "navigation",
+            "to": "heading",
+            "reason": "position_settled",
+            "source": "external_pose_mock",
+            "physics_state_unchanged": true,
+            "neural_tick_preserved": 916
+          }
+        ]
+      },
+      {
+        "case_id": "j1r-test-160",
+        "reason": "phase_deadline",
+        "final_phase": "navigation",
+        "horizontal_distance_m": 0.38686892419421615,
+        "heading_error_deg": 155.82425565061516,
+        "phase_events": []
+      },
+      {
+        "case_id": "j1r-test-161",
+        "reason": "phase_deadline",
+        "final_phase": "heading",
+        "horizontal_distance_m": 0.13169316121723487,
+        "heading_error_deg": 21.06180152670568,
+        "phase_events": [
+          {
+            "tick": 2304,
+            "from": "navigation",
+            "to": "heading",
+            "reason": "position_settled",
+            "source": "external_pose_mock",
+            "physics_state_unchanged": true,
+            "neural_tick_preserved": 548
+          }
+        ]
+      },
+      {
+        "case_id": "j1r-test-178",
+        "reason": "phase_deadline",
+        "final_phase": "heading",
+        "horizontal_distance_m": 0.012879883247345843,
+        "heading_error_deg": 8.355559481026964,
+        "phase_events": [
+          {
+            "tick": 5184,
+            "from": "navigation",
+            "to": "heading",
+            "reason": "position_settled",
+            "source": "external_pose_mock",
+            "physics_state_unchanged": true,
+            "neural_tick_preserved": 1508
+          }
+        ]
+      },
+      {
+        "case_id": "j1r-test-180",
+        "reason": "phase_deadline",
+        "final_phase": "heading",
+        "horizontal_distance_m": 0.17774073691755213,
+        "heading_error_deg": 16.59012092829922,
+        "phase_events": [
+          {
+            "tick": 5184,
+            "from": "navigation",
+            "to": "heading",
+            "reason": "position_settled",
+            "source": "external_pose_mock",
+            "physics_state_unchanged": true,
+            "neural_tick_preserved": 1508
+          }
+        ]
+      },
+      {
+        "case_id": "j1r-test-216",
+        "reason": "phase_deadline",
+        "final_phase": "navigation",
+        "horizontal_distance_m": 0.1241588174685542,
+        "heading_error_deg": 39.960690126691226,
+        "phase_events": []
+      },
+      {
+        "case_id": "j1r-test-231",
+        "reason": "phase_deadline",
+        "final_phase": "heading",
+        "horizontal_distance_m": 0.11950278725620024,
+        "heading_error_deg": 6.679130027931301,
+        "phase_events": [
+          {
+            "tick": 3744,
+            "from": "navigation",
+            "to": "heading",
+            "reason": "position_settled",
+            "source": "external_pose_mock",
+            "physics_state_unchanged": true,
+            "neural_tick_preserved": 1028
+          }
+        ]
+      },
+      {
+        "case_id": "j1r-test-242",
+        "reason": "phase_deadline",
+        "final_phase": "navigation",
+        "horizontal_distance_m": 0.21424144800217076,
+        "heading_error_deg": 124.99784544844863,
+        "phase_events": []
+      },
+      {
+        "case_id": "j1r-test-245",
+        "reason": "phase_deadline",
+        "final_phase": "navigation",
+        "horizontal_distance_m": 0.22842556370602213,
+        "heading_error_deg": 137.92536136634848,
+        "phase_events": []
+      },
+      {
+        "case_id": "j1r-test-249",
+        "reason": "phase_deadline",
+        "final_phase": "navigation",
+        "horizontal_distance_m": 0.5206976835678498,
+        "heading_error_deg": 61.19845447435734,
+        "phase_events": []
+      },
+      {
+        "case_id": "j1r-test-253",
+        "reason": "phase_deadline",
+        "final_phase": "navigation",
+        "horizontal_distance_m": 0.3958755857975344,
+        "heading_error_deg": 113.9637796556428,
+        "phase_events": []
+      }
+    ]
+  },
+  "22": {
+    "reasons": {
+      "phase_deadline": 23
+    },
+    "final_phase": {
+      "navigation": 21,
+      "heading": 2
+    },
+    "cases": [
+      {
+        "case_id": "j1r-test-016",
+        "reason": "phase_deadline",
+        "final_phase": "navigation",
+        "horizontal_distance_m": 0.4077280214831361,
+        "heading_error_deg": 61.95293397842252,
+        "phase_events": []
+      },
+      {
+        "case_id": "j1r-test-022",
+        "reason": "phase_deadline",
+        "final_phase": "navigation",
+        "horizontal_distance_m": 0.3266672236686082,
+        "heading_error_deg": 54.014285074917176,
+        "phase_events": []
+      },
+      {
+        "case_id": "j1r-test-024",
+        "reason": "phase_deadline",
+        "final_phase": "navigation",
+        "horizontal_distance_m": 0.07902912547026494,
+        "heading_error_deg": 140.66340112333077,
+        "phase_events": []
+      },
+      {
+        "case_id": "j1r-test-025",
+        "reason": "phase_deadline",
+        "final_phase": "navigation",
+        "horizontal_distance_m": 0.14790373370756343,
+        "heading_error_deg": 153.42876537637682,
+        "phase_events": []
+      },
+      {
+        "case_id": "j1r-test-061",
+        "reason": "phase_deadline",
+        "final_phase": "navigation",
+        "horizontal_distance_m": 0.09735376266533532,
+        "heading_error_deg": 103.9955031793203,
+        "phase_events": []
+      },
+      {
+        "case_id": "j1r-test-071",
+        "reason": "phase_deadline",
+        "final_phase": "heading",
+        "horizontal_distance_m": 0.11581819950527819,
+        "heading_error_deg": 7.9930264205535675,
+        "phase_events": [
+          {
+            "tick": 5664,
+            "from": "navigation",
+            "to": "heading",
+            "reason": "position_settled",
+            "source": "external_pose_mock",
+            "physics_state_unchanged": true,
+            "neural_tick_preserved": 1668
+          }
+        ]
+      },
+      {
+        "case_id": "j1r-test-082",
+        "reason": "phase_deadline",
+        "final_phase": "navigation",
+        "horizontal_distance_m": 1.16716314194446,
+        "heading_error_deg": 112.45793206589298,
+        "phase_events": []
+      },
+      {
+        "case_id": "j1r-test-100",
+        "reason": "phase_deadline",
+        "final_phase": "navigation",
+        "horizontal_distance_m": 0.17898009890728528,
+        "heading_error_deg": 60.94438208193998,
+        "phase_events": []
+      },
+      {
+        "case_id": "j1r-test-119",
+        "reason": "phase_deadline",
+        "final_phase": "navigation",
+        "horizontal_distance_m": 0.059868059584664166,
+        "heading_error_deg": 141.50835111504426,
+        "phase_events": []
+      },
+      {
+        "case_id": "j1r-test-127",
+        "reason": "phase_deadline",
+        "final_phase": "navigation",
+        "horizontal_distance_m": 0.16846385329980554,
+        "heading_error_deg": 139.04932356314714,
+        "phase_events": []
+      },
+      {
+        "case_id": "j1r-test-134",
+        "reason": "phase_deadline",
+        "final_phase": "navigation",
+        "horizontal_distance_m": 0.10366607162418373,
+        "heading_error_deg": 128.98542108754484,
+        "phase_events": []
+      },
+      {
+        "case_id": "j1r-test-164",
+        "reason": "phase_deadline",
+        "final_phase": "navigation",
+        "horizontal_distance_m": 0.23796495077791935,
+        "heading_error_deg": 72.73901216159561,
+        "phase_events": []
+      },
+      {
+        "case_id": "j1r-test-165",
+        "reason": "phase_deadline",
+        "final_phase": "heading",
+        "horizontal_distance_m": 0.17626079112349333,
+        "heading_error_deg": 30.032656916163276,
+        "phase_events": [
+          {
+            "tick": 4320,
+            "from": "navigation",
+            "to": "heading",
+            "reason": "position_settled",
+            "source": "external_pose_mock",
+            "physics_state_unchanged": true,
+            "neural_tick_preserved": 1220
+          }
+        ]
+      },
+      {
+        "case_id": "j1r-test-169",
+        "reason": "phase_deadline",
+        "final_phase": "navigation",
+        "horizontal_distance_m": 0.2583051417234487,
+        "heading_error_deg": 112.65588994946926,
+        "phase_events": []
+      },
+      {
+        "case_id": "j1r-test-197",
+        "reason": "phase_deadline",
+        "final_phase": "navigation",
+        "horizontal_distance_m": 0.0724489007323282,
+        "heading_error_deg": 92.13497779941135,
+        "phase_events": []
+      },
+      {
+        "case_id": "j1r-test-206",
+        "reason": "phase_deadline",
+        "final_phase": "navigation",
+        "horizontal_distance_m": 0.4019901811447537,
+        "heading_error_deg": 148.66134891226517,
+        "phase_events": []
+      },
+      {
+        "case_id": "j1r-test-210",
+        "reason": "phase_deadline",
+        "final_phase": "navigation",
+        "horizontal_distance_m": 0.2222178295993303,
+        "heading_error_deg": 129.88056364940056,
+        "phase_events": []
+      },
+      {
+        "case_id": "j1r-test-222",
+        "reason": "phase_deadline",
+        "final_phase": "navigation",
+        "horizontal_distance_m": 0.20661378336249048,
+        "heading_error_deg": 121.19168307299768,
+        "phase_events": []
+      },
+      {
+        "case_id": "j1r-test-239",
+        "reason": "phase_deadline",
+        "final_phase": "navigation",
+        "horizontal_distance_m": 0.4062843492775864,
+        "heading_error_deg": 86.05722495545605,
+        "phase_events": []
+      },
+      {
+        "case_id": "j1r-test-240",
+        "reason": "phase_deadline",
+        "final_phase": "navigation",
+        "horizontal_distance_m": 0.5836464626405048,
+        "heading_error_deg": 125.06030113411033,
+        "phase_events": []
+      },
+      {
+        "case_id": "j1r-test-288",
+        "reason": "phase_deadline",
+        "final_phase": "navigation",
+        "horizontal_distance_m": 0.18230528235865706,
+        "heading_error_deg": 122.04483860871787,
+        "phase_events": []
+      },
+      {
+        "case_id": "j1r-test-291",
+        "reason": "phase_deadline",
+        "final_phase": "navigation",
+        "horizontal_distance_m": 0.2771919222076618,
+        "heading_error_deg": 73.47550975860725,
+        "phase_events": []
+      },
+      {
+        "case_id": "j1r-test-296",
+        "reason": "phase_deadline",
+        "final_phase": "navigation",
+        "horizontal_distance_m": 0.27371484057802753,
+        "heading_error_deg": 160.98380131109397,
+        "phase_events": []
+      }
+    ]
+  },
+  "33": {
+    "reasons": {
+      "phase_deadline": 15
+    },
+    "final_phase": {
+      "heading": 7,
+      "navigation": 8
+    },
+    "cases": [
+      {
+        "case_id": "j1r-test-001",
+        "reason": "phase_deadline",
+        "final_phase": "heading",
+        "horizontal_distance_m": 0.18476452677680405,
+        "heading_error_deg": 40.31361152570971,
+        "phase_events": [
+          {
+            "tick": 5952,
+            "from": "navigation",
+            "to": "heading",
+            "reason": "position_settled",
+            "source": "external_pose_mock",
+            "physics_state_unchanged": true,
+            "neural_tick_preserved": 1764
+          }
+        ]
+      },
+      {
+        "case_id": "j1r-test-003",
+        "reason": "phase_deadline",
+        "final_phase": "navigation",
+        "horizontal_distance_m": 0.26842162966028343,
+        "heading_error_deg": 171.4362733959228,
+        "phase_events": []
+      },
+      {
+        "case_id": "j1r-test-009",
+        "reason": "phase_deadline",
+        "final_phase": "heading",
+        "horizontal_distance_m": 0.06373021005057974,
+        "heading_error_deg": 13.770079389781355,
+        "phase_events": [
+          {
+            "tick": 5184,
+            "from": "navigation",
+            "to": "heading",
+            "reason": "position_settled",
+            "source": "external_pose_mock",
+            "physics_state_unchanged": true,
+            "neural_tick_preserved": 1508
+          }
+        ]
+      },
+      {
+        "case_id": "j1r-test-031",
+        "reason": "phase_deadline",
+        "final_phase": "navigation",
+        "horizontal_distance_m": 0.22858226203452442,
+        "heading_error_deg": 73.87167538908977,
+        "phase_events": []
+      },
+      {
+        "case_id": "j1r-test-064",
+        "reason": "phase_deadline",
+        "final_phase": "navigation",
+        "horizontal_distance_m": 0.10340062616898588,
+        "heading_error_deg": 68.3397042860933,
+        "phase_events": []
+      },
+      {
+        "case_id": "j1r-test-069",
+        "reason": "phase_deadline",
+        "final_phase": "heading",
+        "horizontal_distance_m": 0.10105993735406506,
+        "heading_error_deg": 19.62991807957536,
+        "phase_events": [
+          {
+            "tick": 4896,
+            "from": "navigation",
+            "to": "heading",
+            "reason": "position_settled",
+            "source": "external_pose_mock",
+            "physics_state_unchanged": true,
+            "neural_tick_preserved": 1412
+          }
+        ]
+      },
+      {
+        "case_id": "j1r-test-105",
+        "reason": "phase_deadline",
+        "final_phase": "navigation",
+        "horizontal_distance_m": 0.16552516165387465,
+        "heading_error_deg": 130.72749349242798,
+        "phase_events": []
+      },
+      {
+        "case_id": "j1r-test-109",
+        "reason": "phase_deadline",
+        "final_phase": "heading",
+        "horizontal_distance_m": 0.06358742329271697,
+        "heading_error_deg": 17.61935458572244,
+        "phase_events": [
+          {
+            "tick": 6048,
+            "from": "navigation",
+            "to": "heading",
+            "reason": "position_settled",
+            "source": "external_pose_mock",
+            "physics_state_unchanged": true,
+            "neural_tick_preserved": 1796
+          }
+        ]
+      },
+      {
+        "case_id": "j1r-test-140",
+        "reason": "phase_deadline",
+        "final_phase": "navigation",
+        "horizontal_distance_m": 0.13988376881378875,
+        "heading_error_deg": 110.4780948556726,
+        "phase_events": []
+      },
+      {
+        "case_id": "j1r-test-145",
+        "reason": "phase_deadline",
+        "final_phase": "heading",
+        "horizontal_distance_m": 0.14353231730433996,
+        "heading_error_deg": 20.96339507275645,
+        "phase_events": [
+          {
+            "tick": 3168,
+            "from": "navigation",
+            "to": "heading",
+            "reason": "position_settled",
+            "source": "external_pose_mock",
+            "physics_state_unchanged": true,
+            "neural_tick_preserved": 836
+          }
+        ]
+      },
+      {
+        "case_id": "j1r-test-178",
+        "reason": "phase_deadline",
+        "final_phase": "heading",
+        "horizontal_distance_m": 0.012894850151064495,
+        "heading_error_deg": 16.25858191424139,
+        "phase_events": [
+          {
+            "tick": 5184,
+            "from": "navigation",
+            "to": "heading",
+            "reason": "position_settled",
+            "source": "external_pose_mock",
+            "physics_state_unchanged": true,
+            "neural_tick_preserved": 1508
+          }
+        ]
+      },
+      {
+        "case_id": "j1r-test-197",
+        "reason": "phase_deadline",
+        "final_phase": "navigation",
+        "horizontal_distance_m": 0.09527198508480508,
+        "heading_error_deg": 92.13570050706033,
+        "phase_events": []
+      },
+      {
+        "case_id": "j1r-test-201",
+        "reason": "phase_deadline",
+        "final_phase": "navigation",
+        "horizontal_distance_m": 0.23853622455434054,
+        "heading_error_deg": 166.86084817148244,
+        "phase_events": []
+      },
+      {
+        "case_id": "j1r-test-204",
+        "reason": "phase_deadline",
+        "final_phase": "navigation",
+        "horizontal_distance_m": 0.07990008275477005,
+        "heading_error_deg": 110.20561929306068,
+        "phase_events": []
+      },
+      {
+        "case_id": "j1r-test-287",
+        "reason": "phase_deadline",
+        "final_phase": "heading",
+        "horizontal_distance_m": 0.04412130617484306,
+        "heading_error_deg": 36.93117632769608,
+        "phase_events": [
+          {
+            "tick": 3456,
+            "from": "navigation",
+            "to": "heading",
+            "reason": "position_settled",
+            "source": "external_pose_mock",
+            "physics_state_unchanged": true,
+            "neural_tick_preserved": 932
+          }
+        ]
+      }
+    ]
+  }
+}
