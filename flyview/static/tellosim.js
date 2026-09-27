@@ -5,7 +5,7 @@ const $ = id => document.getElementById(id);
 const text = (id, value) => { $(id).textContent = value; };
 const fmt = (x, n=2) => Number.isFinite(x) ? x.toFixed(n) : '—';
 const api = '/api/tellosim/';
-const isSdkObservation = schema => ['tellosim.observation26/2.0','tellosim.heading_observation26/1.0','tellosim.joint_observation26/1.0'].includes(schema);
+const isSdkObservation = schema => ['tellosim.observation26/2.0','tellosim.heading_observation26/1.0','tellosim.joint_observation26/1.0', 'tellosim.altitude_observation26/1.0'].includes(schema);
 let token, manifest, currentRun, epoch, live=false, playing=false, pausedLive=false;
 let simTime=0, lastAnimation=0, replayBusy=false, generation=0, lastSeq=-1, skipped=0;
 let sceneGroup, drone, ghost, trajectory, activeFrame={}, recentTrail=[], commandRows=[];
@@ -72,7 +72,7 @@ function buildScene(config){
   const pad=config.landing_pad;const center=pad.center_xy_m||pad.center_m;
   const padMesh=mesh(new THREE.RingGeometry(pad.radius_m-.025,pad.radius_m,48),0x79c9ba);padMesh.position.set(...center,.008);sceneGroup.add(padMesh);
   sceneGroup.add(line([[center[0]-.12,center[1],.01],[center[0]+.12,center[1],.01]],0x79c9ba));
-  const target=mesh(new THREE.SphereGeometry(config.target_radius_m,24,16),0xb9a3fa,.18);target.position.set(...config.target_xyz_m);sceneGroup.add(target);
+  const altitudeTask=config.task_kind==='altitude_hold';const target=mesh(altitudeTask?new THREE.CylinderGeometry(config.target_radius_m,config.target_radius_m,2*config.height_tolerance_m,32):new THREE.SphereGeometry(config.target_radius_m,24,16),0xb9a3fa,.18);if(altitudeTask)target.rotation.x=Math.PI/2;target.position.set(...config.target_xyz_m);sceneGroup.add(target);
   const ring=mesh(new THREE.RingGeometry(config.target_radius_m-.015,config.target_radius_m,48),0xb5a1f3);ring.position.set(config.target_xyz_m[0],config.target_xyz_m[1],.015);sceneGroup.add(ring);
   if(Number.isFinite(config.target_yaw_rad)){
     const targetDirection=new THREE.Vector3(Math.cos(config.target_yaw_rad),Math.sin(config.target_yaw_rad),0);
@@ -121,6 +121,8 @@ function renderFrame(frame, trail=[]){
   text('hold',`${fmt(frame.stable_hold_s)} / ${manifest.scene.stable_hold_required_s} s`);
   $('joint-phase').hidden=!frame.task_phase;
   text('joint-phase',frame.task_phase==='navigation'?`阶段 1 / 2：到达指定位置 · 到位保持 ${fmt(frame.navigation_hold_s,1)} / 2.0 秒`:frame.task_phase==='heading'?`阶段 2 / 2：转到指定朝向 · 联合保持 ${fmt(frame.stable_hold_s,1)} / 2.0 秒`:'');
+  const altitude=frame.altitude;$('altitude-metrics').hidden=!altitude;
+  for(const [id,key,unit] of [['altitude-target','target_z_m','m'],['altitude-measured','measured_z_m','m'],['altitude-error','error_m','m'],['altitude-speed','vertical_speed_mps','m/s']])text(id,Number.isFinite(altitude?.[key])?`${fmt(altitude[key],3)} ${unit}`:'—');
   const heading=frame.heading;$('heading-metrics').hidden=!heading;
   for(const [id,key] of [['heading-target','target_yaw_rad'],['heading-measured','measured_yaw_rad'],['heading-error','error_rad'],['heading-tolerance','tolerance_rad']]){
     const degrees=heading?.[key]*180/Math.PI;
@@ -258,6 +260,10 @@ let latestTrainingRun=null;
 async function catalog(){
   const data=await request('runs');const selected=currentRun;$('runs').replaceChildren();
   knownRuns=data.runs;renderWatchGroups(data.runs);
+  const altitude=data.altitude;text('altitude-ready',altitude?.ALTITUDE_TASK_LEARNED?'V1 · 独立高度任务通过':altitude?.status==='evaluated'?'V1 · 未达标':'V1 · 尚未完成评估');
+  const altitudeBox=$('altitude-summary');altitudeBox.replaceChildren();const altitudeNote=document.createElement('p');altitudeNote.textContent=altitude?.note||'正在建立独立高度控制技能。原J2R导航与朝向结果保留；独立高度通过后再整合三维任务。';altitudeBox.append(altitudeNote);
+  for(const row of altitude?.models||[]){const item=document.createElement('p');item.textContent=`种子 ${row.seed}：验证 ${row.validation} · 封存 ${row.sealed} · 碰撞/越界 ${row.collision_or_bounds} · 高度指令 ${row.instruction_pairs_successes}/4 · 边界 ${row.boundary_successes}/12 · 零特征 ${row.zero_features_successes}/12 · 原组合任务 ${row.legacy_exact?'逐场保持':'存在差异'}`;altitudeBox.append(item);}
+  if(altitude?.acceptance?.reasons?.length){const item=document.createElement('p');item.textContent='未通过项：'+altitude.acceptance.reasons.join('；');altitudeBox.append(item);}
   const joint=data.joint,jointTag=['J2','J2R'].includes(joint?.stage)?joint.stage:(joint?.new_training_actions||0)>0?'J1R':'J1';text('joint-title',`${jointTag} · 到达位置、转向并稳定保持`);text('joint-ready',joint?.COMPOSED_JOINT_TASK_VERIFIED?`${jointTag} · 组合任务通过`:joint?.status==='evaluated'?`${jointTag} · 未达标`:`${jointTag} · 尚未完成评估`);
   const jointBox=$('joint-summary');jointBox.replaceChildren();
   const jointNote=document.createElement('p');jointNote.textContent=joint?.note||'两个已训练技能在连续物理场景接力：导航到位，再转向并保持。正式评估完成后显示成绩。';jointBox.append(jointNote);
@@ -275,20 +281,21 @@ async function catalog(){
   for(const row of c1?.models||[]){const item=document.createElement('p');item.textContent=`种子 ${row.seed}：C1 验证 ${row.validation} · 封存 ${row.sealed} · 碰撞/越界 ${row.collision_or_bounds} · 同场景 C0 保持 ${row.retention_before}/100 → ${row.retention_after}/100（${row.retention_passed?'通过':'未通过'}）`;c1Box.append(item);}
   if(c1?.comparison?.length){const paired=document.createElement('p');paired.textContent='同场景对照使用预先选定的验证场景；训练前为上一阶段 C0 权重，不是完全未训练模型。单个回放不能替代正式成功率。';c1Box.append(paired);}
   if(c1?.models?.length){const limit=document.createElement('p');limit.textContent='本课程验证随机初始朝向下到达并稳定保持。本次封存没有转向动作，尚未验证主动转向到指定角度。C2、完整 TS1 与真机尚未就绪。';c1Box.append(limit);}
-  text('replay-help',joint?.models?.length?`${joint.COMPOSED_JOINT_TASK_VERIFIED?`本轮 ${jointTag} 组合任务通过。`:`本轮 ${jointTag} 整体门禁未通过，原因见下方评估。`}先点“${jointTag} 联合任务 11”查看导航、转向和稳定保持。${['J2','J2R'].includes(jointTag)?'三个入口固定使用封存第4场，含定位延迟、噪声与外力叠加；可点训练前对照。':'三个入口固定使用各自封存第1场；'}样例不能替代整体成功率。`:heading?.models?.length?'先点“H1 转向模型 11”查看本轮结果。紫色箭头是指定朝向，红色箭头是机头方向；右侧显示实际测量误差。三个按钮固定使用封存第1场，样例不替代整体成功率。':c1?.models?.length?'先点“C1 模型 22”看成功样例，再看11的同场景超时样例。三个入口都固定使用封存第1场；对照按钮另播同一验证场景的 C0 初始权重和 C1 训练后权重。':'C1 正式评估完成后会显示三个模型快捷回放；当前可查看已生成的同场景对照、上一阶段 C0 或训练最后快照。');
+  text('replay-help',altitude?.models?.length?`本轮 V1 独立高度任务${altitude.ALTITUDE_TASK_LEARNED?'通过':'尚未通过'}。先点“V1 高度 11 · 上升”，再看下降入口；固定使用封存第4场和第8场叠加扰动，样例不能替代总体成绩。`:joint?.models?.length?`${joint.COMPOSED_JOINT_TASK_VERIFIED?`本轮 ${jointTag} 组合任务通过。`:`本轮 ${jointTag} 整体门禁未通过，原因见下方评估。`}先点“${jointTag} 联合任务 11”查看导航、转向和稳定保持。${['J2','J2R'].includes(jointTag)?'三个入口固定使用封存第4场，含定位延迟、噪声与外力叠加；可点训练前对照。':'三个入口固定使用各自封存第1场；'}样例不能替代整体成功率。`:heading?.models?.length?'先点“H1 转向模型 11”查看本轮结果。紫色箭头是指定朝向，红色箭头是机头方向；右侧显示实际测量误差。三个按钮固定使用封存第1场，样例不替代整体成功率。':c1?.models?.length?'先点“C1 模型 22”看成功样例，再看11的同场景超时样例。三个入口都固定使用封存第1场；对照按钮另播同一验证场景的 C0 初始权重和 C1 训练后权重。':'C1 正式评估完成后会显示三个模型快捷回放；当前可查看已生成的同场景对照、上一阶段 C0 或训练最后快照。');
   const featured=new Map(),shortcuts=$('replay-shortcuts');shortcuts.replaceChildren();
   const available=new Set(data.runs.map(r=>r.run_id));
   const models=data.training?.c0_campaign?.models||[];
   const shortcut=(run,label,buttonLabel,primary=false)=>{
     if(!run||!available.has(run))return;
     featured.set(run,label);
-    if(data.joint?.models?.length&&!run.startsWith(jointTag==='J2R'?'stability-':jointTag==='J2'?'robust-':'joint-'))return;
-    if(!data.joint?.models?.length&&data.heading?.models?.length&&!run.startsWith('heading-'))return;
+    if(!run.startsWith('altitude-')&&data.joint?.models?.length&&!run.startsWith(jointTag==='J2R'?'stability-':jointTag==='J2'?'robust-':'joint-'))return;
+    if(!run.startsWith('altitude-')&&!data.joint?.models?.length&&data.heading?.models?.length&&!run.startsWith('heading-'))return;
     const button=document.createElement('button');button.textContent=buttonLabel;
     if(primary)button.className='primary';
     button.onclick=attempt(async()=>{await loadRun(run);playing=true;text('play','暂停');});shortcuts.append(button);
   };
-  for(const [i,row] of (data.joint?.models||[]).entries())shortcut(row.run_id,`${jointTag} · 联合任务 ${row.seed} · ${row.sealed}`,`${jointTag} 联合任务 ${row.seed} · ${row.sample_outcome==='success'?'样例成功':'样例失败'}`,i===0);
+  for(const [i,row] of (altitude?.models||[]).entries()){shortcut(row.run_id,`V1 · 高度 ${row.seed} · 上升 · ${row.sealed}`,`V1 高度 ${row.seed} · 上升 · ${row.sample_outcome==='success'?'成功':'失败'}`,i===0);shortcut(row.down_run_id,`V1 · 高度 ${row.seed} · 下降 · ${row.sealed}`,`V1 高度 ${row.seed} · 下降 · ${row.down_sample_outcome==='success'?'成功':'失败'}`);}
+  for(const [i,row] of (data.joint?.models||[]).entries())shortcut(row.run_id,`${jointTag} · 联合任务 ${row.seed} · ${row.sealed}`,`${jointTag} 联合任务 ${row.seed} · ${row.sample_outcome==='success'?'样例成功':'样例失败'}`,i===0&&!altitude?.models?.length);
   for(const row of (data.joint?.models||[]))if(row.before_run_id)shortcut(row.before_run_id,`${jointTag} 同场景训练前 · 种子 ${row.seed}`,`训练前对照 ${row.seed}`);
   for(const [i,row] of (data.heading?.models||[]).entries())shortcut(row.run_id,`H1 · 转向模型 ${row.seed} · ${row.sealed}`,`H1 转向模型 ${row.seed} · ${row.sample_outcome==='success'?'样例成功':'样例失败'}`,i===0);
   for(const row of data.heading?.comparison||[]){const label={untrained:'种子11训练前',trained:'种子11训练后'}[row.label]||row.label;shortcut(row.run_id,`H1 同场景对照 · ${label}`,`H1 对照 · ${label}`);}

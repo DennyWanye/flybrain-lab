@@ -1,0 +1,371 @@
+{
+  "neural_model": false,
+  "scope": "12 targeted rule feasibility cases before formal protocol; not trained-model evidence",
+  "results": [
+    {
+      "goal": 0.25,
+      "profile": "clean",
+      "reason": "success",
+      "height_error": 0.04933249581310184,
+      "vertical_speed": 0.00017876852624998754,
+      "hold": 2.0000000000000004,
+      "actions": [
+        0,
+        6,
+        6,
+        6,
+        6,
+        0
+      ],
+      "impulse": {
+        "profile": "clean",
+        "applied_physics_ticks": 0,
+        "impulse_world_ns": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "angular_impulse_world_nms": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "absolute_impulse_ns": 0.0
+      }
+    },
+    {
+      "goal": 0.5,
+      "profile": "clean",
+      "reason": "success",
+      "height_error": 0.09965876047405237,
+      "vertical_speed": 0.00020802191820160337,
+      "hold": 2.0000000000000004,
+      "actions": [
+        0,
+        6,
+        6,
+        0,
+        6,
+        0
+      ],
+      "impulse": {
+        "profile": "clean",
+        "applied_physics_ticks": 0,
+        "impulse_world_ns": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "angular_impulse_world_nms": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "absolute_impulse_ns": 0.0
+      }
+    },
+    {
+      "goal": 0.7,
+      "profile": "clean",
+      "reason": "success",
+      "height_error": 0.09968865654760517,
+      "vertical_speed": 2.025899661539669e-05,
+      "hold": 4.200000000000001,
+      "actions": [
+        0,
+        6,
+        0,
+        0,
+        0
+      ],
+      "impulse": {
+        "profile": "clean",
+        "applied_physics_ticks": 0,
+        "impulse_world_ns": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "angular_impulse_world_nms": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "absolute_impulse_ns": 0.0
+      }
+    },
+    {
+      "goal": 1.3,
+      "profile": "clean",
+      "reason": "success",
+      "height_error": 0.09878595068532614,
+      "vertical_speed": 9.681540797678334e-05,
+      "hold": 2.3000000000000007,
+      "actions": [
+        0,
+        5,
+        5,
+        0,
+        0
+      ],
+      "impulse": {
+        "profile": "clean",
+        "applied_physics_ticks": 0,
+        "impulse_world_ns": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "angular_impulse_world_nms": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "absolute_impulse_ns": 0.0
+      }
+    },
+    {
+      "goal": 1.5,
+      "profile": "clean",
+      "reason": "success",
+      "height_error": 0.0984291332410383,
+      "vertical_speed": 0.00017937634747123947,
+      "hold": 2.0000000000000004,
+      "actions": [
+        0,
+        5,
+        5,
+        5,
+        0
+      ],
+      "impulse": {
+        "profile": "clean",
+        "applied_physics_ticks": 0,
+        "impulse_world_ns": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "angular_impulse_world_nms": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "absolute_impulse_ns": 0.0
+      }
+    },
+    {
+      "goal": 1.75,
+      "profile": "clean",
+      "reason": "success",
+      "height_error": 0.04811532055920065,
+      "vertical_speed": 0.00017876973181173993,
+      "hold": 2.0000000000000004,
+      "actions": [
+        0,
+        5,
+        5,
+        5,
+        5,
+        0
+      ],
+      "impulse": {
+        "profile": "clean",
+        "applied_physics_ticks": 0,
+        "impulse_world_ns": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "angular_impulse_world_nms": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "absolute_impulse_ns": 0.0
+      }
+    },
+    {
+      "goal": 0.25,
+      "profile": "combined",
+      "reason": "success",
+      "height_error": 0.07810877982897471,
+      "vertical_speed": 4.911904633214606e-05,
+      "hold": 2.0000000000000004,
+      "actions": [
+        0,
+        6,
+        6,
+        6,
+        6,
+        0
+      ],
+      "impulse": {
+        "profile": "combined",
+        "applied_physics_ticks": 240,
+        "impulse_world_ns": [
+          -0.011611248777010494,
+          -0.0030296702524157757,
+          -0.011999999999999955
+        ],
+        "angular_impulse_world_nms": [
+          0.0,
+          0.0,
+          -5.999999999999986e-05
+        ],
+        "absolute_impulse_ns": 0.01697056274847713
+      }
+    },
+    {
+      "goal": 0.5,
+      "profile": "combined",
+      "reason": "success",
+      "height_error": 0.07252557774913054,
+      "vertical_speed": 0.001473604831072848,
+      "hold": 2.0000000000000004,
+      "actions": [
+        0,
+        6,
+        6,
+        6,
+        0
+      ],
+      "impulse": {
+        "profile": "combined",
+        "applied_physics_ticks": 240,
+        "impulse_world_ns": [
+          -0.011591925066506996,
+          -0.0031027847576793606,
+          0.011999999999999955
+        ],
+        "angular_impulse_world_nms": [
+          0.0,
+          0.0,
+          5.999999999999986e-05
+        ],
+        "absolute_impulse_ns": 0.01697056274847713
+      }
+    },
+    {
+      "goal": 0.7,
+      "profile": "combined",
+      "reason": "success",
+      "height_error": 0.07326411423329438,
+      "vertical_speed": 0.009443234485948363,
+      "hold": 4.200000000000001,
+      "actions": [
+        0,
+        6,
+        0,
+        0,
+        0
+      ],
+      "impulse": {
+        "profile": "combined",
+        "applied_physics_ticks": 240,
+        "impulse_world_ns": [
+          -0.011572140968477803,
+          -0.0031757760320395814,
+          -0.011999999999999955
+        ],
+        "angular_impulse_world_nms": [
+          0.0,
+          0.0,
+          -5.999999999999986e-05
+        ],
+        "absolute_impulse_ns": 0.01697056274847713
+      }
+    },
+    {
+      "goal": 1.3,
+      "profile": "combined",
+      "reason": "success",
+      "height_error": 0.07371497662574522,
+      "vertical_speed": 0.0014703703129840542,
+      "hold": 2.0000000000000004,
+      "actions": [
+        0,
+        5,
+        5,
+        6,
+        0
+      ],
+      "impulse": {
+        "profile": "combined",
+        "applied_physics_ticks": 240,
+        "impulse_world_ns": [
+          -0.011551897268672763,
+          -0.0032486411765585035,
+          0.011999999999999955
+        ],
+        "angular_impulse_world_nms": [
+          0.0,
+          0.0,
+          5.999999999999986e-05
+        ],
+        "absolute_impulse_ns": 0.01697056274847713
+      }
+    },
+    {
+      "goal": 1.5,
+      "profile": "combined",
+      "reason": "success",
+      "height_error": 0.07129253113817713,
+      "vertical_speed": 0.0014643066690948267,
+      "hold": 2.0000000000000004,
+      "actions": [
+        0,
+        5,
+        5,
+        5,
+        0
+      ],
+      "impulse": {
+        "profile": "combined",
+        "applied_physics_ticks": 240,
+        "impulse_world_ns": [
+          -0.011531194771095023,
+          -0.0033213772973074876,
+          -0.011999999999999955
+        ],
+        "angular_impulse_world_nms": [
+          0.0,
+          0.0,
+          -5.999999999999986e-05
+        ],
+        "absolute_impulse_ns": 0.01697056274847713
+      }
+    },
+    {
+      "goal": 1.75,
+      "profile": "combined",
+      "reason": "success",
+      "height_error": 0.07687900366774358,
+      "vertical_speed": 5.0380869705684466e-05,
+      "hold": 2.0000000000000004,
+      "actions": [
+        0,
+        5,
+        5,
+        5,
+        5,
+        0
+      ],
+      "impulse": {
+        "profile": "combined",
+        "applied_physics_ticks": 240,
+        "impulse_world_ns": [
+          -0.011510034297969984,
+          -0.00339398150548222,
+          0.011999999999999955
+        ],
+        "angular_impulse_world_nms": [
+          0.0,
+          0.0,
+          5.999999999999986e-05
+        ],
+        "absolute_impulse_ns": 0.01697056274847713
+      }
+    }
+  ]
+}

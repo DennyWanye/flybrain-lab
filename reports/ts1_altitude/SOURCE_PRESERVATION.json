@@ -1,0 +1,23 @@
+{
+  "base_commit": "63181fee74dee7d0a64296015c8c0fbcc448ad2e",
+  "tracked_legacy_sources_and_reports_unchanged": true,
+  "paths": [
+    "flydrone/tellosim/training",
+    "flydrone/tellosim/physics",
+    "reports/ts1_stability",
+    "reports/ts1_joint",
+    "reports/ts1_joint_refined",
+    "reports/ts1_robust",
+    "reports/ts1_heading"
+  ],
+  "new_modules": [
+    "flydrone/tellosim/training/altitude.py",
+    "flydrone/tellosim/training/altitude_campaign.py"
+  ],
+  "all_preexisting_tracked_changes": [
+    "flyview/static/tellosim.html",
+    "flyview/static/tellosim.js",
+    "flyview/tellosim_api.py"
+  ],
+  "only_existing_changes_are_viewer_integration": true
+}

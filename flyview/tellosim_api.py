@@ -64,7 +64,8 @@ class Observatory:
         if not joint.exists():joint=self.root/'reports/ts1_joint/summary.json'
         heading=self.root/'reports/ts1_heading/summary.json'
         c1=self.root/'reports/ts1_c1/summary.json'
-        return {"joint":json.loads(joint.read_text()) if joint.exists() else None,"heading":json.loads(heading.read_text()) if heading.exists() else None,"c1":json.loads(c1.read_text()) if c1.exists() else None,"rigid":json.loads(rigid.read_text()) if rigid.exists() else None,"runs":rows, "evaluation":json.loads(evaluation_path.read_text()) if evaluation_path.exists() else None,
+        altitude=self.root/'reports/ts1_altitude/summary.json'
+        return {"altitude":json.loads(altitude.read_text()) if altitude.exists() else None,"joint":json.loads(joint.read_text()) if joint.exists() else None,"heading":json.loads(heading.read_text()) if heading.exists() else None,"c1":json.loads(c1.read_text()) if c1.exists() else None,"rigid":json.loads(rigid.read_text()) if rigid.exists() else None,"runs":rows, "evaluation":json.loads(evaluation_path.read_text()) if evaluation_path.exists() else None,
                 "comparison":json.loads(comparison.read_text()) if comparison.exists() else None,
                 "training":json.loads(training.read_text()) if training.exists() else None,
                 "learning":json.loads(learning.read_text()) if learning.exists() else None}

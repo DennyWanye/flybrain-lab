@@ -1,0 +1,47 @@
+[
+  {
+    "seed": 11,
+    "options": 2048,
+    "new_examples": 20993,
+    "intermediate_examples": 18945,
+    "parameter_delta_l2": 10.43016242980957,
+    "roundtrip_exact": true,
+    "heldout_overlap": 0,
+    "legacy_checkpoints_unchanged": true,
+    "label_counts": {
+      "0": 8043,
+      "5": 5544,
+      "6": 7406
+    }
+  },
+  {
+    "seed": 22,
+    "options": 2048,
+    "new_examples": 20822,
+    "intermediate_examples": 18774,
+    "parameter_delta_l2": 10.079466819763184,
+    "roundtrip_exact": true,
+    "heldout_overlap": 0,
+    "legacy_checkpoints_unchanged": true,
+    "label_counts": {
+      "0": 8205,
+      "5": 6445,
+      "6": 6172
+    }
+  },
+  {
+    "seed": 33,
+    "options": 2048,
+    "new_examples": 20864,
+    "intermediate_examples": 18816,
+    "parameter_delta_l2": 9.882780075073242,
+    "roundtrip_exact": true,
+    "heldout_overlap": 0,
+    "legacy_checkpoints_unchanged": true,
+    "label_counts": {
+      "0": 7987,
+      "5": 4543,
+      "6": 8334
+    }
+  }
+]

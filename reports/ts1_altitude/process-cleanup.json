@@ -1,0 +1,37 @@
+{
+  "train-11": {
+    "pid": 9128,
+    "returncode": 0,
+    "reaped": true
+  },
+  "train-22": {
+    "pid": 9129,
+    "returncode": 0,
+    "reaped": true
+  },
+  "train-33": {
+    "pid": 9130,
+    "returncode": 0,
+    "reaped": true
+  },
+  "baselines": {
+    "pid": 9687,
+    "returncode": 0,
+    "reaped": true
+  },
+  "evaluate-11": {
+    "pid": 9688,
+    "returncode": 0,
+    "reaped": true
+  },
+  "evaluate-22": {
+    "pid": 9689,
+    "returncode": 0,
+    "reaped": true
+  },
+  "evaluate-33": {
+    "pid": 9690,
+    "returncode": 0,
+    "reaped": true
+  }
+}

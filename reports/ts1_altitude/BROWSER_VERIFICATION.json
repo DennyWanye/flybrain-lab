@@ -1,0 +1,10 @@
+{
+  "browser_interaction_verified": false,
+  "reason": "Previous browser-tool safety-policy rejection has no evidence of resolution; no retry or bypass attempted in V1.",
+  "offline_checks": [
+    "JavaScript syntax",
+    "replay latest measured state regression",
+    "formal recorded streams and hashes",
+    "extracted package catalog"
+  ]
+}

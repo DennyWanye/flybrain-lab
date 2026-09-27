@@ -1,0 +1,140 @@
+{
+  "all_passed": true,
+  "runs": [
+    {
+      "run_id": "altitude-s11-sealed_test-0",
+      "outcome": "success",
+      "chunks_verified": 11,
+      "frames_verified": 92,
+      "vertical_force_rows": 0,
+      "measured_altitude_verified": true,
+      "policy_checkpoint_verified": true
+    },
+    {
+      "run_id": "altitude-s11-sealed_test-1",
+      "outcome": "success",
+      "chunks_verified": 17,
+      "frames_verified": 236,
+      "vertical_force_rows": 0,
+      "measured_altitude_verified": true,
+      "policy_checkpoint_verified": true
+    },
+    {
+      "run_id": "altitude-s11-sealed_test-2",
+      "outcome": "success",
+      "chunks_verified": 17,
+      "frames_verified": 239,
+      "vertical_force_rows": 480,
+      "measured_altitude_verified": true,
+      "policy_checkpoint_verified": true
+    },
+    {
+      "run_id": "altitude-s11-sealed_test-3",
+      "outcome": "success",
+      "chunks_verified": 16,
+      "frames_verified": 214,
+      "vertical_force_rows": 480,
+      "measured_altitude_verified": true,
+      "policy_checkpoint_verified": true
+    },
+    {
+      "run_id": "altitude-s11-sealed_test-7",
+      "outcome": "success",
+      "chunks_verified": 11,
+      "frames_verified": 107,
+      "vertical_force_rows": 240,
+      "measured_altitude_verified": true,
+      "policy_checkpoint_verified": true
+    },
+    {
+      "run_id": "altitude-s22-sealed_test-0",
+      "outcome": "success",
+      "chunks_verified": 11,
+      "frames_verified": 92,
+      "vertical_force_rows": 0,
+      "measured_altitude_verified": true,
+      "policy_checkpoint_verified": true
+    },
+    {
+      "run_id": "altitude-s22-sealed_test-1",
+      "outcome": "success",
+      "chunks_verified": 15,
+      "frames_verified": 192,
+      "vertical_force_rows": 0,
+      "measured_altitude_verified": true,
+      "policy_checkpoint_verified": true
+    },
+    {
+      "run_id": "altitude-s22-sealed_test-2",
+      "outcome": "success",
+      "chunks_verified": 13,
+      "frames_verified": 153,
+      "vertical_force_rows": 240,
+      "measured_altitude_verified": true,
+      "policy_checkpoint_verified": true
+    },
+    {
+      "run_id": "altitude-s22-sealed_test-3",
+      "outcome": "success",
+      "chunks_verified": 20,
+      "frames_verified": 257,
+      "vertical_force_rows": 480,
+      "measured_altitude_verified": true,
+      "policy_checkpoint_verified": true
+    },
+    {
+      "run_id": "altitude-s22-sealed_test-7",
+      "outcome": "success",
+      "chunks_verified": 11,
+      "frames_verified": 107,
+      "vertical_force_rows": 240,
+      "measured_altitude_verified": true,
+      "policy_checkpoint_verified": true
+    },
+    {
+      "run_id": "altitude-s33-sealed_test-0",
+      "outcome": "success",
+      "chunks_verified": 11,
+      "frames_verified": 92,
+      "vertical_force_rows": 0,
+      "measured_altitude_verified": true,
+      "policy_checkpoint_verified": true
+    },
+    {
+      "run_id": "altitude-s33-sealed_test-1",
+      "outcome": "success",
+      "chunks_verified": 17,
+      "frames_verified": 237,
+      "vertical_force_rows": 0,
+      "measured_altitude_verified": true,
+      "policy_checkpoint_verified": true
+    },
+    {
+      "run_id": "altitude-s33-sealed_test-2",
+      "outcome": "success",
+      "chunks_verified": 12,
+      "frames_verified": 128,
+      "vertical_force_rows": 240,
+      "measured_altitude_verified": true,
+      "policy_checkpoint_verified": true
+    },
+    {
+      "run_id": "altitude-s33-sealed_test-3",
+      "outcome": "success",
+      "chunks_verified": 11,
+      "frames_verified": 92,
+      "vertical_force_rows": 240,
+      "measured_altitude_verified": true,
+      "policy_checkpoint_verified": true
+    },
+    {
+      "run_id": "altitude-s33-sealed_test-7",
+      "outcome": "success",
+      "chunks_verified": 11,
+      "frames_verified": 107,
+      "vertical_force_rows": 240,
+      "measured_altitude_verified": true,
+      "policy_checkpoint_verified": true
+    }
+  ]
+}
