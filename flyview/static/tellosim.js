@@ -258,11 +258,12 @@ let latestTrainingRun=null;
 async function catalog(){
   const data=await request('runs');const selected=currentRun;$('runs').replaceChildren();
   knownRuns=data.runs;renderWatchGroups(data.runs);
-  const joint=data.joint,jointTag=(joint?.new_training_actions||0)>0?'J1R':'J1';text('joint-title',`${jointTag} · 到达位置、转向并稳定保持`);text('joint-ready',joint?.COMPOSED_JOINT_TASK_VERIFIED?`${jointTag} · 组合任务通过`:joint?.status==='evaluated'?`${jointTag} · 未达标`:`${jointTag} · 尚未完成评估`);
+  const joint=data.joint,jointTag=joint?.stage==='J2'?'J2':(joint?.new_training_actions||0)>0?'J1R':'J1';text('joint-title',`${jointTag} · 到达位置、转向并稳定保持`);text('joint-ready',joint?.COMPOSED_JOINT_TASK_VERIFIED?`${jointTag} · 组合任务通过`:joint?.status==='evaluated'?`${jointTag} · 未达标`:`${jointTag} · 尚未完成评估`);
   const jointBox=$('joint-summary');jointBox.replaceChildren();
   const jointNote=document.createElement('p');jointNote.textContent=joint?.note||'两个已训练技能在连续物理场景接力：导航到位，再转向并保持。正式评估完成后显示成绩。';jointBox.append(jointNote);
   for(const row of joint?.models||[]){const item=document.createElement('p');item.textContent=`种子 ${row.seed}：验证 ${row.validation} · 封存 ${row.sealed} · 碰撞/越界 ${row.collision_or_bounds} · 指令对照 ${row.instruction_pairs_successes}/4 · 零神经特征 ${row.zero_features_successes}/12`;jointBox.append(item);}
-  if(joint?.acceptance?.reasons?.length){const item=document.createElement('p');item.textContent='未通过项：'+joint.acceptance.reasons.map(r=>r.replace(/^(\d+): success below 90%$/, '种子 $1：成功率低于90%').replace(/^(\d+): instruction pairs failed$/, '种子 $1：指令对照未全部通过')).join('；');jointBox.append(item);}
+  if(joint?.stage==='J2'){const names={clean:'无扰动',pose:'定位延迟与噪声',force:'短时外力',combined:'叠加扰动'};for(const row of joint.models||[]){const item=document.createElement('p');item.textContent=`种子 ${row.seed} 同场景训练前 ${row.before_sealed} → 训练后 ${row.sealed}；`+Object.entries(row.profiles||{}).map(([key,value])=>`${names[key]||key} ${value.successes}/${value.episodes}`).join(' · ');jointBox.append(item);}}
+  if(joint?.acceptance?.reasons?.length){const item=document.createElement('p');item.textContent='未通过项：'+joint.acceptance.reasons.map(r=>r.replace(/^(\d+): success below 90%$/, '种子 $1：成功率低于90%').replace(/^(\d+): instruction pairs failed$/, '种子 $1：指令对照未全部通过').replace(/^(\d+): (clean|pose|force|combined) success below (\d+)%$/,(_,seed,profile,rate)=>`种子 ${seed}：${({clean:'无扰动',pose:'定位延迟与噪声',force:'短时外力',combined:'叠加扰动'})[profile]}成功率低于${rate}%`)).join('；');jointBox.append(item);}
   const heading=data.heading;text('heading-ready',heading?.HEADING_TASK_LEARNED?'H1 · YES':heading?.status==='evaluated'?'H1 · 未达标':'H1 · 尚未完成评估');
   const headingBox=$('heading-summary');headingBox.replaceChildren();
   const headingNote=document.createElement('p');headingNote.textContent=heading?.note||'独立学习转向读出，共享冻结 MaleCNS 神经网络。导航权重保留；正式结果完成后显示。';headingBox.append(headingNote);
@@ -274,20 +275,21 @@ async function catalog(){
   for(const row of c1?.models||[]){const item=document.createElement('p');item.textContent=`种子 ${row.seed}：C1 验证 ${row.validation} · 封存 ${row.sealed} · 碰撞/越界 ${row.collision_or_bounds} · 同场景 C0 保持 ${row.retention_before}/100 → ${row.retention_after}/100（${row.retention_passed?'通过':'未通过'}）`;c1Box.append(item);}
   if(c1?.comparison?.length){const paired=document.createElement('p');paired.textContent='同场景对照使用预先选定的验证场景；训练前为上一阶段 C0 权重，不是完全未训练模型。单个回放不能替代正式成功率。';c1Box.append(paired);}
   if(c1?.models?.length){const limit=document.createElement('p');limit.textContent='本课程验证随机初始朝向下到达并稳定保持。本次封存没有转向动作，尚未验证主动转向到指定角度。C2、完整 TS1 与真机尚未就绪。';c1Box.append(limit);}
-  text('replay-help',joint?.models?.length?`${joint.COMPOSED_JOINT_TASK_VERIFIED?`本轮 ${jointTag} 组合任务通过。`:`本轮 ${jointTag} 整体门禁未通过，原因见下方评估。`}先点“${jointTag} 联合任务 11”查看导航、转向和稳定保持。三个入口固定使用各自封存第1场；样例不能替代整体成功率。`:heading?.models?.length?'先点“H1 转向模型 11”查看本轮结果。紫色箭头是指定朝向，红色箭头是机头方向；右侧显示实际测量误差。三个按钮固定使用封存第1场，样例不替代整体成功率。':c1?.models?.length?'先点“C1 模型 22”看成功样例，再看11的同场景超时样例。三个入口都固定使用封存第1场；对照按钮另播同一验证场景的 C0 初始权重和 C1 训练后权重。':'C1 正式评估完成后会显示三个模型快捷回放；当前可查看已生成的同场景对照、上一阶段 C0 或训练最后快照。');
+  text('replay-help',joint?.models?.length?`${joint.COMPOSED_JOINT_TASK_VERIFIED?`本轮 ${jointTag} 组合任务通过。`:`本轮 ${jointTag} 整体门禁未通过，原因见下方评估。`}先点“${jointTag} 联合任务 11”查看导航、转向和稳定保持。${jointTag==='J2'?'三个入口固定使用封存第4场，含定位延迟、噪声与外力叠加；可点训练前对照。':'三个入口固定使用各自封存第1场；'}样例不能替代整体成功率。`:heading?.models?.length?'先点“H1 转向模型 11”查看本轮结果。紫色箭头是指定朝向，红色箭头是机头方向；右侧显示实际测量误差。三个按钮固定使用封存第1场，样例不替代整体成功率。':c1?.models?.length?'先点“C1 模型 22”看成功样例，再看11的同场景超时样例。三个入口都固定使用封存第1场；对照按钮另播同一验证场景的 C0 初始权重和 C1 训练后权重。':'C1 正式评估完成后会显示三个模型快捷回放；当前可查看已生成的同场景对照、上一阶段 C0 或训练最后快照。');
   const featured=new Map(),shortcuts=$('replay-shortcuts');shortcuts.replaceChildren();
   const available=new Set(data.runs.map(r=>r.run_id));
   const models=data.training?.c0_campaign?.models||[];
   const shortcut=(run,label,buttonLabel,primary=false)=>{
     if(!run||!available.has(run))return;
     featured.set(run,label);
-    if(data.joint?.models?.length&&!run.startsWith('joint-'))return;
+    if(data.joint?.models?.length&&!run.startsWith(jointTag==='J2'?'robust-':'joint-'))return;
     if(!data.joint?.models?.length&&data.heading?.models?.length&&!run.startsWith('heading-'))return;
     const button=document.createElement('button');button.textContent=buttonLabel;
     if(primary)button.className='primary';
     button.onclick=attempt(async()=>{await loadRun(run);playing=true;text('play','暂停');});shortcuts.append(button);
   };
   for(const [i,row] of (data.joint?.models||[]).entries())shortcut(row.run_id,`${jointTag} · 联合任务 ${row.seed} · ${row.sealed}`,`${jointTag} 联合任务 ${row.seed} · ${row.sample_outcome==='success'?'样例成功':'样例失败'}`,i===0);
+  for(const row of (data.joint?.models||[]))if(row.before_run_id)shortcut(row.before_run_id,`J2 同场景训练前 · 种子 ${row.seed}`,`训练前对照 ${row.seed}`);
   for(const [i,row] of (data.heading?.models||[]).entries())shortcut(row.run_id,`H1 · 转向模型 ${row.seed} · ${row.sealed}`,`H1 转向模型 ${row.seed} · ${row.sample_outcome==='success'?'样例成功':'样例失败'}`,i===0);
   for(const row of data.heading?.comparison||[]){const label={untrained:'种子11训练前',trained:'种子11训练后'}[row.label]||row.label;shortcut(row.run_id,`H1 同场景对照 · ${label}`,`H1 对照 · ${label}`);}
   for(const [i,row] of (data.c1?.models||[]).entries())shortcut(row.run_id,`C1 · 模型 ${row.seed} · ${row.sealed??'开发验证'}`,`C1 模型 ${row.seed} · ${row.sample_outcome==='success'?'样例成功':row.sample_outcome==='task_deadline'?'样例超时':'点击播放'}`,i===0);

@@ -1,0 +1,5 @@
+{
+  "syntax_check": true,
+  "replay_latest_measured_state_test": true,
+  "actual_browser_interaction": false
+}

@@ -1,0 +1,17 @@
+{
+  "smoke_only": true,
+  "models": [
+    {
+      "skill": "navigation",
+      "options": 16,
+      "parameter_delta_l2": 0.27128636837005615,
+      "roundtrip_exact": true
+    },
+    {
+      "skill": "heading",
+      "options": 16,
+      "parameter_delta_l2": 0.12456350773572922,
+      "roundtrip_exact": true
+    }
+  ]
+}

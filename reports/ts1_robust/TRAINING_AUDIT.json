@@ -1,0 +1,62 @@
+[
+  {
+    "seed": 11,
+    "skill": "navigation",
+    "real_training_actions": 1280,
+    "parameter_delta_l2": 10.394506454467773,
+    "heldout_overlap": 0,
+    "old_checkpoint_unchanged": true,
+    "base_contract_unchanged": true,
+    "roundtrip_exact": true
+  },
+  {
+    "seed": 11,
+    "skill": "heading",
+    "real_training_actions": 1280,
+    "parameter_delta_l2": 5.084127902984619,
+    "heldout_overlap": 0,
+    "old_checkpoint_unchanged": true,
+    "base_contract_unchanged": true,
+    "roundtrip_exact": true
+  },
+  {
+    "seed": 22,
+    "skill": "navigation",
+    "real_training_actions": 1280,
+    "parameter_delta_l2": 10.147665977478027,
+    "heldout_overlap": 0,
+    "old_checkpoint_unchanged": true,
+    "base_contract_unchanged": true,
+    "roundtrip_exact": true
+  },
+  {
+    "seed": 22,
+    "skill": "heading",
+    "real_training_actions": 1280,
+    "parameter_delta_l2": 4.963237285614014,
+    "heldout_overlap": 0,
+    "old_checkpoint_unchanged": true,
+    "base_contract_unchanged": true,
+    "roundtrip_exact": true
+  },
+  {
+    "seed": 33,
+    "skill": "navigation",
+    "real_training_actions": 1280,
+    "parameter_delta_l2": 10.267784118652344,
+    "heldout_overlap": 0,
+    "old_checkpoint_unchanged": true,
+    "base_contract_unchanged": true,
+    "roundtrip_exact": true
+  },
+  {
+    "seed": 33,
+    "skill": "heading",
+    "real_training_actions": 1280,
+    "parameter_delta_l2": 4.678371429443359,
+    "heldout_overlap": 0,
+    "old_checkpoint_unchanged": true,
+    "base_contract_unchanged": true,
+    "roundtrip_exact": true
+  }
+]

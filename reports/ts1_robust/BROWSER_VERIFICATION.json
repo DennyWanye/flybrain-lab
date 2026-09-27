@@ -1,0 +1,8 @@
+{
+  "status": "blocked_by_browser_security_policy",
+  "attempted_action": "cua.getTab for existing http://127.0.0.1:8765/tellosim",
+  "reason": "Browser URL policy rejected protocol; no browser workaround attempted",
+  "actual_browser_interaction_verified": false,
+  "prior_J1R_browser_evidence_reused": false,
+  "local_code_and_artifact_checks_only": true
+}

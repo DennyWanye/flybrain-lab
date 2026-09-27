@@ -1,0 +1,140 @@
+{
+  "all_passed": true,
+  "runs": [
+    {
+      "run_id": "robust-before-s11-3",
+      "outcome": "success",
+      "profile": "combined",
+      "chunks_verified": 50,
+      "disturbance_evidence_verified": true,
+      "identity_and_policy_sources_verified": true,
+      "force_rows_found": 1440
+    },
+    {
+      "run_id": "robust-before-s22-3",
+      "outcome": "success",
+      "profile": "combined",
+      "chunks_verified": 40,
+      "disturbance_evidence_verified": true,
+      "identity_and_policy_sources_verified": true,
+      "force_rows_found": 1200
+    },
+    {
+      "run_id": "robust-before-s33-3",
+      "outcome": "success",
+      "profile": "combined",
+      "chunks_verified": 61,
+      "disturbance_evidence_verified": true,
+      "identity_and_policy_sources_verified": true,
+      "force_rows_found": 1920
+    },
+    {
+      "run_id": "robust-s11-sealed_test-0",
+      "outcome": "success",
+      "profile": "clean",
+      "chunks_verified": 40,
+      "disturbance_evidence_verified": true,
+      "identity_and_policy_sources_verified": true,
+      "force_rows_found": 0
+    },
+    {
+      "run_id": "robust-s11-sealed_test-1",
+      "outcome": "success",
+      "profile": "pose",
+      "chunks_verified": 34,
+      "disturbance_evidence_verified": true,
+      "identity_and_policy_sources_verified": true,
+      "force_rows_found": 0
+    },
+    {
+      "run_id": "robust-s11-sealed_test-2",
+      "outcome": "success",
+      "profile": "force",
+      "chunks_verified": 38,
+      "disturbance_evidence_verified": true,
+      "identity_and_policy_sources_verified": true,
+      "force_rows_found": 1200
+    },
+    {
+      "run_id": "robust-s11-sealed_test-3",
+      "outcome": "success",
+      "profile": "combined",
+      "chunks_verified": 35,
+      "disturbance_evidence_verified": true,
+      "identity_and_policy_sources_verified": true,
+      "force_rows_found": 960
+    },
+    {
+      "run_id": "robust-s22-sealed_test-0",
+      "outcome": "phase_deadline",
+      "profile": "clean",
+      "chunks_verified": 65,
+      "disturbance_evidence_verified": true,
+      "identity_and_policy_sources_verified": true,
+      "force_rows_found": 0
+    },
+    {
+      "run_id": "robust-s22-sealed_test-1",
+      "outcome": "success",
+      "profile": "pose",
+      "chunks_verified": 41,
+      "disturbance_evidence_verified": true,
+      "identity_and_policy_sources_verified": true,
+      "force_rows_found": 0
+    },
+    {
+      "run_id": "robust-s22-sealed_test-2",
+      "outcome": "success",
+      "profile": "force",
+      "chunks_verified": 34,
+      "disturbance_evidence_verified": true,
+      "identity_and_policy_sources_verified": true,
+      "force_rows_found": 960
+    },
+    {
+      "run_id": "robust-s22-sealed_test-3",
+      "outcome": "success",
+      "profile": "combined",
+      "chunks_verified": 38,
+      "disturbance_evidence_verified": true,
+      "identity_and_policy_sources_verified": true,
+      "force_rows_found": 1200
+    },
+    {
+      "run_id": "robust-s33-sealed_test-0",
+      "outcome": "success",
+      "profile": "clean",
+      "chunks_verified": 41,
+      "disturbance_evidence_verified": true,
+      "identity_and_policy_sources_verified": true,
+      "force_rows_found": 0
+    },
+    {
+      "run_id": "robust-s33-sealed_test-1",
+      "outcome": "success",
+      "profile": "pose",
+      "chunks_verified": 34,
+      "disturbance_evidence_verified": true,
+      "identity_and_policy_sources_verified": true,
+      "force_rows_found": 0
+    },
+    {
+      "run_id": "robust-s33-sealed_test-2",
+      "outcome": "success",
+      "profile": "force",
+      "chunks_verified": 35,
+      "disturbance_evidence_verified": true,
+      "identity_and_policy_sources_verified": true,
+      "force_rows_found": 960
+    },
+    {
+      "run_id": "robust-s33-sealed_test-3",
+      "outcome": "success",
+      "profile": "combined",
+      "chunks_verified": 39,
+      "disturbance_evidence_verified": true,
+      "identity_and_policy_sources_verified": true,
+      "force_rows_found": 1200
+    }
+  ]
+}

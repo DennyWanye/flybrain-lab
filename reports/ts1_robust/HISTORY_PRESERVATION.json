@@ -1,0 +1,16 @@
+{
+  "base_commit": "ab77cbd",
+  "all_frozen_sources_and_previous_reports_unchanged": true,
+  "paths": [
+    "flydrone/tellosim/training/joint.py",
+    "flydrone/tellosim/training/joint_campaign.py",
+    "flydrone/tellosim/training/joint_refine.py",
+    "flydrone/tellosim/training/heading.py",
+    "flydrone/tellosim/training/heading_campaign.py",
+    "flydrone/tellosim/training/env.py",
+    "flydrone/tellosim/physics",
+    "flydrone/tellosim/visual.py",
+    "reports/ts1_joint",
+    "reports/ts1_joint_refined"
+  ]
+}

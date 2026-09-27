@@ -1,0 +1,42 @@
+{
+  "all_campaign_children_reaped": true,
+  "all_recorded_pids_absent": true,
+  "jobs": {
+    "train-11": {
+      "pid": 587,
+      "returncode": 0,
+      "reaped": true
+    },
+    "train-22": {
+      "pid": 588,
+      "returncode": 0,
+      "reaped": true
+    },
+    "train-33": {
+      "pid": 589,
+      "returncode": 0,
+      "reaped": true
+    },
+    "baselines": {
+      "pid": 1684,
+      "returncode": 0,
+      "reaped": true
+    },
+    "evaluate-11": {
+      "pid": 1685,
+      "returncode": 0,
+      "reaped": true
+    },
+    "evaluate-22": {
+      "pid": 1686,
+      "returncode": 0,
+      "reaped": true
+    },
+    "evaluate-33": {
+      "pid": 1687,
+      "returncode": 0,
+      "reaped": true
+    }
+  },
+  "viewer_kept_running_port": 8765
+}

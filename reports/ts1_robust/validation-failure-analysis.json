@@ -1,0 +1,554 @@
+{
+  "11": {
+    "failures": [
+      {
+        "case_id": "j2-val-003",
+        "reason": "phase_deadline",
+        "final_phase": "navigation",
+        "horizontal_distance_m": 0.21024869070952884,
+        "heading_error_deg": 85.02037208329,
+        "disturbance": {
+          "profile": "combined",
+          "applied_physics_ticks": 1200,
+          "impulse_world_ns": [
+            0.013148204325303534,
+            0.005611050189259981,
+            0.0
+          ],
+          "angular_impulse_world_nms": [
+            0.0,
+            0.0,
+            5.999999999999986e-05
+          ],
+          "absolute_impulse_ns": 0.060000000000001205
+        }
+      },
+      {
+        "case_id": "j2-val-007",
+        "reason": "phase_deadline",
+        "final_phase": "navigation",
+        "horizontal_distance_m": 0.2482540466764232,
+        "heading_error_deg": 99.61565653818452,
+        "disturbance": {
+          "profile": "combined",
+          "applied_physics_ticks": 1200,
+          "impulse_world_ns": [
+            0.013002596527565354,
+            0.005940677128718021,
+            0.0
+          ],
+          "angular_impulse_world_nms": [
+            0.0,
+            0.0,
+            5.999999999999986e-05
+          ],
+          "absolute_impulse_ns": 0.060000000000001205
+        }
+      },
+      {
+        "case_id": "j2-val-017",
+        "reason": "phase_deadline",
+        "final_phase": "navigation",
+        "horizontal_distance_m": 0.13572166588389142,
+        "heading_error_deg": 125.87172708010262,
+        "disturbance": {
+          "profile": "pose",
+          "applied_physics_ticks": 0,
+          "impulse_world_ns": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "angular_impulse_world_nms": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "absolute_impulse_ns": 0.0
+        }
+      },
+      {
+        "case_id": "j2-val-019",
+        "reason": "phase_deadline",
+        "final_phase": "navigation",
+        "horizontal_distance_m": 0.19736756516795495,
+        "heading_error_deg": 135.13023418360495,
+        "disturbance": {
+          "profile": "combined",
+          "applied_physics_ticks": 1200,
+          "impulse_world_ns": [
+            0.012516596125688251,
+            0.006906083016640614,
+            0.0
+          ],
+          "angular_impulse_world_nms": [
+            0.0,
+            0.0,
+            5.999999999999986e-05
+          ],
+          "absolute_impulse_ns": 0.060000000000001205
+        }
+      },
+      {
+        "case_id": "j2-val-021",
+        "reason": "phase_deadline",
+        "final_phase": "heading",
+        "horizontal_distance_m": 0.1902343362506595,
+        "heading_error_deg": 2.568088945018571,
+        "disturbance": {
+          "profile": "pose",
+          "applied_physics_ticks": 0,
+          "impulse_world_ns": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "angular_impulse_world_nms": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "absolute_impulse_ns": 0.0
+        }
+      },
+      {
+        "case_id": "j2-val-031",
+        "reason": "phase_deadline",
+        "final_phase": "navigation",
+        "horizontal_distance_m": 0.38992424390916736,
+        "heading_error_deg": 88.74603156334656,
+        "disturbance": {
+          "profile": "combined",
+          "applied_physics_ticks": 1200,
+          "impulse_world_ns": [
+            0.011959045473371498,
+            0.007832010761749284,
+            0.0
+          ],
+          "angular_impulse_world_nms": [
+            0.0,
+            0.0,
+            5.999999999999986e-05
+          ],
+          "absolute_impulse_ns": 0.060000000000001205
+        }
+      },
+      {
+        "case_id": "j2-val-063",
+        "reason": "phase_deadline",
+        "final_phase": "heading",
+        "horizontal_distance_m": 0.16119552308981797,
+        "heading_error_deg": 13.285861156359662,
+        "disturbance": {
+          "profile": "combined",
+          "applied_physics_ticks": 1680,
+          "impulse_world_ns": [
+            -0.0041265289507906085,
+            0.0032033580659219085,
+            0.0
+          ],
+          "angular_impulse_world_nms": [
+            0.0,
+            0.0,
+            5.999999999999986e-05
+          ],
+          "absolute_impulse_ns": 0.08399999999999891
+        }
+      },
+      {
+        "case_id": "j2-val-067",
+        "reason": "phase_deadline",
+        "final_phase": "navigation",
+        "horizontal_distance_m": 0.3006042982261268,
+        "heading_error_deg": 108.08973436833755,
+        "disturbance": {
+          "profile": "combined",
+          "applied_physics_ticks": 1200,
+          "impulse_world_ns": [
+            0.00989089751846494,
+            0.0103213035749149,
+            0.0
+          ],
+          "angular_impulse_world_nms": [
+            0.0,
+            0.0,
+            5.999999999999986e-05
+          ],
+          "absolute_impulse_ns": 0.060000000000001205
+        }
+      },
+      {
+        "case_id": "j2-val-072",
+        "reason": "phase_deadline",
+        "final_phase": "navigation",
+        "horizontal_distance_m": 0.06290273207357432,
+        "heading_error_deg": 62.97245350802092,
+        "disturbance": {
+          "profile": "clean",
+          "applied_physics_ticks": 0,
+          "impulse_world_ns": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "angular_impulse_world_nms": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "absolute_impulse_ns": 0.0
+        }
+      },
+      {
+        "case_id": "j2-val-085",
+        "reason": "phase_deadline",
+        "final_phase": "heading",
+        "horizontal_distance_m": 0.07777762244142997,
+        "heading_error_deg": 23.9656310058195,
+        "disturbance": {
+          "profile": "pose",
+          "applied_physics_ticks": 0,
+          "impulse_world_ns": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "angular_impulse_world_nms": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "absolute_impulse_ns": 0.0
+        }
+      },
+      {
+        "case_id": "j2-val-094",
+        "reason": "phase_deadline",
+        "final_phase": "navigation",
+        "horizontal_distance_m": 0.41019463518718075,
+        "heading_error_deg": 53.005981479526845,
+        "disturbance": {
+          "profile": "force",
+          "applied_physics_ticks": 1200,
+          "impulse_world_ns": [
+            0.008000281885342648,
+            0.011847136825469298,
+            0.0
+          ],
+          "angular_impulse_world_nms": [
+            0.0,
+            0.0,
+            -5.999999999999986e-05
+          ],
+          "absolute_impulse_ns": 0.060000000000001205
+        }
+      }
+    ],
+    "phase_counts": {
+      "navigation": 8,
+      "heading": 3
+    }
+  },
+  "22": {
+    "failures": [
+      {
+        "case_id": "j2-val-015",
+        "reason": "phase_deadline",
+        "final_phase": "navigation",
+        "horizontal_distance_m": 0.2046527207306082,
+        "heading_error_deg": 53.10982613433517,
+        "disturbance": {
+          "profile": "combined",
+          "applied_physics_ticks": 1200,
+          "impulse_world_ns": [
+            0.012686692060472812,
+            0.006588399332847569,
+            0.0
+          ],
+          "angular_impulse_world_nms": [
+            0.0,
+            0.0,
+            5.999999999999986e-05
+          ],
+          "absolute_impulse_ns": 0.060000000000001205
+        }
+      },
+      {
+        "case_id": "j2-val-032",
+        "reason": "phase_deadline",
+        "final_phase": "navigation",
+        "horizontal_distance_m": 0.2513155614598859,
+        "heading_error_deg": 105.38504589124634,
+        "disturbance": {
+          "profile": "clean",
+          "applied_physics_ticks": 0,
+          "impulse_world_ns": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "angular_impulse_world_nms": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "absolute_impulse_ns": 0.0
+        }
+      },
+      {
+        "case_id": "j2-val-039",
+        "reason": "phase_deadline",
+        "final_phase": "navigation",
+        "horizontal_distance_m": 0.2426899089617463,
+        "heading_error_deg": 174.41563440435945,
+        "disturbance": {
+          "profile": "combined",
+          "applied_physics_ticks": 1200,
+          "impulse_world_ns": [
+            0.011549152527864993,
+            0.008424739586150018,
+            0.0
+          ],
+          "angular_impulse_world_nms": [
+            0.0,
+            0.0,
+            5.999999999999986e-05
+          ],
+          "absolute_impulse_ns": 0.060000000000001205
+        }
+      },
+      {
+        "case_id": "j2-val-059",
+        "reason": "phase_deadline",
+        "final_phase": "navigation",
+        "horizontal_distance_m": 0.2908108197625514,
+        "heading_error_deg": 157.12769046825392,
+        "disturbance": {
+          "profile": "combined",
+          "applied_physics_ticks": 1200,
+          "impulse_world_ns": [
+            0.010398475589574635,
+            0.009809733259337577,
+            0.0
+          ],
+          "angular_impulse_world_nms": [
+            0.0,
+            0.0,
+            5.999999999999986e-05
+          ],
+          "absolute_impulse_ns": 0.060000000000001205
+        }
+      },
+      {
+        "case_id": "j2-val-063",
+        "reason": "phase_deadline",
+        "final_phase": "heading",
+        "horizontal_distance_m": 0.05279482142362635,
+        "heading_error_deg": 4.134465729745875,
+        "disturbance": {
+          "profile": "combined",
+          "applied_physics_ticks": 1920,
+          "impulse_world_ns": [
+            0.007750477524525282,
+            0.001489672801556213,
+            0.0
+          ],
+          "angular_impulse_world_nms": [
+            0.0,
+            0.0,
+            2.4352197233561135e-21
+          ],
+          "absolute_impulse_ns": 0.09599999999999759
+        }
+      },
+      {
+        "case_id": "j2-val-074",
+        "reason": "phase_deadline",
+        "final_phase": "navigation",
+        "horizontal_distance_m": 0.23662678232654644,
+        "heading_error_deg": 56.08700402014095,
+        "disturbance": {
+          "profile": "force",
+          "applied_physics_ticks": 1200,
+          "impulse_world_ns": [
+            0.009426101800030765,
+            0.010747453933922405,
+            0.0
+          ],
+          "angular_impulse_world_nms": [
+            0.0,
+            0.0,
+            -5.999999999999986e-05
+          ],
+          "absolute_impulse_ns": 0.060000000000001205
+        }
+      },
+      {
+        "case_id": "j2-val-087",
+        "reason": "phase_deadline",
+        "final_phase": "heading",
+        "horizontal_distance_m": 0.1850675474880933,
+        "heading_error_deg": 16.943696991118824,
+        "disturbance": {
+          "profile": "combined",
+          "applied_physics_ticks": 1680,
+          "impulse_world_ns": [
+            -0.004562081675969583,
+            0.002545025513036198,
+            0.0
+          ],
+          "angular_impulse_world_nms": [
+            0.0,
+            0.0,
+            5.999999999999986e-05
+          ],
+          "absolute_impulse_ns": 0.08399999999999891
+        }
+      },
+      {
+        "case_id": "j2-val-091",
+        "reason": "phase_deadline",
+        "final_phase": "navigation",
+        "horizontal_distance_m": 0.15696601170309749,
+        "heading_error_deg": 118.81645232167256,
+        "disturbance": {
+          "profile": "combined",
+          "applied_physics_ticks": 1200,
+          "impulse_world_ns": [
+            0.008222823968849767,
+            0.011693773008897942,
+            0.0
+          ],
+          "angular_impulse_world_nms": [
+            0.0,
+            0.0,
+            5.999999999999986e-05
+          ],
+          "absolute_impulse_ns": 0.060000000000001205
+        }
+      },
+      {
+        "case_id": "j2-val-092",
+        "reason": "phase_deadline",
+        "final_phase": "navigation",
+        "horizontal_distance_m": 0.2010462765259639,
+        "heading_error_deg": 52.03735764581054,
+        "disturbance": {
+          "profile": "clean",
+          "applied_physics_ticks": 0,
+          "impulse_world_ns": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "angular_impulse_world_nms": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "absolute_impulse_ns": 0.0
+        }
+      },
+      {
+        "case_id": "j2-val-093",
+        "reason": "phase_deadline",
+        "final_phase": "heading",
+        "horizontal_distance_m": 0.14714285106455807,
+        "heading_error_deg": 12.283801784311162,
+        "disturbance": {
+          "profile": "pose",
+          "applied_physics_ticks": 0,
+          "impulse_world_ns": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "angular_impulse_world_nms": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "absolute_impulse_ns": 0.0
+        }
+      }
+    ],
+    "phase_counts": {
+      "navigation": 7,
+      "heading": 3
+    }
+  },
+  "33": {
+    "failures": [
+      {
+        "case_id": "j2-val-012",
+        "reason": "phase_deadline",
+        "final_phase": "navigation",
+        "horizontal_distance_m": 0.319521092654678,
+        "heading_error_deg": 52.60785339995868,
+        "disturbance": {
+          "profile": "clean",
+          "applied_physics_ticks": 0,
+          "impulse_world_ns": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "angular_impulse_world_nms": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "absolute_impulse_ns": 0.0
+        }
+      },
+      {
+        "case_id": "j2-val-022",
+        "reason": "phase_deadline",
+        "final_phase": "navigation",
+        "horizontal_distance_m": 0.27927434222406655,
+        "heading_error_deg": 98.78953232039426,
+        "disturbance": {
+          "profile": "force",
+          "applied_physics_ticks": 1200,
+          "impulse_world_ns": [
+            0.0123837986565249,
+            0.007141476880938433,
+            0.0
+          ],
+          "angular_impulse_world_nms": [
+            0.0,
+            0.0,
+            -5.999999999999986e-05
+          ],
+          "absolute_impulse_ns": 0.060000000000001205
+        }
+      },
+      {
+        "case_id": "j2-val-061",
+        "reason": "phase_deadline",
+        "final_phase": "heading",
+        "horizontal_distance_m": 0.023762511646821097,
+        "heading_error_deg": 21.324439439112062,
+        "disturbance": {
+          "profile": "pose",
+          "applied_physics_ticks": 0,
+          "impulse_world_ns": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "angular_impulse_world_nms": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "absolute_impulse_ns": 0.0
+        }
+      }
+    ],
+    "phase_counts": {
+      "navigation": 2,
+      "heading": 1
+    }
+  }
+}
