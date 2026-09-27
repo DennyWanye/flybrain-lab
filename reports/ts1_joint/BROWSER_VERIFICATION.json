@@ -1,0 +1,56 @@
+{
+  "run_id": "joint-smoke-0",
+  "play": {
+    "button_after": "暂停",
+    "advanced_to_tick": 2823
+  },
+  "pause": {
+    "button_after": "播放"
+  },
+  "seek_end": {
+    "tick": 9408,
+    "phase": "heading",
+    "distance_m": 0.17,
+    "heading_error_deg": 13.5,
+    "hold_s": 2.0
+  },
+  "drag_back": {
+    "tick": 3455,
+    "phase": "navigation"
+  },
+  "canvas_pan": {
+    "camera_target": "-0.522,-0.230,1.264"
+  },
+  "reset_view": {
+    "camera_target": "0.000,0.000,1.000"
+  },
+  "console_errors": [],
+  "method": "Actual browser UI interactions through CUA; replay is smoke, not formal success-rate evidence",
+  "formal_sample": {
+    "run_id": "joint-s11-sealed_test-0",
+    "tick": 6924,
+    "distance_m": 0.15,
+    "heading_error_deg": 0.1,
+    "hold_s": 2.0,
+    "phase": "heading",
+    "screenshot": "joint-result.png"
+  },
+  "final_catalog": {
+    "shortcuts": [
+      11,
+      22,
+      33
+    ],
+    "overall_gate_visible": "J1 未达标",
+    "user_original_tab_refreshed": true,
+    "console_errors": []
+  },
+  "formal_shortcut_22": {
+    "run_id": "joint-s22-sealed_test-0",
+    "play_pause_verified": true,
+    "distance_m": 0.11,
+    "heading_error_deg": 0.1,
+    "hold_s": 2.0,
+    "screenshot": "joint-result-22.png"
+  }
+}

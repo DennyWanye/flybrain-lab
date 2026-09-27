@@ -1,0 +1,101 @@
+{
+  "runs": [
+    {
+      "run_id": "joint-s11-instruction_pairs-0",
+      "chunks_verified": 39,
+      "phase_changes": 1,
+      "outcome": "success",
+      "identity_verified": true,
+      "phase_policy_source_verified": true
+    },
+    {
+      "run_id": "joint-s11-instruction_pairs-1",
+      "chunks_verified": 40,
+      "phase_changes": 1,
+      "outcome": "success",
+      "identity_verified": true,
+      "phase_policy_source_verified": true
+    },
+    {
+      "run_id": "joint-s11-sealed_test-0",
+      "chunks_verified": 36,
+      "phase_changes": 1,
+      "outcome": "success",
+      "identity_verified": true,
+      "phase_policy_source_verified": true
+    },
+    {
+      "run_id": "joint-s11-sealed_test-1",
+      "chunks_verified": 33,
+      "phase_changes": 1,
+      "outcome": "success",
+      "identity_verified": true,
+      "phase_policy_source_verified": true
+    },
+    {
+      "run_id": "joint-s22-instruction_pairs-0",
+      "chunks_verified": 25,
+      "phase_changes": 1,
+      "outcome": "success",
+      "identity_verified": true,
+      "phase_policy_source_verified": true
+    },
+    {
+      "run_id": "joint-s22-instruction_pairs-1",
+      "chunks_verified": 25,
+      "phase_changes": 1,
+      "outcome": "success",
+      "identity_verified": true,
+      "phase_policy_source_verified": true
+    },
+    {
+      "run_id": "joint-s22-sealed_test-0",
+      "chunks_verified": 34,
+      "phase_changes": 1,
+      "outcome": "success",
+      "identity_verified": true,
+      "phase_policy_source_verified": true
+    },
+    {
+      "run_id": "joint-s22-sealed_test-1",
+      "chunks_verified": 28,
+      "phase_changes": 1,
+      "outcome": "success",
+      "identity_verified": true,
+      "phase_policy_source_verified": true
+    },
+    {
+      "run_id": "joint-s33-instruction_pairs-0",
+      "chunks_verified": 30,
+      "phase_changes": 1,
+      "outcome": "success",
+      "identity_verified": true,
+      "phase_policy_source_verified": true
+    },
+    {
+      "run_id": "joint-s33-instruction_pairs-1",
+      "chunks_verified": 30,
+      "phase_changes": 1,
+      "outcome": "success",
+      "identity_verified": true,
+      "phase_policy_source_verified": true
+    },
+    {
+      "run_id": "joint-s33-sealed_test-0",
+      "chunks_verified": 34,
+      "phase_changes": 1,
+      "outcome": "success",
+      "identity_verified": true,
+      "phase_policy_source_verified": true
+    },
+    {
+      "run_id": "joint-s33-sealed_test-1",
+      "chunks_verified": 27,
+      "phase_changes": 1,
+      "outcome": "success",
+      "identity_verified": true,
+      "phase_policy_source_verified": true
+    }
+  ],
+  "all_passed": true
+}

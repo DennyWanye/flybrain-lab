@@ -1,0 +1,783 @@
+{
+  "11": {
+    "reasons": {
+      "phase_deadline": 31
+    },
+    "final_phase": {
+      "navigation": 25,
+      "heading": 6
+    },
+    "cases": [
+      {
+        "case_id": "j1-test-003",
+        "reason": "phase_deadline",
+        "final_phase": "navigation",
+        "horizontal_distance_m": 0.160057728883236,
+        "heading_error_deg": 148.1353630304362,
+        "phase_events": []
+      },
+      {
+        "case_id": "j1-test-010",
+        "reason": "phase_deadline",
+        "final_phase": "navigation",
+        "horizontal_distance_m": 0.2168394027859547,
+        "heading_error_deg": 124.80493066728823,
+        "phase_events": []
+      },
+      {
+        "case_id": "j1-test-021",
+        "reason": "phase_deadline",
+        "final_phase": "navigation",
+        "horizontal_distance_m": 0.23664508688380995,
+        "heading_error_deg": 100.3790274765497,
+        "phase_events": []
+      },
+      {
+        "case_id": "j1-test-049",
+        "reason": "phase_deadline",
+        "final_phase": "heading",
+        "horizontal_distance_m": 0.18223610115489433,
+        "heading_error_deg": 9.072762006710015,
+        "phase_events": [
+          {
+            "tick": 5136,
+            "from": "navigation",
+            "to": "heading",
+            "reason": "position_settled",
+            "source": "external_pose_mock",
+            "physics_state_unchanged": true,
+            "neural_tick_preserved": 1492
+          }
+        ]
+      },
+      {
+        "case_id": "j1-test-093",
+        "reason": "phase_deadline",
+        "final_phase": "navigation",
+        "horizontal_distance_m": 0.22630959077610857,
+        "heading_error_deg": 163.5583519227405,
+        "phase_events": []
+      },
+      {
+        "case_id": "j1-test-094",
+        "reason": "phase_deadline",
+        "final_phase": "heading",
+        "horizontal_distance_m": 0.0891808164053985,
+        "heading_error_deg": 10.681637794640704,
+        "phase_events": [
+          {
+            "tick": 5760,
+            "from": "navigation",
+            "to": "heading",
+            "reason": "position_settled",
+            "source": "external_pose_mock",
+            "physics_state_unchanged": true,
+            "neural_tick_preserved": 1700
+          }
+        ]
+      },
+      {
+        "case_id": "j1-test-096",
+        "reason": "phase_deadline",
+        "final_phase": "navigation",
+        "horizontal_distance_m": 0.39031413679505195,
+        "heading_error_deg": 37.38777061799764,
+        "phase_events": []
+      },
+      {
+        "case_id": "j1-test-105",
+        "reason": "phase_deadline",
+        "final_phase": "navigation",
+        "horizontal_distance_m": 0.07328750304435855,
+        "heading_error_deg": 156.68740974191797,
+        "phase_events": []
+      },
+      {
+        "case_id": "j1-test-114",
+        "reason": "phase_deadline",
+        "final_phase": "navigation",
+        "horizontal_distance_m": 0.23427462607501665,
+        "heading_error_deg": 44.886805345061546,
+        "phase_events": []
+      },
+      {
+        "case_id": "j1-test-141",
+        "reason": "phase_deadline",
+        "final_phase": "navigation",
+        "horizontal_distance_m": 0.10193013330685267,
+        "heading_error_deg": 58.18136505816419,
+        "phase_events": []
+      },
+      {
+        "case_id": "j1-test-143",
+        "reason": "phase_deadline",
+        "final_phase": "navigation",
+        "horizontal_distance_m": 0.34752372227180794,
+        "heading_error_deg": 43.696702472153916,
+        "phase_events": []
+      },
+      {
+        "case_id": "j1-test-145",
+        "reason": "phase_deadline",
+        "final_phase": "navigation",
+        "horizontal_distance_m": 0.2671755362890228,
+        "heading_error_deg": 126.94933362850547,
+        "phase_events": []
+      },
+      {
+        "case_id": "j1-test-157",
+        "reason": "phase_deadline",
+        "final_phase": "navigation",
+        "horizontal_distance_m": 0.2117481906417919,
+        "heading_error_deg": 137.70671785010612,
+        "phase_events": []
+      },
+      {
+        "case_id": "j1-test-167",
+        "reason": "phase_deadline",
+        "final_phase": "navigation",
+        "horizontal_distance_m": 0.056838591493069905,
+        "heading_error_deg": 111.43694461728818,
+        "phase_events": []
+      },
+      {
+        "case_id": "j1-test-193",
+        "reason": "phase_deadline",
+        "final_phase": "navigation",
+        "horizontal_distance_m": 0.3571902228116724,
+        "heading_error_deg": 119.8727111410202,
+        "phase_events": []
+      },
+      {
+        "case_id": "j1-test-196",
+        "reason": "phase_deadline",
+        "final_phase": "navigation",
+        "horizontal_distance_m": 0.19215873900300603,
+        "heading_error_deg": 177.8324483736781,
+        "phase_events": []
+      },
+      {
+        "case_id": "j1-test-203",
+        "reason": "phase_deadline",
+        "final_phase": "navigation",
+        "horizontal_distance_m": 0.344360784654306,
+        "heading_error_deg": 47.106782449907186,
+        "phase_events": []
+      },
+      {
+        "case_id": "j1-test-205",
+        "reason": "phase_deadline",
+        "final_phase": "navigation",
+        "horizontal_distance_m": 0.30377650973423503,
+        "heading_error_deg": 43.598374844652774,
+        "phase_events": []
+      },
+      {
+        "case_id": "j1-test-210",
+        "reason": "phase_deadline",
+        "final_phase": "heading",
+        "horizontal_distance_m": 0.13412739269006416,
+        "heading_error_deg": 20.680855316133506,
+        "phase_events": [
+          {
+            "tick": 3456,
+            "from": "navigation",
+            "to": "heading",
+            "reason": "position_settled",
+            "source": "external_pose_mock",
+            "physics_state_unchanged": true,
+            "neural_tick_preserved": 932
+          }
+        ]
+      },
+      {
+        "case_id": "j1-test-217",
+        "reason": "phase_deadline",
+        "final_phase": "navigation",
+        "horizontal_distance_m": 0.036255867643883055,
+        "heading_error_deg": 59.73760420834978,
+        "phase_events": []
+      },
+      {
+        "case_id": "j1-test-225",
+        "reason": "phase_deadline",
+        "final_phase": "navigation",
+        "horizontal_distance_m": 0.20276348565423766,
+        "heading_error_deg": 120.88256762909765,
+        "phase_events": []
+      },
+      {
+        "case_id": "j1-test-244",
+        "reason": "phase_deadline",
+        "final_phase": "navigation",
+        "horizontal_distance_m": 0.10977217126414583,
+        "heading_error_deg": 71.11711885540214,
+        "phase_events": []
+      },
+      {
+        "case_id": "j1-test-245",
+        "reason": "phase_deadline",
+        "final_phase": "navigation",
+        "horizontal_distance_m": 0.16102247926745794,
+        "heading_error_deg": 48.33752507581293,
+        "phase_events": []
+      },
+      {
+        "case_id": "j1-test-247",
+        "reason": "phase_deadline",
+        "final_phase": "heading",
+        "horizontal_distance_m": 0.05183176930970207,
+        "heading_error_deg": 12.088282966924918,
+        "phase_events": [
+          {
+            "tick": 2592,
+            "from": "navigation",
+            "to": "heading",
+            "reason": "position_settled",
+            "source": "external_pose_mock",
+            "physics_state_unchanged": true,
+            "neural_tick_preserved": 644
+          }
+        ]
+      },
+      {
+        "case_id": "j1-test-249",
+        "reason": "phase_deadline",
+        "final_phase": "heading",
+        "horizontal_distance_m": 0.0875175279311174,
+        "heading_error_deg": 12.496322209949723,
+        "phase_events": [
+          {
+            "tick": 4896,
+            "from": "navigation",
+            "to": "heading",
+            "reason": "position_settled",
+            "source": "external_pose_mock",
+            "physics_state_unchanged": true,
+            "neural_tick_preserved": 1412
+          }
+        ]
+      },
+      {
+        "case_id": "j1-test-252",
+        "reason": "phase_deadline",
+        "final_phase": "navigation",
+        "horizontal_distance_m": 0.11064149642817245,
+        "heading_error_deg": 74.72697809217769,
+        "phase_events": []
+      },
+      {
+        "case_id": "j1-test-259",
+        "reason": "phase_deadline",
+        "final_phase": "navigation",
+        "horizontal_distance_m": 0.24869222043146982,
+        "heading_error_deg": 179.10485801035517,
+        "phase_events": []
+      },
+      {
+        "case_id": "j1-test-267",
+        "reason": "phase_deadline",
+        "final_phase": "navigation",
+        "horizontal_distance_m": 0.29223646222868527,
+        "heading_error_deg": 99.37058211482847,
+        "phase_events": []
+      },
+      {
+        "case_id": "j1-test-270",
+        "reason": "phase_deadline",
+        "final_phase": "heading",
+        "horizontal_distance_m": 0.10681597633611552,
+        "heading_error_deg": 20.213763748247253,
+        "phase_events": [
+          {
+            "tick": 4512,
+            "from": "navigation",
+            "to": "heading",
+            "reason": "position_settled",
+            "source": "external_pose_mock",
+            "physics_state_unchanged": true,
+            "neural_tick_preserved": 1284
+          }
+        ]
+      },
+      {
+        "case_id": "j1-test-283",
+        "reason": "phase_deadline",
+        "final_phase": "navigation",
+        "horizontal_distance_m": 0.19509802848113256,
+        "heading_error_deg": 96.45654465577755,
+        "phase_events": []
+      },
+      {
+        "case_id": "j1-test-296",
+        "reason": "phase_deadline",
+        "final_phase": "navigation",
+        "horizontal_distance_m": 0.37981510944225266,
+        "heading_error_deg": 161.6579655084743,
+        "phase_events": []
+      }
+    ]
+  },
+  "22": {
+    "reasons": {
+      "phase_deadline": 23
+    },
+    "final_phase": {
+      "navigation": 18,
+      "heading": 5
+    },
+    "cases": [
+      {
+        "case_id": "j1-test-006",
+        "reason": "phase_deadline",
+        "final_phase": "navigation",
+        "horizontal_distance_m": 0.22303826829359857,
+        "heading_error_deg": 106.90239882316251,
+        "phase_events": []
+      },
+      {
+        "case_id": "j1-test-020",
+        "reason": "phase_deadline",
+        "final_phase": "navigation",
+        "horizontal_distance_m": 0.23450575256700798,
+        "heading_error_deg": 130.49796120077082,
+        "phase_events": []
+      },
+      {
+        "case_id": "j1-test-038",
+        "reason": "phase_deadline",
+        "final_phase": "navigation",
+        "horizontal_distance_m": 0.0864723238087796,
+        "heading_error_deg": 67.75148229446154,
+        "phase_events": []
+      },
+      {
+        "case_id": "j1-test-043",
+        "reason": "phase_deadline",
+        "final_phase": "navigation",
+        "horizontal_distance_m": 0.13731217390975603,
+        "heading_error_deg": 136.546498124444,
+        "phase_events": []
+      },
+      {
+        "case_id": "j1-test-052",
+        "reason": "phase_deadline",
+        "final_phase": "navigation",
+        "horizontal_distance_m": 0.33236029202531364,
+        "heading_error_deg": 138.9523985730543,
+        "phase_events": []
+      },
+      {
+        "case_id": "j1-test-063",
+        "reason": "phase_deadline",
+        "final_phase": "heading",
+        "horizontal_distance_m": 0.06489241341583957,
+        "heading_error_deg": 17.90881451610765,
+        "phase_events": [
+          {
+            "tick": 5760,
+            "from": "navigation",
+            "to": "heading",
+            "reason": "position_settled",
+            "source": "external_pose_mock",
+            "physics_state_unchanged": true,
+            "neural_tick_preserved": 1700
+          }
+        ]
+      },
+      {
+        "case_id": "j1-test-066",
+        "reason": "phase_deadline",
+        "final_phase": "heading",
+        "horizontal_distance_m": 0.12067463881079811,
+        "heading_error_deg": 6.675041371683271,
+        "phase_events": [
+          {
+            "tick": 6336,
+            "from": "navigation",
+            "to": "heading",
+            "reason": "position_settled",
+            "source": "external_pose_mock",
+            "physics_state_unchanged": true,
+            "neural_tick_preserved": 1892
+          }
+        ]
+      },
+      {
+        "case_id": "j1-test-069",
+        "reason": "phase_deadline",
+        "final_phase": "navigation",
+        "horizontal_distance_m": 0.15328464605077113,
+        "heading_error_deg": 124.38393797327349,
+        "phase_events": []
+      },
+      {
+        "case_id": "j1-test-114",
+        "reason": "phase_deadline",
+        "final_phase": "navigation",
+        "horizontal_distance_m": 0.06442215067634256,
+        "heading_error_deg": 44.88600624306548,
+        "phase_events": []
+      },
+      {
+        "case_id": "j1-test-120",
+        "reason": "phase_deadline",
+        "final_phase": "navigation",
+        "horizontal_distance_m": 0.5316657734700481,
+        "heading_error_deg": 162.91340051682067,
+        "phase_events": []
+      },
+      {
+        "case_id": "j1-test-128",
+        "reason": "phase_deadline",
+        "final_phase": "navigation",
+        "horizontal_distance_m": 0.11490800707328892,
+        "heading_error_deg": 52.57599924615032,
+        "phase_events": []
+      },
+      {
+        "case_id": "j1-test-137",
+        "reason": "phase_deadline",
+        "final_phase": "navigation",
+        "horizontal_distance_m": 0.16243974379503107,
+        "heading_error_deg": 36.05263333152759,
+        "phase_events": []
+      },
+      {
+        "case_id": "j1-test-146",
+        "reason": "phase_deadline",
+        "final_phase": "navigation",
+        "horizontal_distance_m": 0.02316122067291154,
+        "heading_error_deg": 121.7532359845392,
+        "phase_events": []
+      },
+      {
+        "case_id": "j1-test-188",
+        "reason": "phase_deadline",
+        "final_phase": "heading",
+        "horizontal_distance_m": 0.10111638816134573,
+        "heading_error_deg": 26.944722006983614,
+        "phase_events": [
+          {
+            "tick": 5088,
+            "from": "navigation",
+            "to": "heading",
+            "reason": "position_settled",
+            "source": "external_pose_mock",
+            "physics_state_unchanged": true,
+            "neural_tick_preserved": 1476
+          }
+        ]
+      },
+      {
+        "case_id": "j1-test-194",
+        "reason": "phase_deadline",
+        "final_phase": "navigation",
+        "horizontal_distance_m": 0.23701475316881734,
+        "heading_error_deg": 69.16193913865584,
+        "phase_events": []
+      },
+      {
+        "case_id": "j1-test-198",
+        "reason": "phase_deadline",
+        "final_phase": "heading",
+        "horizontal_distance_m": 0.06032567966825669,
+        "heading_error_deg": 36.80132542034666,
+        "phase_events": [
+          {
+            "tick": 2832,
+            "from": "navigation",
+            "to": "heading",
+            "reason": "position_settled",
+            "source": "external_pose_mock",
+            "physics_state_unchanged": true,
+            "neural_tick_preserved": 724
+          }
+        ]
+      },
+      {
+        "case_id": "j1-test-199",
+        "reason": "phase_deadline",
+        "final_phase": "navigation",
+        "horizontal_distance_m": 0.037883394986119805,
+        "heading_error_deg": 109.10743289493688,
+        "phase_events": []
+      },
+      {
+        "case_id": "j1-test-223",
+        "reason": "phase_deadline",
+        "final_phase": "navigation",
+        "horizontal_distance_m": 0.2371882911458714,
+        "heading_error_deg": 140.4087535818965,
+        "phase_events": []
+      },
+      {
+        "case_id": "j1-test-233",
+        "reason": "phase_deadline",
+        "final_phase": "navigation",
+        "horizontal_distance_m": 0.21231633177266207,
+        "heading_error_deg": 170.89905387151535,
+        "phase_events": []
+      },
+      {
+        "case_id": "j1-test-253",
+        "reason": "phase_deadline",
+        "final_phase": "navigation",
+        "horizontal_distance_m": 0.18863199858940372,
+        "heading_error_deg": 127.85553020475056,
+        "phase_events": []
+      },
+      {
+        "case_id": "j1-test-259",
+        "reason": "phase_deadline",
+        "final_phase": "heading",
+        "horizontal_distance_m": 0.03615155647507385,
+        "heading_error_deg": 25.675105836329625,
+        "phase_events": [
+          {
+            "tick": 7248,
+            "from": "navigation",
+            "to": "heading",
+            "reason": "position_settled",
+            "source": "external_pose_mock",
+            "physics_state_unchanged": true,
+            "neural_tick_preserved": 2196
+          }
+        ]
+      },
+      {
+        "case_id": "j1-test-279",
+        "reason": "phase_deadline",
+        "final_phase": "navigation",
+        "horizontal_distance_m": 0.3675610734273247,
+        "heading_error_deg": 49.23283674777817,
+        "phase_events": []
+      },
+      {
+        "case_id": "j1-test-296",
+        "reason": "phase_deadline",
+        "final_phase": "navigation",
+        "horizontal_distance_m": 0.2196820577692941,
+        "heading_error_deg": 161.65611471721996,
+        "phase_events": []
+      }
+    ]
+  },
+  "33": {
+    "reasons": {
+      "phase_deadline": 22
+    },
+    "final_phase": {
+      "navigation": 19,
+      "heading": 3
+    },
+    "cases": [
+      {
+        "case_id": "j1-test-005",
+        "reason": "phase_deadline",
+        "final_phase": "navigation",
+        "horizontal_distance_m": 0.19341505664028863,
+        "heading_error_deg": 134.06625132348202,
+        "phase_events": []
+      },
+      {
+        "case_id": "j1-test-020",
+        "reason": "phase_deadline",
+        "final_phase": "navigation",
+        "horizontal_distance_m": 0.27201434904887306,
+        "heading_error_deg": 130.49796120077085,
+        "phase_events": []
+      },
+      {
+        "case_id": "j1-test-021",
+        "reason": "phase_deadline",
+        "final_phase": "navigation",
+        "horizontal_distance_m": 0.09579044269474232,
+        "heading_error_deg": 100.37939919201216,
+        "phase_events": []
+      },
+      {
+        "case_id": "j1-test-048",
+        "reason": "phase_deadline",
+        "final_phase": "heading",
+        "horizontal_distance_m": 0.035487014150519566,
+        "heading_error_deg": 8.43401144689711,
+        "phase_events": [
+          {
+            "tick": 4032,
+            "from": "navigation",
+            "to": "heading",
+            "reason": "position_settled",
+            "source": "external_pose_mock",
+            "physics_state_unchanged": true,
+            "neural_tick_preserved": 1124
+          }
+        ]
+      },
+      {
+        "case_id": "j1-test-051",
+        "reason": "phase_deadline",
+        "final_phase": "navigation",
+        "horizontal_distance_m": 0.2215720043769154,
+        "heading_error_deg": 37.10804044486004,
+        "phase_events": []
+      },
+      {
+        "case_id": "j1-test-058",
+        "reason": "phase_deadline",
+        "final_phase": "navigation",
+        "horizontal_distance_m": 0.4133041723631895,
+        "heading_error_deg": 123.30102725429576,
+        "phase_events": []
+      },
+      {
+        "case_id": "j1-test-073",
+        "reason": "phase_deadline",
+        "final_phase": "heading",
+        "horizontal_distance_m": 0.035829116044537056,
+        "heading_error_deg": 7.685507595392292,
+        "phase_events": [
+          {
+            "tick": 5712,
+            "from": "navigation",
+            "to": "heading",
+            "reason": "position_settled",
+            "source": "external_pose_mock",
+            "physics_state_unchanged": true,
+            "neural_tick_preserved": 1684
+          }
+        ]
+      },
+      {
+        "case_id": "j1-test-079",
+        "reason": "phase_deadline",
+        "final_phase": "navigation",
+        "horizontal_distance_m": 0.0568078462500735,
+        "heading_error_deg": 131.06645007313307,
+        "phase_events": []
+      },
+      {
+        "case_id": "j1-test-084",
+        "reason": "phase_deadline",
+        "final_phase": "navigation",
+        "horizontal_distance_m": 0.1746352367364619,
+        "heading_error_deg": 122.90022596677032,
+        "phase_events": []
+      },
+      {
+        "case_id": "j1-test-087",
+        "reason": "phase_deadline",
+        "final_phase": "navigation",
+        "horizontal_distance_m": 0.18997763686306693,
+        "heading_error_deg": 53.595433140224465,
+        "phase_events": []
+      },
+      {
+        "case_id": "j1-test-091",
+        "reason": "phase_deadline",
+        "final_phase": "navigation",
+        "horizontal_distance_m": 0.10176768649681373,
+        "heading_error_deg": 88.92793605080054,
+        "phase_events": []
+      },
+      {
+        "case_id": "j1-test-098",
+        "reason": "phase_deadline",
+        "final_phase": "navigation",
+        "horizontal_distance_m": 0.22161556407624883,
+        "heading_error_deg": 62.987147467613866,
+        "phase_events": []
+      },
+      {
+        "case_id": "j1-test-123",
+        "reason": "phase_deadline",
+        "final_phase": "heading",
+        "horizontal_distance_m": 0.11801218690156065,
+        "heading_error_deg": 21.32548468788557,
+        "phase_events": [
+          {
+            "tick": 5136,
+            "from": "navigation",
+            "to": "heading",
+            "reason": "position_settled",
+            "source": "external_pose_mock",
+            "physics_state_unchanged": true,
+            "neural_tick_preserved": 1492
+          }
+        ]
+      },
+      {
+        "case_id": "j1-test-137",
+        "reason": "phase_deadline",
+        "final_phase": "navigation",
+        "horizontal_distance_m": 0.39082677042625047,
+        "heading_error_deg": 36.05448162061869,
+        "phase_events": []
+      },
+      {
+        "case_id": "j1-test-140",
+        "reason": "phase_deadline",
+        "final_phase": "navigation",
+        "horizontal_distance_m": 0.4457431206155445,
+        "heading_error_deg": 113.59172466995348,
+        "phase_events": []
+      },
+      {
+        "case_id": "j1-test-152",
+        "reason": "phase_deadline",
+        "final_phase": "navigation",
+        "horizontal_distance_m": 0.2770620400329057,
+        "heading_error_deg": 56.45485099536358,
+        "phase_events": []
+      },
+      {
+        "case_id": "j1-test-189",
+        "reason": "phase_deadline",
+        "final_phase": "navigation",
+        "horizontal_distance_m": 0.25572823572830794,
+        "heading_error_deg": 155.7136503949116,
+        "phase_events": []
+      },
+      {
+        "case_id": "j1-test-229",
+        "reason": "phase_deadline",
+        "final_phase": "navigation",
+        "horizontal_distance_m": 0.23609979990003566,
+        "heading_error_deg": 172.8614575980415,
+        "phase_events": []
+      },
+      {
+        "case_id": "j1-test-234",
+        "reason": "phase_deadline",
+        "final_phase": "navigation",
+        "horizontal_distance_m": 0.17078573039984846,
+        "heading_error_deg": 43.7622180703667,
+        "phase_events": []
+      },
+      {
+        "case_id": "j1-test-238",
+        "reason": "phase_deadline",
+        "final_phase": "navigation",
+        "horizontal_distance_m": 0.3768186055766341,
+        "heading_error_deg": 148.4737038807259,
+        "phase_events": []
+      },
+      {
+        "case_id": "j1-test-276",
+        "reason": "phase_deadline",
+        "final_phase": "navigation",
+        "horizontal_distance_m": 0.11044183680517554,
+        "heading_error_deg": 178.25506530334312,
+        "phase_events": []
+      },
+      {
+        "case_id": "j1-test-294",
+        "reason": "phase_deadline",
+        "final_phase": "navigation",
+        "horizontal_distance_m": 0.1850168386965892,
+        "heading_error_deg": 144.358149812063,
+        "phase_events": []
+      }
+    ]
+  }
+}

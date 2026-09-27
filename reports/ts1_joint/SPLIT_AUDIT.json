@@ -1,0 +1,46 @@
+{
+  "new_unique_case_seeds": 402,
+  "same_physical_seed_used_for_opposite_instruction_pairs": true,
+  "checked": [
+    {
+      "path": "reports/ts1_c1/cases.json",
+      "historical_unique_seeds": 500,
+      "intersection": []
+    },
+    {
+      "path": "reports/ts1_heading/cases.json",
+      "historical_unique_seeds": 502,
+      "intersection": []
+    },
+    {
+      "path": "runs/tellosim-sdk9/c1-s22/provenance.json",
+      "historical_unique_seeds": 96,
+      "intersection": []
+    },
+    {
+      "path": "runs/tellosim-sdk9/c1-s33/provenance.json",
+      "historical_unique_seeds": 94,
+      "intersection": []
+    },
+    {
+      "path": "runs/tellosim-sdk9/c1-s11/provenance.json",
+      "historical_unique_seeds": 108,
+      "intersection": []
+    },
+    {
+      "path": "runs/tellosim-sdk9/heading-s22/provenance.json",
+      "historical_unique_seeds": 173,
+      "intersection": []
+    },
+    {
+      "path": "runs/tellosim-sdk9/heading-s33/provenance.json",
+      "historical_unique_seeds": 187,
+      "intersection": []
+    },
+    {
+      "path": "runs/tellosim-sdk9/heading-s11/provenance.json",
+      "historical_unique_seeds": 175,
+      "intersection": []
+    }
+  ]
+}
