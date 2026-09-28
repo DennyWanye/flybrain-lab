@@ -1,0 +1,59 @@
+ M artifacts/golden_episode/GOLDEN_EPISODE_REPORT.md
+ M configs/tellosim/world_obstacles_demo.json
+ M configs/tellosim/world_room6.json
+ M flydrone/brain.py
+ M flydrone/tellosim/__main__.py
+ M flydrone/tellosim/env.py
+ M flydrone/tellosim/golden.py
+ M flydrone/tellosim/physics/world.py
+ M flydrone/tellosim/sdk/codec.py
+ M flydrone/tellosim/sim.py
+ M flyview/server.py
+ M flyview/static/index.html
+ M reports/GoldenEpisode_FAILURES.md
+ M reports/GoldenEpisode_TEST_RESULTS.md
+?? artifacts/golden_episode_verified/
+?? artifacts/tellosim_visual/
+?? configs/tellosim/golden_evaluation.json
+?? contracts/vis/golden_view.md
+?? contracts/vis/tellosim_v2.md
+?? flydrone/tellosim/physics/rigid.py
+?? flydrone/tellosim/replay.py
+?? flydrone/tellosim/sdk/channels.py
+?? flydrone/tellosim/sdk/loopback_gateway.py
+?? flydrone/tellosim/sdk/state_codec.py
+?? flydrone/tellosim/training/
+?? flydrone/tellosim/view_export.py
+?? flydrone/tellosim/visual.py
+?? flydrone/tellosim/visual_fixtures.py
+?? flyview/static/tellosim.css
+?? flyview/static/tellosim.html
+?? flyview/static/tellosim.js
+?? flyview/static/vendor/
+?? flyview/tellosim_api.py
+?? reports/GoldenEpisode_ACCEPTANCE.json
+?? reports/GoldenEpisode_PROVENANCE.json
+?? reports/GoldenEpisode_PYTEST.txt
+?? reports/GoldenEpisode_UI_ALIGNMENT.json
+?? reports/golden_evaluation/
+?? reports/golden_evaluation_final/
+?? reports/golden_ui/
+?? reports/sdk9_boundary/
+?? reports/sdk9_c0/
+?? reports/sdk9_learning/
+?? reports/sdk9_training/
+?? reports/sdk9_warmstart/
+?? reports/tellosim_visual/
+?? reports/ts1_c1/
+?? reports/ts1_rigid_v2/
+?? reports/vis/tellosim/
+?? tests/fixtures/
+?? tests/flydrone/test_c0_campaign.py
+?? tests/flydrone/test_c1_reliability.py
+?? tests/flydrone/test_golden_replay.py
+?? tests/flydrone/test_rigid_training.py
+?? tests/flydrone/test_sdk9_training.py
+?? tests/flydrone/test_sdk_acceptance_remaining.py
+?? tests/flydrone/test_sdk_transport.py
+?? tests/flydrone/test_view_export_identity.py
+?? tests/flydrone/test_visual_simulation.py

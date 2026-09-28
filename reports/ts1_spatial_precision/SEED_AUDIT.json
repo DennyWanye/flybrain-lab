@@ -1,0 +1,185 @@
+{
+  "status": "PASS",
+  "new_heldout_unique_seeds": 428,
+  "prior_unique_seeds": 11369,
+  "overlap": 0,
+  "sources": [
+    {
+      "file": "reports/ts1_heading/cases.json",
+      "seeds": 502
+    },
+    {
+      "file": "reports/ts1_stability/cases.json",
+      "seeds": 402
+    },
+    {
+      "file": "reports/ts1_altitude_refined/cases.json",
+      "seeds": 426
+    },
+    {
+      "file": "reports/ts1_mlp_pilot/cases.json",
+      "seeds": 60
+    },
+    {
+      "file": "reports/ts1_c1/cases.json",
+      "seeds": 500
+    },
+    {
+      "file": "reports/ts1_altitude/cases.json",
+      "seeds": 426
+    },
+    {
+      "file": "reports/ts1_spatial_development2/cases.json",
+      "seeds": 24
+    },
+    {
+      "file": "reports/ts1_spatial_refined/cases.json",
+      "seeds": 428
+    },
+    {
+      "file": "reports/ts1_spatial/cases.json",
+      "seeds": 428
+    },
+    {
+      "file": "reports/ts1_joint_refined/cases.json",
+      "seeds": 402
+    },
+    {
+      "file": "reports/ts1_rigid_v2/cases.json",
+      "seeds": 400
+    },
+    {
+      "file": "reports/ts1_robust/cases.json",
+      "seeds": 402
+    },
+    {
+      "file": "reports/ts1_joint/cases.json",
+      "seeds": 402
+    },
+    {
+      "file": "runs/tellosim-sdk9/heading-s22/provenance.json",
+      "seeds": 173
+    },
+    {
+      "file": "runs/tellosim-sdk9/heading-s33/provenance.json",
+      "seeds": 187
+    },
+    {
+      "file": "runs/tellosim-sdk9/stability-s11/provenance.json",
+      "seeds": 169
+    },
+    {
+      "file": "runs/tellosim-sdk9/altitude-refined-s11/provenance.json",
+      "seeds": 474
+    },
+    {
+      "file": "runs/tellosim-sdk9/spatial-s11/provenance.json",
+      "seeds": 116
+    },
+    {
+      "file": "runs/tellosim-sdk9/altitude-refined-s22/provenance.json",
+      "seeds": 463
+    },
+    {
+      "file": "runs/tellosim-sdk9/spatial-refined-smoke-s11/provenance.json",
+      "seeds": 53
+    },
+    {
+      "file": "runs/tellosim-sdk9/spatial-refined-s33/provenance.json",
+      "seeds": 214
+    },
+    {
+      "file": "runs/tellosim-sdk9/stability-s33/provenance.json",
+      "seeds": 177
+    },
+    {
+      "file": "runs/tellosim-sdk9/c1-s22/provenance.json",
+      "seeds": 96
+    },
+    {
+      "file": "runs/tellosim-sdk9/stability-smoke-s11/provenance.json",
+      "seeds": 32
+    },
+    {
+      "file": "runs/tellosim-sdk9/heading-s11/provenance.json",
+      "seeds": 175
+    },
+    {
+      "file": "runs/tellosim-sdk9/joint-refined-s11/provenance.json",
+      "seeds": 454
+    },
+    {
+      "file": "runs/tellosim-sdk9/altitude-s33/provenance.json",
+      "seeds": 312
+    },
+    {
+      "file": "runs/tellosim-sdk9/altitude-s22/provenance.json",
+      "seeds": 310
+    },
+    {
+      "file": "runs/tellosim-sdk9/joint-refined-smoke-s11/provenance.json",
+      "seeds": 8
+    },
+    {
+      "file": "runs/tellosim-sdk9/direct-mlp-smoke-s11/provenance.json",
+      "seeds": 32
+    },
+    {
+      "file": "runs/tellosim-sdk9/c1-s33/provenance.json",
+      "seeds": 94
+    },
+    {
+      "file": "runs/tellosim-sdk9/spatial-s22/provenance.json",
+      "seeds": 114
+    },
+    {
+      "file": "runs/tellosim-sdk9/c1-s11/provenance.json",
+      "seeds": 108
+    },
+    {
+      "file": "runs/tellosim-sdk9/altitude-refined-smoke-s11/provenance.json",
+      "seeds": 32
+    },
+    {
+      "file": "runs/tellosim-sdk9/altitude-refined-s33/provenance.json",
+      "seeds": 456
+    },
+    {
+      "file": "runs/tellosim-sdk9/spatial-smoke-s11/provenance.json",
+      "seeds": 51
+    },
+    {
+      "file": "runs/tellosim-sdk9/spatial-refined-s22/provenance.json",
+      "seeds": 211
+    },
+    {
+      "file": "runs/tellosim-sdk9/altitude-s11/provenance.json",
+      "seeds": 310
+    },
+    {
+      "file": "runs/tellosim-sdk9/joint-refined-s22/provenance.json",
+      "seeds": 443
+    },
+    {
+      "file": "runs/tellosim-sdk9/direct-mlp-s11/provenance.json",
+      "seeds": 518
+    },
+    {
+      "file": "runs/tellosim-sdk9/altitude-smoke-s11/provenance.json",
+      "seeds": 32
+    },
+    {
+      "file": "runs/tellosim-sdk9/spatial-refined-s11/provenance.json",
+      "seeds": 214
+    },
+    {
+      "file": "runs/tellosim-sdk9/stability-s22/provenance.json",
+      "seeds": 169
+    },
+    {
+      "file": "runs/tellosim-sdk9/joint-refined-s33/provenance.json",
+      "seeds": 470
+    }
+  ],
+  "note": "Paired instructions intentionally share seed within their new split; complete actual training provenance audited after fitting."
+}

@@ -1,0 +1,22 @@
+[
+  {
+    "case": 0,
+    "reason": "success",
+    "seconds": 20.1
+  },
+  {
+    "case": 1,
+    "reason": "success",
+    "seconds": 35.6
+  },
+  {
+    "case": 2,
+    "reason": "success",
+    "seconds": 13.0
+  },
+  {
+    "case": 3,
+    "reason": "success",
+    "seconds": 30.9
+  }
+]

@@ -1,0 +1,77 @@
+{
+  "all_passed": true,
+  "runs": [
+    {
+      "run_id": "spatial-refined-s11-sealed_test-0",
+      "chunks": 41,
+      "frames": 666,
+      "outcome": "success"
+    },
+    {
+      "run_id": "spatial-refined-s11-sealed_test-1",
+      "chunks": 36,
+      "frames": 553,
+      "outcome": "success"
+    },
+    {
+      "run_id": "spatial-refined-s11-sealed_test-2",
+      "chunks": 54,
+      "frames": 908,
+      "outcome": "success"
+    },
+    {
+      "run_id": "spatial-refined-s11-sealed_test-3",
+      "chunks": 67,
+      "frames": 1141,
+      "outcome": "success"
+    },
+    {
+      "run_id": "spatial-refined-s22-sealed_test-0",
+      "chunks": 52,
+      "frames": 857,
+      "outcome": "success"
+    },
+    {
+      "run_id": "spatial-refined-s22-sealed_test-1",
+      "chunks": 33,
+      "frames": 491,
+      "outcome": "success"
+    },
+    {
+      "run_id": "spatial-refined-s22-sealed_test-2",
+      "chunks": 41,
+      "frames": 660,
+      "outcome": "success"
+    },
+    {
+      "run_id": "spatial-refined-s22-sealed_test-3",
+      "chunks": 52,
+      "frames": 850,
+      "outcome": "success"
+    },
+    {
+      "run_id": "spatial-refined-s33-sealed_test-0",
+      "chunks": 38,
+      "frames": 600,
+      "outcome": "success"
+    },
+    {
+      "run_id": "spatial-refined-s33-sealed_test-1",
+      "chunks": 40,
+      "frames": 653,
+      "outcome": "success"
+    },
+    {
+      "run_id": "spatial-refined-s33-sealed_test-2",
+      "chunks": 48,
+      "frames": 776,
+      "outcome": "success"
+    },
+    {
+      "run_id": "spatial-refined-s33-sealed_test-3",
+      "chunks": 56,
+      "frames": 939,
+      "outcome": "success"
+    }
+  ]
+}

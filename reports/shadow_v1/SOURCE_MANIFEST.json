@@ -1,0 +1,9 @@
+{
+  "flydrone/shadow/runtime.py": "0369f69895e3bc3e01ce2b89907c2995b3a63c3cc43483c5bebc87f3dc89b24c",
+  "flydrone/shadow/inputs.py": "91dcd67cb3b568fb1984ce5e8609cc8b188ecc362acd261812d44988ceb82682",
+  "flydrone/shadow/__init__.py": "43aca88572387bcad1d9e9ea97ca177378e947dc3bd35a8cfffc3d972c0a2097",
+  "flydrone/shadow/__main__.py": "b79b84d1831ea00d04010f15fc8962433eef6e45b1f243873ebd4aab6298c399",
+  "flydrone/shadow/recording.py": "60c64513de4b3cb65e7c9171885e1b594a516ac234af0c62cc9a9a99b77abc61",
+  "tests/flydrone/test_shadow_v1.py": "9ab5f36c5037dd4734ea3314be40dfd129f25640d5d1686285708adce61ae5fe",
+  "docs/shadow_v1.md": "b019a6b18c0e6d19efed84d82675ace4513c9ce686d862c85149a005ec98a411"
+}

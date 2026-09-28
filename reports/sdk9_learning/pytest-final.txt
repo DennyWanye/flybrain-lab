@@ -1,0 +1,12 @@
+..............................                                           [100%]
+=============================== warnings summary ===============================
+tests/flydrone/test_brain.py::test_brain_shapes_and_independent_reset
+  /home/denny/projects/flybrain_lab_4spark_v0_1/flydrone/brain.py:86: UserWarning: Sparse invariant checks are implicitly disabled. Memory errors (e.g. SEGFAULT) will occur when operating on a sparse tensor which violates the invariants, but checks incur performance overhead. To silence this warning, explicitly opt in or out. See `torch.sparse.check_sparse_tensor_invariants.__doc__` for guidance.  (Triggered internally at /__w/pytorch/pytorch/aten/src/ATen/Context.cpp:848.)
+    self.w = torch.sparse_csr_tensor(torch.as_tensor(w.indptr, dtype=torch.int64, device=self.device),
+
+tests/flydrone/test_brain.py::test_brain_shapes_and_independent_reset
+  /home/denny/projects/flybrain_lab_4spark_v0_1/flydrone/brain.py:86: UserWarning: Sparse CSR tensor support is in beta state. If you miss a functionality in the sparse tensor support, please submit a feature request to https://github.com/pytorch/pytorch/issues. (Triggered internally at /__w/pytorch/pytorch/aten/src/ATen/SparseCsrTensorImpl.cpp:49.)
+    self.w = torch.sparse_csr_tensor(torch.as_tensor(w.indptr, dtype=torch.int64, device=self.device),
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+30 passed, 2 warnings in 7.34s

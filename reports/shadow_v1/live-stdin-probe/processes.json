@@ -1,0 +1,71 @@
+[
+  {
+    "pid": 39956,
+    "cmd": [
+      "/home/denny/projects/flybrain-env/bin/python",
+      "-m",
+      "flydrone.shadow",
+      "shadow",
+      "--root",
+      "/home/denny/projects/flybrain_lab_4spark_v0_1",
+      "--input",
+      "-",
+      "--profile",
+      "/home/denny/projects/flybrain_lab_4spark_v0_1/reports/shadow_v1/cli-probe/profile.json",
+      "--output",
+      "/home/denny/projects/flybrain_lab_4spark_v0_1/reports/shadow_v1/live-stdin-probe/valid",
+      "--idle-timeout-s",
+      "1"
+    ],
+    "cwd": "/home/denny/projects/flybrain_lab_4spark_v0_1",
+    "returncode": 0,
+    "exited": true,
+    "samples": 3
+  },
+  {
+    "pid": 40002,
+    "cmd": [
+      "/home/denny/projects/flybrain-env/bin/python",
+      "-m",
+      "flydrone.shadow",
+      "shadow",
+      "--root",
+      "/home/denny/projects/flybrain_lab_4spark_v0_1",
+      "--input",
+      "-",
+      "--profile",
+      "/home/denny/projects/flybrain_lab_4spark_v0_1/reports/shadow_v1/cli-probe/profile.json",
+      "--output",
+      "/home/denny/projects/flybrain_lab_4spark_v0_1/reports/shadow_v1/live-stdin-probe/stall",
+      "--idle-timeout-s",
+      "1"
+    ],
+    "cwd": "/home/denny/projects/flybrain_lab_4spark_v0_1",
+    "returncode": 1,
+    "exited": true,
+    "samples": 1
+  },
+  {
+    "pid": 40051,
+    "cmd": [
+      "/home/denny/projects/flybrain-env/bin/python",
+      "-m",
+      "flydrone.shadow",
+      "shadow",
+      "--root",
+      "/home/denny/projects/flybrain_lab_4spark_v0_1",
+      "--input",
+      "-",
+      "--profile",
+      "/home/denny/projects/flybrain_lab_4spark_v0_1/reports/shadow_v1/cli-probe/profile.json",
+      "--output",
+      "/home/denny/projects/flybrain_lab_4spark_v0_1/reports/shadow_v1/live-stdin-probe/backlog",
+      "--idle-timeout-s",
+      "1"
+    ],
+    "cwd": "/home/denny/projects/flybrain_lab_4spark_v0_1",
+    "returncode": 1,
+    "exited": true,
+    "samples": 0
+  }
+]

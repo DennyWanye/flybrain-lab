@@ -1,0 +1,12 @@
+{
+  "stage": {
+    "pid": 33889,
+    "returncode": 0,
+    "absent": true
+  },
+  "extracted": {
+    "pid": 34000,
+    "returncode": 0,
+    "absent": true
+  }
+}

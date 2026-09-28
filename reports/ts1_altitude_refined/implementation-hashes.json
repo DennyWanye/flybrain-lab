@@ -1,0 +1,8 @@
+{
+  "flydrone/tellosim/training/altitude_refined.py": "92d81bba55e49cd1465172c410120755d0950204166cf997aab56320202dd966",
+  "flydrone/tellosim/training/altitude_refined_campaign.py": "e0c1ade6b3e6562e8785e8bafcf0995063df595bc0a51f62038ff5a114c3e708",
+  "tests/flydrone/test_altitude_refined_skill.py": "a1f5eb314b2b6639a5de9b2aa5fef2b8667e5d82601e1468e1e82323ac580655",
+  "reports/ts1_altitude_refined/development_probe.py": "70b68ea6f46e4452644264136fa59c13a280d88ac5f07833e4f5a2b4d56375e4",
+  "reports/ts1_altitude_refined/finish_evidence.py": "4e34e076143ee9ae2b9be8eed14bed35f0fc21ce4f0cd4065a8ff4a4ba5af14a",
+  "reports/ts1_altitude_refined/run_campaign.py": "b4d920a8800b7c57384c0e301858f83bf069519e6a89787df2364972b5f5713d"
+}

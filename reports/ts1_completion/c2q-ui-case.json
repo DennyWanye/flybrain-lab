@@ -1,0 +1,26 @@
+{
+  "case": {
+    "case_id": "c2q-ui-development-0",
+    "seed": 510000000,
+    "start": [
+      1.7364323019380472,
+      0.12068633624773684,
+      1.0
+    ],
+    "goal": [
+      -0.11975033256043455,
+      1.2680390565016482,
+      0.6242292274272349
+    ],
+    "noise": 0.002,
+    "delay": 1,
+    "dropout": 0.0,
+    "reply_loss": 0.0,
+    "curriculum": "C2",
+    "initial_yaw_rad": -2.07736170387449,
+    "target_yaw_rad": 2.5273519358803735,
+    "disturbance_profile": "combined"
+  },
+  "scope": "new UI diagnostic only, not formal score; wall-clock pacing outside simulator and neural update",
+  "wall_pacing_s_per_sample": 0.15
+}

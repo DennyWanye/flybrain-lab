@@ -1,0 +1,15 @@
+{
+  "cases": 128,
+  "required_rule_successes": 127,
+  "new_seed_range": [
+    530000000,
+    530000127
+  ],
+  "half_command_height_stratification": 64,
+  "formal_not_started": true,
+  "neural_development_required": {
+    "cases": 32,
+    "successes": 30
+  },
+  "selection": "fixed transferred C2Q weights; no selection"
+}

@@ -1,0 +1,15 @@
+{
+  "status": "PASS",
+  "run_id": "ts1-long500-v3",
+  "wire": "forward 500",
+  "speed_cm_s": 10,
+  "execution_ticks": 6120,
+  "duration_s": 51.0,
+  "trajectory_chunks": 29,
+  "final_position_m": [
+    2.4964394191735004,
+    1.847702909986733e-15,
+    0.9990856801869998
+  ],
+  "buffers_released": true
+}

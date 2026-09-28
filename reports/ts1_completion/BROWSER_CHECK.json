@@ -1,0 +1,50 @@
+{
+  "status": "PASS",
+  "method": "Codex in-app browser; semantic keyboard activation, real pointer drag, actual page close and reopen",
+  "checks": {
+    "latest_V1R_summary": true,
+    "historical_V1_failure_visible": true,
+    "MLP_pilot_60_60_visible": true,
+    "seek_8s": true,
+    "play_8_to_13_90s": true,
+    "zero_canvas_fps_play_6_to_10_47s": true,
+    "pause_stable_10_49s": true,
+    "fps_0_30_60_selected": true,
+    "camera_pan_target_before": "0.000,0.000,1.000",
+    "camera_pan_target_after": "-0.744,-0.385,1.291",
+    "camera_reset_target": "0.000,0.000,1.000",
+    "switch_down_run": "altitude-refined-s11-sealed_test-7",
+    "close_ui_run": "manual-bde5689804a5",
+    "last_visible_before_close_s": 40.1,
+    "after_reconnect_s": 85.9,
+    "closed_outcome_label": "模拟会话已结束（非设备停止回执）",
+    "long500_seek_s": [
+      50,
+      57.6
+    ],
+    "long500_duration_s": 57.6,
+    "C2_real_neural_live": {
+      "run_id": "spatial-refined-s11-sealed_test-3",
+      "paused_display_s": 35.9,
+      "backend_while_paused_s": 40.5,
+      "backend_brain_tick_while_paused": 1400,
+      "resumed_display_s": 44.0,
+      "last_visible_before_disconnect_s": 48.2,
+      "backend_disconnected_s": 50.5,
+      "backend_brain_tick_disconnected": 1800,
+      "fps_values": [
+        0,
+        30,
+        60
+      ]
+    }
+  },
+  "notes": [
+    "Mouse button automation did not activate consistently; keyboard activation succeeded. Canvas pointer drag was verified."
+  ],
+  "screenshots": [
+    "TS1_browser_close_semantics.png",
+    "TS1_browser_long_replay.png",
+    "TS1_browser_C2_replay.png"
+  ]
+}

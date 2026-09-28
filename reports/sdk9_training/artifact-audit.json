@@ -1,0 +1,76 @@
+{
+  "training_options": 128,
+  "base_ticks": 2457,
+  "physics_ticks_per_base": 12,
+  "brain_substeps_per_base": 4,
+  "reward_reconstruction_first_8": true,
+  "recordings": [
+    {
+      "run_id": "sdk9-pilot-v2-20260926-fault-diagnostic-0",
+      "streams": {
+        "trajectory": 7909,
+        "transition": 801,
+        "neural": 801,
+        "operation": 204
+      },
+      "complete": true,
+      "sha256_valid": true,
+      "outcome": "task_deadline"
+    },
+    {
+      "run_id": "sdk9-pilot-v2-20260926-rule-0",
+      "streams": {
+        "trajectory": 3193,
+        "operation": 30,
+        "transition": 214,
+        "neural": 214
+      },
+      "complete": true,
+      "sha256_valid": true,
+      "outcome": "success"
+    },
+    {
+      "run_id": "sdk9-pilot-v2-20260926-trained-0",
+      "streams": {
+        "trajectory": 7909,
+        "transition": 801,
+        "neural": 801,
+        "operation": 204
+      },
+      "complete": true,
+      "sha256_valid": true,
+      "outcome": "task_deadline"
+    },
+    {
+      "run_id": "sdk9-pilot-v2-20260926-training-0",
+      "streams": {
+        "trajectory": 7981,
+        "transition": 659,
+        "neural": 659,
+        "operation": 64
+      },
+      "complete": true,
+      "sha256_valid": true,
+      "outcome": "task_deadline"
+    },
+    {
+      "run_id": "sdk9-pilot-v2-20260926-untrained-0",
+      "streams": {
+        "trajectory": 6277,
+        "transition": 509,
+        "neural": 509,
+        "operation": 48
+      },
+      "complete": true,
+      "sha256_valid": true,
+      "outcome": "collision"
+    }
+  ],
+  "golden": [
+    {
+      "path": "artifacts/golden_episode_verified/replay.jsonl",
+      "sha256": "08bebe5164ae67a8b66577d17c88552a5d6aed39e5ca386977d5d05ea2e04a7e"
+    }
+  ],
+  "browser_current_ui": "NOT_VERIFIED_POLICY_BLOCKED"
+}

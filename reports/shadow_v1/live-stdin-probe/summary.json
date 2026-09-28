@@ -1,0 +1,8 @@
+{
+  "live_normalized_stdin_pass": true,
+  "wall_backlog_stopped_before_neural_step": true,
+  "stall_timeout_stopped_session": true,
+  "hardware_data_used": false,
+  "processes_exited": true,
+  "REAL_FLIGHT_READY": false
+}

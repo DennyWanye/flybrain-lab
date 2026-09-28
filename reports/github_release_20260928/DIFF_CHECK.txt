@@ -1,0 +1,533 @@
+flydrone/tellosim/visual_anchored.py:110: new blank line at EOF.
+reports/sdk9_c0/tracked-source.diff:8: trailing whitespace.
++ 
+reports/sdk9_c0/tracked-source.diff:16: trailing whitespace.
++ 
+reports/sdk9_c0/tracked-source.diff:57: trailing whitespace.
++ 
+reports/sdk9_c0/tracked-source.diff:136: trailing whitespace.
++ 
+reports/sdk9_c0/tracked-source.diff:141: trailing whitespace.
++ 
+reports/sdk9_c0/tracked-source.diff:142: trailing whitespace.
++ 
+reports/sdk9_c0/tracked-source.diff:189: trailing whitespace.
++ 
+reports/sdk9_c0/tracked-source.diff:200: trailing whitespace.
++ 
+reports/sdk9_c0/tracked-source.diff:245: trailing whitespace.
++ 
+reports/sdk9_c0/tracked-source.diff:260: trailing whitespace.
++ 
+reports/sdk9_c0/tracked-source.diff:430: trailing whitespace.
++ 
+reports/sdk9_c0/tracked-source.diff:502: trailing whitespace.
++ 
+reports/sdk9_c0/tracked-source.diff:508: trailing whitespace.
++ 
+reports/sdk9_c0/tracked-source.diff:553: trailing whitespace.
++ 
+reports/sdk9_c0/tracked-source.diff:554: trailing whitespace.
++ 
+reports/sdk9_c0/tracked-source.diff:563: trailing whitespace.
++ 
+reports/sdk9_c0/tracked-source.diff:588: trailing whitespace.
++ 
+reports/sdk9_c0/tracked-source.diff:602: trailing whitespace.
++ 
+reports/sdk9_c0/tracked-source.diff:607: trailing whitespace.
++ 
+reports/sdk9_c0/tracked-source.diff:641: trailing whitespace.
++ 
+reports/sdk9_c0/tracked-source.diff:642: trailing whitespace.
++ 
+reports/sdk9_c0/tracked-source.diff:870: trailing whitespace.
++ 
+reports/sdk9_c0/tracked-source.diff:874: trailing whitespace.
++ 
+reports/sdk9_c0/tracked-source.diff:877: trailing whitespace.
++ 
+reports/sdk9_c0/tracked-source.diff:882: trailing whitespace.
++ 
+reports/sdk9_c0/tracked-source.diff:885: trailing whitespace.
++ 
+reports/sdk9_c0/tracked-source.diff:897: trailing whitespace.
++ 
+reports/sdk9_c0/tracked-source.diff:901: trailing whitespace.
++ 
+reports/sdk9_c0/tracked-source.diff:905: trailing whitespace.
++ 
+reports/sdk9_c0/tracked-source.diff:919: trailing whitespace.
++ 
+reports/sdk9_c0/tracked-source.diff:922: trailing whitespace.
++ 
+reports/sdk9_c0/tracked-source.diff:934: trailing whitespace.
++ 
+reports/sdk9_c0/tracked-source.diff:937: trailing whitespace.
++ 
+reports/sdk9_c0/tracked-source.diff:956: trailing whitespace.
++ 
+reports/sdk9_c0/tracked-source.diff:959: trailing whitespace.
++ 
+reports/tellosim_visual/preexisting-hashes.json:1: trailing whitespace.
++[
+reports/tellosim_visual/preexisting-hashes.json:2: trailing whitespace.
++  {
+reports/tellosim_visual/preexisting-hashes.json:3: trailing whitespace.
++    "Path": "\\\\wsl.localhost\\Ubuntu-24.04\\home\\denny\\projects\\flybrain_lab_4spark_v0_1\\flyview\\static\\index.html",
+reports/tellosim_visual/preexisting-hashes.json:4: trailing whitespace.
++    "Hash": "E1C868525B9102EC14D7F7F88975163E87F9A9B42DE4CC80243D3645B3C1EFBE"
+reports/tellosim_visual/preexisting-hashes.json:5: trailing whitespace.
++  },
+reports/tellosim_visual/preexisting-hashes.json:6: trailing whitespace.
++  {
+reports/tellosim_visual/preexisting-hashes.json:7: trailing whitespace.
++    "Path": "\\\\wsl.localhost\\Ubuntu-24.04\\home\\denny\\projects\\flybrain_lab_4spark_v0_1\\flyview\\server.py",
+reports/tellosim_visual/preexisting-hashes.json:8: trailing whitespace.
++    "Hash": "6FD61681E5204DF13BB3B7EC339052623951B334DDA298A9A503B9FE93DC1597"
+reports/tellosim_visual/preexisting-hashes.json:9: trailing whitespace.
++  },
+reports/tellosim_visual/preexisting-hashes.json:10: trailing whitespace.
++  {
+reports/tellosim_visual/preexisting-hashes.json:11: trailing whitespace.
++    "Path": "\\\\wsl.localhost\\Ubuntu-24.04\\home\\denny\\projects\\flybrain_lab_4spark_v0_1\\flydrone\\tellosim\\physics\\world.py",
+reports/tellosim_visual/preexisting-hashes.json:12: trailing whitespace.
++    "Hash": "558C2D8BAAC0ECE35C76A67000238196A9B2410E685B358D63706E9852018684"
+reports/tellosim_visual/preexisting-hashes.json:13: trailing whitespace.
++  },
+reports/tellosim_visual/preexisting-hashes.json:14: trailing whitespace.
++  {
+reports/tellosim_visual/preexisting-hashes.json:15: trailing whitespace.
++    "Path": "\\\\wsl.localhost\\Ubuntu-24.04\\home\\denny\\projects\\flybrain_lab_4spark_v0_1\\flydrone\\tellosim\\sim.py",
+reports/tellosim_visual/preexisting-hashes.json:16: trailing whitespace.
++    "Hash": "5AA38749FD265E46C45E1FD9BF13F157336867E9F1BAE36218CAF621E267FCEC"
+reports/tellosim_visual/preexisting-hashes.json:17: trailing whitespace.
++  },
+reports/tellosim_visual/preexisting-hashes.json:18: trailing whitespace.
++  {
+reports/tellosim_visual/preexisting-hashes.json:19: trailing whitespace.
++    "Path": "\\\\wsl.localhost\\Ubuntu-24.04\\home\\denny\\projects\\flybrain_lab_4spark_v0_1\\artifacts\\golden_episode_verified\\replay.jsonl",
+reports/tellosim_visual/preexisting-hashes.json:20: trailing whitespace.
++    "Hash": "08BEBE5164AE67A8B66577D17C88552A5D6AED39E5CA386977D5D05EA2E04A7E"
+reports/tellosim_visual/preexisting-hashes.json:21: trailing whitespace.
++  }
+reports/tellosim_visual/preexisting-hashes.json:22: trailing whitespace.
++]
+reports/ts1_c1/BEFORE.diff:8: trailing whitespace.
++ 
+reports/ts1_c1/BEFORE.diff:16: trailing whitespace.
++ 
+reports/ts1_c1/BEFORE.diff:57: trailing whitespace.
++ 
+reports/ts1_c1/BEFORE.diff:147: trailing whitespace.
++ 
+reports/ts1_c1/BEFORE.diff:152: trailing whitespace.
++ 
+reports/ts1_c1/BEFORE.diff:153: trailing whitespace.
++ 
+reports/ts1_c1/BEFORE.diff:200: trailing whitespace.
++ 
+reports/ts1_c1/BEFORE.diff:211: trailing whitespace.
++ 
+reports/ts1_c1/BEFORE.diff:256: trailing whitespace.
++ 
+reports/ts1_c1/BEFORE.diff:271: trailing whitespace.
++ 
+reports/ts1_c1/BEFORE.diff:441: trailing whitespace.
++ 
+reports/ts1_c1/BEFORE.diff:513: trailing whitespace.
++ 
+reports/ts1_c1/BEFORE.diff:517: trailing whitespace.
++ 
+reports/ts1_c1/BEFORE.diff:539: trailing whitespace.
++ 
+reports/ts1_c1/BEFORE.diff:543: trailing whitespace.
++ 
+reports/ts1_c1/BEFORE.diff:547: trailing whitespace.
++ 
+reports/ts1_c1/BEFORE.diff:562: trailing whitespace.
++ 
+reports/ts1_c1/BEFORE.diff:574: trailing whitespace.
++ 
+reports/ts1_c1/BEFORE.diff:665: trailing whitespace.
++ 
+reports/ts1_c1/BEFORE.diff:666: trailing whitespace.
++ 
+reports/ts1_c1/BEFORE.diff:675: trailing whitespace.
++ 
+reports/ts1_c1/BEFORE.diff:700: trailing whitespace.
++ 
+reports/ts1_c1/BEFORE.diff:714: trailing whitespace.
++ 
+reports/ts1_c1/BEFORE.diff:719: trailing whitespace.
++ 
+reports/ts1_c1/BEFORE.diff:753: trailing whitespace.
++ 
+reports/ts1_c1/BEFORE.diff:754: trailing whitespace.
++ 
+reports/ts1_c1/BEFORE.diff:982: trailing whitespace.
++ 
+reports/ts1_c1/BEFORE.diff:986: trailing whitespace.
++ 
+reports/ts1_c1/BEFORE.diff:989: trailing whitespace.
++ 
+reports/ts1_c1/BEFORE.diff:994: trailing whitespace.
++ 
+reports/ts1_c1/BEFORE.diff:997: trailing whitespace.
++ 
+reports/ts1_c1/BEFORE.diff:1009: trailing whitespace.
++ 
+reports/ts1_c1/BEFORE.diff:1013: trailing whitespace.
++ 
+reports/ts1_c1/BEFORE.diff:1017: trailing whitespace.
++ 
+reports/ts1_c1/BEFORE.diff:1031: trailing whitespace.
++ 
+reports/ts1_c1/BEFORE.diff:1034: trailing whitespace.
++ 
+reports/ts1_c1/BEFORE.diff:1046: trailing whitespace.
++ 
+reports/ts1_c1/BEFORE.diff:1049: trailing whitespace.
++ 
+reports/ts1_c1/BEFORE.diff:1068: trailing whitespace.
++ 
+reports/ts1_c1/BEFORE.diff:1071: trailing whitespace.
++ 
+reports/ts1_c1/tracked-source.diff:8: trailing whitespace.
++ 
+reports/ts1_c1/tracked-source.diff:16: trailing whitespace.
++ 
+reports/ts1_c1/tracked-source.diff:57: trailing whitespace.
++ 
+reports/ts1_c1/tracked-source.diff:147: trailing whitespace.
++ 
+reports/ts1_c1/tracked-source.diff:152: trailing whitespace.
++ 
+reports/ts1_c1/tracked-source.diff:153: trailing whitespace.
++ 
+reports/ts1_c1/tracked-source.diff:200: trailing whitespace.
++ 
+reports/ts1_c1/tracked-source.diff:211: trailing whitespace.
++ 
+reports/ts1_c1/tracked-source.diff:256: trailing whitespace.
++ 
+reports/ts1_c1/tracked-source.diff:271: trailing whitespace.
++ 
+reports/ts1_c1/tracked-source.diff:441: trailing whitespace.
++ 
+reports/ts1_c1/tracked-source.diff:513: trailing whitespace.
++ 
+reports/ts1_c1/tracked-source.diff:517: trailing whitespace.
++ 
+reports/ts1_c1/tracked-source.diff:539: trailing whitespace.
++ 
+reports/ts1_c1/tracked-source.diff:543: trailing whitespace.
++ 
+reports/ts1_c1/tracked-source.diff:547: trailing whitespace.
++ 
+reports/ts1_c1/tracked-source.diff:562: trailing whitespace.
++ 
+reports/ts1_c1/tracked-source.diff:574: trailing whitespace.
++ 
+reports/ts1_c1/tracked-source.diff:665: trailing whitespace.
++ 
+reports/ts1_c1/tracked-source.diff:666: trailing whitespace.
++ 
+reports/ts1_c1/tracked-source.diff:675: trailing whitespace.
++ 
+reports/ts1_c1/tracked-source.diff:700: trailing whitespace.
++ 
+reports/ts1_c1/tracked-source.diff:714: trailing whitespace.
++ 
+reports/ts1_c1/tracked-source.diff:719: trailing whitespace.
++ 
+reports/ts1_c1/tracked-source.diff:753: trailing whitespace.
++ 
+reports/ts1_c1/tracked-source.diff:754: trailing whitespace.
++ 
+reports/ts1_c1/tracked-source.diff:982: trailing whitespace.
++ 
+reports/ts1_c1/tracked-source.diff:986: trailing whitespace.
++ 
+reports/ts1_c1/tracked-source.diff:989: trailing whitespace.
++ 
+reports/ts1_c1/tracked-source.diff:994: trailing whitespace.
++ 
+reports/ts1_c1/tracked-source.diff:997: trailing whitespace.
++ 
+reports/ts1_c1/tracked-source.diff:1009: trailing whitespace.
++ 
+reports/ts1_c1/tracked-source.diff:1013: trailing whitespace.
++ 
+reports/ts1_c1/tracked-source.diff:1017: trailing whitespace.
++ 
+reports/ts1_c1/tracked-source.diff:1031: trailing whitespace.
++ 
+reports/ts1_c1/tracked-source.diff:1034: trailing whitespace.
++ 
+reports/ts1_c1/tracked-source.diff:1046: trailing whitespace.
++ 
+reports/ts1_c1/tracked-source.diff:1049: trailing whitespace.
++ 
+reports/ts1_c1/tracked-source.diff:1068: trailing whitespace.
++ 
+reports/ts1_c1/tracked-source.diff:1071: trailing whitespace.
++ 
+reports/ts1_completion/tracked-source.diff:152: trailing whitespace.
++ 
+reports/ts1_completion/tracked-source.diff:156: trailing whitespace.
++ 
+reports/ts1_completion/tracked-source.diff:158: trailing whitespace.
++ 
+reports/ts1_completion_c2w/tracked-source.diff:152: trailing whitespace.
++ 
+reports/ts1_completion_c2w/tracked-source.diff:156: trailing whitespace.
++ 
+reports/ts1_completion_c2w/tracked-source.diff:158: trailing whitespace.
++ 
+reports/ts1_heading/BEFORE.diff:8: trailing whitespace.
++ 
+reports/ts1_heading/BEFORE.diff:16: trailing whitespace.
++ 
+reports/ts1_heading/BEFORE.diff:57: trailing whitespace.
++ 
+reports/ts1_heading/BEFORE.diff:147: trailing whitespace.
++ 
+reports/ts1_heading/BEFORE.diff:152: trailing whitespace.
++ 
+reports/ts1_heading/BEFORE.diff:153: trailing whitespace.
++ 
+reports/ts1_heading/BEFORE.diff:200: trailing whitespace.
++ 
+reports/ts1_heading/BEFORE.diff:211: trailing whitespace.
++ 
+reports/ts1_heading/BEFORE.diff:256: trailing whitespace.
++ 
+reports/ts1_heading/BEFORE.diff:271: trailing whitespace.
++ 
+reports/ts1_heading/BEFORE.diff:441: trailing whitespace.
++ 
+reports/ts1_heading/BEFORE.diff:513: trailing whitespace.
++ 
+reports/ts1_heading/BEFORE.diff:517: trailing whitespace.
++ 
+reports/ts1_heading/BEFORE.diff:539: trailing whitespace.
++ 
+reports/ts1_heading/BEFORE.diff:543: trailing whitespace.
++ 
+reports/ts1_heading/BEFORE.diff:547: trailing whitespace.
++ 
+reports/ts1_heading/BEFORE.diff:562: trailing whitespace.
++ 
+reports/ts1_heading/BEFORE.diff:574: trailing whitespace.
++ 
+reports/ts1_heading/BEFORE.diff:665: trailing whitespace.
++ 
+reports/ts1_heading/BEFORE.diff:666: trailing whitespace.
++ 
+reports/ts1_heading/BEFORE.diff:675: trailing whitespace.
++ 
+reports/ts1_heading/BEFORE.diff:700: trailing whitespace.
++ 
+reports/ts1_heading/BEFORE.diff:714: trailing whitespace.
++ 
+reports/ts1_heading/BEFORE.diff:719: trailing whitespace.
++ 
+reports/ts1_heading/BEFORE.diff:753: trailing whitespace.
++ 
+reports/ts1_heading/BEFORE.diff:754: trailing whitespace.
++ 
+reports/ts1_heading/BEFORE.diff:982: trailing whitespace.
++ 
+reports/ts1_heading/BEFORE.diff:986: trailing whitespace.
++ 
+reports/ts1_heading/BEFORE.diff:989: trailing whitespace.
++ 
+reports/ts1_heading/BEFORE.diff:994: trailing whitespace.
++ 
+reports/ts1_heading/BEFORE.diff:997: trailing whitespace.
++ 
+reports/ts1_heading/BEFORE.diff:1009: trailing whitespace.
++ 
+reports/ts1_heading/BEFORE.diff:1013: trailing whitespace.
++ 
+reports/ts1_heading/BEFORE.diff:1017: trailing whitespace.
++ 
+reports/ts1_heading/BEFORE.diff:1031: trailing whitespace.
++ 
+reports/ts1_heading/BEFORE.diff:1034: trailing whitespace.
++ 
+reports/ts1_heading/BEFORE.diff:1046: trailing whitespace.
++ 
+reports/ts1_heading/BEFORE.diff:1049: trailing whitespace.
++ 
+reports/ts1_heading/BEFORE.diff:1068: trailing whitespace.
++ 
+reports/ts1_heading/BEFORE.diff:1071: trailing whitespace.
++ 
+reports/ts1_heading/tracked-source.diff:8: trailing whitespace.
++ 
+reports/ts1_heading/tracked-source.diff:16: trailing whitespace.
++ 
+reports/ts1_heading/tracked-source.diff:57: trailing whitespace.
++ 
+reports/ts1_heading/tracked-source.diff:147: trailing whitespace.
++ 
+reports/ts1_heading/tracked-source.diff:152: trailing whitespace.
++ 
+reports/ts1_heading/tracked-source.diff:153: trailing whitespace.
++ 
+reports/ts1_heading/tracked-source.diff:200: trailing whitespace.
++ 
+reports/ts1_heading/tracked-source.diff:211: trailing whitespace.
++ 
+reports/ts1_heading/tracked-source.diff:256: trailing whitespace.
++ 
+reports/ts1_heading/tracked-source.diff:271: trailing whitespace.
++ 
+reports/ts1_heading/tracked-source.diff:441: trailing whitespace.
++ 
+reports/ts1_heading/tracked-source.diff:513: trailing whitespace.
++ 
+reports/ts1_heading/tracked-source.diff:517: trailing whitespace.
++ 
+reports/ts1_heading/tracked-source.diff:539: trailing whitespace.
++ 
+reports/ts1_heading/tracked-source.diff:543: trailing whitespace.
++ 
+reports/ts1_heading/tracked-source.diff:547: trailing whitespace.
++ 
+reports/ts1_heading/tracked-source.diff:562: trailing whitespace.
++ 
+reports/ts1_heading/tracked-source.diff:574: trailing whitespace.
++ 
+reports/ts1_heading/tracked-source.diff:665: trailing whitespace.
++ 
+reports/ts1_heading/tracked-source.diff:666: trailing whitespace.
++ 
+reports/ts1_heading/tracked-source.diff:675: trailing whitespace.
++ 
+reports/ts1_heading/tracked-source.diff:700: trailing whitespace.
++ 
+reports/ts1_heading/tracked-source.diff:714: trailing whitespace.
++ 
+reports/ts1_heading/tracked-source.diff:719: trailing whitespace.
++ 
+reports/ts1_heading/tracked-source.diff:753: trailing whitespace.
++ 
+reports/ts1_heading/tracked-source.diff:754: trailing whitespace.
++ 
+reports/ts1_heading/tracked-source.diff:982: trailing whitespace.
++ 
+reports/ts1_heading/tracked-source.diff:986: trailing whitespace.
++ 
+reports/ts1_heading/tracked-source.diff:989: trailing whitespace.
++ 
+reports/ts1_heading/tracked-source.diff:994: trailing whitespace.
++ 
+reports/ts1_heading/tracked-source.diff:997: trailing whitespace.
++ 
+reports/ts1_heading/tracked-source.diff:1009: trailing whitespace.
++ 
+reports/ts1_heading/tracked-source.diff:1013: trailing whitespace.
++ 
+reports/ts1_heading/tracked-source.diff:1017: trailing whitespace.
++ 
+reports/ts1_heading/tracked-source.diff:1031: trailing whitespace.
++ 
+reports/ts1_heading/tracked-source.diff:1034: trailing whitespace.
++ 
+reports/ts1_heading/tracked-source.diff:1046: trailing whitespace.
++ 
+reports/ts1_heading/tracked-source.diff:1049: trailing whitespace.
++ 
+reports/ts1_heading/tracked-source.diff:1068: trailing whitespace.
++ 
+reports/ts1_heading/tracked-source.diff:1071: trailing whitespace.
++ 
+reports/ts1_rigid_v2/tracked-source.diff:8: trailing whitespace.
++ 
+reports/ts1_rigid_v2/tracked-source.diff:16: trailing whitespace.
++ 
+reports/ts1_rigid_v2/tracked-source.diff:57: trailing whitespace.
++ 
+reports/ts1_rigid_v2/tracked-source.diff:147: trailing whitespace.
++ 
+reports/ts1_rigid_v2/tracked-source.diff:152: trailing whitespace.
++ 
+reports/ts1_rigid_v2/tracked-source.diff:153: trailing whitespace.
++ 
+reports/ts1_rigid_v2/tracked-source.diff:200: trailing whitespace.
++ 
+reports/ts1_rigid_v2/tracked-source.diff:211: trailing whitespace.
++ 
+reports/ts1_rigid_v2/tracked-source.diff:256: trailing whitespace.
++ 
+reports/ts1_rigid_v2/tracked-source.diff:271: trailing whitespace.
++ 
+reports/ts1_rigid_v2/tracked-source.diff:441: trailing whitespace.
++ 
+reports/ts1_rigid_v2/tracked-source.diff:513: trailing whitespace.
++ 
+reports/ts1_rigid_v2/tracked-source.diff:517: trailing whitespace.
++ 
+reports/ts1_rigid_v2/tracked-source.diff:539: trailing whitespace.
++ 
+reports/ts1_rigid_v2/tracked-source.diff:543: trailing whitespace.
++ 
+reports/ts1_rigid_v2/tracked-source.diff:547: trailing whitespace.
++ 
+reports/ts1_rigid_v2/tracked-source.diff:562: trailing whitespace.
++ 
+reports/ts1_rigid_v2/tracked-source.diff:574: trailing whitespace.
++ 
+reports/ts1_rigid_v2/tracked-source.diff:665: trailing whitespace.
++ 
+reports/ts1_rigid_v2/tracked-source.diff:666: trailing whitespace.
++ 
+reports/ts1_rigid_v2/tracked-source.diff:675: trailing whitespace.
++ 
+reports/ts1_rigid_v2/tracked-source.diff:700: trailing whitespace.
++ 
+reports/ts1_rigid_v2/tracked-source.diff:714: trailing whitespace.
++ 
+reports/ts1_rigid_v2/tracked-source.diff:719: trailing whitespace.
++ 
+reports/ts1_rigid_v2/tracked-source.diff:753: trailing whitespace.
++ 
+reports/ts1_rigid_v2/tracked-source.diff:754: trailing whitespace.
++ 
+reports/ts1_rigid_v2/tracked-source.diff:982: trailing whitespace.
++ 
+reports/ts1_rigid_v2/tracked-source.diff:986: trailing whitespace.
++ 
+reports/ts1_rigid_v2/tracked-source.diff:989: trailing whitespace.
++ 
+reports/ts1_rigid_v2/tracked-source.diff:994: trailing whitespace.
++ 
+reports/ts1_rigid_v2/tracked-source.diff:997: trailing whitespace.
++ 
+reports/ts1_rigid_v2/tracked-source.diff:1009: trailing whitespace.
++ 
+reports/ts1_rigid_v2/tracked-source.diff:1013: trailing whitespace.
++ 
+reports/ts1_rigid_v2/tracked-source.diff:1017: trailing whitespace.
++ 
+reports/ts1_rigid_v2/tracked-source.diff:1031: trailing whitespace.
++ 
+reports/ts1_rigid_v2/tracked-source.diff:1034: trailing whitespace.
++ 
+reports/ts1_rigid_v2/tracked-source.diff:1046: trailing whitespace.
++ 
+reports/ts1_rigid_v2/tracked-source.diff:1049: trailing whitespace.
++ 
+reports/ts1_rigid_v2/tracked-source.diff:1068: trailing whitespace.
++ 
+reports/ts1_rigid_v2/tracked-source.diff:1071: trailing whitespace.
++ 
+reports/ts1_spatial_precision/focused-attempt1.xml:9: trailing whitespace.
++tests/flydrone/test_spatial_precision_skill.py:79: 
+reports/ts1_spatial_precision/focused-attempt1.xml:10: trailing whitespace.
++_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+reports/ts1_spatial_precision/focused-attempt1.xml:21: trailing whitespace.
++_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 

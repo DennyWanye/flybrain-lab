@@ -1,0 +1,8 @@
+{
+  "old_seed_count": 13916,
+  "new_heldout_unique_seeds": 428,
+  "overlap": [],
+  "training_base": 320000000,
+  "smoke_base": 330000000,
+  "development_base": 318000000
+}

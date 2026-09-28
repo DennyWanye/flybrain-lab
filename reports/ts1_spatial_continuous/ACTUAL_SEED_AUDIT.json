@@ -1,0 +1,58 @@
+{
+  "prior_files_scanned": 193,
+  "prior_actual_seed_count": 17921,
+  "prior_training_formulas": {
+    "reports/ts1_spatial_orientation/protocol.json:training_seed_formula": "450000000+model_seed*100000+stage*10000+lane*500+episode; smoke460000000",
+    "reports/ts1_altitude_refined/protocol.json:training_seed_formula": "220000000 + model_seed*100000 + stage*10000 + lane*500 + episode; smoke base230000000",
+    "reports/ts1_spatial_settled/protocol.json:training_seed_formula": "no new training; formally trained frozen C2Q seeds11/22/33 transferred without parameter changes",
+    "reports/ts1_spatial_stationary/protocol.json:training_seed_formula": "no new training; formally trained frozen C2Q seeds11/22/33 transferred without parameter changes",
+    "reports/ts1_altitude/protocol.json:training_seed_formula": "190000000 + model_seed*100000 + stage*10000 + lane*500 + episode; smoke base200000000",
+    "reports/ts1_spatial/protocol.json:training_seed_formula": "250000000+model_seed*100000+stage*10000+lane*500+episode; smoke260000000",
+    "reports/ts1_spatial_precision/protocol.json:training_seed_formula": "380000000+model_seed*100000+stage*10000+lane*500+episode; smoke390000000",
+    "reports/ts1_robust/protocol.json:training_seed_formula": "120000000 + model_seed*100000 + skill_index*40000 + stage*10000 + lane*500 + episode",
+    "reports/ts1_stability/protocol.json:training_seed_formula": "150000000 + model_seed*100000 + stage*10000 + lane*500 + episode; smoke uses 160000000",
+    "reports/ts1_spatial_anchored/protocol.json:training_seed_formula": "no new training; formally trained frozen C2Q seeds11/22/33 transferred without parameter changes",
+    "reports/ts1_spatial_refined/protocol.json:training_seed_formula": "320000000+model_seed*100000+stage*10000+lane*500+episode; smoke330000000",
+    "reports/ts1_mlp_pilot/protocol.json:training_seed_formula": "280000000+stage*10000+lane*500+episode; smoke290000000"
+  },
+  "new_ranges": {
+    "development": [
+      550000000,
+      550000127
+    ],
+    "neural_smoke": [
+      551000000,
+      551000007
+    ],
+    "validation": [
+      553000000,
+      553000099
+    ],
+    "sealed_test": [
+      554000000,
+      554000299
+    ],
+    "pairs": [
+      555000000,
+      555000003
+    ],
+    "boundary": [
+      556000000,
+      556000011
+    ],
+    "zero": [
+      557000000,
+      557000011
+    ]
+  },
+  "actual_overlaps": {
+    "development": [],
+    "neural_smoke": [],
+    "validation": [],
+    "sealed_test": [],
+    "pairs": [],
+    "boundary": [],
+    "zero": []
+  },
+  "C2Q_source_provenance_audit": "exact source provenance included; prior formulas and allocated ranges also in SEED_REGISTRY_AUDIT"
+}

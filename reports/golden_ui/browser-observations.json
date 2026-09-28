@@ -1,0 +1,24 @@
+{
+  "pauseStable": true,
+  "pauseState": {
+    "clock": "世界时间 5.708 s · 速度 0.0612 m/s · 决策 3",
+    "position": "[-1.281414544658946,-0.9061810999713452,1.2001116811158505]"
+  },
+  "seekIdentical": true,
+  "seekSequence": [
+    10,
+    32,
+    10
+  ],
+  "fullPlaybackReachedSuccess": true,
+  "slowPlaybackSpeed": 0.25,
+  "worldPan": {
+    "x": 80,
+    "y": 42
+  },
+  "worldZoom": 1.4333294145603401,
+  "mouseTimelineDragReachedStep": 14,
+  "sampledSteps": 20,
+  "missingNeuralSubstepsDisplayed": "not_recorded",
+  "consoleErrors": []
+}

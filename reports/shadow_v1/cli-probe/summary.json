@@ -1,0 +1,9 @@
+{
+  "samples_per_valid_run": 24,
+  "blocked_samples_per_run": 8,
+  "direct_replay_byte_identical": true,
+  "duplicate_rejected": true,
+  "all_children_exited": true,
+  "transmitted_commands": 0,
+  "REAL_FLIGHT_READY": false
+}

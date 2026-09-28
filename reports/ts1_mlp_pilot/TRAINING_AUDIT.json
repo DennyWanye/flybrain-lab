@@ -1,0 +1,54 @@
+{
+  "passed": true,
+  "training": {
+    "status": "completed",
+    "smoke_only": false,
+    "options": 2816,
+    "examples": 14131,
+    "parameter_delta_l2": 20.928787231445312,
+    "roundtrip_exact": true,
+    "method": "direct MLP26->128->128->9, raw measured observation only; no MaleCNS or reservoir; single-seed engineering pilot",
+    "checkpoint_sha256": "5be0a2a68e3195c5cbffc2ee9f8fed9e5eb92a639726b58436bf1c92418c3713",
+    "elapsed_s": 163.69028668399915,
+    "neural_graph_used": false,
+    "neural_updates": 0,
+    "stages": [
+      {
+        "stage": 0,
+        "options": 768,
+        "gradient_steps": 1200,
+        "examples": 3784,
+        "label_accuracy": 0.9505813717842102,
+        "stop_recall": 0.9711992740631104
+      },
+      {
+        "stage": 1,
+        "options": 1024,
+        "gradient_steps": 2880,
+        "examples": 9215,
+        "label_accuracy": 0.9734129309654236,
+        "stop_recall": 0.9559142589569092
+      },
+      {
+        "stage": 2,
+        "options": 1024,
+        "gradient_steps": 4480,
+        "examples": 14131,
+        "label_accuracy": 0.9878989458084106,
+        "stop_recall": 0.9828771948814392
+      }
+    ]
+  },
+  "comparison": {
+    "status": "pilot_completed",
+    "software_acceptance_T44": true,
+    "mlp_successes": 60,
+    "malecns_successes": 60,
+    "episodes_each": 60,
+    "seed": 11,
+    "case_hash": "8d0d12a8c36c92707f4c91c22f263d4cf0be59e14365b9842902411982626b3c",
+    "CONNECTOME_ADVANTAGE_PROVEN": false,
+    "notes": "different training data; same observations/actions/physics/paired evaluation. One-seed pilot, not a superiority study."
+  },
+  "weight_verified": true
+}

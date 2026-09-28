@@ -1,0 +1,33 @@
+{
+  "status": "PASS",
+  "path": "/mnt/d/projects/果蝇训练/ts1-v1r-c2q-delivery-20260928-r3/FlyBrain_TS1_V1R_C2Q_20260928.zip",
+  "sha256": "215f1b9bfa4f56d6348a4823d953b37a30d2a7e00da773e2affac37a2b69d6fb",
+  "files": 13842,
+  "archive_bytes": 1113836649,
+  "uncompressed_bytes": 4925007329,
+  "fresh_extraction": true,
+  "all_file_hashes_verified": true,
+  "extracted_model_and_viewer_probe": {
+    "status": "PASS",
+    "pid": 29642,
+    "sampled_private_kib": 1320500,
+    "actual_extracted_source": "/tmp/ts1-final-extract-bvxjbz6o/flyview/tellosim_api.py",
+    "models_loaded": 9,
+    "strict_full_graph_inference_checks": 9,
+    "inference_fixture_not_task_score": true,
+    "replays_checked": 6,
+    "graph_included": true,
+    "http_routes_checked": 3,
+    "server_thread_joined": true
+  },
+  "probe_processes_reaped": true,
+  "stage_probe_pid": 29545,
+  "extraction_probe_pid": 29642,
+  "new_machine_install_tested": false,
+  "excluded": [
+    "virtual environment",
+    "git",
+    "raw quota pressure fill"
+  ],
+  "runtime_lock": "requirements-runtime.lock.txt"
+}

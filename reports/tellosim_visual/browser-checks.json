@@ -1,0 +1,116 @@
+{
+  "date": "2026-09-26T08:59:23.922Z",
+  "checks": [
+    {
+      "check": "camera_rotate",
+      "before": "7.000,-9.000,7.000",
+      "after": "-2.654,-3.936,12.978",
+      "pass": true
+    },
+    {
+      "check": "camera_pan",
+      "before": "0.000,0.000,1.000",
+      "after": "-1.576,-1.058,1.251",
+      "pass": true
+    },
+    {
+      "check": "live_observation_pause",
+      "paused": "17.70 s · tick 2124",
+      "resumed": "37.90 s · tick 4548",
+      "pass": true
+    },
+    {
+      "check": "slider_mouse_drag",
+      "tick": 2989,
+      "position": "0.369434,-0.201936,0.968609",
+      "pass": true
+    },
+    {
+      "check": "camera_zoom",
+      "before": "5.224,-10.192,7.283",
+      "after": "3.062,-7.414,5.431",
+      "pass": true
+    },
+    {
+      "check": "4x_reaches_terminal_frame",
+      "clock": "65.17 s · tick 7820",
+      "hold": "1.72 / 1 s",
+      "pass": true
+    },
+    {
+      "check": "playback_quarter_speed",
+      "start": {
+        "wall": 1790412620663,
+        "clock": "0.06 s · tick 7"
+      },
+      "end": {
+        "wall": 1790412650359,
+        "clock": "7.48 s · tick 898"
+      },
+      "ratio": 0.24986530172413796,
+      "pass": true
+    },
+    {
+      "check": "lost_ack_physical_completed_client_unknown",
+      "device": "completed",
+      "client": "unknown_execution",
+      "position": "X -0.00 · Y 0.00 · Z 1.00 m",
+      "forwardEnabled": false,
+      "stopEnabled": true,
+      "pass": true
+    },
+    {
+      "check": "protective_stop_then_land",
+      "command": "land",
+      "client": "ack_ok",
+      "position": "X -0.00 · Y 0.00 · Z 0.04 m",
+      "pass": true
+    },
+    {
+      "check": "replay_pause_holds_time",
+      "before": "0.27 s · tick 33",
+      "after": "0.27 s · tick 33",
+      "pass": true
+    },
+    {
+      "check": "real_untrained_baseline_replay",
+      "clock": "29.99 s · tick 3599",
+      "position": "X -3.04 · Y -1.00 · Z 1.31 m",
+      "distance": "4.97 m",
+      "pass": true
+    },
+    {
+      "check": "trained_failure_replay",
+      "run": "run trained-reverse-failure · epoch 2ff77965 · env 0",
+      "clock": "31.17 s · tick 3740",
+      "position": "X 3.02 · Y 2.23 · Z 1.20 m",
+      "outcome": "记录结果：模型失败",
+      "pass": true
+    },
+    {
+      "check": "legacy_v1_page_coexists",
+      "title": "FlyBrain · 33/33",
+      "pass": true
+    },
+    {
+      "check": "slider_end_exact_golden_tick",
+      "clock": "65.17 s · tick 7820",
+      "hold": "1.72 / 1 s",
+      "position": "1.586238,0.748188,1.200604",
+      "tick": "7820",
+      "pass": true
+    },
+    {
+      "check": "final_console_errors",
+      "errors": [],
+      "pass": true
+    }
+  ],
+  "finalFrame": {
+    "run": "run golden-episode · epoch 08bebe51 · env 0",
+    "tick": "3740",
+    "position": "-0.053166,-0.198322,1.200320",
+    "neural": "tick 3740 / substep 3"
+  },
+  "all_pass": true
+}

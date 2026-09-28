@@ -1,0 +1,13 @@
+{
+  "purpose": "fresh development diagnosis after C2P aggregate boundary gate failure; no sealed case inspection or tuning",
+  "seeds": [
+    410000000,
+    410000023
+  ],
+  "models": [
+    11,
+    22,
+    33
+  ],
+  "no_checkpoint_updates": true
+}

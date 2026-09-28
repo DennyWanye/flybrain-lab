@@ -1,0 +1,8 @@
+{
+  "scope": "controlled representation fixture, full MaleCNS, not a model task result",
+  "graph_sha256": "badc33a247894fe12c4d68d3ff791393857cffa39ff2ab81869608a11fa1e0c9",
+  "old_near_boundary_feature_l2": 0.0,
+  "new_near_boundary_feature_l2": 9.558735847473145,
+  "old_nuisance_feature_l2": 6.260293960571289,
+  "new_nuisance_feature_l2": 0.0
+}

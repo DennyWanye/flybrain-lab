@@ -1,0 +1,75 @@
+{
+  "schema_version": "golden_episode/1.2",
+  "run_id": "golden-multiscenario-eval",
+  "episode_id": "reverse_direction-00",
+  "scenario_id": "reverse_direction-00",
+  "seed": 92608,
+  "policy_checkpoint_sha256": "b657cb32ada93c8cee927e72277440702a53d74d2a16b20f3a5ef1cd77d51614",
+  "graph_sha256": "badc33a247894fe12c4d68d3ff791393857cffa39ff2ab81869608a11fa1e0c9",
+  "brain_mapping_sha256": "623b691045f9c971271b8e48cc310dfeaaedb2a67b1bc639499bcfb24ea86d18",
+  "success": false,
+  "episode_return": -1.9367711985573404,
+  "episode_steps": 16,
+  "sim_duration_s": 31.166666666666668,
+  "final_distance_m": 5.265799077593128,
+  "stable_hold_s": 0.0,
+  "collision": false,
+  "out_of_bounds": true,
+  "replay_sha256": "2ff779659e65d6acaaff7867c2b8c39440f82086d01049c546a97b9d3c59c6a4",
+  "policy_source": "flybrain_reservoir_features",
+  "neural_capture": "recorded",
+  "replay_mode": "recorded_replay",
+  "scenario": {
+    "start_xyz_m": [
+      1.5698149995511619,
+      1.431896589016124,
+      1.2
+    ],
+    "target_xyz_m": [
+      -1.13847491279838,
+      -1.0011719521008975,
+      1.2
+    ]
+  },
+  "scenario_config": {
+    "scenario_id": "reverse_direction-00",
+    "group": "reverse_direction",
+    "seed": 92608,
+    "world": {
+      "start_xyz_m": [
+        1.5698149995511619,
+        1.431896589016124,
+        1.2
+      ],
+      "target_xyz_m": [
+        -1.13847491279838,
+        -1.0011719521008975,
+        1.2
+      ]
+    },
+    "max_episode_steps": 120,
+    "success": {
+      "target_radius_m": 0.3,
+      "stable_hold_s": 1.0,
+      "speed_mps": 0.15
+    },
+    "episode_id": "reverse_direction-00",
+    "run_id": "golden-multiscenario-eval"
+  },
+  "timeout": false,
+  "success_contract": {
+    "target_radius_m": 0.3,
+    "stable_hold_s": 1.0,
+    "speed_mps": 0.15
+  },
+  "brain": {
+    "model": "frozen_LIF",
+    "n": 166700,
+    "nnz": 25582938,
+    "internal_steps": 4,
+    "device": "cpu"
+  },
+  "observation_note": "brain_observation is the actual 8D encoder input from simulated pose; observation is 26D telemetry; policy_features is the exact policy input",
+  "initial_state": "initialized airborne at known pose, no takeoff task",
+  "physics_dt_s": 0.008333333333333333
+}

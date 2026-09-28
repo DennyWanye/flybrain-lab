@@ -1,0 +1,17 @@
+{
+  "status": "PASS",
+  "staged_probe": {
+    "status": "PASS",
+    "pid": 29545,
+    "sampled_private_kib": 1314716,
+    "actual_extracted_source": "/tmp/ts1-final-stage-v4k8em2y/flyview/tellosim_api.py",
+    "models_loaded": 9,
+    "strict_full_graph_inference_checks": 9,
+    "inference_fixture_not_task_score": true,
+    "replays_checked": 6,
+    "graph_included": true,
+    "http_routes_checked": 3,
+    "server_thread_joined": true
+  },
+  "publication_rule": "Archive published only after full fresh extraction, every-file hash verification and repeated model/HTTP probe; final archive audit adjacent to ZIP"
+}

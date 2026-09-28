@@ -1,0 +1,12 @@
+{
+  "status": "small_neural_physics_audit_failed",
+  "task_smoke_successes": 8,
+  "physics_continuous_smoke_successes": 7,
+  "episodes": 8,
+  "failure": "one sampled hold contains only236/240 valid physical ticks;10Hz endpoint hold accumulation overestimates continuous physical duration",
+  "formal_evaluation_started": false,
+  "MODEL_READY_FOR_NEXT_STAGE": false,
+  "development_interrupted_after_smoke_audit": true,
+  "partial_development_episodes": 70,
+  "partial_development_successes": 70
+}

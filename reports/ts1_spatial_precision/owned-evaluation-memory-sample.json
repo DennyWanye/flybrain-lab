@@ -1,0 +1,26 @@
+[
+  {
+    "job": "baselines",
+    "pid": 22230,
+    "private_kib": 315812,
+    "command": "/home/denny/projects/flybrain-env/bin/python -u -m flydrone.tellosim.training.spatial_precision_campaign baselines "
+  },
+  {
+    "job": "evaluate-11",
+    "pid": 22231,
+    "private_kib": 1018928,
+    "command": "/home/denny/projects/flybrain-env/bin/python -u -m flydrone.tellosim.training.spatial_precision_campaign evaluate --seed 11 "
+  },
+  {
+    "job": "evaluate-22",
+    "pid": 22232,
+    "private_kib": 1018836,
+    "command": "/home/denny/projects/flybrain-env/bin/python -u -m flydrone.tellosim.training.spatial_precision_campaign evaluate --seed 22 "
+  },
+  {
+    "job": "evaluate-33",
+    "pid": 22233,
+    "private_kib": 1018264,
+    "command": "/home/denny/projects/flybrain-env/bin/python -u -m flydrone.tellosim.training.spatial_precision_campaign evaluate --seed 33 "
+  }
+]

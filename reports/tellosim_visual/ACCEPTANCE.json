@@ -1,0 +1,46 @@
+{
+  "VISUAL_SIMULATION_READY": true,
+  "scope": "3D simulation viewer, isolated manual/script runs, recording/replay and existing policy comparison",
+  "FULL_TS1_ACCEPTANCE": false,
+  "MODEL_READY_FOR_NEXT_STAGE": false,
+  "browser_checks_passed": 15,
+  "browser_all_pass": true,
+  "ui_physics_alignment": {
+    "tick": 3740,
+    "expected_position_m": "-0.053166,-0.198322,1.200320",
+    "display_position_m": "-0.053166,-0.198322,1.200320",
+    "pass": true
+  },
+  "regression": "39 passed, 2 existing sparse warnings",
+  "post_fix_related": "17 passed",
+  "final_visual_tests": "12 passed",
+  "active_test_sandboxes": [],
+  "viewer_service_retained": true,
+  "source_hashes": {
+    "flydrone/tellosim/visual.py": "184569750db54357ca6f80a6b0c602a8d5fdb5dbf6ef85f641bf6524052b5565",
+    "flydrone/tellosim/visual_fixtures.py": "b1d8a836a8e6c2bb1e3d9bf81ad387a7ba7165f2a34491bb18fe7b7004291d8f",
+    "flydrone/tellosim/sdk/codec.py": "59d9df55cc825d4b06c822d6e8b8ac6c1892b676b426fa50281cfa1d13caead5",
+    "flyview/tellosim_api.py": "0f0cbc89ae2c382d6220fc03eb8fb2c7165197fbf58bbd4b380113676e9f6509",
+    "flyview/server.py": "3cf1938bd6169996bbb82f14e56d8300d26ab4e73fe8fd2ff4fdea7add3fe8bf",
+    "flyview/static/tellosim.html": "2cc9985e3c17a4e1a93276b208999065789baad3253c9de5ed276ab9b8fef743",
+    "flyview/static/tellosim.js": "7407c25bf6c56d4bf78e431f3f57af1f6e637008b49f6c615d95225f049af88f",
+    "flyview/static/tellosim.css": "366db0144c15f96856eab57ccb8ed62c8cd3001fe9f891879ddba0adc2463903",
+    "contracts/vis/tellosim_v2.md": "b87f68fa1d514aa0b42be6a5b2a43ca2905010777c8ae6b8e2e96f84a3311741",
+    "tests/flydrone/test_visual_simulation.py": "4ef587637dd52ff56f2cfadc740625780519165984dee4ad20ebffcf3bebee63"
+  },
+  "limitations": [
+    "Legacy 8D/14D/128D model is not migrated to the full TS1 26/34 contract",
+    "Fresh untrained baseline is not the missing historical initial checkpoint",
+    "No real aircraft or 3-seed x 300 sealed formal evaluation"
+  ],
+  "evidence": [
+    "browser-checks.json",
+    "integrity.json",
+    "slow-consumers.json",
+    "pytest-regression.txt",
+    "pytest-final-visual.txt",
+    "ui/preview.png",
+    "ui/lost-reply.png",
+    "ui/golden-end.png"
+  ]
+}

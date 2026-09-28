@@ -1,0 +1,1119 @@
+diff --git a/artifacts/golden_episode/GOLDEN_EPISODE_REPORT.md b/artifacts/golden_episode/GOLDEN_EPISODE_REPORT.md
+index d947830..890cd78 100644
+--- a/artifacts/golden_episode/GOLDEN_EPISODE_REPORT.md
++++ b/artifacts/golden_episode/GOLDEN_EPISODE_REPORT.md
+@@ -1,10 +1,8 @@
+-# Golden Episode Report
++# 原始 Golden Episode 记录说明
+ 
+-- success: True
+-- steps: 33
+-- final distance: 0.2662 m
+-- policy source: flybrain_reservoir_features
+-- neural capture: recorded
+-- replay sha256: 6ca963dbeb57f8dee7f417deab655e45a1b287750f4e16e85c45aeadf03a7537
++此目录保留原始replay/checkpoint及数据文件。旧的2秒保持时间和浏览器全通过结论已经由逐物理步记录及实际浏览器验收取代。
+ 
+-This artifact is a recorded replay. The viewer does not re-run the policy.
++本次验收使用 `../golden_episode_verified/`；完整报告见该目录的 `GOLDEN_EPISODE_REPORT.md` 或 `reports/GoldenEpisode_TEST_RESULTS.md`。原始replay SHA256仍为 `6ca963dbeb57f8dee7f417deab655e45a1b287750f4e16e85c45aeadf03a7537`。
++
++GOLDEN_EPISODE_READY = YES（指新的verified数据包）
++MODEL_READY_FOR_NEXT_STAGE = NO（32场景仅8个成功）
+diff --git a/configs/tellosim/world_obstacles_demo.json b/configs/tellosim/world_obstacles_demo.json
+index 9c07158..8ab8a6d 100644
+--- a/configs/tellosim/world_obstacles_demo.json
++++ b/configs/tellosim/world_obstacles_demo.json
+@@ -45,5 +45,10 @@
+       0
+     ],
+     "radius_m": 0.35
++  },
++  "low_level": {
++    "position_kp": 2.0,
++    "velocity_kd": 2.4,
++    "profile": "bounded_pd_v2_engineering_not_calibrated"
+   }
+ }
+diff --git a/configs/tellosim/world_room6.json b/configs/tellosim/world_room6.json
+index d9630a3..595ca95 100644
+--- a/configs/tellosim/world_room6.json
++++ b/configs/tellosim/world_room6.json
+@@ -31,5 +31,10 @@
+       0
+     ],
+     "radius_m": 0.35
++  },
++  "low_level": {
++    "position_kp": 2.0,
++    "velocity_kd": 2.4,
++    "profile": "bounded_pd_v2_engineering_not_calibrated"
+   }
+ }
+diff --git a/flydrone/brain.py b/flydrone/brain.py
+index d651cac..238ef4a 100755
+--- a/flydrone/brain.py
++++ b/flydrone/brain.py
+@@ -23,7 +23,8 @@ class FrozenReservoir:
+ 
+     def __init__(self, graph: str, batch: int, device="cpu", mapping_seed=64,
+                  inputs_per_channel=16, readout_neurons=128, internal_steps=4,
+-                 gain=1.0, tonic=.14, input_gain=.8, normalizer=None):
++                 gain=1.0, tonic=.14, input_gain=.8, normalizer=None,
++                 encoded_dim=14, encoder=None, readout_strategy="random_neighbors"):
+         self.device = torch.device(device)
+         if self.device.type == "cuda" and not torch.cuda.is_available():
+             raise RuntimeError("CUDA requested but unavailable")
+@@ -35,7 +36,10 @@ class FrozenReservoir:
+         self.n, self.batch, self.graph = n, batch, graph
+         self.graph_sha256 = graph_hash(graph)
+         rng = np.random.default_rng(mapping_seed)
+-        channels = 14
++        channels = int(encoded_dim)
++        if channels < 1:
++            raise ValueError("encoded_dim must be positive")
++        self.encoded_dim = channels
+         total_inputs = channels * inputs_per_channel
+         if total_inputs > n:
+             raise ValueError("graph too small for requested input mapping")
+@@ -45,7 +49,31 @@ class FrozenReservoir:
+         candidates = np.setdiff1d(candidates, inputs, assume_unique=False)
+         if len(candidates) < readout_neurons:
+             raise ValueError("not enough readout candidates")
+-        readouts = rng.choice(candidates, readout_neurons, replace=False)
++        if readout_strategy == "random_neighbors":
++            readouts = rng.choice(candidates, readout_neurons, replace=False)
++        elif readout_strategy == "channel_balanced":
++            if readout_neurons < channels:
++                raise ValueError("channel-balanced readout needs at least one neuron per channel")
++            # Select downstream cells, never the directly driven input cells.
++            # Round-robin coverage is determined by connectivity, not task labels.
++            strengths = []
++            for channel in range(channels):
++                source = inputs[channel * inputs_per_channel:(channel + 1) * inputs_per_channel]
++                score = np.asarray(abs(w[:, source]).sum(axis=1)).ravel()
++                score[inputs] = 0
++                strengths.append(score)
++            selected = []
++            for index in range(readout_neurons):
++                score = strengths[index % channels].copy()
++                score[selected] = 0
++                cell = int(np.argmax(score))
++                if score[cell] <= 0:
++                    raise ValueError("insufficient distinct downstream cells for channel coverage")
++                selected.append(cell)
++            readouts = np.asarray(selected, dtype=np.int64)
++        else:
++            raise ValueError("unknown readout strategy")
++        self.readout_strategy = readout_strategy
+         self.input_indices = inputs.astype(np.int64)
+         self.input_channels = np.repeat(np.arange(channels), inputs_per_channel).astype(np.int64)
+         self.readout_indices = readouts.astype(np.int64)
+@@ -53,7 +81,7 @@ class FrozenReservoir:
+         self.mapping_sha256 = hashlib.sha256(inputs.tobytes() + self.input_channels.tobytes() + readouts.tobytes()).hexdigest()
+         self.feature_dim = 2 * readout_neurons
+         self.internal_steps, self.gain, self.tonic = internal_steps, gain, tonic
+-        self.encoder = SensoryEncoder(input_gain)
++        self.encoder = encoder or SensoryEncoder(input_gain)
+         self.normalizer = normalizer or FeatureNormalizer.identity(self.feature_dim)
+         self.w = torch.sparse_csr_tensor(torch.as_tensor(w.indptr, dtype=torch.int64, device=self.device),
+             torch.as_tensor(w.indices, dtype=torch.int64, device=self.device),
+@@ -75,8 +103,8 @@ class FrozenReservoir:
+     @torch.no_grad()
+     def advance(self, encoded_obs: np.ndarray, mask=None):
+         encoded = torch.as_tensor(encoded_obs, dtype=torch.float32, device=self.device)
+-        if encoded.shape != (self.batch, 14):
+-            raise ValueError(f"expected {(self.batch, 14)} encoded observations")
++        if encoded.shape != (self.batch, self.encoded_dim):
++            raise ValueError(f"expected {(self.batch, self.encoded_dim)} encoded observations")
+         active = torch.ones(self.batch, dtype=torch.bool, device=self.device) if mask is None else torch.as_tensor(mask, dtype=torch.bool, device=self.device)
+         active_idx = torch.nonzero(active, as_tuple=False).flatten()
+         if active_idx.numel() == 0:
+@@ -84,7 +112,9 @@ class FrozenReservoir:
+         drive = .8 * encoded[:, self.channels].T
+         decay = float(np.exp(-.020 / .100))
+         for _ in range(self.internal_steps):
+-            current = torch.sparse.mm(self.w, self.s[:, active_idx])
++            # Versioned exact-resume backends may accumulate the SAME edge
++            # weights in float64 before returning to the float32 LIF state.
++            current = torch.sparse.mm(self.w, self.s[:, active_idx].to(self.w.dtype)).to(self.v.dtype)
+             v_active = self.v[:, active_idx] * decay + self.gain * current + self.tonic
+             v_active[self.inputs] += drive[:, active_idx]
+             fired = v_active >= 1.
+diff --git a/flydrone/tellosim/__main__.py b/flydrone/tellosim/__main__.py
+index 19c9375..e7fd9b4 100644
+--- a/flydrone/tellosim/__main__.py
++++ b/flydrone/tellosim/__main__.py
+@@ -6,6 +6,7 @@ from pathlib import Path
+ 
+ from .golden import record_golden, validate_golden
+ from .spike import run_spike
++from .replay import export_golden, evaluate
+ from .train import brain_train, brain_imitation_train
+ 
+ 
+@@ -38,13 +39,33 @@ def main() -> None:
+     imitate.add_argument("--readout-neurons", type=int, default=64)
+     imitate.add_argument("--device", default="cpu")
+     imitate.add_argument("--seed", type=int, default=11)
++    record.add_argument("--device", default="cpu")
++    validate.add_argument("--brain-graph", type=Path)
++    export = sub.add_parser("golden-export")
++    export.add_argument("--episode", type=Path, required=True)
++    export.add_argument("--out", type=Path, default=Path("reports/vis/views/golden-episode"))
++    export.add_argument("--registry", type=Path, default=Path("reports/vis/views/index.json"))
++    evaluation = sub.add_parser("golden-evaluate")
++    evaluation.add_argument("--checkpoint", required=True)
++    evaluation.add_argument("--brain-graph", required=True)
++    evaluation.add_argument("--cases", required=True)
++    evaluation.add_argument("--out", required=True)
++    evaluation.add_argument("--device", default="cpu")
++    evaluation.add_argument("--readout-neurons", type=int, default=64)
+     args = parser.parse_args()
+     if args.command == "spike":
+         print(json.dumps(run_spike(args.world_config, args.out), ensure_ascii=False, indent=2))
+     elif args.command == "golden-record":
+-        print(json.dumps(record_golden(args.out, args.seed, args.checkpoint, args.scenario, args.brain_graph, args.brain_readout_neurons), ensure_ascii=False, indent=2))
++        print(json.dumps(record_golden(args.out, args.seed, args.checkpoint, args.scenario, args.brain_graph, args.brain_readout_neurons, args.device), ensure_ascii=False, indent=2))
+     elif args.command == "golden-validate":
+-        print(json.dumps(validate_golden(args.episode), ensure_ascii=False, indent=2))
++        result = validate_golden(args.episode, args.brain_graph)
++        print(json.dumps(result, ensure_ascii=False, indent=2))
++        raise SystemExit(0 if result["GOLDEN_EPISODE_READY"] else 1)
++    elif args.command == "golden-export":
++        m = export_golden(args.episode, args.out, registry=args.registry)
++        print(json.dumps({"view_id": m["view_id"], "events": m["event_count"], "replay_sha256": m["replay_sha256"]}))
++    elif args.command == "golden-evaluate":
++        print(json.dumps(evaluate(args.checkpoint, args.brain_graph, args.cases, args.out, args.device, args.readout_neurons), indent=2))
+     elif args.command == "brain-train":
+         print(json.dumps(brain_train(args.out, args.graph, args.total_steps, args.seed, args.readout_neurons, args.device), ensure_ascii=False, indent=2))
+     elif args.command == "brain-imitation-train":
+diff --git a/flydrone/tellosim/env.py b/flydrone/tellosim/env.py
+index aa10dad..65c7d9f 100644
+--- a/flydrone/tellosim/env.py
++++ b/flydrone/tellosim/env.py
+@@ -43,6 +43,7 @@ class TelloSimEnv(gym.Env[np.ndarray, int]):
+         self.sim.sim_tick = 0
+         self.steps = 0
+         self.stable_hold_s = 0.0
++        self.sim.events.clear()
+         return self.pose.snapshot().observation26(self.goal), {"goal_m": self.goal.copy()}
+ 
+     def step(self, action: int):
+@@ -61,36 +62,46 @@ class TelloSimEnv(gym.Env[np.ndarray, int]):
+         )
+         command = commands[int(action)]
+         issued_tick = int(self.sim.sim_tick)
++        event_start = len(self.sim.events)
+         command_result = {"phase": "completed", "device_execution": "completed", "raw_response": "ok"}
+         if not self.sim.airborne:
+             self.sim.airborne = True
+         command_result = self.sim.submit(" ".join([command.verb, *(str(v) for v in command.args)]), f"env-step-{self.steps}")
+ 
+         after = self.pose.snapshot()
++        trajectory = [r for r in self.sim.events[event_start:] if r["kind"] == "trajectory"]
++        duration = (after.sim_tick - issued_tick) * self.sim.world.config.dt
+         self.steps += 1
+         distance_before = float(np.linalg.norm(np.asarray(before.position_m) - self.goal))
+         distance_after = float(np.linalg.norm(np.asarray(after.position_m) - self.goal))
+         progress_reward = distance_before - distance_after
+         time_penalty = -0.01 * duration
+         speed = float(np.linalg.norm(after.velocity_mps))
+-        if distance_after <= self.config.target_radius_m and speed <= self.config.stable_speed_mps:
+-            self.stable_hold_s += duration
+-        else:
+-            self.stable_hold_s = 0.0
++        for sample in trajectory:
++            distance = float(np.linalg.norm(np.asarray([sample["x_m"], sample["y_m"], sample["z_m"]]) - self.goal))
++            if distance <= self.config.target_radius_m and sample["speed_mps"] <= self.config.stable_speed_mps:
++                self.stable_hold_s += self.sim.world.config.dt
++            else:
++                self.stable_hold_s = 0.0
++        collision = any(r["collision"] for r in trajectory)
++        out_of_bounds = any(r["out_of_bounds"] for r in trajectory)
+         if self.config.stable_hold_s > 0:
+-            terminated = self.stable_hold_s >= self.config.stable_hold_s
++            terminated = self.stable_hold_s + 1e-9 >= self.config.stable_hold_s
+         else:
+             terminated = distance_after <= self.config.target_radius_m
+-        target_bonus = 1.0 if terminated else 0.0
++        success = terminated and not collision and not out_of_bounds
++        terminated = success or collision or out_of_bounds
++        target_bonus = 1.0 if success else 0.0
+         reward = progress_reward + time_penalty + target_bonus
+-        truncated = self.steps >= self.config.max_episode_steps
++        truncated = self.steps >= self.config.max_episode_steps and not terminated
+         return after.observation26(self.goal), float(reward), terminated, truncated, {
+             "duration_s": duration, "distance_m": distance_after, "sim_tick": after.sim_tick,
+             "command": command.verb, "command_args": list(command.args),
+             "command_id": command_result.get("operation_id", f"env-step-{self.steps - 1}"),
+             "issued_sim_tick": issued_tick, "started_sim_tick": issued_tick,
+             "completed_sim_tick": int(after.sim_tick), "command_result": command_result,
+-            "speed_mps": speed, "stable_hold_s": self.stable_hold_s, "success": terminated,
++            "speed_mps": speed, "stable_hold_s": self.stable_hold_s, "success": success,
++            "collision": collision, "out_of_bounds": out_of_bounds, "physics_samples": trajectory,
+             "reward_components": {"progress_reward": float(progress_reward), "time_penalty": float(time_penalty), "target_bonus": float(target_bonus)},
+         }
+ 
+diff --git a/flydrone/tellosim/golden.py b/flydrone/tellosim/golden.py
+index 8f41f0a..a22f9a1 100644
+--- a/flydrone/tellosim/golden.py
++++ b/flydrone/tellosim/golden.py
+@@ -35,22 +35,49 @@ def _brain_snapshot(brain: FrozenReservoir | None) -> dict[str, Any]:
+     values_v = brain.v[selected, 0].detach().cpu().numpy().tolist()
+     values_s = brain.s[selected, 0].detach().cpu().numpy().tolist()
+     values_t = brain.trace[selected, 0].detach().cpu().numpy().tolist()
+-    return {"status": "recorded", "whole_brain_spike_fraction": float(brain.s[:, 0].mean().item()),
++    top = torch.topk(brain.trace[:, 0], 32).indices.cpu().tolist()
++    return {"status": "recorded", "sample_phase": "after_final_neural_substep_before_action", "top_n_basis": "trace", "top_n": [{"neuron_index": i, "trace": float(brain.trace[i, 0]), "spike": int(brain.s[i, 0])} for i in top], "whole_brain_spike_fraction": float(brain.s[:, 0].mean().item()),
+             "neurons": [{"neuron_id": str(brain.readout_ids[i]), "neuron_index": int(selected[i]),
+                           "v": float(values_v[i]), "spike": int(values_s[i]), "trace": float(values_t[i])}
+                          for i in range(len(selected))]}
+ 
++def load_runtime(checkpoint, graph, readout=64, device="cpu"):
++    payload = torch.load(checkpoint, map_location="cpu", weights_only=False)
++    model = ActorCritic(int(payload.get("feature_dim", 26)), action_dim=int(payload.get("action_dim", 9)))
++    if int(payload.get("action_dim", 9)) != 9:
++        raise ValueError("incompatible action space")
++    model.load_state_dict(payload["policy_state_dict"])
++    model.eval()
++    brain = FrozenReservoir(str(graph), batch=1, readout_neurons=readout, device=device) if graph else None
++    if brain:
++        if payload.get("graph_sha256") != brain.graph_sha256 or payload.get("mapping_sha256") != brain.mapping_sha256:
++            raise ValueError("checkpoint graph/mapping mismatch")
++        if model.feature_dim != brain.feature_dim:
++            raise ValueError("checkpoint feature dimension mismatch")
++    elif model.feature_dim != 26:
++        raise ValueError("reservoir checkpoint requires its brain graph")
++    return model, brain, sha256(checkpoint)
++
++
+ def record_golden(out: str | Path, seed: int = 11, checkpoint: str | Path | None = None,
+                   scenario: str | Path | None = None, brain_graph: str | Path | None = None,
+-                  brain_readout_neurons: int = 64) -> dict[str, Any]:
++                  brain_readout_neurons: int = 64, device: str = "cpu",
++                  runtime=None, write_artifact: bool = True) -> dict[str, Any]:
+     if checkpoint is None or not Path(checkpoint).is_file():
+         raise FileNotFoundError("a real policy checkpoint is required")
+     out = Path(out)
+-    out.mkdir(parents=True, exist_ok=True)
+-    scenario_data = json.loads(Path(scenario).read_text(encoding="utf-8")) if scenario else {"scenario_id": "room6_c0_fixed_target", "world": {}, "success": {}}
++    if write_artifact:
++        out.mkdir(parents=True, exist_ok=True)
++        if (out / "replay.jsonl").exists():
++            raise FileExistsError("preserve sealed replay; choose a new output directory")
++    scenario_data = scenario if isinstance(scenario, dict) else json.loads(Path(scenario).read_text(encoding="utf-8")) if scenario else {"scenario_id": "room6_c0_fixed_target", "world": {}, "success": {}}
+     world_data, success_data = scenario_data.get("world", {}), scenario_data.get("success", {})
+     start = tuple(world_data.get("start_xyz_m", [0.0, 0.0, 1.0]))
+     goal = tuple(world_data.get("target_xyz_m", [0.8, 0.0, 1.0]))
++    if world_data.get("room_size_m", [6, 6, 3]) != [6, 6, 3] or world_data.get("yaw_rad", 0) != 0 or world_data.get("obstacles"):
++        raise ValueError("Golden runner currently supports only the empty 6x6x3 room and initial yaw=0")
++    if int(scenario_data.get("max_episode_steps", 120)) < 1:
++        raise ValueError("max_episode_steps must be positive")
+     world = SimWorld(WorldConfig())
+     sim = SimTello(world)
+     env = TelloSimEnv(sim, VariableDurationConfig(
+@@ -60,25 +87,20 @@ def record_golden(out: str | Path, seed: int = 11, checkpoint: str | Path | None
+         target_radius_m=float(success_data.get("target_radius_m", 0.15)),
+         stable_hold_s=float(success_data.get("stable_hold_s", 0.0)),
+         stable_speed_mps=float(success_data.get("speed_mps", 0.15))))
+-    payload = torch.load(checkpoint, map_location="cpu", weights_only=False)
+-    feature_dim = int(payload.get("feature_dim", payload.get("observation_dim", 26)))
+-    action_dim = int(payload.get("action_dim", 9))
+-    if action_dim != 9:
+-        raise ValueError(f"checkpoint action_dim={action_dim} is incompatible with tellosim.actions9")
+-    model = ActorCritic(feature_dim, action_dim=action_dim)
+-    model.load_state_dict(payload["policy_state_dict"])
+-    model.eval()
+-    brain = None
+-    graph_digest, mapping_digest = payload.get("graph_sha256"), payload.get("mapping_sha256")
+-    if brain_graph is not None:
+-        brain = FrozenReservoir(str(brain_graph), batch=1, readout_neurons=brain_readout_neurons)
+-        graph_digest, mapping_digest = brain.graph_sha256, brain.mapping_sha256
+-    policy_hash = sha256(checkpoint)
++    runtime = runtime or load_runtime(checkpoint, brain_graph, brain_readout_neurons, device)
++    model, brain, policy_hash = runtime
++    feature_dim = model.feature_dim
++    graph_digest = brain.graph_sha256 if brain else None
++    mapping_digest = brain.mapping_sha256 if brain else None
++    if brain is not None:
++        brain.reset()
+     obs, _ = env.reset(seed=seed)
+     rows, total_return = [], 0.0
+     for step in range(env.config.max_episode_steps):
++        brain_obs = env.brain_observation()
++        encoded = brain.encoder(np.asarray([brain_obs], dtype=np.float32)) if brain else None
+         if brain is not None:
+-            brain.advance(brain.encoder(np.asarray([env.brain_observation()], dtype=np.float32)))
++            brain.advance(encoded)
+         feature_array = brain.current_features() if brain is not None and feature_dim == brain.feature_dim else np.asarray([obs], dtype=np.float32)
+         features = torch.as_tensor(feature_array, dtype=torch.float32)
+         if features.shape[1] != feature_dim:
+@@ -92,48 +114,69 @@ def record_golden(out: str | Path, seed: int = 11, checkpoint: str | Path | None
+         after = env.pose.snapshot()
+         total_return += float(reward)
+         rows.append({
+-            "run_id": "golden-checkpoint-eval", "episode_id": "golden-0001",
++            "run_id": scenario_data.get("run_id", "golden-checkpoint-eval"), "episode_id": scenario_data.get("episode_id", "golden-0001"),
+             "scenario_id": scenario_data.get("scenario_id", "tellosim-golden"),
+             "policy_checkpoint_sha256": policy_hash, "graph_sha256": graph_digest, "brain_mapping_sha256": mapping_digest,
+-            "decision_step": step, "neural_substep": 0 if brain is not None else None,
++            "seed": seed, "decision_step": step, "neural_substep": brain.internal_steps - 1 if brain else None,
++            "physics_dt_s": world.config.dt, "decision_time_s": before.sim_tick * world.config.dt,
++            "brain_observation": brain_obs.tolist() if brain else None,
++            "encoded_observation": encoded[0].tolist() if brain else None, "policy_features": features[0].tolist(),
++            "physics_samples": meta["physics_samples"],
+             "sim_time_s": after.sim_tick * world.config.dt, "observation_schema_version": "tellosim.pose/1.0",
+             "observation": obs.tolist(),
+             "world": {"position_xyz_m": list(after.position_m), "velocity_xyz_mps": list(after.velocity_mps), "yaw_rad": after.yaw_rad,
+-                      "is_flying": after.airborne, "collision": False,
+-                      "out_of_bounds": bool(np.max(np.abs(np.asarray(after.position_m)[:2])) > world.config.room_half_extent_m),
++                      "is_flying": after.airborne, "collision": meta["collision"],
++                      "out_of_bounds": meta["out_of_bounds"],
+                       "target_xyz_m": list(env.goal), "distance_to_target_m": meta["distance_m"]},
+-            "brain": _brain_snapshot(brain),
++            "brain": _brain_snapshot(brain) if write_artifact else {"status": "recorded" if brain else "not_recorded"},
+             "policy": {"action_space_version": "tellosim.actions9/1.0", "selected_action": int(action.item()),
+                        "selected_action_name": ACTION_NAMES[int(action.item())] if int(action.item()) < len(ACTION_NAMES) else "UNKNOWN",
+                        "probabilities": [float(v) for v in probs], "value_estimate": float(value.item()), "entropy": entropy,
+                        "input_source": "direct_observation" if brain is None else "flybrain_reservoir_features"},
+-            "command": {"command_id": meta["command_id"], "command_type": meta["command"], "command_args": list(meta["command_args"]),
++            "command": {"proposed_action": int(action.item()), "approved_action": int(action.item()), "transformation_reason": "none", "command_id": meta["command_id"], "command_type": meta["command"], "command_args": list(meta["command_args"]),
+                         "issued_at_sim_time": meta["issued_sim_tick"] * world.config.dt,
+                         "started_at_sim_time": meta["started_sim_tick"] * world.config.dt,
+                         "completed_at_sim_time": meta["completed_sim_tick"] * world.config.dt, "result": meta["command_result"]},
+             "reward": {"reward_total": float(reward), "reward_components": dict(meta["reward_components"])},
+             "state_before": {"position_xyz_m": list(before.position_m), "velocity_xyz_mps": list(before.velocity_mps)},
+             "state_after_observation": next_obs.tolist(), "stable_hold_s": meta["stable_hold_s"],
+-            "terminated": bool(terminated), "truncated": bool(truncated)})
++            "success": bool(meta["success"]), "terminated": bool(terminated), "truncated": bool(truncated)})
+         obs = next_obs
++        sim.events.clear()
+         if terminated or truncated:
+             break
+-    replay = out / "replay.jsonl"
+-    _jsonl(replay, rows)
+-    for name, key in [("world.jsonl", "world"), ("policy.jsonl", "policy"), ("commands.jsonl", "command"), ("rewards.jsonl", "reward"), ("brain_summary.jsonl", "brain")]:
+-        _jsonl(out / name, [{**r[key], "run_id": r["run_id"], "episode_id": r["episode_id"], "decision_step": r["decision_step"], "sim_time_s": r["sim_time_s"]} for r in rows])
+-    ck = out / "checkpoint.pt"
+-    shutil.copy2(checkpoint, ck)
+     final = rows[-1]
+-    manifest = {"schema_version": "golden_episode/1.1", "run_id": "golden-checkpoint-eval", "episode_id": "golden-0001",
++    manifest = {"schema_version": "golden_episode/1.2", "run_id": scenario_data.get("run_id", "golden-checkpoint-eval"), "episode_id": scenario_data.get("episode_id", "golden-0001"),
+         "scenario_id": scenario_data.get("scenario_id", "tellosim-golden"), "seed": seed, "policy_checkpoint_sha256": policy_hash,
+-        "graph_sha256": graph_digest, "brain_mapping_sha256": mapping_digest, "success": bool(final["terminated"]),
++        "graph_sha256": graph_digest, "brain_mapping_sha256": mapping_digest, "success": bool(final["success"]),
+         "episode_return": total_return, "episode_steps": len(rows), "sim_duration_s": final["sim_time_s"],
+         "final_distance_m": final["world"]["distance_to_target_m"], "stable_hold_s": final["stable_hold_s"],
+         "collision": any(r["world"]["collision"] for r in rows), "out_of_bounds": any(r["world"]["out_of_bounds"] for r in rows),
+-        "replay_sha256": sha256(replay), "policy_source": final["policy"]["input_source"],
++        "replay_sha256": None, "policy_source": final["policy"]["input_source"],
+         "neural_capture": "recorded" if brain else "not_recorded", "replay_mode": "recorded_replay",
+-        "scenario": {"start_xyz_m": list(start), "target_xyz_m": list(goal)}}
++        "scenario": {"start_xyz_m": list(start), "target_xyz_m": list(goal)},
++        "scenario_config": scenario_data, "timeout": final["truncated"],
++        "success_contract": {"target_radius_m": env.config.target_radius_m, "stable_hold_s": env.config.stable_hold_s, "speed_mps": env.config.stable_speed_mps},
++        "brain": {"model": "frozen_LIF", "n": brain.n, "nnz": brain.w._nnz(), "internal_steps": brain.internal_steps, "device": str(brain.device)} if brain else None,
++        "observation_note": "brain_observation is the actual 8D encoder input from simulated pose; observation is 26D telemetry; policy_features is the exact policy input",
++        "initial_state": "initialized airborne at known pose, no takeoff task",
++        "physics_dt_s": world.config.dt}
++    if not write_artifact:
++        manifest["neural_capture"] = "not_recorded"
++        manifest["replay_mode"] = "evaluation_summary"
++        manifest["decisions"] = [{"decision_step": r["decision_step"], "action": r["policy"]["selected_action"], "position_xyz_m": r["world"]["position_xyz_m"], "sim_time_s": r["sim_time_s"], "distance_m": r["world"]["distance_to_target_m"], "reward": r["reward"]["reward_total"], "stable_hold_s": r["stable_hold_s"]} for r in rows]
++        return manifest
++    replay = out / "replay.jsonl"
++    _jsonl(replay, rows)
++    for name, key in [("world.jsonl", "world"), ("policy.jsonl", "policy"), ("commands.jsonl", "command"), ("rewards.jsonl", "reward"), ("brain_summary.jsonl", "brain")]:
++        _jsonl(out / name, [{**r[key], "run_id": r["run_id"], "episode_id": r["episode_id"], "decision_step": r["decision_step"], "sim_time_s": r["sim_time_s"]} for r in rows])
++    ck = out / "checkpoint.pt"
++    shutil.copy2(checkpoint, ck)
++    manifest["replay_sha256"] = sha256(replay)
++    if brain:
++        mapping = {"input_indices": brain.input_indices.tolist(), "input_channels": brain.input_channels.tolist(), "readout_indices": brain.readout_indices.tolist()}
++        (out / "brain_mapping.json").write_text(json.dumps(mapping), encoding="utf-8")
++
+     (out / "manifest.json").write_text(json.dumps(manifest, ensure_ascii=False, indent=2), encoding="utf-8")
+     files = sorted(p for p in out.iterdir() if p.is_file() and p.name not in {"checksums.sha256", "GOLDEN_EPISODE_REPORT.md"})
+     (out / "checksums.sha256").write_text("".join(f"{sha256(p)}  {p.name}\n" for p in files), encoding="utf-8")
+@@ -144,24 +187,48 @@ def record_golden(out: str | Path, seed: int = 11, checkpoint: str | Path | None
+         "This artifact is a recorded replay. The viewer does not re-run the policy.\n", encoding="utf-8")
+     return manifest
+ 
+-def validate_golden(path: str | Path) -> dict[str, Any]:
++def validate_golden(path: str | Path, graph: str | Path | None = None) -> dict[str, Any]:
+     root = Path(path)
+     manifest = json.loads((root / "manifest.json").read_text(encoding="utf-8"))
+     rows = [json.loads(line) for line in (root / "replay.jsonl").read_text(encoding="utf-8").splitlines() if line.strip()]
+     checks = {}
+-    checks["GE-01"] = bool(manifest.get("success") and manifest.get("stable_hold_s", 0) >= 1.0 and not manifest.get("collision") and not manifest.get("out_of_bounds"))
+-    checks["GE-02"] = all(r["command"]["command_type"] in ALLOWED_COMMANDS for r in rows)
+-    checks["GE-03"] = all(rows[i]["sim_time_s"] < rows[i + 1]["sim_time_s"] for i in range(len(rows) - 1))
+-    checks["GE-04"] = all(r["decision_step"] == i and r["episode_id"] == manifest["episode_id"] for i, r in enumerate(rows))
+-    checks["GE-05"] = all(r["brain"]["status"] in {"recorded", "not_recorded"} for r in rows)
+-    checks["GE-06"] = sha256(root / "replay.jsonl") == manifest.get("replay_sha256")
+-    checks["GE-07"] = bool(rows)
+-    checks["GE-08"] = checks["GE-06"]
+-    checks["GE-09"] = all(abs(sum(r["reward"]["reward_components"].values()) - r["reward"]["reward_total"]) < 1e-6 for r in rows)
+-    checks["GE-10"] = all(np.isfinite(r["policy"]["probabilities"]).all() and abs(sum(r["policy"]["probabilities"]) - 1.0) < 1e-5 and 0 <= r["policy"]["selected_action"] < len(r["policy"]["probabilities"]) for r in rows)
+-    checks["GE-11"] = checks["GE-02"]
+-    checks["GE-12"] = any(r["world"]["position_xyz_m"] != r["state_before"]["position_xyz_m"] for r in rows)
+-    checks["GE-13"] = sha256(root / "checkpoint.pt") == manifest.get("policy_checkpoint_sha256") and checks["GE-06"]
+-    checks["GE-14"] = bool(manifest.get("graph_sha256") and manifest.get("brain_mapping_sha256") and manifest.get("neural_capture") == "recorded")
+-    checks["GE-15"] = checks["GE-06"]
+-    return {"GOLDEN_EPISODE_READY": all(checks.values()), "checks": checks, "manifest": manifest, "rows": len(rows)}
++    contract = manifest.get("success_contract", {})
++    samples = [p for r in rows for p in r.get("physics_samples", [])]
++    hold = 0.0
++    goal = np.asarray(manifest["scenario"]["target_xyz_m"])
++    dt = manifest.get("physics_dt_s", 1/120)
++    for p in samples:
++        good = np.linalg.norm(np.asarray([p["x_m"], p["y_m"], p["z_m"]])-goal) <= contract.get("target_radius_m", .3) and p["speed_mps"] <= contract.get("speed_mps", .15)
++        hold = hold + dt if good else 0.0
++    checks["GE-01"] = bool(samples and manifest["success"] and rows[-1].get("success") and hold + 1e-9 >= max(1., contract.get("stable_hold_s", 1.)) and abs(hold-manifest["stable_hold_s"]) < 1e-6 and not any(p["collision"] or p["out_of_bounds"] for p in samples) and not manifest.get("timeout"))
++    verbs = ["stop", "forward", "back", "left", "right", "up", "down", "cw", "ccw"]
++    checks["GE-02"] = all(0 <= r["policy"]["selected_action"] < 9 and r["command"]["command_type"] == verbs[r["policy"]["selected_action"]] for r in rows)
++    checks["GE-03"] = bool(rows) and all(r["command"]["issued_at_sim_time"] <= r["command"]["started_at_sim_time"] < r["command"]["completed_at_sim_time"] == r["sim_time_s"] for r in rows) and all(a["sim_time_s"] <= b["command"]["issued_at_sim_time"] for a,b in zip(rows, rows[1:]))
++    checks["GE-04"] = bool(rows) and all(r["decision_step"] == i and all(r[k] == manifest[k] for k in ("run_id", "episode_id", "scenario_id", "policy_checkpoint_sha256", "graph_sha256", "brain_mapping_sha256")) and r.get("neural_substep") == (manifest.get("brain") or {}).get("internal_steps", 0)-1 for i,r in enumerate(rows))
++    checks["GE-05"] = None  # browser must display missing data explicitly
++    for key in ("GE-06", "GE-07", "GE-08", "GE-15"):
++        checks[key] = None  # actual browser interaction evidence is required
++    checks["GE-09"] = all(abs(sum(r["reward"]["reward_components"].values())-r["reward"]["reward_total"]) < 1e-6 for r in rows)
++    checks["GE-10"] = all(len(r["policy"]["probabilities"]) == 9 and np.isfinite(r["policy"]["probabilities"]).all() and all(0 <= v <= 1 for v in r["policy"]["probabilities"]) and abs(sum(r["policy"]["probabilities"])-1) < 1e-5 and 0 <= r["policy"]["selected_action"] < 9 for r in rows)
++    checks["GE-11"] = checks["GE-02"] and all(r["command"]["command_args"] == ([] if r["policy"]["selected_action"] == 0 else [30] if r["policy"]["selected_action"] >= 7 else [20]) and r["command"]["result"].get("device_execution") == "completed" for r in rows)
++    continuous = bool(samples) and all(b["sim_tick"] == a["sim_tick"]+1 and np.linalg.norm(np.asarray([b["x_m"],b["y_m"],b["z_m"]])-np.asarray([a["x_m"],a["y_m"],a["z_m"]])) <= max(a["speed_mps"], b["speed_mps"])*dt+1e-5 for a,b in zip(samples,samples[1:]))
++    checks["GE-12"] = continuous and any(sum(p["speed_mps"] > .001 for p in r.get("physics_samples", [])) > 2 for r in rows)
++    checks["GE-13"] = sha256(root / "checkpoint.pt") == manifest.get("policy_checkpoint_sha256") and sha256(root / "replay.jsonl") == manifest.get("replay_sha256")
++    mapping_file = root / "brain_mapping.json"
++    mapping_ok = False
++    if mapping_file.exists():
++        m = json.loads(mapping_file.read_text())
++        digest = hashlib.sha256(b"".join(np.asarray(m[k], dtype=np.int64).tobytes() for k in ("input_indices", "input_channels", "readout_indices"))).hexdigest()
++        mapping_ok = digest == manifest["brain_mapping_sha256"]
++    checks["GE-14"] = bool(graph and sha256(graph) == manifest.get("graph_sha256") and mapping_ok)
++    browser = root / "browser_acceptance.json"
++    if browser.exists():
++        evidence = json.loads(browser.read_text())
++        project = Path(__file__).resolve().parents[2]
++        viewer_path = project / "flyview/static/index.html"
++        events_path = project / "reports/vis/views/golden-episode/events.jsonl"
++        evidence_matches = evidence.get("replay_sha256") == sha256(root / "replay.jsonl") and evidence.get("viewer_sha256") == sha256(viewer_path) and events_path.exists() and evidence.get("events_sha256") == sha256(events_path)
++        if evidence_matches:
++            for key in ("GE-05", "GE-06", "GE-07", "GE-08", "GE-15"):
++                checks[key] = evidence.get("checks", {}).get(key) is True
++    return {"GOLDEN_EPISODE_READY": bool(rows) and all(v is True for v in checks.values()), "checks": checks, "manifest": manifest, "rows": len(rows), "pending": [k for k,v in checks.items() if v is None]}
+diff --git a/flydrone/tellosim/physics/world.py b/flydrone/tellosim/physics/world.py
+index d03da2b..21c5e43 100644
+--- a/flydrone/tellosim/physics/world.py
++++ b/flydrone/tellosim/physics/world.py
+@@ -3,6 +3,7 @@ from __future__ import annotations
+ from dataclasses import dataclass
+ import math
+ from pathlib import Path
++from typing import Any
+ 
+ import mujoco
+ import numpy as np
+@@ -10,6 +11,8 @@ import numpy as np
+ 
+ @dataclass(frozen=True)
+ class WorldConfig:
++    controller_profile: str = "bounded_level_body_surrogate"
++    max_torque_nm: float = .01
+     physics_hz: int = 120
+     room_half_extent_m: float = 3.0
+     floor_z_m: float = 0.0
+@@ -63,6 +66,7 @@ class SimWorld:
+         self.model = mujoco.MjModel.from_xml_string(self._xml())
+         self.data = mujoco.MjData(self.model)
+         self.body_id = mujoco.mj_name2id(self.model, mujoco.mjtObj.mjOBJ_BODY, "tello")
++        self.last_control = {}
+         self.target = np.zeros(3, dtype=np.float64)
+         self.target_yaw = 0.0
+         self._yaw_state = 0.0
+@@ -93,6 +97,7 @@ class SimWorld:
+         self.target = np.asarray(position, dtype=np.float64)
+         self.target_yaw = 0.0
+         self._yaw_state = 0.0
++        self.last_control = {}
+         mujoco.mj_forward(self.model, self.data)
+ 
+     @property
+@@ -115,7 +120,7 @@ class SimWorld:
+         return self._yaw_state
+ 
+     def hold(self) -> None:
+-        self.target = self.position
++        self.set_target(tuple(self.position))
+ 
+     def _apply_controller(self) -> None:
+         c = self.config
+@@ -123,6 +128,8 @@ class SimWorld:
+         vel = self.data.qvel[:3]
+         error = self.target - pos
+         accel = c.position_kp * error - c.velocity_kd * vel
++        if c.controller_profile == "rigid_body_thrust_v2":
++            accel += c.velocity_kd * getattr(self,"reference_velocity",np.zeros(3)) + getattr(self,"reference_acceleration",np.zeros(3))
+         horizontal = np.linalg.norm(accel[:2])
+         horizontal_limit = 9.81 * math.tan(math.radians(c.max_tilt_deg))
+         if horizontal > min(c.max_accel_mps2, horizontal_limit):
+@@ -132,14 +139,20 @@ class SimWorld:
+         thrust = float(np.linalg.norm(desired_thrust))
+         thrust = float(np.clip(thrust, 0.0, c.max_thrust_weight_ratio * c.mass_kg * 9.81))
+ 
++        if self.config.controller_profile == 'rigid_body_thrust_v2':
++            from .rigid import wrench
++            force,torque,self.last_control=wrench(self,accel)
++            self.data.xfrc_applied[self.body_id,:3]=force
++            self.data.xfrc_applied[self.body_id,3:]=torque
++            return
+         # First-stage surrogate keeps the body level and models yaw as a
+         # bounded command state. Translational motion remains MuJoCo-integrated.
+         horizontal_force = np.clip(accel[:2] * c.mass_kg, -0.06, 0.06)
+         self.data.xfrc_applied[self.body_id, :3] = np.asarray((horizontal_force[0], horizontal_force[1], thrust))
+         self.data.xfrc_applied[self.body_id, 3:] = 0.0
+ 
+-    def step(self, ticks: int = 1) -> list[dict[str, float | int]]:
+-        trajectory: list[dict[str, float | int]] = []
++    def step(self, ticks: int = 1) -> list[dict[str, Any]]:
++        trajectory: list[dict[str, Any]] = []
+         for _ in range(int(ticks)):
+             self.data.xfrc_applied[:] = 0.0
+             self._apply_controller()
+@@ -147,7 +160,12 @@ class SimWorld:
+             yaw_error = math.atan2(math.sin(self.target_yaw - self._yaw_state), math.cos(self.target_yaw - self._yaw_state))
+             yaw_rate = float(np.clip(yaw_error / max(0.25, 1.0 / self.config.max_yaw_rate_rad_s),
+                                      -self.config.max_yaw_rate_rad_s, self.config.max_yaw_rate_rad_s))
+-            self._yaw_state += yaw_rate * self.config.dt
++            if self.config.controller_profile == 'rigid_body_thrust_v2':
++                from .rigid import heading
++                measured=heading(self.data.qpos[3:7])
++                self._yaw_state += math.atan2(math.sin(measured-self._yaw_state),math.cos(measured-self._yaw_state))
++            else:
++                self._yaw_state += yaw_rate * self.config.dt
+             if not np.all(np.isfinite(self.data.qpos)) or not np.all(np.isfinite(self.data.qvel)):
+                 raise FloatingPointError(f"MuJoCo state became non-finite at tick {self.data.time}")
+             trajectory.append({
+@@ -157,5 +175,41 @@ class SimWorld:
+                 "y_m": float(self.data.qpos[1]),
+                 "z_m": float(self.data.qpos[2]),
+                 "speed_mps": float(np.linalg.norm(self.data.qvel[:3])),
++                "velocity_mps": self.velocity.tolist(),
++                "yaw_rad": self.yaw_rad,
++                "quaternion_wxyz": self.data.qpos[3:7].copy().tolist(),
++                "angular_velocity_body_rad_s": self.data.qvel[3:6].copy().tolist(),
++                "controller": self.config.controller_profile,
++                "control": self.last_control.copy(),
++                "collision": bool(self.data.ncon),
++                "out_of_bounds": bool(max(abs(self.data.qpos[0]), abs(self.data.qpos[1])) > self.config.room_half_extent_m or self.data.qpos[2] > 3 or self.data.qpos[2] < self.config.floor_z_m),
+             })
+         return trajectory
++
++    def export_state(self):
++        from dataclasses import asdict
++        mask=mujoco.mjtState.mjSTATE_INTEGRATION
++        state=np.empty(mujoco.mj_stateSize(self.model,mask))
++        mujoco.mj_getState(self.model,self.data,state,mask)
++        return {'format':'tellosim.world_state/2','mujoco_version':mujoco.__version__,
++            'config':asdict(self.config),'xml':self._xml(),'mask':int(mask),'integration':state,
++            'target':self.target.copy(),'target_yaw':self.target_yaw,'yaw_unwrapped':self._yaw_state,
++            'last_control':self.last_control.copy(),
++            'trajectory':__import__('copy').deepcopy(getattr(self,'trajectory',None)),
++            'powered':getattr(self,'powered',None),'speed_limit':getattr(self,'speed_limit',None)}
++
++    def restore_state(self,state):
++        from dataclasses import asdict
++        if state['format']!='tellosim.world_state/2' or state['mujoco_version']!=mujoco.__version__ or state['config']!=asdict(self.config) or state['xml']!=self._xml():
++            raise ValueError('physics checkpoint contract mismatch')
++        mask=mujoco.mjtState.mjSTATE_INTEGRATION
++        if state['mask']!=int(mask) or len(state['integration'])!=mujoco.mj_stateSize(self.model,mask):raise ValueError('physics state mask mismatch')
++        mujoco.mj_setState(self.model,self.data,np.asarray(state['integration']),mask)
++        mujoco.mj_forward(self.model,self.data)
++        # mj_forward computes solver intermediates and can overwrite warmstart.
++        # Restore the complete integration inputs again before the next step.
++        mujoco.mj_setState(self.model,self.data,np.asarray(state['integration']),mask)
++        self.target=np.asarray(state['target']).copy();self.target_yaw=state['target_yaw'];self._yaw_state=state['yaw_unwrapped']
++        self.last_control=state['last_control'].copy()
++        if hasattr(self,'trajectory'):self.trajectory=__import__('copy').deepcopy(state['trajectory'])
++        if state['powered'] is not None:self.powered=state['powered'];self.speed_limit=state['speed_limit']
+diff --git a/flydrone/tellosim/sdk/codec.py b/flydrone/tellosim/sdk/codec.py
+index e3849d5..8d891b8 100644
+--- a/flydrone/tellosim/sdk/codec.py
++++ b/flydrone/tellosim/sdk/codec.py
+@@ -36,9 +36,11 @@ def decode_command(text: str) -> TelloCommand:
+         raise CommandError("syntax_error", "command must be a non-empty ASCII string")
+     if len(text.encode("ascii", errors="ignore")) != len(text) or len(text.encode("ascii")) > 256:
+         raise CommandError("syntax_error", "command must be at most 256 ASCII bytes")
+-    if any(char in text for char in "\r\n\t;\x00"):
++    if any(ord(char)<32 or ord(char)==127 or char==";" for char in text):
+         raise CommandError("syntax_error", "control characters and separators are not allowed")
+     parts = text.strip().split()
++    if not parts:
++        raise CommandError("syntax_error", "command must contain a verb")
+     verb = parts[0]
+     if verb in _NO_ARG or verb in _QUERY:
+         if len(parts) != 1:
+diff --git a/flydrone/tellosim/sim.py b/flydrone/tellosim/sim.py
+index 9952ea9..c2581a1 100644
+--- a/flydrone/tellosim/sim.py
++++ b/flydrone/tellosim/sim.py
+@@ -108,7 +108,7 @@ class SimTello:
+         ticks = max(1, math.ceil(seconds * self.world.config.physics_hz))
+         for row in self.world.step(ticks):
+             self.sim_tick = int(row["sim_tick"])
+-            self._event("trajectory", **row, yaw_rad=self.world.yaw_rad, airborne=self.airborne)
++            self._event("trajectory", **row, airborne=self.airborne)
+ 
+ 
+ def run_script(commands_path: str | Path, world_config: str | Path, out: str | Path) -> dict[str, Any]:
+diff --git a/flyview/server.py b/flyview/server.py
+index 7759376..67c890c 100644
+--- a/flyview/server.py
++++ b/flyview/server.py
+@@ -55,18 +55,23 @@ class Viewer:
+         path = directory / ("live_descriptor.json" if (directory / "live_descriptor.json").exists() else "view_manifest.json")
+         return json.loads(path.read_text(encoding="utf-8"))
+ 
+-    def events(self, view_id: str, limit: int = 256, kind: str | None = None) -> list[dict]:
++    def events(self, view_id: str, limit: int = 256, kind: str | None = None, offset: int = 0) -> list[dict]:
+         limit = max(1, min(int(limit), 256))
+         path = self.view_dir(view_id) / "events.jsonl"
+         if not path.exists():
+             return []
+         rows = []
++        skipped = 0
++        offset = max(0, int(offset))
+         with path.open(encoding="utf-8") as handle:
+             for line in handle:
+                 if line.strip():
+                     event = json.loads(line)
+                     if kind and event.get("kind") != kind:
+                         continue
++                    if skipped < offset:
++                        skipped += 1
++                        continue
+                     rows.append(event)
+                     if len(rows) >= limit:
+                         break
+@@ -106,6 +111,14 @@ class Viewer:
+                 result["view"] = json.loads(path.read_text(encoding="utf-8"))
+                 break
+ 
++        if self.manifest(view_id).get("schema_version") == "golden_view/1.0":
++            evaluation = self.project_root / "reports" / "golden_evaluation_final" / "summary.json"
++            if evaluation.exists():
++                summary = json.loads(evaluation.read_text())
++                if summary.get("checkpoint_sha256") == self.manifest(view_id).get("policy_checkpoint_sha256"):
++                    result["evaluation"] = summary
++            return result
++
+         validation: list[dict] = []
+         report_root = self.project_root / "reports" / "p1"
+         for summary_path in sorted(report_root.glob("*-validation/summary.json")):
+@@ -238,6 +251,8 @@ class Handler(BaseHTTPRequestHandler):
+             return
+ 
+     def do_POST(self) -> None:  # noqa: N802
++        if self.command == "POST" and hasattr(self.server, "tellosim") and self.server.tellosim.handle(self, post=True):
++            return
+         self._error(HTTPStatus.METHOD_NOT_ALLOWED, "viewer is read-only")
+ 
+     do_PUT = do_POST
+@@ -250,6 +265,8 @@ class Handler(BaseHTTPRequestHandler):
+             return
+         parsed = urlparse(self.path)
+         path = unquote(parsed.path)
++        if hasattr(self.server, "tellosim") and self.server.tellosim.handle(self):
++            return
+         ws_match = re.fullmatch(r"/ws/views/([^/]+)", path)
+         if ws_match:
+             self._websocket(ws_match.group(1))
+@@ -279,7 +296,10 @@ class Handler(BaseHTTPRequestHandler):
+                 query = parse_qs(parsed.query)
+                 limit = query.get("limit", ["256"])[0]
+                 kind = query.get("kind", [None])[0]
+-                self._send(200, _json_bytes({"events": self.viewer.events(match.group(1), int(limit), kind), "source_complete": True}))
++                offset = max(0, int(query.get("offset", ["0"])[0]))
++                rows = self.viewer.events(match.group(1), int(limit), kind, offset)
++                more = bool(self.viewer.events(match.group(1), 1, kind, offset + len(rows)))
++                self._send(200, _json_bytes({"events": rows, "source_complete": not more, "next_offset": offset + len(rows) if more else None}))
+                 return
+             match = re.fullmatch(r"/api/views/([^/]+)/latest", path)
+             if match:
+@@ -305,6 +325,9 @@ class Handler(BaseHTTPRequestHandler):
+             if match:
+                 self._send(200, _json_bytes(self.viewer.metrics(match.group(1))))
+                 return
++            if path == "/tellosim":
++                self._send(200, (STATIC_ROOT / "tellosim.html").read_bytes(), "text/html; charset=utf-8")
++                return
+             if path == "/" or path == "/index.html":
+                 body = (STATIC_ROOT / "index.html").read_bytes()
+                 self._send(200, body, "text/html; charset=utf-8")
+@@ -332,15 +355,20 @@ class Handler(BaseHTTPRequestHandler):
+ 
+ 
+ def serve(project_root: str | Path, host: str = "127.0.0.1", port: int = 8765) -> None:
++    if host not in {"127.0.0.1", "localhost"}:
++        raise ValueError("viewer must bind loopback")
++    from .tellosim_api import Observatory
+     root = Path(project_root).resolve()
+     viewer = Viewer(root, root / "reports" / "vis" / "views")
+     httpd = ThreadingHTTPServer((host, port), Handler)
+     httpd.viewer = viewer  # type: ignore[attr-defined]
++    httpd.tellosim = Observatory(root)
+     print(f"FlyBrain viewer: http://{host}:{port}", flush=True)
+-    print("Read-only mode: browser requests cannot control training or hardware.", flush=True)
++    print("Training/replays read-only; /tellosim provides isolated simulated sandboxes.", flush=True)
+     try:
+         httpd.serve_forever()
+     except KeyboardInterrupt:
+         pass
+     finally:
++        httpd.tellosim.close()
+         httpd.server_close()
+diff --git a/flyview/static/index.html b/flyview/static/index.html
+index 58feaa3..b4e50a8 100644
+--- a/flyview/static/index.html
++++ b/flyview/static/index.html
+@@ -15,7 +15,7 @@
+     main { display:grid; grid-template-columns:minmax(360px,1.2fr) minmax(320px,1fr); gap:12px; padding:12px; max-width:1500px; margin:auto; }
+     section { background:var(--panel); border:1px solid var(--line); border-radius:6px; padding:12px; min-width:0; }
+     section h2 { font-size:15px; margin:0 0 10px; }
+-    #world,#simCanvas { width:100%; aspect-ratio:1.3; background:#0e141b; display:block; } .sim-world { position:relative; margin-top:10px; } .sim-caption { position:absolute; top:8px; left:10px; color:var(--muted); font-size:12px; pointer-events:none; }
++    #world,#simCanvas { touch-action:none; cursor:grab; width:100%; aspect-ratio:1.3; max-height:300px; background:#0e141b; display:block; } .sim-world { position:relative; margin-top:10px; } .sim-caption { position:absolute; top:8px; left:10px; color:var(--muted); font-size:12px; pointer-events:none; }
+     .scene-heading { display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap; }
+     .scene-heading h2 { margin-bottom:0; }
+     .legend { display:flex; gap:10px; align-items:center; flex-wrap:wrap; color:var(--muted); font-size:12px; }
+@@ -24,15 +24,15 @@
+     .swatch-agent { border-radius:50%; background:var(--accent); }
+     .swatch-goal { border:2px solid var(--good); border-radius:50%; }
+     .swatch-velocity { width:16px; height:2px; background:var(--accent); }
+-    .grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:8px; }
++    .grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:8px; }
+     .metric { border:1px solid var(--line); padding:8px; min-height:58px; }
+     .metric b { display:block; color:var(--muted); font-size:12px; font-weight:500; }
+     .metric span { display:block; margin-top:4px; font-size:16px; }
+-    .reward { display:grid; grid-template-columns:repeat(5,1fr); gap:5px; }
++    .reward { display:grid; grid-template-columns:repeat(auto-fit,minmax(140px,1fr)); gap:5px; }
+     .reward div { border-left:3px solid var(--accent); padding:5px 6px; background:#111a22; min-width:0; }
+-    .reward small { display:block; color:var(--muted); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
++    .reward small { display:block; color:var(--muted); overflow-wrap:anywhere; }
+     .actions { display:grid; gap:5px; }
+-    .action { display:grid; grid-template-columns:62px 1fr 64px; gap:8px; align-items:center; }
++    .action { display:grid; grid-template-columns:145px 1fr 64px; gap:8px; align-items:center; }
+     .bar { height:10px; background:#0e141b; border:1px solid var(--line); }
+     .bar i { display:block; height:100%; background:var(--accent); width:0; }
+     button, select { color:var(--text); background:#243342; border:1px solid #3b5265; border-radius:4px; padding:6px 9px; cursor:pointer; }
+@@ -67,7 +67,7 @@
+         <span class="legend-item"><i class="swatch swatch-goal"></i>目标</span>
+       </div>
+     </div>
+-    <canvas id="world"></canvas><div class="sim-world"><canvas id="simCanvas"></canvas><div class="sim-caption">TelloSim MuJoCo surrogate · 只读模拟</div></div>
++    <canvas id="world"></canvas>
+     <div class="grid" style="margin-top:10px">
+       <div class="metric"><b>局 / 决策步</b><span id="episodeStep">-</span></div>
+       <div class="metric"><b>实际动作</b><span id="action">-</span></div>
+@@ -76,24 +76,28 @@
+     </div>
+     <div class="controls">
+       <button id="play">播放</button><button id="prev">上一决策</button><button id="next">下一决策</button>
+-      <select id="speed"><option value="1600">0.25×</option><option value="800" selected>1×</option><option value="200">4×</option></select>
+-      <input id="timeline" type="range" min="0" value="0">
++      <label>速度 <select id="speed"><option value="0.25">0.25×</option><option value="0.5">0.5×</option><option value="1" selected>1×</option><option value="2">2×</option></select></label><button id="resetCamera">重置视角</button><span id="frameLabel"></span>
++      <input aria-label="回放时间轴" id="timeline" type="range" min="0" value="0">
+     </div>
+-    <div class="notice" id="notice"></div>
++    <div class="notice" id="notice"></div><div class="meta" id="clock"></div><div class="meta">拖动画布平移，滚轮缩放。世界显示当前物理时刻；决策面板显示该步动作前输入及动作完成后的结果。</div><div class="sim-world"><canvas id="simCanvas"></canvas><div class="sim-caption">TelloSim MuJoCo surrogate · 侧视 · 只读模拟</div></div>
+   </section>
+   <section>
+     <h2>这一步发生了什么</h2>
+-    <div class="metric"><b>模型输入（8维）</b><pre id="obs">-</pre></div>
++    <div class="metric"><b>记录的遥测观测（动作前）</b><pre id="obs">-</pre></div>
+     <h2 style="margin-top:12px">动作概率</h2>
+     <div class="actions" id="actions"></div>
+     <div class="metric" style="margin-top:8px"><b>Value estimate</b><span id="value">未记录</span></div>
+     <h2 style="margin-top:12px">奖励分项</h2>
+     <div class="reward" id="reward"></div>
++    <div class="metric"><b>本步奖励 / 累计回报</b><span id="returns"></span></div>
++    <h2>SDK 命令（记录的执行结果）</h2><pre id="command"></pre>
++    <h2>实际脑输入 / 策略输入</h2><pre id="brainInput"></pre>
++    <h2>神经活动（动作前，最后一个神经子步）</h2><pre id="brainSummary"></pre>
+   </section>
+   <section>
+     <h2>已记录读出神经元</h2>
+     <div class="notice">仅显示本条记录中实际采集的节点；缺少生物元数据时标记为未标注。</div>
+-    <table><thead><tr><th>ID</th><th>v（复位前）</th><th>spike</th><th>trace</th></tr></thead><tbody id="neurons"></tbody></table>
++    <div style="max-height:360px;overflow:auto"><table><thead><tr><th>ID</th><th>v（记录值）</th><th>spike</th><th>trace</th></tr></thead><tbody id="neurons"></tbody></table></div>
+   </section>
+   <section>
+     <h2>来源与完整性</h2>
+@@ -115,7 +119,7 @@
+ const ACTIONS=["STOP_HOLD_500MS","FORWARD_20","BACK_20","LEFT_20","RIGHT_20","UP_20","DOWN_20","CW_30","CCW_30"];
+ let events=[], index=0, timer=null, liveTimer=null, liveSocket=null, manifest=null, selectedNeuronId=null, currentViewId=null;
+ const $=id=>document.getElementById(id);
+-function fmt(v){ return v===null||v===undefined?'未记录':(typeof v==='number'?v.toFixed(4):String(v)); }
++function fmt(v){ return v===null||v===undefined?'not_recorded':(typeof v==='number'?v.toFixed(4):String(v)); }
+ function setNotice(t){ $('notice').textContent=t||''; }
+ function safeText(value){ return String(value).replace(/[&<>"']/g, ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch])); }
+ async function loadTopology(centerId=null){
+@@ -138,31 +142,90 @@ function selectNeuron(id){
+   document.querySelectorAll('#neurons tr[data-neuron-id]').forEach(row=>row.classList.toggle('selected',row.dataset.neuronId===selectedNeuronId));
+   loadTopology(selectedNeuronId);
+ }
+-function drawSimWorld(p){const c=document.getElementById('simCanvas');const r=c.getBoundingClientRect();const d=devicePixelRatio||1;c.width=r.width*d;c.height=r.height*d;const x=c.getContext('2d');x.scale(d,d);const w=r.width,h=r.height,s=Math.min(w,h)/1.8,cx=w/2,cy=h*.68,pos=p.state_after.position_xy_m||[0,0],z=p.state_after.z_m||0,sx=cx+pos[1]*s,sy=cy-pos[0]*s-z*s*.5;x.fillStyle='#0b1118';x.fillRect(0,0,w,h);x.strokeStyle='#31495d';x.strokeRect(cx-3*s,cy-3*s,6*s,3*s);x.fillStyle='#70c7ff';x.beginPath();x.arc(sx,sy,8,0,Math.PI*2);x.fill();x.fillStyle='#77d69a';x.fillText('MuJoCo room 6m × 6m · z='+z.toFixed(2)+'m',10,h-12);}
+-function drawWorld(p){
+-  if(!p.state_after.position_xy_m) return;
+-  drawSimWorld(p);
+-  const c=$('world'), r=c.getBoundingClientRect(), d=devicePixelRatio||1; c.width=r.width*d;c.height=r.height*d;
+-  const x=c.getContext('2d');x.scale(d,d);const w=r.width,h=r.height,s=Math.min(w,h)/1.8;
+-  x.fillStyle='#0e141b';x.fillRect(0,0,w,h);
+-  const pt=v=>[w/2-v[1]*s,h/2-v[0]*s]; const goal=pt(p.state_after.goal_xy_m||[1,0]), pos=pt(p.state_after.position_xy_m);
+-  x.strokeStyle='#77d69a';x.beginPath();x.arc(goal[0],goal[1],18,0,Math.PI*2);x.stroke();x.fillStyle='#70c7ff';x.beginPath();x.arc(pos[0],pos[1],10,0,Math.PI*2);x.fill();
+-  x.strokeStyle='#70c7ff';x.beginPath();x.moveTo(pos[0],pos[1]);x.lineTo(pos[0]-p.state_after.velocity_xy_mps[1]*s*2,pos[1]-p.state_after.velocity_xy_mps[0]*s*2);x.stroke();
+-  x.fillStyle='#9eafbd';x.fillText('+X 向上 / +Y 向左',10,18);
++let playing=false, playTime=0, lastWall=null, loadVersion=0, currentSample=null;
++const cameras={world:{x:0,y:0,zoom:1},simCanvas:{x:0,y:0,zoom:1}};
++function positionOf(p){return p.golden?.world?.position_xyz_m||[...(p.state_after.position_xy_m||[0,0]),p.state_after.z_m||0];}
++function endTime(p){return p.sim_time_s??((p.sim_tick_after||0)*(p.physics_dt_s||.02));}
++function startTime(p){return p.decision_time_s??((p.sim_tick_before||0)*(p.physics_dt_s||.02));}
++function canvasDraw(id,p,sample=null){
++  const c=$(id),r=c.getBoundingClientRect(),d=devicePixelRatio||1;
++  c.width=r.width*d;c.height=r.height*d;const x=c.getContext('2d');x.scale(d,d);
++  const cam=cameras[id],w=r.width,h=r.height,scale=Math.min(w,h)/7.5*cam.zoom;
++  const pt=v=>id==='world'?[w/2+cam.x-v[1]*scale,h/2+cam.y-v[0]*scale]:[w/2+cam.x+v[0]*scale,h*.75+cam.y-v[2]*scale];
++  x.fillStyle='#0e141b';x.fillRect(0,0,w,h);x.strokeStyle='#293d50';x.lineWidth=1;
++  for(let i=-3;i<=3;i++){const a=id==='world'?pt([i,-3,0]):pt([i,0,0]),b=id==='world'?pt([i,3,0]):pt([i,0,3]);x.beginPath();x.moveTo(...a);x.lineTo(...b);x.stroke();}
++  for(let i=id==='world'?-3:0;i<=3;i++){const a=id==='world'?pt([-3,i,0]):pt([-3,0,i]),b=id==='world'?pt([3,i,0]):pt([3,0,i]);x.beginPath();x.moveTo(...a);x.lineTo(...b);x.stroke();}
++  x.strokeStyle='#577993';x.beginPath();
++  let started=false;
++  for(let j=0;j<=index;j++){
++    const q=events[j].payload,rows=q.golden?.physics_samples;
++    const points=rows?.length?rows.filter(v=>j!==index||!sample||v.sim_tick<=sample.sim_tick).map(v=>[v.x_m,v.y_m,v.z_m]):[positionOf(q)];
++    for(const v of points){const a=pt(v);if(!started){x.moveTo(...a);started=true;}else x.lineTo(...a);}
++  } x.stroke();
++  const goal=p.golden?.world?.target_xyz_m||[...(p.state_after.goal_xy_m||[0,0]),p.state_after.z_m||0];
++  x.strokeStyle='#77d69a';x.lineWidth=2;x.beginPath();x.arc(...pt(goal),(manifest.target_radius_m||.3)*scale,0,Math.PI*2);x.stroke();
++  const pos=sample?[sample.x_m,sample.y_m,sample.z_m]:positionOf(p),xy=pt(pos);
++  x.fillStyle='#70c7ff';x.beginPath();x.arc(...xy,7,0,Math.PI*2);x.fill();
++  const velocity=sample?.velocity_mps||p.golden?.world.velocity_xyz_mps||[...(p.state_after.velocity_xy_mps||[0,0]),0];x.strokeStyle='#70c7ff';x.beginPath();x.moveTo(...xy);x.lineTo(...pt(pos.map((v,i)=>v+velocity[i]*2)));x.stroke();
++  x.fillStyle='#b8c9d8';x.fillText(id==='world'?'+X 向上 / +Y 向左 · 俯视':'X / Z · 侧视',12,20);
++  c.dataset.position=JSON.stringify(pos);c.dataset.camera=JSON.stringify(cam);c.dataset.step=p.decision_step;
++}
++function drawWorld(p,sample=null){currentSample=sample;canvasDraw('world',p,sample);canvasDraw('simCanvas',p,sample);const g=p.golden;
++  $('poseState').textContent=`${fmt(sample?.z_m??p.state_after.z_m)} m / ${fmt(sample?.yaw_rad??p.state_after.yaw_rad)} rad`;
++  const t=sample?sample.sim_tick*(g?.physics_dt_s||1/120):endTime(p);
++  const speed=sample?.speed_mps??(g?Math.hypot(...g.world.velocity_xyz_mps):null);
++  $('clock').textContent=`世界时间 ${t.toFixed(3)} s · 速度 ${fmt(speed)} m/s · 决策 ${p.decision_step}`;
+ }
+ function render(){
+-  if(!events.length)return; const e=events[index],p=e.payload; drawWorld(p); document.getElementById('timeline').value=index; document.getElementById('play').textContent='帧 '+(index+1)+' / '+events.length; document.title='FlyBrain · frame '+String(index+1)+'/'+String(events.length);
+-  document.getElementById('episodeStep').textContent=String(p.episode_id)+' / '+String(p.decision_step); const pose=p.state_after||{}; document.getElementById('poseState').textContent=pose.z_m===undefined?'未记录':fmt(pose.z_m)+' m / '+fmt(pose.yaw_rad)+' rad'; document.getElementById('action').textContent=String(p.action_name)+'（'+(p.action_selection||'未记录')+'）'; document.getElementById('end').textContent=p.end_reason||'进行中'; document.getElementById('dataState').textContent='seq '+e.seq+' / '+(manifest.trace_complete?'完整':'不完整');
+-  $('obs').textContent=JSON.stringify(p.observation,null,2); $('value').textContent=fmt(p.value_estimate);
+-  const probs=p.action_probabilities; $('actions').innerHTML=ACTIONS.map((a,i)=>{const v=Array.isArray(probs)?Number(probs[i]||0):null;return `<div class="action"><span>${a}</span><div class="bar"><i style="width:${v===null?0:Math.max(0,Math.min(100,v*100))}%"></i></div><span>${v===null?'未记录':(v*100).toFixed(1)+'%'}</span></div>`}).join('');
+-  const rp=p.reward_parts||{}; $('reward').innerHTML=['progress','step_cost','success_bonus','boundary_cost','deadline_cost'].map(k=>`<div><small>${k}</small><strong>${fmt(rp[k])}</strong></div>`).join('');
+-  const ns=(p.readout_snapshot&&p.readout_snapshot.neurons)||[]; $('neurons').innerHTML=ns.map(n=>{const id=safeText(n.neuron_id);return `<tr data-neuron-id="${id}" class="${String(n.neuron_id)===selectedNeuronId?'selected':''}" onclick="selectNeuron('${id}')"><td><button type="button">${id}</button></td><td>${fmt(n.v_before_reset??n.v)}</td><td>${n.spike===null||n.spike===undefined?'未记录':n.spike}</td><td>${fmt(n.trace_after_update??n.trace)}</td></tr>`}).join('')||'<tr><td colspan="4">本条记录未采集神经状态</td></tr>';
+-  $('timeline').value=index; setNotice(p.action_probabilities?'':'动作概率未记录；页面不做推断。');
++  if(!events.length)return;const e=events[index],p=e.payload,g=p.golden;
++  drawWorld(p);$('timeline').value=index;$('frameLabel').textContent=`${index+1} / ${events.length}`;
++  $('play').textContent=playing?'暂停':'播放';document.title=`FlyBrain · ${index+1}/${events.length}`;
++  $('episodeStep').textContent=`${p.episode_id} / ${p.decision_step}`;
++  $('poseState').textContent=`${fmt(p.state_after.z_m)} m / ${fmt(p.state_after.yaw_rad)} rad`;
++  $('action').textContent=p.action_name;$('end').textContent=p.end_reason||'进行中';$('dataState').textContent=`seq ${e.seq} / ${manifest.trace_complete?'完整':'不完整'}`;
++  $('obs').textContent=JSON.stringify(p.observation,null,2);$('value').textContent=fmt(p.value_estimate);
++  const probs=p.action_probabilities,names=manifest.actions||ACTIONS;
++  $('actions').innerHTML=names.map((a,i)=>{const v=probs?.[i];return `<div class="action"><span>${safeText(a)}</span><div class="bar"><i style="width:${v==null?0:v*100}%"></i></div><span>${v==null?'not_recorded':(v*100).toFixed(2)+'%'}</span></div>`}).join('');
++  $('reward').innerHTML=Object.entries(p.reward_parts||{}).map(([k,v])=>`<div><small>${safeText(k)}</small><strong>${fmt(v)}</strong></div>`).join('')||'not_recorded';
++  $('returns').textContent=`${fmt(p.reward_total)} / ${fmt(p.cumulative_return)}`;
++  $('command').textContent=g?JSON.stringify(g.command,null,2):'not_recorded';
++  $('brainInput').textContent=JSON.stringify({brain_observation:g?.brain_observation??'not_recorded',encoded_observation:g?.encoded_observation??'not_recorded',policy_features:g?.policy_features??'not_recorded'},null,2);
++  $('brainSummary').textContent=JSON.stringify({neural_substep:g?.neural_substep??'not_recorded',sample_phase:g?.brain?.sample_phase??'not_recorded',whole_brain_spike_fraction:g?.brain?.whole_brain_spike_fraction??'not_recorded',other_neural_substeps:'not_recorded',anatomical_regions:'not_recorded',top_n:g?.brain?.top_n??'not_recorded'},null,2);
++  const ns=p.readout_snapshot?.neurons||[];
++  $('neurons').innerHTML=ns.map(n=>`<tr data-neuron-id="${safeText(n.neuron_id)}"><td><button type="button">${safeText(n.neuron_id)}</button></td><td>${fmt(n.v_before_reset??n.v)}</td><td>${fmt(n.spike)}</td><td>${fmt(n.trace_after_update??n.trace)}</td></tr>`).join('')||'<tr><td colspan="4">not_recorded</td></tr>';
++  document.querySelectorAll('#neurons tr[data-neuron-id]').forEach(row=>row.onclick=()=>selectNeuron(row.dataset.neuronId));
++  setNotice(g?`到目标 ${fmt(g.world.distance_to_target_m)} m · 稳定保持 ${fmt(g.stable_hold_s)} s · 回放不运行策略`:(!probs?'动作概率 not_recorded':''));
++  $('episodeStep').dataset.state=JSON.stringify(p);
++}
++function pause(){playing=false;lastWall=null;if(timer!==null)cancelAnimationFrame(timer);timer=null;$('play').textContent='播放';}
++function animate(now){
++  if(!playing)return;if(lastWall!==null)playTime+=(now-lastWall)/1000*Number($('speed').value);lastWall=now;
++  const previous=index;while(index<events.length-1&&playTime>endTime(events[index].payload))index++;
++  if(index!==previous)render();const p=events[index].payload,rows=p.golden?.physics_samples||[];
++  const sample=rows.find(v=>v.sim_tick*(p.golden.physics_dt_s||1/120)>=playTime)||rows.at(-1);
++  drawWorld(p,sample);$('timeline').value=index;
++  if(playTime>=endTime(events.at(-1).payload)){pause();render();return;}timer=requestAnimationFrame(animate);
++}
++function seek(i){pause();index=Math.max(0,Math.min(events.length-1,i));playTime=endTime(events[index].payload);render();}
++function startLivePolling(id){liveTimer=setInterval(async()=>{const e=await fetch(`/api/views/${id}/latest`).then(r=>r.json());if(id===currentViewId&&e.kind==='transition'){events=[e];index=0;render();}},1000);}
++async function loadView(id){
++  pause();const version=++loadVersion;if(liveTimer){clearInterval(liveTimer);liveTimer=null;}if(liveSocket){liveSocket.close();liveSocket=null;}
++  currentViewId=id;events=[];const m=await fetch(`/api/views/${id}/manifest`).then(r=>{if(!r.ok)throw Error('manifest unavailable');return r.json()});
++  const live=m.descriptor_kind==='live'||m.source_kind==='simulation_live';let all=[];
++  if(live){const e=await fetch(`/api/views/${id}/latest`).then(r=>r.json());if(e.kind==='transition')all=[e];}
++  else{let offset=0;while(offset!==null){const page=await fetch(`/api/views/${id}/events?kind=transition&limit=256&offset=${offset}`).then(r=>{if(!r.ok)throw Error('events unavailable');return r.json()});all.push(...page.events);offset=page.next_offset??null;}}
++  if(version!==loadVersion)return;manifest=m;events=all;index=0;playTime=events.length?startTime(events[0].payload):0;
++  $('source').textContent=live?'MODE: LIVE':'MODE: REPLAY';$('viewMeta').textContent=`${m.episode_id||id} · ${m.scenario_id||''} · ${events.length} steps`;
++  $('manifest').textContent=JSON.stringify(m,null,2);$('timeline').max=Math.max(0,events.length-1);$('play').disabled=live||!events.length;
++  $('topology').textContent=m.capabilities?.topology?'选择神经元查看':'not_recorded';$('topologySelection').textContent='';
++  fetch(`/api/views/${id}/metrics`).then(r=>r.json()).then(v=>{if(version===loadVersion)$('metrics').textContent=JSON.stringify(v,null,2)});
++  if(live)startLivePolling(id);if(m.capabilities?.topology)loadTopology();render();
+ }
+-function startLivePolling(id){if(liveTimer)return;liveTimer=setInterval(async()=>{try{const next=await fetch(`/api/views/${id}/latest`).then(r=>r.ok?r.json():null);if(next&&next.kind==='transition'){events=[next];index=0;render();}}catch(_){setNotice('实时源暂时不可用');}},1000);}
+-async function loadView(id){ if(liveTimer){clearInterval(liveTimer);liveTimer=null;} if(liveSocket){liveSocket.close();liveSocket=null;} currentViewId=id; selectedNeuronId=null; const m=await fetch(`/api/views/${id}/manifest`).then(r=>r.json()); const live=m.descriptor_kind==='live'||m.source_kind==='simulation_live'; const [e,t,score]=await Promise.all([live?fetch(`/api/views/${id}/latest`).then(r=>r.ok?r.json():null):fetch(`/api/views/${id}/events?kind=transition&limit=256`).then(r=>r.json()),fetch(`/api/views/${id}/topology`).then(r=>r.ok?r.json():null).catch(()=>null),fetch(`/api/views/${id}/metrics`).then(r=>r.ok?r.json():null).catch(()=>null)]);manifest=m;events=live?(e&&e.kind==='transition'?[e]:[]):(e.events||[]);index=0;$('viewMeta').textContent=`${m.source_kind} · ${m.event_count||'实时'}`;$('manifest').textContent=JSON.stringify(m,null,2);$('metrics').textContent=score?JSON.stringify(score,null,2):'未记录成绩';$('topologySelection').textContent='未选择神经元';$('topology').textContent=t?JSON.stringify({nodes:t.node_ids?.length||0,edges:t.edges?.length||0,truncated:t.truncated,source_edges:t.total_edges_in_source},null,2):'未导出局部拓扑';$('timeline').max=Math.max(0,events.length-1);if(live){$('dataState').textContent='实时等待';const scheme=location.protocol==='https:'?'wss':'ws';try{const ws=new WebSocket(`${scheme}://${location.host}/ws/views/${id}`);liveSocket=ws;ws.onmessage=ev=>{const next=JSON.parse(ev.data);if(next.kind==='transition'){events=[next];index=0;render();}};ws.onerror=()=>{if(liveSocket===ws){ws.close();liveSocket=null;startLivePolling(id);}};ws.onclose=()=>{if(liveSocket===ws){liveSocket=null;startLivePolling(id);}};}catch(_){startLivePolling(id);}}render(); }
+-async function init(){ const data=await fetch('/api/views').then(r=>r.json()); const sel=$('views'); sel.innerHTML=(data.views||[]).map(v=>`<option value="${v.view_id}">${v.view_id} · ${v.source_kind||'ERROR'}</option>`).join(''); if(!sel.value){$('source').textContent='没有已注册视图';return;} $('source').textContent='仿真 / 只读观察'; await loadView(sel.value); }
+-document.getElementById('views').onchange=()=>loadView(document.getElementById('views').value);document.getElementById('timeline').oninput=()=>{index=Number(document.getElementById('timeline').value);render()};document.getElementById('next').onclick=()=>{index=Math.min(events.length-1,index+1);render()};document.getElementById('prev').onclick=()=>{index=Math.max(0,index-1);render()};document.getElementById('play').onclick=()=>{if(!events.length){setNotice('当前视图没有可播放轨迹');return;}if(index>=events.length-1){index=0;render();}if(timer){clearInterval(timer);timer=null;document.getElementById('play').textContent='播放';}else{timer=setInterval(()=>{if(index>=events.length-1){clearInterval(timer);timer=null;document.getElementById('play').textContent='播放';return;}index++;render()},Math.max(30, Number(document.getElementById('speed').value)/ 8));document.getElementById('play').textContent='暂停';}};window.addEventListener('resize',()=>events.length&&render());init().catch(err=>{document.getElementById('source').textContent='连接失败';setNotice(String(err));});
+-</script>
+-</body>
+-</html>
++async function init(){const data=await fetch('/api/views').then(r=>r.json());$('views').innerHTML=data.views.map(v=>`<option value="${safeText(v.view_id)}">${safeText(v.view_id)}</option>`).join('');const requested=new URLSearchParams(location.search).get('view');if(data.views.some(v=>v.view_id===requested))$('views').value=requested;await loadView($('views').value);}
++$('views').onchange=()=>loadView($('views').value).catch(e=>setNotice(String(e)));
++$('timeline').oninput=()=>seek(Number($('timeline').value));$('next').onclick=()=>seek(index+1);$('prev').onclick=()=>seek(index-1);
++$('play').onclick=()=>{if(playing){pause();return;}if(!events.length)return;if(index===events.length-1){index=0;playTime=startTime(events[0].payload);}playing=true;lastWall=null;$('play').textContent='暂停';timer=requestAnimationFrame(animate);};
++for(const id of ['world','simCanvas']){const c=$(id);let drag=null;c.onpointerdown=e=>{drag={x:e.clientX,y:e.clientY};c.setPointerCapture(e.pointerId)};c.onpointermove=e=>{if(!drag)return;cameras[id].x+=e.clientX-drag.x;cameras[id].y+=e.clientY-drag.y;drag={x:e.clientX,y:e.clientY};if(events.length)drawWorld(events[index].payload,currentSample)};c.onpointerup=c.onpointercancel=()=>drag=null;c.addEventListener('wheel',e=>{e.preventDefault();cameras[id].zoom=Math.max(.3,Math.min(5,cameras[id].zoom*Math.exp(-e.deltaY*.001)));if(events.length)drawWorld(events[index].payload,currentSample)},{passive:false});}
++$('resetCamera').onclick=()=>{for(const c of Object.values(cameras)){c.x=0;c.y=0;c.zoom=1;}if(events.length)drawWorld(events[index].payload,currentSample)};
++window.addEventListener('resize',()=>events.length&&drawWorld(events[index].payload,currentSample));init().catch(e=>{$('source').textContent='连接失败';setNotice(String(e))});
++</script></body></html>
+diff --git a/reports/GoldenEpisode_FAILURES.md b/reports/GoldenEpisode_FAILURES.md
+index 2fd9d5d..956f530 100644
+--- a/reports/GoldenEpisode_FAILURES.md
++++ b/reports/GoldenEpisode_FAILURES.md
+@@ -1,15 +1,12 @@
+-# Golden Episode 当前失败项
++# Golden Episode 当前失败项与边界
+ 
+-Golden Episode 验收项 GE-01 到 GE-15 当前全部通过。
++GOLDEN_EPISODE_READY = YES
++MODEL_READY_FOR_NEXT_STAGE = NO
+ 
+-## 尚未完成的更高层目标
++浏览器Golden回放和GE-01～GE-15验收已完成，证据见GoldenEpisode_TEST_RESULTS.md及GoldenEpisode_ACCEPTANCE.json。
+ 
+-1. `MODEL_READY_FOR_NEXT_STAGE` 仍为 `NO`：目前只有固定 Golden 场景封存结果，没有正式多场景 success-rate evaluation。
+-2. 当前 imitation policy 的训练集包含固定 Golden 场景和少量随机场景，不能把单条成功轨迹解释为整体泛化能力。
+-3. 浏览器页面的 replay 专用注册视图仍需将 `artifacts/golden_episode/replay.jsonl` 接入 viewer registry 后做人工 UI 截图验收；原始 replay 和机器校验已完成。
++模型评估未通过：固定32场景仅8个成功（25%），24个越界（75%），0碰撞、0超时。训练分布附近7/8，反向0/8，横跨房间0/8，短距离1/8。失败明细和动作轨迹见golden_evaluation_final/episodes.jsonl。
+ 
+-## 当前 Gate
++未达到预先固定的诊断成功率>=90%、碰撞/越界率<=1%。更不能宣称通过TS1三训练seed×300封存case及随机基线比较的正式门槛。本轮不重训，不为凑成功率修改测试场景。
+ 
+-`GOLDEN_EPISODE_READY = YES`
+-
+-`MODEL_READY_FOR_NEXT_STAGE = NO`
++已知边界：固定高度、空房间、模拟pose输入、首个动作直接设置airborne；只记录最后一个神经子步。未测试噪声、障碍、起飞流程、真实硬件或Live训练期间断开浏览器。这些没有被伪装为通过。
+diff --git a/reports/GoldenEpisode_TEST_RESULTS.md b/reports/GoldenEpisode_TEST_RESULTS.md
+index f4e2c79..d670939 100644
+--- a/reports/GoldenEpisode_TEST_RESULTS.md
++++ b/reports/GoldenEpisode_TEST_RESULTS.md
+@@ -1,38 +1,84 @@
+-# Golden Episode 测试结果
++# Golden Episode 验收报告
+ 
+-日期：2026-09-26
+-状态：PASS（Golden Episode）
++日期：2026-09-26。依据：Golden_Episode_WorkAgent_Test_Handoff.md。
+ 
+-## 当前记录
++GOLDEN_EPISODE_READY = YES
++MODEL_READY_FOR_NEXT_STAGE = NO
+ 
+-- 记录器：`python -m flydrone.tellosim golden-record`
+-- 验证器：`python -m flydrone.tellosim golden-validate`
+-- policy source：checkpoint deterministic policy
+-- 当前封存 replay：`artifacts/golden_episode/replay.jsonl`
+-- 当前 checkpoint 结果：`success=true`，最终距离约 `0.2662m`
+-- episode steps：`33`
+-- stable hold：`2.0s`
+-- collision：`false`
+-- out_of_bounds：`false`
+-- neural capture：`recorded`
+-- graph sha256：`badc33a247894fe12c4d68d3ff791393857cffa39ff2ab81869608a11fa1e0c9`
+-- brain mapping sha256：`623b691045f9c971271b8e48cc310dfeaaedb2a67b1bc639499bcfb24ea86d18`
++## 可直接打开的回放
+ 
+-## 本轮完成
++http://127.0.0.1:8765/?view=golden-episode
+ 
+-- 每个 decision step 同时记录 world、observation、policy、command、reward、brain 状态。
+-- policy probabilities、selected action、value、entropy 已记录。
+-- SDK command 的 issued/started/completed sim tick、command id 和执行结果已记录。
+-- reward components 求和可验证，replay 默认只读取原始记录。
+-- 新增 GE-01 至 GE-15 机器验证入口；GE-14 在没有 brain graph 时明确失败。
+-- 垂直动作统一经 TelloSim adapter 执行，避免绕过 command contract。
+-- 固定 Golden 场景使用 MaleCNS reservoir features 的行为克隆 policy 成功完成任务。
+-- `golden-validate`：GE-01 至 GE-15 全部为 `true`。
++当前正式验收数据包：`artifacts/golden_episode_verified/`。
++Viewer 派生产物：`reports/vis/views/golden-episode/`，已注册到 `reports/vis/views/index.json`。
++原始 `artifacts/golden_episode/` 的 replay、checkpoint 和数据文件保留；本次只给其旧报告增加版本说明。
+ 
+-## Gate 结论
++## 真实轨迹与来源
+ 
+-`GOLDEN_EPISODE_READY = YES`
++- 基础提交：`cd32d73988cae500476981445f7923f9f03e014b`；本轮源代码改动尚未提交，逐文件 SHA256 见 `reports/GoldenEpisode_PROVENANCE.json`。
++- 环境：WSL Ubuntu，Python 3.12.3，PyTorch 2.14.0+cu130，MuJoCo 3.3.7。录制和评估实际使用 CPU，4 个 OpenMP/MKL 线程，没有声称使用 GPU。
++- checkpoint：`b657cb32ada93c8cee927e72277440702a53d74d2a16b20f3a5ef1cd77d51614`。沿用已有 imitation checkpoint；本轮没有重训或手改模型动作。
++- graph：`badc33a247894fe12c4d68d3ff791393857cffa39ff2ab81869608a11fa1e0c9`。
++- mapping：`623b691045f9c971271b8e48cc310dfeaaedb2a67b1bc639499bcfb24ea86d18`，通过记录的输入／输出索引重新计算验证。
++- scenario：`room6_start_neg15_neg10_target_pos15_pos10`；seed=11。
++- 起点 (-1.5, -1.0, 1.2)m，目标 (1.5, 1.0, 1.2)m，初始 yaw=0。
++- 初始位姿由 reset 设置，首个动作进入 airborne 状态；本任务没有模拟起飞流程，不连接真机。
++- 成功：True；步数 33；时长 65.166667s；累计回报 3.687714149。
++- 最终距离 0.266170460m；连续稳定保持 1.716666667s；碰撞 false，越界 false，超时 false。
++- 成功合同：距离 <=0.30m、速度 <=0.15m/s、连续保持 >=1s。逐个 1/120s 物理步重新计算，不再用动作时长计划累加。
++- 冻结 LIF reservoir：N=166700，nnz=25582938。保存全脑 spike fraction、按 trace 排序的 Top-32（graph 行索引）、64 个选定读出神经元 v/spike/trace。
++- 每个决策进行4个神经子步，只记录最后子步 index=3；其余子步、脑区标签和拓扑明确标为 `not_recorded`。没有伪造全脑实时动画。
++- 记录26维遥测、实际8维脑输入、14维编码输入及128维策略输入。脑输入实际来自模拟 pose，不宣称已经实现噪声遥测隔离。
++- 9动作合同，33条 SDK 命令，无 safety override；分别保存 proposed/approved action、命令参数、执行结果及起止时间。
++- verified replay SHA256：`08bebe5164ae67a8b66577d17c88552a5d6aed39e5ca386977d5d05ea2e04a7e`。
++- 原始 replay SHA256：`6ca963dbeb57f8dee7f417deab655e45a1b287750f4e16e85c45aeadf03a7537`，本轮操作后不变。
+ 
+-`MODEL_READY_FOR_NEXT_STAGE = NO`
++原报告的2秒保持时间来自旧的预设时长累计。新记录按真实物理步得到1.7167秒，仍满足合同。动作和最终位置未变；时间惩罚改按实际持续时间，因此累计回报也相应修正。
+ 
+-Golden Episode 已经用记录的 brain policy 成功通过；这只证明一条固定场景轨迹的数据闭环和可回放性，不代表模型已完成总体成功率评估。当前仍需执行正式多场景 evaluation，才能决定模型是否进入下一阶段。
++## 已执行验证
++
++- GE-01～GE-15：见 `reports/GoldenEpisode_ACCEPTANCE.json`。本次加入实际浏览器证据；此前仅检查文件存在或哈希的结果不再代表浏览器通过。
++- 数据校验：成功与保持时间重算、动作来源、时序、step关联、奖励和、概率范围与归一化、命令参数、物理步连续性、checkpoint/graph/mapping哈希。
++- 浏览器全程2倍速播放到第32步 success；支持0.25、0.5、1、2倍速。
++- 实际验证播放／暂停、慢放、鼠标拖动时间轴、画布平移／滚轮缩放／复位。暂停前后世界时间和位置一致。
++- 第10步→第32步→第10步，观测、命令、策略输入、奖励和神经面板内容完全一致。轨迹仅33步，所以用末步32替代Handoff示例中的80。
++- 抽查20个决策步；页面观测、命令、输入特征、神经汇总与原始记录精确相等，概率和奖励显示值与原记录一致。源记录全33步均验证时间/ID及奖励和。
++- 在播放中关闭页面，服务 `/healthz` 仍正常，原始及verified replay、导出events哈希均不变。验证范围是录制回放；没有并发训练进程，因此未声称做过Live训练断开测试。
++- 浏览器 console error：0。
++- Python 回归：`tests/flydrone` 共14项通过（包含5项新增Golden/分页测试）；`git diff --check` 通过。主体代码和最小闭环完成后才运行此回归。
++- 浏览器证据绑定 replay/events/Viewer源码哈希；修改页面后旧证据不能直接使验收变绿。
++
++证据：`reports/golden_ui/START.png`、`MID-FLIGHT.png`、`SUCCESS-HOLD.png`、`sampled-20-steps.json`、`browser-observations.json`，以及 `reports/GoldenEpisode_UI_ALIGNMENT.json`。
++
++## 多场景评估
++
++预先固定 `configs/tellosim/golden_evaluation.json`，SHA256 `8a347ba513df85b3d0368c56eaf136609893b04dd2317d4518227b97e20b12be`。
++当前checkpoint、固定高度、无障碍／无噪声，32个诊断case，全部保存于 `reports/golden_evaluation_final/episodes.jsonl`，包括逐决策动作、位置、距离、奖励和保持时间。结果没有用于更新权重。
++
++- 训练分布附近：7/8成功。
++- 反向目标：0/8成功。
++- 横跨房间：0/8成功。
++- 短距离目标：1/8成功。
++- 总计：8/32，成功率 25%；平均回报 -0.606449677。
++- 碰撞 0，越界 24，超时 0。
++
++首轮诊断与补充逐决策证据后的最终运行结果一致，两次均为同一32个case，不能合并当作64个独立case。
++诊断预设阈值为成功率>=90%、碰撞/越界率<=1%，本次未通过。
++此外，本轮也不满足TS1正式三训练seed、每seed300封存case及随机基线比较的要求，不能替代正式阶段验收。
++因此 MODEL_READY_FOR_NEXT_STAGE = NO。单条Golden通过只证明可观察、可回放与数据闭环，不代表任务稳定学会。
++
++## 真实执行命令
++
++在 `/home/denny/projects/flybrain_lab_4spark_v0_1`，使用 `/home/denny/projects/flybrain-env/bin/python`：
++
++```bash
++OMP_NUM_THREADS=4 MKL_NUM_THREADS=4 python -m flydrone.tellosim golden-record --checkpoint artifacts/golden_episode/checkpoint.pt --scenario configs/tellosim/golden_episode.json --brain-graph data/male-v1.npz --out artifacts/golden_episode_verified --device cpu
++python -m flydrone.tellosim golden-export --episode artifacts/golden_episode_verified
++python -m flydrone.tellosim golden-validate --episode artifacts/golden_episode_verified --brain-graph data/male-v1.npz
++OMP_NUM_THREADS=4 MKL_NUM_THREADS=4 python -m flydrone.tellosim golden-evaluate --checkpoint artifacts/golden_episode/checkpoint.pt --brain-graph data/male-v1.npz --cases configs/tellosim/golden_evaluation.json --out reports/golden_evaluation_final --device cpu
++python -m flyview serve --project-root /home/denny/projects/flybrain_lab_4spark_v0_1 --host 127.0.0.1 --port 8765
++OMP_NUM_THREADS=4 python -m pytest tests/flydrone -q
++```
++
++录制／评估输出目录不允许覆盖封存结果；复跑时请换新输出目录。导出命令可重复执行，保留registry其他视图。
++生成的Viewer目录和checkpoint符合仓库既有ignore规则，未强行修改这些规则；可由上述命令重建Viewer。

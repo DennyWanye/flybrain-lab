@@ -1,0 +1,17 @@
+[
+  {
+    "job": "train-11",
+    "pid": 17304,
+    "private_kib": 1080256
+  },
+  {
+    "job": "train-22",
+    "pid": 17305,
+    "private_kib": 1081840
+  },
+  {
+    "job": "train-33",
+    "pid": 17306,
+    "private_kib": 1082336
+  }
+]

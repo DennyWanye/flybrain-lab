@@ -1,0 +1,1 @@
+{"status":"pilot_completed","software_acceptance_T44":true,"mlp_successes":60,"malecns_successes":60,"episodes_each":60,"seed":11,"case_hash":"8d0d12a8c36c92707f4c91c22f263d4cf0be59e14365b9842902411982626b3c","CONNECTOME_ADVANTAGE_PROVEN":false,"notes":"different training data; same observations/actions/physics/paired evaluation. One-seed pilot, not a superiority study."}

@@ -1,0 +1,8 @@
+{
+  "status": "PASS",
+  "run_prefix": "spatial-continuous",
+  "joint_ready": true,
+  "model_version": "C2W",
+  "full_delivery_still_pending": true,
+  "fixed_replays": true
+}

@@ -1,0 +1,12 @@
+{
+  "pid": 33886,
+  "parent_pid": 33885,
+  "command": [
+    "/home/denny/projects/flybrain-env/bin/python",
+    "-B",
+    "-u",
+    "-m",
+    "reports.ts1_completion_c2w.package_delivery"
+  ],
+  "cwd": "/home/denny/projects/flybrain_lab_4spark_v0_1"
+}

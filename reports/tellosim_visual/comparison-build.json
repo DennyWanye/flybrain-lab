@@ -1,0 +1,59 @@
+{
+  "schema_version": "tellosim.visual_comparison/1.0",
+  "scenario": {
+    "schema_version": "tellosim.golden_episode/1.0",
+    "sim_only": true,
+    "real_flight_authorized": false,
+    "scenario_id": "room6_start_neg15_neg10_target_pos15_pos10",
+    "seed": 11,
+    "world": {
+      "room_size_m": [
+        6,
+        6,
+        3
+      ],
+      "start_xyz_m": [
+        -1.5,
+        -1.0,
+        1.2
+      ],
+      "target_xyz_m": [
+        1.5,
+        1.0,
+        1.2
+      ],
+      "yaw_rad": 0
+    },
+    "success": {
+      "target_radius_m": 0.3,
+      "stable_hold_s": 1.0,
+      "speed_mps": 0.15
+    }
+  },
+  "same_scenario": true,
+  "same_graph": true,
+  "same_mapping": true,
+  "note": "Fresh untrained seed-11 baseline versus existing trained checkpoint; historical initial checkpoint was not saved. Single illustrative case, not a learning/generalization gate.",
+  "runs": [
+    {
+      "label": "新初始化基线",
+      "run_id": "untrained-same-case",
+      "success": false,
+      "episode_return": -1.6612944715298965,
+      "final_distance_m": 4.966845746993886,
+      "episode_steps": 15,
+      "policy_checkpoint_sha256": "d8260f307d9624994f2ed1edc3e6dbf11fb0ce20c72c58e8768bb99033adb252",
+      "replay_sha256": "c2a1ca215c21e289cccd3ee061c665df39ad6eadaa8794959cc101bd2daf27c4"
+    },
+    {
+      "label": "已有训练模型",
+      "run_id": "golden-episode",
+      "success": true,
+      "episode_return": 3.6877141489491168,
+      "final_distance_m": 0.2661704598482059,
+      "episode_steps": 33,
+      "policy_checkpoint_sha256": "b657cb32ada93c8cee927e72277440702a53d74d2a16b20f3a5ef1cd77d51614",
+      "replay_sha256": "08bebe5164ae67a8b66577d17c88552a5d6aed39e5ca386977d5d05ea2e04a7e"
+    }
+  ]
+}

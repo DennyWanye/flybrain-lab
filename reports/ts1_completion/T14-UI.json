@@ -1,0 +1,11 @@
+{
+  "status": "PASS",
+  "closed_while_cw90_executing": true,
+  "sent_tick": 4380,
+  "last_browser_tick": 4812,
+  "completed_tick": 5112,
+  "after_close_sim_tick": 6012,
+  "no_stop_operation_inserted": true,
+  "run_id": "manual-bde5689804a5",
+  "session_end_outcome": "closed_by_user"
+}

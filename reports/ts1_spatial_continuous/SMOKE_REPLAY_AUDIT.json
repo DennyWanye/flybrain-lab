@@ -1,0 +1,109 @@
+{
+  "passed": true,
+  "runs": [
+    {
+      "run_id": "spatial-continuous-smoke-0",
+      "outcome": "success",
+      "complete": true,
+      "graph_sha256": "badc33a247894fe12c4d68d3ff791393857cffa39ff2ab81869608a11fa1e0c9",
+      "checkpoint_sha256": "9b32b38753ed4dbfd3e6bf69b45f1174f25a2d64f485431a67ad67c0148b8efc",
+      "neural_frames": 590,
+      "policy_frames": 584,
+      "final_valid_physics_ticks": 240,
+      "required_physics_ticks": 240,
+      "neural_clock_verified": true,
+      "constructor_bootstrap_rows": []
+    },
+    {
+      "run_id": "spatial-continuous-smoke-1",
+      "outcome": "success",
+      "complete": true,
+      "graph_sha256": "badc33a247894fe12c4d68d3ff791393857cffa39ff2ab81869608a11fa1e0c9",
+      "checkpoint_sha256": "9b32b38753ed4dbfd3e6bf69b45f1174f25a2d64f485431a67ad67c0148b8efc",
+      "neural_frames": 661,
+      "policy_frames": 655,
+      "final_valid_physics_ticks": 240,
+      "required_physics_ticks": 240,
+      "neural_clock_verified": true,
+      "constructor_bootstrap_rows": []
+    },
+    {
+      "run_id": "spatial-continuous-smoke-2",
+      "outcome": "success",
+      "complete": true,
+      "graph_sha256": "badc33a247894fe12c4d68d3ff791393857cffa39ff2ab81869608a11fa1e0c9",
+      "checkpoint_sha256": "9b32b38753ed4dbfd3e6bf69b45f1174f25a2d64f485431a67ad67c0148b8efc",
+      "neural_frames": 638,
+      "policy_frames": 632,
+      "final_valid_physics_ticks": 240,
+      "required_physics_ticks": 240,
+      "neural_clock_verified": true,
+      "constructor_bootstrap_rows": []
+    },
+    {
+      "run_id": "spatial-continuous-smoke-3",
+      "outcome": "success",
+      "complete": true,
+      "graph_sha256": "badc33a247894fe12c4d68d3ff791393857cffa39ff2ab81869608a11fa1e0c9",
+      "checkpoint_sha256": "9b32b38753ed4dbfd3e6bf69b45f1174f25a2d64f485431a67ad67c0148b8efc",
+      "neural_frames": 587,
+      "policy_frames": 581,
+      "final_valid_physics_ticks": 240,
+      "required_physics_ticks": 240,
+      "neural_clock_verified": true,
+      "constructor_bootstrap_rows": []
+    },
+    {
+      "run_id": "spatial-continuous-smoke-4",
+      "outcome": "success",
+      "complete": true,
+      "graph_sha256": "badc33a247894fe12c4d68d3ff791393857cffa39ff2ab81869608a11fa1e0c9",
+      "checkpoint_sha256": "9b32b38753ed4dbfd3e6bf69b45f1174f25a2d64f485431a67ad67c0148b8efc",
+      "neural_frames": 734,
+      "policy_frames": 728,
+      "final_valid_physics_ticks": 240,
+      "required_physics_ticks": 240,
+      "neural_clock_verified": true,
+      "constructor_bootstrap_rows": []
+    },
+    {
+      "run_id": "spatial-continuous-smoke-5",
+      "outcome": "success",
+      "complete": true,
+      "graph_sha256": "badc33a247894fe12c4d68d3ff791393857cffa39ff2ab81869608a11fa1e0c9",
+      "checkpoint_sha256": "9b32b38753ed4dbfd3e6bf69b45f1174f25a2d64f485431a67ad67c0148b8efc",
+      "neural_frames": 464,
+      "policy_frames": 458,
+      "final_valid_physics_ticks": 240,
+      "required_physics_ticks": 240,
+      "neural_clock_verified": true,
+      "constructor_bootstrap_rows": []
+    },
+    {
+      "run_id": "spatial-continuous-smoke-6",
+      "outcome": "success",
+      "complete": true,
+      "graph_sha256": "badc33a247894fe12c4d68d3ff791393857cffa39ff2ab81869608a11fa1e0c9",
+      "checkpoint_sha256": "9b32b38753ed4dbfd3e6bf69b45f1174f25a2d64f485431a67ad67c0148b8efc",
+      "neural_frames": 774,
+      "policy_frames": 768,
+      "final_valid_physics_ticks": 240,
+      "required_physics_ticks": 240,
+      "neural_clock_verified": true,
+      "constructor_bootstrap_rows": []
+    },
+    {
+      "run_id": "spatial-continuous-smoke-7",
+      "outcome": "success",
+      "complete": true,
+      "graph_sha256": "badc33a247894fe12c4d68d3ff791393857cffa39ff2ab81869608a11fa1e0c9",
+      "checkpoint_sha256": "9b32b38753ed4dbfd3e6bf69b45f1174f25a2d64f485431a67ad67c0148b8efc",
+      "neural_frames": 778,
+      "policy_frames": 772,
+      "final_valid_physics_ticks": 240,
+      "required_physics_ticks": 240,
+      "neural_clock_verified": true,
+      "constructor_bootstrap_rows": []
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "status": "PASS",
+  "scope": "Latest C2P live observation and one completed replay; not aggregate model acceptance",
+  "run_id": "spatial-precision-s11-sealed_test-3",
+  "live_checks": {
+    "paused_at_s": 25.1,
+    "canvas_fps": 0,
+    "backend_continued_to_s": 41.2,
+    "resumed_at_30fps_visible_s": 49.3,
+    "disconnect_at_60fps_s": 49.3,
+    "backend_after_disconnect_s": 68.1,
+    "reconnected": true
+  },
+  "replay_checks": {
+    "duration_s": 73.3,
+    "seek_mid_s": 20.0,
+    "mid_phase": "navigation",
+    "play_advanced_to_s": 36.06,
+    "pause": true,
+    "seek_end_s": 73.3,
+    "joint_hold_s": 2.0,
+    "distance_m": 0.09,
+    "height_error_m": 0.084,
+    "heading_error_deg": -8.7,
+    "pan_visible": true
+  },
+  "interaction_note": "Buttons activated through keyboard Space; pointer drag tested on actual canvas after using fresh screenshot coordinates. Initial drag landed above canvas after focus scrolled page and was not counted.",
+  "screenshots": [
+    "TS1_browser_C2P_replay.png",
+    "TS1_browser_C2P_pan.png"
+  ]
+}

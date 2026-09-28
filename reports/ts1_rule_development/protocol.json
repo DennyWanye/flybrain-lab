@@ -1,0 +1,10 @@
+{
+  "scope": "rule-only development diagnosis after aggregate feasibility gate failure; no neural weight changes or heldout case reuse",
+  "seed_range": [
+    420000000,
+    420000127
+  ],
+  "cases": 128,
+  "half_command_height_stratification": 64,
+  "profiles": "balanced clean/pose/force/combined"
+}

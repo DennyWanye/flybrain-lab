@@ -1,0 +1,22 @@
+{
+  "status": "PASS",
+  "quota_bytes": 268435456,
+  "committed_bytes": 266394346,
+  "chunk_count": 67,
+  "valid_prefix_rows": 16080,
+  "missing_intervals": [
+    {
+      "stream": "fixture",
+      "first_tick": 16080,
+      "last_tick": 23999,
+      "reason": "recording_quota_exceeded"
+    }
+  ],
+  "long_command_ticks": 1272,
+  "long_replay": "ts1-long-command-v3",
+  "long_chunks": 9,
+  "buffers_released": true,
+  "elapsed_s": 1.3132281209982466,
+  "peak_rss_kib": 76388,
+  "scope": "quota fixture is storage only, no simulated neural activity; long command uses actual rigid physics"
+}

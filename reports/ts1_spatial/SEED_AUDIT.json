@@ -1,0 +1,28 @@
+{
+  "historical_seeds": 14547,
+  "metadata_documents": 570,
+  "historical_max": 231117500,
+  "historical_formulas": [
+    [
+      "reports/ts1_stability/protocol.json",
+      "150000000 + model_seed*100000 + stage*10000 + lane*500 + episode; smoke uses 160000000"
+    ],
+    [
+      "reports/ts1_altitude_refined/protocol.json",
+      "220000000 + model_seed*100000 + stage*10000 + lane*500 + episode; smoke base230000000"
+    ],
+    [
+      "reports/ts1_altitude/protocol.json",
+      "190000000 + model_seed*100000 + stage*10000 + lane*500 + episode; smoke base200000000"
+    ],
+    [
+      "reports/ts1_robust/protocol.json",
+      "120000000 + model_seed*100000 + skill_index*40000 + stage*10000 + lane*500 + episode"
+    ]
+  ],
+  "overlap": 0,
+  "allocated_range": [
+    243000000,
+    263327999
+  ]
+}

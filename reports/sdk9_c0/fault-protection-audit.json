@@ -1,0 +1,50 @@
+{
+  "models": [
+    {
+      "seed": 11,
+      "fault_protection_passed": true,
+      "fault_cases": 56,
+      "fault_navigation_successes": 28,
+      "collision_or_bounds": 0,
+      "near_argmax": [
+        40,
+        40
+      ],
+      "near_sampled": [
+        40,
+        40
+      ]
+    },
+    {
+      "seed": 22,
+      "fault_protection_passed": true,
+      "fault_cases": 56,
+      "fault_navigation_successes": 26,
+      "collision_or_bounds": 0,
+      "near_argmax": [
+        40,
+        40
+      ],
+      "near_sampled": [
+        40,
+        40
+      ]
+    },
+    {
+      "seed": 33,
+      "fault_protection_passed": true,
+      "fault_cases": 56,
+      "fault_navigation_successes": 28,
+      "collision_or_bounds": 0,
+      "near_argmax": [
+        40,
+        40
+      ],
+      "near_sampled": [
+        40,
+        40
+      ]
+    }
+  ],
+  "all_passed": true
+}

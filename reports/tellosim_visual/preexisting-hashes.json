@@ -1,0 +1,22 @@
+[
+  {
+    "Path": "\\\\wsl.localhost\\Ubuntu-24.04\\home\\denny\\projects\\flybrain_lab_4spark_v0_1\\flyview\\static\\index.html",
+    "Hash": "E1C868525B9102EC14D7F7F88975163E87F9A9B42DE4CC80243D3645B3C1EFBE"
+  },
+  {
+    "Path": "\\\\wsl.localhost\\Ubuntu-24.04\\home\\denny\\projects\\flybrain_lab_4spark_v0_1\\flyview\\server.py",
+    "Hash": "6FD61681E5204DF13BB3B7EC339052623951B334DDA298A9A503B9FE93DC1597"
+  },
+  {
+    "Path": "\\\\wsl.localhost\\Ubuntu-24.04\\home\\denny\\projects\\flybrain_lab_4spark_v0_1\\flydrone\\tellosim\\physics\\world.py",
+    "Hash": "558C2D8BAAC0ECE35C76A67000238196A9B2410E685B358D63706E9852018684"
+  },
+  {
+    "Path": "\\\\wsl.localhost\\Ubuntu-24.04\\home\\denny\\projects\\flybrain_lab_4spark_v0_1\\flydrone\\tellosim\\sim.py",
+    "Hash": "5AA38749FD265E46C45E1FD9BF13F157336867E9F1BAE36218CAF621E267FCEC"
+  },
+  {
+    "Path": "\\\\wsl.localhost\\Ubuntu-24.04\\home\\denny\\projects\\flybrain_lab_4spark_v0_1\\artifacts\\golden_episode_verified\\replay.jsonl",
+    "Hash": "08BEBE5164AE67A8B66577D17C88552A5D6AED39E5CA386977D5D05EA2E04A7E"
+  }
+]

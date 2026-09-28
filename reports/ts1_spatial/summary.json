@@ -1,0 +1,30 @@
+{
+  "stage": "C2",
+  "status": "training_failed",
+  "JOINT_3D_TASK_VERIFIED": false,
+  "MODEL_READY_FOR_NEXT_STAGE": false,
+  "FULL_TS1_READY": false,
+  "REAL_FLIGHT_READY": false,
+  "models": [],
+  "failure": "Simulator absolute180s closure caused repeated sensor sample before task-relative180s deadline; sealed evaluation not started",
+  "process_cleanup": {
+    "train-11": {
+      "pid": 13281,
+      "returncode": -2,
+      "reaped": true,
+      "proc_absent": true
+    },
+    "train-22": {
+      "pid": 13282,
+      "returncode": -2,
+      "reaped": true,
+      "proc_absent": true
+    },
+    "train-33": {
+      "pid": 13283,
+      "returncode": 1,
+      "reaped": true,
+      "proc_absent": true
+    }
+  }
+}

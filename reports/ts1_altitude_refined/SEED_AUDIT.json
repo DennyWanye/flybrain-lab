@@ -1,0 +1,150 @@
+{
+  "historical_seed_count": 12696,
+  "historical_max": 201199999,
+  "historical_sources_scanned": 549,
+  "historical_formulas": [
+    {
+      "path": "reports/ts1_stability/protocol.json",
+      "formula": "150000000 + model_seed*100000 + stage*10000 + lane*500 + episode; smoke uses 160000000"
+    },
+    {
+      "path": "reports/ts1_altitude/protocol.json",
+      "formula": "190000000 + model_seed*100000 + stage*10000 + lane*500 + episode; smoke base200000000"
+    },
+    {
+      "path": "reports/ts1_robust/protocol.json",
+      "formula": "120000000 + model_seed*100000 + skill_index*40000 + stage*10000 + lane*500 + episode"
+    }
+  ],
+  "new_ranges": [
+    {
+      "kind": "formal",
+      "model_seed": 11,
+      "stage": 0,
+      "min": 221100000,
+      "max": 221107999
+    },
+    {
+      "kind": "formal",
+      "model_seed": 11,
+      "stage": 1,
+      "min": 221110000,
+      "max": 221117999
+    },
+    {
+      "kind": "formal",
+      "model_seed": 11,
+      "stage": 2,
+      "min": 221120000,
+      "max": 221127999
+    },
+    {
+      "kind": "formal",
+      "model_seed": 22,
+      "stage": 0,
+      "min": 222200000,
+      "max": 222207999
+    },
+    {
+      "kind": "formal",
+      "model_seed": 22,
+      "stage": 1,
+      "min": 222210000,
+      "max": 222217999
+    },
+    {
+      "kind": "formal",
+      "model_seed": 22,
+      "stage": 2,
+      "min": 222220000,
+      "max": 222227999
+    },
+    {
+      "kind": "formal",
+      "model_seed": 33,
+      "stage": 0,
+      "min": 223300000,
+      "max": 223307999
+    },
+    {
+      "kind": "formal",
+      "model_seed": 33,
+      "stage": 1,
+      "min": 223310000,
+      "max": 223317999
+    },
+    {
+      "kind": "formal",
+      "model_seed": 33,
+      "stage": 2,
+      "min": 223320000,
+      "max": 223327999
+    },
+    {
+      "kind": "smoke",
+      "model_seed": 11,
+      "stage": 0,
+      "min": 231100000,
+      "max": 231107999
+    },
+    {
+      "kind": "smoke",
+      "model_seed": 11,
+      "stage": 1,
+      "min": 231110000,
+      "max": 231117999
+    },
+    {
+      "kind": "smoke",
+      "model_seed": 11,
+      "stage": 2,
+      "min": 231120000,
+      "max": 231127999
+    },
+    {
+      "kind": "smoke",
+      "model_seed": 22,
+      "stage": 0,
+      "min": 232200000,
+      "max": 232207999
+    },
+    {
+      "kind": "smoke",
+      "model_seed": 22,
+      "stage": 1,
+      "min": 232210000,
+      "max": 232217999
+    },
+    {
+      "kind": "smoke",
+      "model_seed": 22,
+      "stage": 2,
+      "min": 232220000,
+      "max": 232227999
+    },
+    {
+      "kind": "smoke",
+      "model_seed": 33,
+      "stage": 0,
+      "min": 233300000,
+      "max": 233307999
+    },
+    {
+      "kind": "smoke",
+      "model_seed": 33,
+      "stage": 1,
+      "min": 233310000,
+      "max": 233317999
+    },
+    {
+      "kind": "smoke",
+      "model_seed": 33,
+      "stage": 2,
+      "min": 233320000,
+      "max": 233327999
+    }
+  ],
+  "split_overlap": 0,
+  "historical_overlap": 0,
+  "note": "instruction pairs share physical seed within their own split by design"
+}

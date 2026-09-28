@@ -1,0 +1,17 @@
+[
+  {
+    "campaign": "ts1_altitude_refined",
+    "jobs": 7,
+    "all_pids_absent": true
+  },
+  {
+    "campaign": "ts1_spatial",
+    "jobs": 3,
+    "all_pids_absent": true
+  },
+  {
+    "campaign": "ts1_mlp_pilot",
+    "jobs": 2,
+    "all_pids_absent": true
+  }
+]

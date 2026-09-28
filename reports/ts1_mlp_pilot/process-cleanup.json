@@ -1,0 +1,14 @@
+{
+  "train": {
+    "pid": 16435,
+    "returncode": 0,
+    "reaped": true,
+    "proc_absent": true
+  },
+  "evaluate": {
+    "pid": 16576,
+    "returncode": 0,
+    "reaped": true,
+    "proc_absent": true
+  }
+}

@@ -1,0 +1,131 @@
+{
+  "status": "PASS",
+  "scope": "recorded development/formal/regression/observer jobs before package probes; direct foreground transfer and pytest commands also returnedexit0",
+  "processes": [
+    {
+      "pid": 30260,
+      "source": "reports/ts1_control_development_v/cleanup.json",
+      "returncode": null,
+      "absent": true,
+      "sampled_private_kib": 559200
+    },
+    {
+      "pid": 30633,
+      "source": "reports/ts1_spatial_anchored/smoke-cleanup.json",
+      "returncode": 0,
+      "absent": true,
+      "sampled_private_kib": 1465816
+    },
+    {
+      "pid": 30801,
+      "source": "reports/ts1_spatial_anchored/devrule-cleanup.json",
+      "returncode": -15,
+      "absent": true,
+      "sampled_private_kib": 533036
+    },
+    {
+      "pid": 31088,
+      "source": "reports/ts1_spatial_continuous/smoke-cleanup.json",
+      "returncode": 0,
+      "absent": true,
+      "sampled_private_kib": 1444740
+    },
+    {
+      "pid": 31250,
+      "source": "reports/ts1_spatial_continuous/devrule-cleanup.json",
+      "returncode": 0,
+      "absent": true,
+      "sampled_private_kib": 538816
+    },
+    {
+      "pid": 31516,
+      "source": "reports/ts1_spatial_continuous/devneural-cleanup.json",
+      "returncode": 0,
+      "absent": true,
+      "sampled_private_kib": 1330460
+    },
+    {
+      "pid": 31674,
+      "source": "reports/ts1_spatial_continuous/formal-rule-cleanup.json",
+      "returncode": 0,
+      "absent": true,
+      "sampled_private_kib": 533908
+    },
+    {
+      "pid": 31331,
+      "source": "reports/ts1_spatial_continuous/diagnostic-cleanup.json",
+      "returncode": 0,
+      "absent": true,
+      "sampled_private_kib": 1143024
+    },
+    {
+      "pid": 32065,
+      "source": "reports/ts1_spatial_continuous/formal-s33-cleanup.json",
+      "returncode": 0,
+      "absent": true,
+      "sampled_private_kib": 1822348
+    },
+    {
+      "pid": 31852,
+      "source": "reports/ts1_spatial_continuous/formal-s11-cleanup.json",
+      "returncode": 0,
+      "absent": true,
+      "sampled_private_kib": 1352320
+    },
+    {
+      "pid": 32016,
+      "source": "reports/ts1_spatial_continuous/formal-s22-cleanup.json",
+      "returncode": 0,
+      "absent": true,
+      "sampled_private_kib": 1410308
+    },
+    {
+      "pid": 31901,
+      "source": "reports/ts1_spatial_continuous/formal-random-cleanup.json",
+      "returncode": 0,
+      "absent": true,
+      "sampled_private_kib": 334808
+    },
+    {
+      "pid": 33255,
+      "source": "reports/ts1_completion_c2w/regression-cleanup.json",
+      "returncode": 0,
+      "absent": true,
+      "sampled_private_kib": 848472
+    },
+    {
+      "pid": 33281,
+      "source": "reports/ts1_completion_c2w/observer-cleanup.json",
+      "returncode": 0,
+      "absent": true,
+      "sampled_private_kib": 1288028
+    },
+    {
+      "pid": 30485,
+      "source": "reports/ts1_spatial_anchored/targeted-process.json",
+      "absent": true,
+      "sampled_private_kib": 577444
+    }
+  ],
+  "sampled_private_gib_sum_across_stages": 14.479377746582031,
+  "retained_viewer": {
+    "pid": 33503,
+    "command": [
+      "/home/denny/projects/flybrain-env/bin/python",
+      "-u",
+      "-m",
+      "flyview",
+      "serve",
+      "--project-root",
+      "/home/denny/projects/flybrain_lab_4spark_v0_1",
+      "--port",
+      "8765"
+    ],
+    "cwd": "/home/denny/projects/flybrain_lab_4spark_v0_1",
+    "retained_service": true,
+    "replaced_pid": 25983,
+    "old_pid_absent": true,
+    "old_private_kib": 66744
+  },
+  "note": "summed samples across stages, not simultaneous memory; C2V devrule intentionally SIGTERM after continuous-hold audit failure"
+}

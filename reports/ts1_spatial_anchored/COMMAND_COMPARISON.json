@@ -1,0 +1,22 @@
+[
+  {
+    "profile": "command-force",
+    "maximum_command_z_target_change_m": 0.0,
+    "truth_final_z": 0.9993518713827491
+  },
+  {
+    "profile": "command-clean",
+    "maximum_command_z_target_change_m": 0.0,
+    "truth_final_z": 0.9993528156933544
+  },
+  {
+    "profile": "command-pose",
+    "maximum_command_z_target_change_m": 0.0,
+    "truth_final_z": 0.9993528156933544
+  },
+  {
+    "profile": "command-combined",
+    "maximum_command_z_target_change_m": 0.0,
+    "truth_final_z": 1.0094869212779227
+  }
+]

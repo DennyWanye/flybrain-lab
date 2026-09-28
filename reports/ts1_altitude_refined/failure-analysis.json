@@ -1,0 +1,171 @@
+{
+  "11": {
+    "reasons": {
+      "task_deadline": 2
+    },
+    "profiles": {
+      "clean": 2
+    },
+    "cases": [
+      {
+        "return": -4.832113035668772,
+        "case_id": "v1r-sealed_test-136",
+        "seed": 214000136,
+        "reason": "task_deadline",
+        "success": false,
+        "steps": 31,
+        "duration_s": 60.0,
+        "distance_m": 0.14567192861723877,
+        "horizontal_distance_m": 0.0,
+        "height_error_m": 0.14567192861723877,
+        "vertical_speed_mps": 2.947514355835914e-05,
+        "horizontal_speed_mps": 0.0,
+        "yaw_drift_deg": 0.0,
+        "angular_speed_rad_s": 0.0,
+        "target_height_m": 1.3442501494079047,
+        "final_height_m": 1.198578220790666,
+        "stable_hold_s": 0.0,
+        "actions": [
+          0,
+          5,
+          0,
+          5,
+          6,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          5,
+          6,
+          0,
+          5,
+          6,
+          0,
+          0
+        ],
+        "run_id": null,
+        "physics_ticks": 7200,
+        "brain_tick": 2404,
+        "disturbance": {
+          "profile": "clean",
+          "applied_physics_ticks": 0,
+          "impulse_world_ns": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "angular_impulse_world_nms": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "absolute_impulse_ns": 0.0,
+          "absolute_vertical_impulse_ns": 0.0
+        }
+      },
+      {
+        "return": -4.752890348798262,
+        "case_id": "v1r-sealed_test-156",
+        "seed": 214000156,
+        "reason": "task_deadline",
+        "success": false,
+        "steps": 32,
+        "duration_s": 60.0,
+        "distance_m": 0.11906115347328511,
+        "horizontal_distance_m": 0.0,
+        "height_error_m": 0.11906115347328511,
+        "vertical_speed_mps": 0.029762787089626493,
+        "horizontal_speed_mps": 0.0,
+        "yaw_drift_deg": 0.0,
+        "angular_speed_rad_s": 0.0,
+        "target_height_m": 0.5206598833798124,
+        "final_height_m": 0.4015987299065273,
+        "stable_hold_s": 0.0,
+        "actions": [
+          0,
+          6,
+          6,
+          0,
+          6,
+          5,
+          6,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          5,
+          6,
+          0,
+          0,
+          5,
+          6,
+          5,
+          6,
+          5,
+          6,
+          0,
+          5
+        ],
+        "run_id": null,
+        "physics_ticks": 7200,
+        "brain_tick": 2404,
+        "disturbance": {
+          "profile": "clean",
+          "applied_physics_ticks": 0,
+          "impulse_world_ns": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "angular_impulse_world_nms": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "absolute_impulse_ns": 0.0,
+          "absolute_vertical_impulse_ns": 0.0
+        }
+      }
+    ],
+    "boundary_cases": [],
+    "validation_cases": []
+  },
+  "22": {
+    "reasons": {},
+    "profiles": {},
+    "cases": [],
+    "boundary_cases": [],
+    "validation_cases": []
+  },
+  "33": {
+    "reasons": {},
+    "profiles": {},
+    "cases": [],
+    "boundary_cases": [],
+    "validation_cases": []
+  }
+}

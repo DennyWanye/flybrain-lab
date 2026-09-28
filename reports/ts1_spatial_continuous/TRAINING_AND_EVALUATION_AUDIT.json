@@ -1,0 +1,204 @@
+{
+  "passed": true,
+  "models": [
+    {
+      "seed": 11,
+      "status": "transferred",
+      "new_training_actions": 0,
+      "source_training_actions": 5632,
+      "source_checkpoint": "runs/tellosim-sdk9/spatial-orientation-s11/checkpoint.pt",
+      "source_sha256": "a7fbf6c8b86bc7a0cd6c89fbfb61651bf644b0f325e9e9b713d72977d03dfa96",
+      "checkpoint_sha256": "9b32b38753ed4dbfd3e6bf69b45f1174f25a2d64f485431a67ad67c0148b8efc",
+      "parameter_identical": true,
+      "source_hashes": {
+        "flydrone/tellosim/visual_anchored.py": "2772e408f46f612226daf28ccdbb4f8efd74ad72828fbcfe94c4daa3e735fc84",
+        "flydrone/tellosim/training/spatial_orientation.py": "63619c6009d64eb6220992645a0450c62225579956777b139bad9b2a37975151",
+        "flydrone/tellosim/training/spatial_orientation_campaign.py": "c9a926eebaeaeece23df3810e48f7f60384f7b96de27ce4295df09d12cd68ffd",
+        "flydrone/tellosim/training/spatial_precision.py": "70e158c34773ceaf42f8c6b0ced22fc665457812d8d7cb22a2fbc58ec905a6cd",
+        "flydrone/tellosim/training/spatial_precision_campaign.py": "6bc159a36127da8063b69d595d8bcd0b0dce0753baeb616c62fac2a01f871da3",
+        "flydrone/tellosim/training/spatial_refined.py": "068a3d6412ef43c87200a82cc738c4445446199ecb85386e4dd05d8245a67703",
+        "flydrone/tellosim/training/spatial_refined_campaign.py": "071f0f8a3eb14c674e432e5cba5cfe1024c2e4110f0055cf7e72c8a40bfc5fcb",
+        "flydrone/tellosim/training/spatial_continuous.py": "3c1a8f9b4fd74fead09266cc6038ebe6ba0fa7e19fd35a33bd8d58175277f353",
+        "flydrone/tellosim/training/spatial_continuous_campaign.py": "9460c5750363ab09dea31ebfa27a95921b9e0d68653896f5ff3bf9c8d5b6cbbe",
+        "flydrone/tellosim/training/altitude_refined.py": "92d81bba55e49cd1465172c410120755d0950204166cf997aab56320202dd966",
+        "flydrone/tellosim/training/altitude_refined_campaign.py": "e0c1ade6b3e6562e8785e8bafcf0995063df595bc0a51f62038ff5a114c3e708",
+        "flydrone/tellosim/training/joint.py": "25757009d8c2972aaeaecc52dfff97edeca0a83f0c070933e864ff4b6f13c207",
+        "flydrone/tellosim/training/stability_campaign.py": "7aa855d28040ceeca103d94e0147d2b09867dd1d0b674e2120ecf371f4e0352a",
+        "flydrone/tellosim/training/heading.py": "3bfb5dd33722414954a4d28db6d3b78c5282dad4deea6aabc16e081cc6190e92",
+        "flydrone/tellosim/training/parallel.py": "f07e3186cb66c2127bea700d89334f64c67bb5ad24c64b6f066dc886304aac30",
+        "flydrone/tellosim/training/contracts.py": "086a20e0e0e301172fbd3999c20b00924c222b539fa654777660d74517ba4511"
+      },
+      "roundtrip_exact": true,
+      "smoke_only": false,
+      "heldout_training_overlap": 0,
+      "splits": [
+        {
+          "split": "validation",
+          "episodes": 100,
+          "successes": 100,
+          "case_hash": "551867ca6931dc3caff4f4880aca94522b618d7bfd057a89f201850795fa3a01"
+        },
+        {
+          "split": "sealed_test",
+          "episodes": 300,
+          "successes": 290,
+          "case_hash": "4283e234ec7fcca9e6795502f8de4427333bf68d106b145e67766a36bb02776a"
+        },
+        {
+          "split": "instruction_pairs",
+          "episodes": 8,
+          "successes": 8,
+          "case_hash": "dc827c6b1d771c4a3feb87a929092faeeeca8e91e9cb9e09cc5576c852e883f7"
+        },
+        {
+          "split": "boundary",
+          "episodes": 12,
+          "successes": 12,
+          "case_hash": "07b05179fcc0d6589c2f475f7c056aa1e416c9fa6870adc0df049fd9711c61da"
+        },
+        {
+          "split": "zero_cases",
+          "episodes": 12,
+          "successes": 0,
+          "case_hash": "7d1323d3bc814d5312ab0066f3b7566f58b49c2ffa339e5caf49806b0b871eaa"
+        }
+      ],
+      "all_physics_clock_mask_checks": true
+    },
+    {
+      "seed": 22,
+      "status": "transferred",
+      "new_training_actions": 0,
+      "source_training_actions": 5632,
+      "source_checkpoint": "runs/tellosim-sdk9/spatial-orientation-s22/checkpoint.pt",
+      "source_sha256": "5ca61b0fe3209859b82b6eb2c7527b74df81bd0a562189e32e722d4789c1b4e4",
+      "checkpoint_sha256": "5bad36dd1389ca41a6038c7f24463aaf65e66ee6d228a3b0ff9b1913fd19a498",
+      "parameter_identical": true,
+      "source_hashes": {
+        "flydrone/tellosim/visual_anchored.py": "2772e408f46f612226daf28ccdbb4f8efd74ad72828fbcfe94c4daa3e735fc84",
+        "flydrone/tellosim/training/spatial_orientation.py": "63619c6009d64eb6220992645a0450c62225579956777b139bad9b2a37975151",
+        "flydrone/tellosim/training/spatial_orientation_campaign.py": "c9a926eebaeaeece23df3810e48f7f60384f7b96de27ce4295df09d12cd68ffd",
+        "flydrone/tellosim/training/spatial_precision.py": "70e158c34773ceaf42f8c6b0ced22fc665457812d8d7cb22a2fbc58ec905a6cd",
+        "flydrone/tellosim/training/spatial_precision_campaign.py": "6bc159a36127da8063b69d595d8bcd0b0dce0753baeb616c62fac2a01f871da3",
+        "flydrone/tellosim/training/spatial_refined.py": "068a3d6412ef43c87200a82cc738c4445446199ecb85386e4dd05d8245a67703",
+        "flydrone/tellosim/training/spatial_refined_campaign.py": "071f0f8a3eb14c674e432e5cba5cfe1024c2e4110f0055cf7e72c8a40bfc5fcb",
+        "flydrone/tellosim/training/spatial_continuous.py": "3c1a8f9b4fd74fead09266cc6038ebe6ba0fa7e19fd35a33bd8d58175277f353",
+        "flydrone/tellosim/training/spatial_continuous_campaign.py": "9460c5750363ab09dea31ebfa27a95921b9e0d68653896f5ff3bf9c8d5b6cbbe",
+        "flydrone/tellosim/training/altitude_refined.py": "92d81bba55e49cd1465172c410120755d0950204166cf997aab56320202dd966",
+        "flydrone/tellosim/training/altitude_refined_campaign.py": "e0c1ade6b3e6562e8785e8bafcf0995063df595bc0a51f62038ff5a114c3e708",
+        "flydrone/tellosim/training/joint.py": "25757009d8c2972aaeaecc52dfff97edeca0a83f0c070933e864ff4b6f13c207",
+        "flydrone/tellosim/training/stability_campaign.py": "7aa855d28040ceeca103d94e0147d2b09867dd1d0b674e2120ecf371f4e0352a",
+        "flydrone/tellosim/training/heading.py": "3bfb5dd33722414954a4d28db6d3b78c5282dad4deea6aabc16e081cc6190e92",
+        "flydrone/tellosim/training/parallel.py": "f07e3186cb66c2127bea700d89334f64c67bb5ad24c64b6f066dc886304aac30",
+        "flydrone/tellosim/training/contracts.py": "086a20e0e0e301172fbd3999c20b00924c222b539fa654777660d74517ba4511"
+      },
+      "roundtrip_exact": true,
+      "smoke_only": false,
+      "heldout_training_overlap": 0,
+      "splits": [
+        {
+          "split": "validation",
+          "episodes": 100,
+          "successes": 99,
+          "case_hash": "551867ca6931dc3caff4f4880aca94522b618d7bfd057a89f201850795fa3a01"
+        },
+        {
+          "split": "sealed_test",
+          "episodes": 300,
+          "successes": 293,
+          "case_hash": "4283e234ec7fcca9e6795502f8de4427333bf68d106b145e67766a36bb02776a"
+        },
+        {
+          "split": "instruction_pairs",
+          "episodes": 8,
+          "successes": 8,
+          "case_hash": "dc827c6b1d771c4a3feb87a929092faeeeca8e91e9cb9e09cc5576c852e883f7"
+        },
+        {
+          "split": "boundary",
+          "episodes": 12,
+          "successes": 12,
+          "case_hash": "07b05179fcc0d6589c2f475f7c056aa1e416c9fa6870adc0df049fd9711c61da"
+        },
+        {
+          "split": "zero_cases",
+          "episodes": 12,
+          "successes": 0,
+          "case_hash": "7d1323d3bc814d5312ab0066f3b7566f58b49c2ffa339e5caf49806b0b871eaa"
+        }
+      ],
+      "all_physics_clock_mask_checks": true
+    },
+    {
+      "seed": 33,
+      "status": "transferred",
+      "new_training_actions": 0,
+      "source_training_actions": 5632,
+      "source_checkpoint": "runs/tellosim-sdk9/spatial-orientation-s33/checkpoint.pt",
+      "source_sha256": "a2805f97b0c96612848e710e4ec5a0ef301ec59f9c88d32009900b4545974106",
+      "checkpoint_sha256": "c977abcf6d92eac5b35c9af89ec041b10dc34efad97cb50af05128108e801ce1",
+      "parameter_identical": true,
+      "source_hashes": {
+        "flydrone/tellosim/visual_anchored.py": "2772e408f46f612226daf28ccdbb4f8efd74ad72828fbcfe94c4daa3e735fc84",
+        "flydrone/tellosim/training/spatial_orientation.py": "63619c6009d64eb6220992645a0450c62225579956777b139bad9b2a37975151",
+        "flydrone/tellosim/training/spatial_orientation_campaign.py": "c9a926eebaeaeece23df3810e48f7f60384f7b96de27ce4295df09d12cd68ffd",
+        "flydrone/tellosim/training/spatial_precision.py": "70e158c34773ceaf42f8c6b0ced22fc665457812d8d7cb22a2fbc58ec905a6cd",
+        "flydrone/tellosim/training/spatial_precision_campaign.py": "6bc159a36127da8063b69d595d8bcd0b0dce0753baeb616c62fac2a01f871da3",
+        "flydrone/tellosim/training/spatial_refined.py": "068a3d6412ef43c87200a82cc738c4445446199ecb85386e4dd05d8245a67703",
+        "flydrone/tellosim/training/spatial_refined_campaign.py": "071f0f8a3eb14c674e432e5cba5cfe1024c2e4110f0055cf7e72c8a40bfc5fcb",
+        "flydrone/tellosim/training/spatial_continuous.py": "3c1a8f9b4fd74fead09266cc6038ebe6ba0fa7e19fd35a33bd8d58175277f353",
+        "flydrone/tellosim/training/spatial_continuous_campaign.py": "9460c5750363ab09dea31ebfa27a95921b9e0d68653896f5ff3bf9c8d5b6cbbe",
+        "flydrone/tellosim/training/altitude_refined.py": "92d81bba55e49cd1465172c410120755d0950204166cf997aab56320202dd966",
+        "flydrone/tellosim/training/altitude_refined_campaign.py": "e0c1ade6b3e6562e8785e8bafcf0995063df595bc0a51f62038ff5a114c3e708",
+        "flydrone/tellosim/training/joint.py": "25757009d8c2972aaeaecc52dfff97edeca0a83f0c070933e864ff4b6f13c207",
+        "flydrone/tellosim/training/stability_campaign.py": "7aa855d28040ceeca103d94e0147d2b09867dd1d0b674e2120ecf371f4e0352a",
+        "flydrone/tellosim/training/heading.py": "3bfb5dd33722414954a4d28db6d3b78c5282dad4deea6aabc16e081cc6190e92",
+        "flydrone/tellosim/training/parallel.py": "f07e3186cb66c2127bea700d89334f64c67bb5ad24c64b6f066dc886304aac30",
+        "flydrone/tellosim/training/contracts.py": "086a20e0e0e301172fbd3999c20b00924c222b539fa654777660d74517ba4511"
+      },
+      "roundtrip_exact": true,
+      "smoke_only": false,
+      "heldout_training_overlap": 0,
+      "splits": [
+        {
+          "split": "validation",
+          "episodes": 100,
+          "successes": 99,
+          "case_hash": "551867ca6931dc3caff4f4880aca94522b618d7bfd057a89f201850795fa3a01"
+        },
+        {
+          "split": "sealed_test",
+          "episodes": 300,
+          "successes": 294,
+          "case_hash": "4283e234ec7fcca9e6795502f8de4427333bf68d106b145e67766a36bb02776a"
+        },
+        {
+          "split": "instruction_pairs",
+          "episodes": 8,
+          "successes": 8,
+          "case_hash": "dc827c6b1d771c4a3feb87a929092faeeeca8e91e9cb9e09cc5576c852e883f7"
+        },
+        {
+          "split": "boundary",
+          "episodes": 12,
+          "successes": 11,
+          "case_hash": "07b05179fcc0d6589c2f475f7c056aa1e416c9fa6870adc0df049fd9711c61da"
+        },
+        {
+          "split": "zero_cases",
+          "episodes": 12,
+          "successes": 0,
+          "case_hash": "7d1323d3bc814d5312ab0066f3b7566f58b49c2ffa339e5caf49806b0b871eaa"
+        }
+      ],
+      "all_physics_clock_mask_checks": true
+    }
+  ],
+  "new_training_actions": 0,
+  "prior_training_actions": 16896,
+  "physical_hold_implementation": "per120Hz tick, no10Hz approximation",
+  "original_acceptance": {
+    "passed": true,
+    "reasons": []
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "stage": {
+    "pid": 29545,
+    "returncode": 0,
+    "reaped": true,
+    "proc_absent": true
+  },
+  "extraction": {
+    "pid": 29642,
+    "returncode": 0,
+    "reaped": true,
+    "proc_absent": true
+  }
+}

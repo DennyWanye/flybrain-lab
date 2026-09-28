@@ -1,0 +1,137 @@
+{
+  "status": "PASS",
+  "recorded_work_processes_absent": 18,
+  "processes": [
+    {
+      "pid": 30260,
+      "source": "reports/ts1_control_development_v/cleanup.json",
+      "returncode": null,
+      "absent": true,
+      "sampled_private_kib": 559200
+    },
+    {
+      "pid": 30633,
+      "source": "reports/ts1_spatial_anchored/smoke-cleanup.json",
+      "returncode": 0,
+      "absent": true,
+      "sampled_private_kib": 1465816
+    },
+    {
+      "pid": 30801,
+      "source": "reports/ts1_spatial_anchored/devrule-cleanup.json",
+      "returncode": -15,
+      "absent": true,
+      "sampled_private_kib": 533036
+    },
+    {
+      "pid": 31088,
+      "source": "reports/ts1_spatial_continuous/smoke-cleanup.json",
+      "returncode": 0,
+      "absent": true,
+      "sampled_private_kib": 1444740
+    },
+    {
+      "pid": 31250,
+      "source": "reports/ts1_spatial_continuous/devrule-cleanup.json",
+      "returncode": 0,
+      "absent": true,
+      "sampled_private_kib": 538816
+    },
+    {
+      "pid": 31516,
+      "source": "reports/ts1_spatial_continuous/devneural-cleanup.json",
+      "returncode": 0,
+      "absent": true,
+      "sampled_private_kib": 1330460
+    },
+    {
+      "pid": 31674,
+      "source": "reports/ts1_spatial_continuous/formal-rule-cleanup.json",
+      "returncode": 0,
+      "absent": true,
+      "sampled_private_kib": 533908
+    },
+    {
+      "pid": 31331,
+      "source": "reports/ts1_spatial_continuous/diagnostic-cleanup.json",
+      "returncode": 0,
+      "absent": true,
+      "sampled_private_kib": 1143024
+    },
+    {
+      "pid": 32065,
+      "source": "reports/ts1_spatial_continuous/formal-s33-cleanup.json",
+      "returncode": 0,
+      "absent": true,
+      "sampled_private_kib": 1822348
+    },
+    {
+      "pid": 31852,
+      "source": "reports/ts1_spatial_continuous/formal-s11-cleanup.json",
+      "returncode": 0,
+      "absent": true,
+      "sampled_private_kib": 1352320
+    },
+    {
+      "pid": 32016,
+      "source": "reports/ts1_spatial_continuous/formal-s22-cleanup.json",
+      "returncode": 0,
+      "absent": true,
+      "sampled_private_kib": 1410308
+    },
+    {
+      "pid": 31901,
+      "source": "reports/ts1_spatial_continuous/formal-random-cleanup.json",
+      "returncode": 0,
+      "absent": true,
+      "sampled_private_kib": 334808
+    },
+    {
+      "pid": 33255,
+      "source": "reports/ts1_completion_c2w/regression-cleanup.json",
+      "returncode": 0,
+      "absent": true,
+      "sampled_private_kib": 848472
+    },
+    {
+      "pid": 33281,
+      "source": "reports/ts1_completion_c2w/observer-cleanup.json",
+      "returncode": 0,
+      "absent": true,
+      "sampled_private_kib": 1288028
+    },
+    {
+      "pid": 30485,
+      "source": "reports/ts1_spatial_anchored/targeted-process.json",
+      "absent": true,
+      "sampled_private_kib": 577444
+    },
+    {
+      "pid": 33886,
+      "source": "reports/ts1_completion_c2w/package-cleanup.json",
+      "returncode": 0,
+      "absent": true,
+      "sampled_private_kib": 62216
+    },
+    {
+      "pid": 33889,
+      "source": "PACKAGE_AUDIT.json:stage",
+      "returncode": 0,
+      "absent": true,
+      "sampled_private_kib": 1312992
+    },
+    {
+      "pid": 34000,
+      "source": "PACKAGE_AUDIT.json:extracted",
+      "returncode": 0,
+      "absent": true,
+      "sampled_private_kib": 1314220
+    }
+  ],
+  "sampled_private_gib_sum_across_stages": 17.04421615600586,
+  "memory_note": "sum of recorded samples across successive stages, not simultaneous RAM release",
+  "retained_viewer_pid": 33503,
+  "retained_viewer_command": "/home/denny/projects/flybrain-env/bin/python -u -m flyview serve --project-root /home/denny/projects/flybrain_lab_4spark_v0_1 --port 8765 ",
+  "no_matching_training_evaluation_or_package_worker_left": true,
+  "direct_foreground_transfers": "both three-seed transfers returnedexit0; no persistent worker; no PID or memory sample invented"
+}

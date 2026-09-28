@@ -1,0 +1,35 @@
+{
+  "status": "PASS",
+  "scope": "latest formally evaluated C2Q: new UI-only development case510000000; not a formal score or aggregate readiness claim",
+  "run_id": "spatial-orientation-ui-s11-0",
+  "wall_pacing": "150ms after neural sample only for UI observation; simulation/neural clock unchanged",
+  "fps_options_exercised": [
+    0,
+    30,
+    60
+  ],
+  "paused_ui_time_s": 26.3,
+  "paused_backend_time_s": 36.9,
+  "paused_backend_brain_tick": 1256,
+  "resumed_30fps_ui_time_s": 58.2,
+  "detached_backend_time_s": 66.3,
+  "detached_backend_brain_tick": 2432,
+  "reconnected_duration_s": 68.9,
+  "seek_play_pause": {
+    "seek_s": 20,
+    "played_to_s": 34.8,
+    "final_seek_s": 68.9,
+    "final_hold_s": 2
+  },
+  "canvas_pan_pointer_verified": true,
+  "camera_reset_keyboard_verified": true,
+  "formal_model22_shortcut_verified": "spatial-orientation-s22-sealed_test-3 (failure retained)",
+  "interaction_note": "Buttons activated using keyboard Space; pointer used for canvas pan",
+  "JOINT_3D_TASK_VERIFIED": false,
+  "evidence": [
+    "C2Q-paused-backend.json",
+    "C2Q-disconnected-backend.json",
+    "c2q-ui-result.json",
+    "TS1_browser_C2Q_pan.png"
+  ]
+}

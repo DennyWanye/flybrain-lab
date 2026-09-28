@@ -1,0 +1,19 @@
+{
+  "tag": "ts1-c2w-shadow-v1-20260928",
+  "files": [
+    {
+      "name": "FlyBrain_C2W_ShadowV1_Training_Records_20260928.zip",
+      "bytes": 1008492390,
+      "sha256": "44737eea2b378fb6e1ec94510176b44c5be1bb86dfdd6e5fabf1cf5c701fca70"
+    },
+    {
+      "name": "ARTIFACT_MANIFEST.json",
+      "bytes": 3028853,
+      "sha256": "c0abeb4a8b6f27c5885e7d4ce8ea8818c9751f4eefb2dd79d2d3a0835f654057"
+    }
+  ],
+  "archive_member_hashes_verified": 15803,
+  "credential_pattern_findings": 0,
+  "new_training_actions": 0,
+  "REAL_FLIGHT_READY": false
+}

@@ -1,0 +1,12 @@
+[
+  {
+    "inventory": "historical-inventory.json",
+    "files": 356,
+    "all_unchanged": true
+  },
+  {
+    "inventory": "failed-C2-inventory.json",
+    "files": 47,
+    "all_unchanged": true
+  }
+]

@@ -1,0 +1,1587 @@
+{
+  "visible_paused_time_s": 25.1,
+  "canvas_fps": 0,
+  "backend_frame": {
+    "run_id": "spatial-precision-s11-sealed_test-3",
+    "epoch": "e1c596c29c6e41e5865e49eae8bfceff",
+    "episode_id": "c2-sealed_test-003",
+    "env_id": 3,
+    "seq": 391,
+    "sim_tick": 4944,
+    "time_s": 41.2,
+    "truth": {
+      "position_m": [
+        0.9164553950672084,
+        1.45239520078261,
+        1.4243477081930775
+      ],
+      "velocity_mps": [
+        -0.0001188162759078413,
+        5.3150563292398116e-05,
+        -0.0001277818489124976
+      ],
+      "yaw_rad": 3.39008708325759,
+      "quaternion_wxyz": [
+        -0.1239277864437563,
+        -4.1559958136645626e-07,
+        2.0856176594399203e-06,
+        0.9922912393761363
+      ],
+      "angular_velocity_body_rad_s": [
+        -3.444123994130855e-05,
+        -2.8357966306237185e-05,
+        0.21110442104524685
+      ],
+      "collision": false
+    },
+    "sensor": {
+      "position_m": [
+        0.917245071713297,
+        1.4510251240313154,
+        1.4258903592611534
+      ],
+      "valid": true,
+      "age_s": 0.1,
+      "sample_tick": 4932,
+      "source": "external_pose_mock"
+    },
+    "sensor_contract": {
+      "sample_id": 412,
+      "sample_tick": 4932,
+      "received_tick": 4944,
+      "frame_id": "room_map",
+      "position_m": [
+        0.917245071713297,
+        1.4510251240313154,
+        1.4258903592611534
+      ],
+      "yaw_rad": 3.3686616395800373,
+      "velocity_mps": [
+        -0.006891228771431779,
+        -0.014271365875848652,
+        0.01177911665900977
+      ],
+      "height_m": 1.4218172285328317,
+      "battery_fraction": 0.9656666666666667,
+      "pose_age_s": 0.1,
+      "state_age_s": 0.0
+    },
+    "observation": [
+      -8.675730896356981e-06,
+      0.00011255515710217878,
+      0.018474193289875984,
+      0.009927142411470413,
+      0.012353654019534588,
+      0.011779116466641426,
+      0.4685547947883606,
+      -0.8834344148635864,
+      0.47393909096717834,
+      0.965666651725769,
+      0.10000000149011612,
+      0.0,
+      1.0,
+      1.0,
+      1.0,
+      0.10999999940395355,
+      0.9466666579246521,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ],
+    "brain_observation": [
+      -8.675730896356981e-06,
+      0.00011255515710217878,
+      0.018474193289875984,
+      0.009927142411470413,
+      0.012353654019534588,
+      0.011779116466641426,
+      0.4685547947883606,
+      -0.8834344148635864,
+      0.47393909096717834,
+      0.965666651725769,
+      0.10000000149011612,
+      0.0,
+      1.0,
+      1.0,
+      1.0,
+      0.10999999940395355,
+      0.9466666579246521,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ],
+    "observation_valid": [
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
+    ],
+    "observation_schema": "tellosim.spatial_observation26/1.0",
+    "policy": {
+      "selected_action": 8,
+      "probabilities": [
+        0.005741593427956104,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        9.6453535661567e-05,
+        0.9941619038581848
+      ],
+      "value_estimate": 0.07646112889051437,
+      "value_trained": false,
+      "mask": [
+        true,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        true,
+        true
+      ],
+      "input_source": "reservoir_v_trace",
+      "feature_dim": 128,
+      "skill": "heading",
+      "checkpoint_sha256": "8a26efb81bf2105b1eea8282c3635405321043156fca7692b92f5cff1cef0260"
+    },
+    "brain": {
+      "status": "recorded",
+      "sample_phase": "after_substep_3",
+      "neurons": [
+        {
+          "neuron_id": "126575",
+          "neuron_index": 94010,
+          "v": 0.8118960857391357,
+          "spike": 0,
+          "trace": 0.0
+        },
+        {
+          "neuron_id": "196234",
+          "neuron_index": 118320,
+          "v": 0.7928943037986755,
+          "spike": 0,
+          "trace": 0.007240683771669865
+        },
+        {
+          "neuron_id": "217664",
+          "neuron_index": 121255,
+          "v": 0.826479971408844,
+          "spike": 0,
+          "trace": 0.00019807495118584484
+        },
+        {
+          "neuron_id": "520214",
+          "neuron_index": 130614,
+          "v": 0.7960212826728821,
+          "spike": 0,
+          "trace": 0.0
+        },
+        {
+          "neuron_id": "35609",
+          "neuron_index": 22957,
+          "v": 0.35000574588775635,
+          "spike": 0,
+          "trace": 0.0
+        },
+        {
+          "neuron_id": "89926",
+          "neuron_index": 68051,
+          "v": 0.5818771719932556,
+          "spike": 0,
+          "trace": 0.050398509949445724
+        },
+        {
+          "neuron_id": "213784262",
+          "neuron_index": 165248,
+          "v": 0.14000000059604645,
+          "spike": 0,
+          "trace": 0.1691971868276596
+        },
+        {
+          "neuron_id": "535943",
+          "neuron_index": 137078,
+          "v": 0.6806672215461731,
+          "spike": 0,
+          "trace": 0.0
+        },
+        {
+          "neuron_id": "220987",
+          "neuron_index": 121576,
+          "v": 0.5503997802734375,
+          "spike": 0,
+          "trace": 0.0
+        },
+        {
+          "neuron_id": "197826",
+          "neuron_index": 118575,
+          "v": 0.6622201800346375,
+          "spike": 0,
+          "trace": 0.0
+        },
+        {
+          "neuron_id": "125606",
+          "neuron_index": 93399,
+          "v": 0.8666443824768066,
+          "spike": 0,
+          "trace": 0.0
+        },
+        {
+          "neuron_id": "129950",
+          "neuron_index": 96065,
+          "v": 0.4882068634033203,
+          "spike": 0,
+          "trace": 0.08289381861686707
+        },
+        {
+          "neuron_id": "243273",
+          "neuron_index": 122979,
+          "v": 0.0,
+          "spike": 1,
+          "trace": 0.31829535961151123
+        },
+        {
+          "neuron_id": "46944",
+          "neuron_index": 32939,
+          "v": 0.6675240397453308,
+          "spike": 0,
+          "trace": 0.0
+        },
+        {
+          "neuron_id": "175637",
+          "neuron_index": 114276,
+          "v": 0.4882068634033203,
+          "spike": 0,
+          "trace": 0.0736340582370758
+        },
+        {
+          "neuron_id": "38505",
+          "neuron_index": 25516,
+          "v": 0.6906462907791138,
+          "spike": 0,
+          "trace": 0.17344175279140472
+        },
+        {
+          "neuron_id": "137512",
+          "neuron_index": 100405,
+          "v": 0.008205384016036987,
+          "spike": 0,
+          "trace": 0.0
+        },
+        {
+          "neuron_id": "82078",
+          "neuron_index": 61997,
+          "v": 0.7707597613334656,
+          "spike": 0,
+          "trace": 0.17344175279140472
+        },
+        {
+          "neuron_id": "543051",
+          "neuron_index": 139049,
+          "v": 0.8751859664916992,
+          "spike": 0,
+          "trace": 0.046988390386104584
+        },
+        {
+          "neuron_id": "30467",
+          "neuron_index": 18433,
+          "v": 0.8245745301246643,
+          "spike": 0,
+          "trace": 0.0
+        },
+        {
+          "neuron_id": "144893",
+          "neuron_index": 104108,
+          "v": -0.21538840234279633,
+          "spike": 0,
+          "trace": 0.0
+        },
+        {
+          "neuron_id": "610917351",
+          "neuron_index": 165680,
+          "v": 0.14000000059604645,
+          "spike": 0,
+          "trace": 0.21684448421001434
+        },
+        {
+          "neuron_id": "446936",
+          "neuron_index": 125320,
+          "v": 0.1571750044822693,
+          "spike": 0,
+          "trace": 0.0
+        },
+        {
+          "neuron_id": "211564",
+          "neuron_index": 120553,
+          "v": 0.4511207342147827,
+          "spike": 0,
+          "trace": 0.0
+        },
+        {
+          "neuron_id": "68161",
+          "neuron_index": 50820,
+          "v": 0.565380871295929,
+          "spike": 0,
+          "trace": 0.0
+        },
+        {
+          "neuron_id": "906251",
+          "neuron_index": 161922,
+          "v": 0.108943872153759,
+          "spike": 0,
+          "trace": 0.0
+        },
+        {
+          "neuron_id": "519452",
+          "neuron_index": 130180,
+          "v": 0.6136266589164734,
+          "spike": 0,
+          "trace": 0.04008658975362778
+        },
+        {
+          "neuron_id": "12722",
+          "neuron_index": 2546,
+          "v": 0.8005011677742004,
+          "spike": 0,
+          "trace": 0.007240683771669865
+        },
+        {
+          "neuron_id": "840483",
+          "neuron_index": 160263,
+          "v": 0.7384194731712341,
+          "spike": 0,
+          "trace": 0.0
+        },
+        {
+          "neuron_id": "57531",
+          "neuron_index": 41999,
+          "v": 0.6693388819694519,
+          "spike": 0,
+          "trace": 0.0
+        },
+        {
+          "neuron_id": "565944",
+          "neuron_index": 143316,
+          "v": 0.7982068657875061,
+          "spike": 0,
+          "trace": 0.0
+        },
+        {
+          "neuron_id": "818712",
+          "neuron_index": 158592,
+          "v": 0.7752591967582703,
+          "spike": 0,
+          "trace": 0.01728188805282116
+        },
+        {
+          "neuron_id": "540062",
+          "neuron_index": 138193,
+          "v": 0.735700249671936,
+          "spike": 0,
+          "trace": 0.0
+        },
+        {
+          "neuron_id": "816303",
+          "neuron_index": 157203,
+          "v": 0.634090781211853,
+          "spike": 0,
+          "trace": 0.08796294778585434
+        },
+        {
+          "neuron_id": "120468",
+          "neuron_index": 90028,
+          "v": 0.8025578856468201,
+          "spike": 0,
+          "trace": 0.0
+        },
+        {
+          "neuron_id": "131351",
+          "neuron_index": 96909,
+          "v": 0.7863647937774658,
+          "spike": 0,
+          "trace": 0.007070264313369989
+        },
+        {
+          "neuron_id": "164312",
+          "neuron_index": 111365,
+          "v": 0.8238282203674316,
+          "spike": 0,
+          "trace": 0.0
+        },
+        {
+          "neuron_id": "16754",
+          "neuron_index": 6192,
+          "v": 0.7949332594871521,
+          "spike": 0,
+          "trace": 0.0
+        },
+        {
+          "neuron_id": "151454",
+          "neuron_index": 106950,
+          "v": 0.5412335991859436,
+          "spike": 0,
+          "trace": 0.0
+        },
+        {
+          "neuron_id": "38214",
+          "neuron_index": 25265,
+          "v": 0.8173114657402039,
+          "spike": 0,
+          "trace": 0.007240683771669865
+        },
+        {
+          "neuron_id": "792864299",
+          "neuron_index": 165883,
+          "v": 0.14000000059604645,
+          "spike": 0,
+          "trace": 0.1691971868276596
+        },
+        {
+          "neuron_id": "47788",
+          "neuron_index": 33669,
+          "v": 0.6815390586853027,
+          "spike": 0,
+          "trace": 0.0
+        },
+        {
+          "neuron_id": "34268",
+          "neuron_index": 21775,
+          "v": 0.7130340933799744,
+          "spike": 0,
+          "trace": 0.0
+        },
+        {
+          "neuron_id": "31278",
+          "neuron_index": 19132,
+          "v": 0.6684184670448303,
+          "spike": 0,
+          "trace": 0.0
+        },
+        {
+          "neuron_id": "99269",
+          "neuron_index": 74996,
+          "v": 0.8509219288825989,
+          "spike": 0,
+          "trace": 0.0
+        },
+        {
+          "neuron_id": "91322",
+          "neuron_index": 69086,
+          "v": 0.8120118379592896,
+          "spike": 0,
+          "trace": 0.014370406977832317
+        },
+        {
+          "neuron_id": "107168",
+          "neuron_index": 80738,
+          "v": 0.037617430090904236,
+          "spike": 0,
+          "trace": 0.0
+        },
+        {
+          "neuron_id": "25757",
+          "neuron_index": 14243,
+          "v": 0.7277840375900269,
+          "spike": 0,
+          "trace": 0.0
+        },
+        {
+          "neuron_id": "184640",
+          "neuron_index": 116130,
+          "v": 0.4882068634033203,
+          "spike": 0,
+          "trace": 0.0736340582370758
+        },
+        {
+          "neuron_id": "37875",
+          "neuron_index": 24957,
+          "v": 0.9626732468605042,
+          "spike": 0,
+          "trace": 0.10349191725254059
+        },
+        {
+          "neuron_id": "145433",
+          "neuron_index": 104369,
+          "v": 0.016020312905311584,
+          "spike": 0,
+          "trace": 0.0
+        },
+        {
+          "neuron_id": "38112",
+          "neuron_index": 25168,
+          "v": 0.7307477593421936,
+          "spike": 0,
+          "trace": 0.1734214872121811
+        },
+        {
+          "neuron_id": "68540",
+          "neuron_index": 51129,
+          "v": 0.7857112884521484,
+          "spike": 0,
+          "trace": 0.046988390386104584
+        },
+        {
+          "neuron_id": "906567",
+          "neuron_index": 162034,
+          "v": 0.734605610370636,
+          "spike": 0,
+          "trace": 0.0
+        },
+        {
+          "neuron_id": "77050",
+          "neuron_index": 58010,
+          "v": -0.20670519769191742,
+          "spike": 0,
+          "trace": 0.0
+        },
+        {
+          "neuron_id": "822366",
+          "neuron_index": 159563,
+          "v": 0.8082364201545715,
+          "spike": 0,
+          "trace": 0.046988390386104584
+        },
+        {
+          "neuron_id": "533975",
+          "neuron_index": 136216,
+          "v": 0.9229547381401062,
+          "spike": 0,
+          "trace": 0.050398509949445724
+        },
+        {
+          "neuron_id": "77094",
+          "neuron_index": 58045,
+          "v": 0.9058129191398621,
+          "spike": 0,
+          "trace": 4.789055196852132e-07
+        },
+        {
+          "neuron_id": "177371",
+          "neuron_index": 114644,
+          "v": 0.6190348863601685,
+          "spike": 0,
+          "trace": 0.0
+        },
+        {
+          "neuron_id": "805789",
+          "neuron_index": 148798,
+          "v": 0.16121070086956024,
+          "spike": 0,
+          "trace": 0.0
+        },
+        {
+          "neuron_id": "159542",
+          "neuron_index": 109903,
+          "v": 0.7957035303115845,
+          "spike": 0,
+          "trace": 0.005759556312114
+        },
+        {
+          "neuron_id": "847720",
+          "neuron_index": 160332,
+          "v": 0.5818771719932556,
+          "spike": 0,
+          "trace": 0.04197629913687706
+        },
+        {
+          "neuron_id": "97900",
+          "neuron_index": 74017,
+          "v": 0.8007073402404785,
+          "spike": 0,
+          "trace": 0.0
+        },
+        {
+          "neuron_id": "106443",
+          "neuron_index": 80243,
+          "v": 0.6950871348381042,
+          "spike": 0,
+          "trace": 0.0
+        }
+      ]
+    },
+    "neural_tick": 4944,
+    "neural_substep": 3,
+    "brain_tick": 1428,
+    "reward": {
+      "reward_total": 0.004412480788302853,
+      "reward_components": {
+        "potential": 0.024412480788302854,
+        "step_cost": -0.02,
+        "success_bonus": 0.0,
+        "failure_penalty": 0.0
+      },
+      "discounted_option_return": 0.004206236897342448,
+      "duration_base_ticks": 20,
+      "Gamma": 0.9046104802746175
+    },
+    "stable_hold_s": 0.0,
+    "operation": {
+      "operation_id": "op-19",
+      "request_id": "policy-16",
+      "wire": "ccw 30",
+      "verb": "ccw",
+      "sent_tick": 4812,
+      "device": "running",
+      "client": "sent",
+      "lose_reply": false,
+      "response": null,
+      "deadline_tick": 7076
+    },
+    "finished": false,
+    "trail": [
+      [
+        0.7275562664481723,
+        1.6675168537895542,
+        1.4001477973293686
+      ],
+      [
+        0.7435352419970693,
+        1.6669795830929428,
+        1.400138079613652
+      ],
+      [
+        0.7632693968930574,
+        1.6663158735891874,
+        1.4001061295587465
+      ],
+      [
+        0.7861122758535054,
+        1.6655475180561095,
+        1.400006355932505
+      ],
+      [
+        0.8104865525288909,
+        1.6647275980286869,
+        1.3998940913703355
+      ],
+      [
+        0.834777450347867,
+        1.6639104415540231,
+        1.399806023044122
+      ],
+      [
+        0.8579985839482548,
+        1.6631292363778962,
+        1.3997563428948636
+      ],
+      [
+        0.8790062998327303,
+        1.6624224546212198,
+        1.399761801988941
+      ],
+      [
+        0.8964056124406719,
+        1.6618370177437938,
+        1.399795676640162
+      ],
+      [
+        0.9093621448814327,
+        1.6614009926222937,
+        1.3998193434067878
+      ],
+      [
+        0.9177290839281262,
+        1.6611193226302727,
+        1.3998164178988177
+      ],
+      [
+        0.9217904459710874,
+        1.6609824614209376,
+        1.399793034003171
+      ],
+      [
+        0.9219654846128926,
+        1.660976313325852,
+        1.3997575316029978
+      ],
+      [
+        0.9188854929196028,
+        1.6610796505617285,
+        1.3996604590189237
+      ],
+      [
+        0.9141035955408426,
+        1.6612402439415912,
+        1.3995507517802133
+      ],
+      [
+        0.909305977685889,
+        1.6614013888340924,
+        1.3994698237983276
+      ],
+      [
+        0.9054785290650462,
+        1.661529930150497,
+        1.3994144756912767
+      ],
+      [
+        0.9028674269720737,
+        1.6616175879127617,
+        1.3993759424280718
+      ],
+      [
+        0.901277769703648,
+        1.6616709146884323,
+        1.3993519127311869
+      ],
+      [
+        0.9003794703000203,
+        1.661701008973226,
+        1.3993421357649627
+      ],
+      [
+        0.9003794703000203,
+        1.661701008973226,
+        1.3993421357649627
+      ],
+      [
+        0.8998830920515416,
+        1.6616014805889043,
+        1.3993420118895248
+      ],
+      [
+        0.8995568333452837,
+        1.6603490796915872,
+        1.3993655647384586
+      ],
+      [
+        0.8992351160549775,
+        1.6563671932143733,
+        1.3994110830830269
+      ],
+      [
+        0.8988360772966388,
+        1.648568054113052,
+        1.399448960938481
+      ],
+      [
+        0.8983381036293252,
+        1.6365863690832454,
+        1.3994603774935257
+      ],
+      [
+        0.8977471102677158,
+        1.6205573370310502,
+        1.3994475830466748
+      ],
+      [
+        0.8970735362179216,
+        1.600813879066957,
+        1.3994146425667662
+      ],
+      [
+        0.8963330581634107,
+        1.5779967610239942,
+        1.3993161825359433
+      ],
+      [
+        0.8955693716987251,
+        1.5536745850832565,
+        1.3992065299618395
+      ],
+      [
+        0.8948270292096161,
+        1.5294530230408814,
+        1.3991214620854888
+      ],
+      [
+        0.8943716203511815,
+        1.5061787753881184,
+        1.3993321412286621
+      ],
+      [
+        0.8945035395891795,
+        1.4848410043234468,
+        1.4000767700476353
+      ],
+      [
+        0.8951976332002185,
+        1.466865154407138,
+        1.4012143206719847
+      ],
+      [
+        0.8963652909231465,
+        1.4531445141710806,
+        1.4026084974656492
+      ],
+      [
+        0.8978826835907275,
+        1.4438956826505815,
+        1.4041597255958975
+      ],
+      [
+        0.8996274752734995,
+        1.4388983204446597,
+        1.4058052347914842
+      ],
+      [
+        0.9015014621930882,
+        1.437781706202741,
+        1.4074974439092942
+      ],
+      [
+        0.9034281327050021,
+        1.4399463560512453,
+        1.4091366633591258
+      ],
+      [
+        0.9053214027887986,
+        1.4438588125682885,
+        1.4107388767345008
+      ],
+      [
+        0.9071054987898268,
+        1.447844060613469,
+        1.4123239636388936
+      ],
+      [
+        0.9087375932343297,
+        1.4509214695320476,
+        1.4138717018577434
+      ],
+      [
+        0.9102052398767713,
+        1.452846441881398,
+        1.4153594302776735
+      ],
+      [
+        0.9115142315007967,
+        1.4538133319685675,
+        1.416774095557523
+      ],
+      [
+        0.9126774380648858,
+        1.4541504517066541,
+        1.418108052257175
+      ],
+      [
+        0.9126774380648858,
+        1.4541504517066541,
+        1.418108052257175
+      ],
+      [
+        0.9137212679640665,
+        1.454132760482033,
+        1.4195434277227859
+      ],
+      [
+        0.9147739419264821,
+        1.4538885633111254,
+        1.4211801672558004
+      ],
+      [
+        0.915995656483023,
+        1.4534424369606878,
+        1.4229466601109786
+      ],
+      [
+        0.9174511207318233,
+        1.4528045390529873,
+        1.4247838012534821
+      ],
+      [
+        0.9191045033299958,
+        1.4520054197735255,
+        1.4266436917437437
+      ],
+      [
+        0.9208678592461378,
+        1.4510942497664014,
+        1.4284881945701318
+      ],
+      [
+        0.9224079560919483,
+        1.4502567216274118,
+        1.4300303092145674
+      ],
+      [
+        0.9233852141353339,
+        1.449686834218343,
+        1.4310265171995342
+      ],
+      [
+        0.9238235942884298,
+        1.4493823212981263,
+        1.43157596717034
+      ],
+      [
+        0.9238161652960006,
+        1.4493028961910535,
+        1.4317650538806066
+      ],
+      [
+        0.9234838791892255,
+        1.4493909868341504,
+        1.4316682964305987
+      ],
+      [
+        0.9229398660741759,
+        1.449590818392944,
+        1.431349249233957
+      ],
+      [
+        0.9222719781267652,
+        1.4498583435935362,
+        1.4308616377091878
+      ],
+      [
+        0.9215408344374695,
+        1.4501629511929965,
+        1.4302505491127706
+      ],
+      [
+        0.9207857418640172,
+        1.4504847786628117,
+        1.429553533621068
+      ],
+      [
+        0.9200321219361098,
+        1.4508110026779115,
+        1.428801581325074
+      ],
+      [
+        0.9192972001557915,
+        1.4511329094967447,
+        1.4280199896292032
+      ],
+      [
+        0.9185932835732876,
+        1.4514441857567077,
+        1.4272291386936833
+      ],
+      [
+        0.9179292482468676,
+        1.4517401503314287,
+        1.4264451858751384
+      ],
+      [
+        0.9173111239165193,
+        1.4520174744594154,
+        1.4256806859226772
+      ],
+      [
+        0.9167424167575637,
+        1.4522740489215205,
+        1.4249451421516321
+      ],
+      [
+        0.9167424167575637,
+        1.4522740489215205,
+        1.4249451421516321
+      ],
+      [
+        0.9162275138502841,
+        1.452507428238746,
+        1.4243142964172304
+      ],
+      [
+        0.9157908965352245,
+        1.4527059637160697,
+        1.423830597670621
+      ],
+      [
+        0.9154626280165999,
+        1.4528554958834292,
+        1.4234709951480238
+      ],
+      [
+        0.9152518322740741,
+        1.4529515865445557,
+        1.4232151771204784
+      ],
+      [
+        0.9151458196269621,
+        1.452999910839267,
+        1.4230453747129952
+      ],
+      [
+        0.915120581897453,
+        1.453011403395814,
+        1.4229461240122054
+      ],
+      [
+        0.9151510964073872,
+        1.4529974953405513,
+        1.4229040285191201
+      ],
+      [
+        0.9152170663803617,
+        1.4529674597415307,
+        1.4229075464201275
+      ],
+      [
+        0.9153043063109385,
+        1.4529277684057282,
+        1.422946798780721
+      ],
+      [
+        0.9154036720123566,
+        1.4528825826085379,
+        1.4230133909620992
+      ],
+      [
+        0.9155093101012032,
+        1.4528345583131757,
+        1.4231002449695298
+      ],
+      [
+        0.9156172220433807,
+        1.4527855064949171,
+        1.4232014433925977
+      ],
+      [
+        0.9157244234140073,
+        1.4527367790433061,
+        1.423312085724335
+      ],
+      [
+        0.9158285829751774,
+        1.4526894335212734,
+        1.4234281572553409
+      ],
+      [
+        0.9159279165964156,
+        1.45264428061208,
+        1.423546410296355
+      ],
+      [
+        0.9160211581268087,
+        1.452601896328736,
+        1.4236642572341578
+      ],
+      [
+        0.9161075183753762,
+        1.4525626399485125,
+        1.4237796747894254
+      ],
+      [
+        0.9161866125283071,
+        1.4525266867086317,
+        1.4238911187742846
+      ],
+      [
+        0.9162583696855596,
+        1.4524940689110584,
+        1.423997448613995
+      ],
+      [
+        0.9163229441793097,
+        1.452464716332106,
+        1.4240978608843156
+      ],
+      [
+        0.9163229441793097,
+        1.452464716332106,
+        1.4240978608843156
+      ],
+      [
+        0.9163803290883091,
+        1.4524386277884658,
+        1.4241833083258673
+      ],
+      [
+        0.9164283365419478,
+        1.4524167420704974,
+        1.4242488304105794
+      ],
+      [
+        0.9164640847553711,
+        1.452400211213793,
+        1.4242975427648052
+      ],
+      [
+        0.9164867793414121,
+        1.4523891860137699,
+        1.424332191376521
+      ],
+      [
+        0.9164978768858278,
+        1.4523828994968628,
+        1.4243551832923598
+      ],
+      [
+        0.9165000523265355,
+        1.452380267180125,
+        1.4243686163619467
+      ],
+      [
+        0.9164961106415493,
+        1.4523803132310122,
+        1.4243743080227511
+      ],
+      [
+        0.9164883422824448,
+        1.4523823018683637,
+        1.424373823032972
+      ],
+      [
+        0.9164783491983647,
+        1.4523857021858573,
+        1.4243684998534063
+      ],
+      [
+        0.9164671537577144,
+        1.4523901116627784,
+        1.4243594754219695
+      ],
+      [
+        0.9164553950672084,
+        1.45239520078261,
+        1.4243477081930775
+      ]
+    ],
+    "history": [
+      {
+        "operation_id": "op-1",
+        "request_id": "bootstrap-sdk",
+        "wire": "command",
+        "verb": "command",
+        "sent_tick": 0,
+        "device": "completed",
+        "client": "ack_ok",
+        "lose_reply": false,
+        "response": "ok",
+        "deadline_tick": 2160,
+        "completed_tick": 0
+      },
+      {
+        "operation_id": "op-2",
+        "request_id": "bootstrap-takeoff",
+        "wire": "takeoff",
+        "verb": "takeoff",
+        "sent_tick": 0,
+        "device": "completed",
+        "client": "ack_ok",
+        "lose_reply": false,
+        "response": "ok",
+        "deadline_tick": 3189,
+        "completed_tick": 668
+      },
+      {
+        "operation_id": "op-3",
+        "request_id": "policy-0",
+        "wire": "stop",
+        "verb": "stop",
+        "sent_tick": 672,
+        "device": "completed",
+        "client": "ack_ok",
+        "lose_reply": false,
+        "response": "ok",
+        "deadline_tick": 2832,
+        "completed_tick": 763
+      },
+      {
+        "operation_id": "op-4",
+        "request_id": "policy-1",
+        "wire": "up 20",
+        "verb": "up",
+        "sent_tick": 912,
+        "device": "completed",
+        "client": "ack_ok",
+        "lose_reply": false,
+        "response": "ok",
+        "deadline_tick": 3288,
+        "completed_tick": 1129
+      },
+      {
+        "operation_id": "op-5",
+        "request_id": "policy-2",
+        "wire": "up 20",
+        "verb": "up",
+        "sent_tick": 1140,
+        "device": "completed",
+        "client": "ack_ok",
+        "lose_reply": false,
+        "response": "ok",
+        "deadline_tick": 3516,
+        "completed_tick": 1366
+      },
+      {
+        "operation_id": "op-6",
+        "request_id": "policy-3",
+        "wire": "up 20",
+        "verb": "up",
+        "sent_tick": 1368,
+        "device": "completed",
+        "client": "ack_ok",
+        "lose_reply": false,
+        "response": "ok",
+        "deadline_tick": 3744,
+        "completed_tick": 1583
+      },
+      {
+        "operation_id": "op-7",
+        "request_id": "policy-4",
+        "wire": "down 20",
+        "verb": "down",
+        "sent_tick": 1584,
+        "device": "completed",
+        "client": "ack_ok",
+        "lose_reply": false,
+        "response": "ok",
+        "deadline_tick": 3960,
+        "completed_tick": 1800
+      },
+      {
+        "operation_id": "op-8",
+        "request_id": "policy-5",
+        "wire": "stop",
+        "verb": "stop",
+        "sent_tick": 1800,
+        "device": "completed",
+        "client": "ack_ok",
+        "lose_reply": false,
+        "response": "ok",
+        "deadline_tick": 3960,
+        "completed_tick": 1891
+      },
+      {
+        "operation_id": "op-9",
+        "request_id": "policy-6",
+        "wire": "stop",
+        "verb": "stop",
+        "sent_tick": 2052,
+        "device": "completed",
+        "client": "ack_ok",
+        "lose_reply": false,
+        "response": "ok",
+        "deadline_tick": 4212,
+        "completed_tick": 2143
+      },
+      {
+        "operation_id": "op-10",
+        "request_id": "policy-7",
+        "wire": "back 20",
+        "verb": "back",
+        "sent_tick": 2292,
+        "device": "completed",
+        "client": "ack_ok",
+        "lose_reply": false,
+        "response": "ok",
+        "deadline_tick": 4668,
+        "completed_tick": 2573
+      },
+      {
+        "operation_id": "op-11",
+        "request_id": "policy-8",
+        "wire": "back 20",
+        "verb": "back",
+        "sent_tick": 2580,
+        "device": "completed",
+        "client": "ack_ok",
+        "lose_reply": false,
+        "response": "ok",
+        "deadline_tick": 4956,
+        "completed_tick": 2876
+      },
+      {
+        "operation_id": "op-12",
+        "request_id": "policy-9",
+        "wire": "back 20",
+        "verb": "back",
+        "sent_tick": 2880,
+        "device": "completed",
+        "client": "ack_ok",
+        "lose_reply": false,
+        "response": "ok",
+        "deadline_tick": 5256,
+        "completed_tick": 3158
+      },
+      {
+        "operation_id": "op-13",
+        "request_id": "policy-10",
+        "wire": "back 20",
+        "verb": "back",
+        "sent_tick": 3168,
+        "device": "completed",
+        "client": "ack_ok",
+        "lose_reply": false,
+        "response": "ok",
+        "deadline_tick": 5544,
+        "completed_tick": 3449
+      },
+      {
+        "operation_id": "op-14",
+        "request_id": "policy-11",
+        "wire": "back 20",
+        "verb": "back",
+        "sent_tick": 3456,
+        "device": "completed",
+        "client": "ack_ok",
+        "lose_reply": false,
+        "response": "ok",
+        "deadline_tick": 5832,
+        "completed_tick": 3736
+      },
+      {
+        "operation_id": "op-15",
+        "request_id": "policy-12",
+        "wire": "back 20",
+        "verb": "back",
+        "sent_tick": 3744,
+        "device": "completed",
+        "client": "ack_ok",
+        "lose_reply": false,
+        "response": "ok",
+        "deadline_tick": 6120,
+        "completed_tick": 4024
+      },
+      {
+        "operation_id": "op-16",
+        "request_id": "policy-13",
+        "wire": "left 20",
+        "verb": "left",
+        "sent_tick": 4032,
+        "device": "completed",
+        "client": "ack_ok",
+        "lose_reply": false,
+        "response": "ok",
+        "deadline_tick": 6408,
+        "completed_tick": 4313
+      },
+      {
+        "operation_id": "op-17",
+        "request_id": "policy-14",
+        "wire": "stop",
+        "verb": "stop",
+        "sent_tick": 4320,
+        "device": "completed",
+        "client": "ack_ok",
+        "lose_reply": false,
+        "response": "ok",
+        "deadline_tick": 6480,
+        "completed_tick": 4411
+      },
+      {
+        "operation_id": "op-18",
+        "request_id": "policy-15",
+        "wire": "stop",
+        "verb": "stop",
+        "sent_tick": 4572,
+        "device": "completed",
+        "client": "ack_ok",
+        "lose_reply": false,
+        "response": "ok",
+        "deadline_tick": 6732,
+        "completed_tick": 4663
+      },
+      {
+        "operation_id": "op-19",
+        "request_id": "policy-16",
+        "wire": "ccw 30",
+        "verb": "ccw",
+        "sent_tick": 4812,
+        "device": "running",
+        "client": "sent",
+        "lose_reply": false,
+        "response": null,
+        "deadline_tick": 7076
+      }
+    ],
+    "heading": {
+      "target_yaw_rad": -0.2605851962885864,
+      "measured_yaw_rad": 3.3686616395800373,
+      "error_rad": 2.6539384713109624,
+      "tolerance_rad": 0.2792526803190927
+    },
+    "altitude": {
+      "target_z_m": 1.4813129372152534,
+      "measured_z_m": 1.4258903592611534,
+      "error_m": 0.055422577954099994,
+      "vertical_speed_mps": 0.01177911665900977,
+      "tolerance_m": 0.1
+    },
+    "task_phase": "heading",
+    "heading_anchor_m": [
+      0.9174478222206617,
+      1.450378847180626,
+      1.4813129372152534
+    ],
+    "phase_events": [
+      {
+        "tick": 2040,
+        "from": "altitude",
+        "to": "navigation",
+        "reason": "altitude_to_navigation",
+        "height_m": 1.4272264538457033,
+        "source": "external_pose_mock",
+        "physics_state_unchanged": true,
+        "neural_tick_preserved": 460
+      },
+      {
+        "tick": 4560,
+        "from": "navigation",
+        "to": "heading",
+        "reason": "navigation_to_heading",
+        "height_m": 1.4256806859226772,
+        "source": "external_pose_mock",
+        "physics_state_unchanged": true,
+        "neural_tick_preserved": 1300
+      }
+    ],
+    "navigation_hold_s": 0.0,
+    "active_observation_schema": "tellosim.heading_observation26/1.0",
+    "observation_names": [
+      "goal_forward",
+      "goal_left",
+      "goal_up",
+      "velocity_forward",
+      "velocity_left",
+      "velocity_up",
+      "target_yaw_error_sin",
+      "target_yaw_error_cos",
+      "height",
+      "battery",
+      "pose_age",
+      "state_age",
+      "pose_valid",
+      "velocity_valid",
+      "state_valid",
+      "previous_duration",
+      "remaining_time",
+      "previous_action_0",
+      "previous_action_1",
+      "previous_action_2",
+      "previous_action_3",
+      "previous_action_4",
+      "previous_action_5",
+      "previous_action_6",
+      "previous_action_7",
+      "previous_action_8"
+    ],
+    "result_only": false,
+    "scene": {
+      "schema_version": "tellosim.world/1.0",
+      "world_id": "room6_nominal_v1",
+      "calibration": "engineering_assumption_not_tello_calibrated",
+      "physics_backend": "mujoco_cpu",
+      "physics_hz": 120,
+      "world_frame": "right_handed_z_up",
+      "room_size_m": [
+        6,
+        6,
+        3
+      ],
+      "floor_z_m": 0,
+      "vehicle": {
+        "mass_kg": 0.1,
+        "collision_half_extents_m": [
+          0.1,
+          0.1,
+          0.045
+        ],
+        "takeoff_height_m": 1.0,
+        "max_accel_mps2": 0.6,
+        "max_tilt_deg": 15,
+        "max_yaw_rate_deg_s": 45,
+        "max_thrust_weight_ratio": 2.0
+      },
+      "obstacles": [],
+      "landing_pad": {
+        "center_xy_m": [
+          0,
+          0
+        ],
+        "radius_m": 0.35
+      },
+      "low_level": {
+        "position_kp": 2.0,
+        "velocity_kd": 2.4,
+        "profile": "bounded_pd_v2_engineering_not_calibrated"
+      },
+      "solid_walls": true,
+      "target_xyz_m": [
+        0.8660207269985056,
+        1.4687676800882494,
+        1.4813129372152534
+      ],
+      "target_radius_m": 0.2,
+      "stable_hold_required_s": 2.0,
+      "controller": "rigid_body_thrust_v2",
+      "disturbance_profile": "combined",
+      "disturbance_spec": {
+        "format": "tellosim.altitude_disturbance/1",
+        "profiles": {
+          "clean": {
+            "noise": 0.0,
+            "delay": 0,
+            "force_n": 0.0,
+            "yaw_torque_nm": 0.0,
+            "vertical_force_n": 0.0
+          },
+          "pose": {
+            "noise": 0.002,
+            "delay": 1,
+            "force_n": 0.0,
+            "yaw_torque_nm": 0.0,
+            "vertical_force_n": 0.0
+          },
+          "force": {
+            "noise": 0.0,
+            "delay": 0,
+            "force_n": 0.006,
+            "yaw_torque_nm": 3e-05,
+            "vertical_force_n": 0.006
+          },
+          "combined": {
+            "noise": 0.002,
+            "delay": 1,
+            "force_n": 0.006,
+            "yaw_torque_nm": 3e-05,
+            "vertical_force_n": 0.006
+          }
+        },
+        "pulse_start_s": 5.0,
+        "pulse_period_s": 12.0,
+        "pulse_duration_s": 2.0,
+        "force_frame": "world XYZ; horizontal .006N plus alternating vertical +/-.006N; yaw torque .00003Nm",
+        "pose_delay_unit_s": 0.1,
+        "noise": "Gaussian position sigma .002m, yaw sigma .0004rad in pose/combined",
+        "scope": "synthetic engineering disturbances, not aircraft-calibrated wind"
+      },
+      "target_yaw_rad": -0.2605851962885864,
+      "heading_tolerance_rad": 0.2792526803190927,
+      "task_kind": "spatial_heading_hold"
+    },
+    "episode_return": 0.45664986491533816,
+    "episode_steps": 16,
+    "termination_reason": null
+  }
+}

@@ -1,0 +1,20 @@
+[
+  {
+    "seed": 11,
+    "windows_path": "/mnt/d/projects/\u679c\u8747\u8bad\u7ec3/sdk9-c0-delivery/models/c0-s11-20260927/checkpoint.pt",
+    "sha256": "5102a9b0ea8d8848bc79581df23e4abe1c6b5643e68da65719ae929a8a304ccd",
+    "matches": true
+  },
+  {
+    "seed": 22,
+    "windows_path": "/mnt/d/projects/\u679c\u8747\u8bad\u7ec3/sdk9-c0-delivery/models/c0-s22-20260927/checkpoint.pt",
+    "sha256": "d279968e8873459d8bbca9993937efa2f3e4c970f2dfc8b6cab3d6500de9595e",
+    "matches": true
+  },
+  {
+    "seed": 33,
+    "windows_path": "/mnt/d/projects/\u679c\u8747\u8bad\u7ec3/sdk9-c0-delivery/models/c0-s33-20260927/checkpoint.pt",
+    "sha256": "f20303b2f65c72eb622b41e0eec2205757be466cd53150b682a76d178f35c055",
+    "matches": true
+  }
+]

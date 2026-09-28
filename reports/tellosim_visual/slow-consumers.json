@@ -1,0 +1,8 @@
+{
+  "check": "five_slow_consumers_do_not_block_producer",
+  "clients": 5,
+  "first_tick": 0,
+  "last_tick": 108,
+  "frame_bytes": 2096,
+  "pass": true
+}

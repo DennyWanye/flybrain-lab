@@ -1,0 +1,18 @@
+{
+  "status": "FAILED_CHECK",
+  "reason": "audit incorrectly treated pre-inner-limit acceleration log as post-inner-limit tilt target; no physics changed",
+  "observations": [
+    {
+      "limit": 5.0,
+      "pre_inner_cap_max": 5.002305736597618,
+      "actual_peak": 5.395052703977059,
+      "actual_end": 5.00001541362701
+    },
+    {
+      "limit": 15.0,
+      "pre_inner_cap_max": 15.068137813343164,
+      "actual_peak": 16.07395665237904,
+      "actual_end": 15.000031160887675
+    }
+  ]
+}

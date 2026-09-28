@@ -1,0 +1,29 @@
+{
+  "date": "2026-09-26",
+  "run": "runs/tellosim-sdk9/sdk9-pilot-v2-20260926",
+  "TRAINING_PIPELINE_READY": true,
+  "TS1_C0_TASK_LEARNED": false,
+  "MODEL_READY_FOR_NEXT_STAGE": false,
+  "browser_current_ui": "NOT_VERIFIED_POLICY_BLOCKED",
+  "checkpoint_sha256": "edd526d920bee72a53dd107c39916b91000b2a3ac2df28fe70ca6ec67bb00692",
+  "rule_success": "4/4",
+  "trained_success": "0/4",
+  "targeted_regression": "46 passed, 2 warnings",
+  "artifact_audit": "passed",
+  "warm_start_execution": "not_run; metadata added after pilot; syntax checked",
+  "formal_acceptance": "not_run",
+  "real_drone_adapter": "disabled",
+  "source_sha256": {
+    "flydrone/tellosim/training/runtime.py": "ae6e6ff156d96c083eee818272c0d0721a8b7d437f0256aaeade2f8595b90673",
+    "flydrone/tellosim/training/__init__.py": "c93a1628475714858c4f4038a3626253f3c4cc4116f014b05f9eb028395566a5",
+    "flydrone/tellosim/training/env.py": "fe2ef5c647527b27c68823c696a93a7a9f880e727b2f6b11a5a666676bc70536",
+    "flydrone/tellosim/training/runner.py": "0786af2165bcd8370768203cb77e52559cde1710e3252db9b445fe6b45fc3c5d",
+    "flydrone/tellosim/training/contracts.py": "e8d7be902592dde50c03575442e29b6d3bf4e6fdbadd195a1d51d4759e036513",
+    "flydrone/brain.py": "61984ed611e68dd4376fbf9f5a75c606c3b00f7bd1899c229d8de2e2ac4789d8",
+    "flydrone/tellosim/visual.py": "10a0967f81c4e22b595d2becddcaa9e5b88651e1006e31e2912966f040e67f97",
+    "flyview/tellosim_api.py": "bc10a9f60e73e07c8423823ea618740f70829da138a79b436b6c6ca4d636c7c2",
+    "flyview/static/tellosim.js": "a80efba03c88a47a4357ce3e138e6be6df23d438ecf1df818091fe627ae4ca3b",
+    "configs/tellosim/world_room6.json": "22957e8454d59308da9f64b221393450406291cec70470455211729dcef246ae",
+    "configs/tellosim/world_obstacles_demo.json": "b9dfc5c15d459587b30824ae128453ede3cac7eb3af80642b0c242490d76bd69"
+  }
+}

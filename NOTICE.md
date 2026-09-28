@@ -8,7 +8,7 @@
 - 文档：https://neuromechfly.org/
 - 上游授权：https://github.com/NeLy-EPFL/flygym/blob/main/LICENSE
 
-`scripts/download_male.py` 的数据文件名与期望 SHA256 来源于 alex titonis 的 fly.ai 固定版本；本工具包没有包含其连接组二进制文件。使用下载的数据时同时标明 MaleCNS 原始研究数据和 fly.ai 预处理来源。
+`scripts/download_male.py` 的数据文件名与期望 SHA256 来源于 alex titonis 的 fly.ai 固定版本；Git 源码不包含其连接组二进制文件；本次 GitHub Release 附带精确处理后的图用于 checkpoint 合同复核，来源、加工方式与 CC BY 4.0 / MIT 声明见 docs/DATA_PROVENANCE.md 和 docs/third_party/fly-ai-LICENSE.txt。使用下载的数据时同时标明 MaleCNS 原始研究数据和 fly.ai 预处理来源。
 
 - MaleCNS 数据：https://male-cns.janelia.org/download/
 - 社区预处理：https://github.com/alextitonis/fly.ai

@@ -1,0 +1,13 @@
+{
+  "pid": 32016,
+  "command": [
+    "/home/denny/projects/flybrain-env/bin/python",
+    "-u",
+    "-m",
+    "reports.ts1_spatial_continuous.run_stage",
+    "formal-s22",
+    "child"
+  ],
+  "cwd": "/home/denny/projects/flybrain_lab_4spark_v0_1",
+  "started": 1790537578.6597059
+}

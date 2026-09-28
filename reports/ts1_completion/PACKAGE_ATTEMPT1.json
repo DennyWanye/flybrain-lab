@@ -1,0 +1,7 @@
+{
+  "status": "FAILED_HARNESS",
+  "reason": "HTTP server stdout logs preceded JSON; actual staged model and HTTP checks passed; archive not created",
+  "probe_pid": 29262,
+  "probe_pid_absent": true,
+  "retry_directory": "ts1-v1r-c2q-delivery-20260928-r2"
+}

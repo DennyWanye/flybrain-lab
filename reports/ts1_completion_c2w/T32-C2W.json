@@ -1,0 +1,50 @@
+{
+  "status": "PASS",
+  "modes": [
+    {
+      "mode": "0",
+      "consumer_reads": 0,
+      "published_frames": 217,
+      "trajectory_sha256": "6d877984e5622cbed1f5e01523a4489644b49fba4030bfd21dc8d605a7b4e18d",
+      "brain_sha256": "116692ebb12f6c7de94f59a3ec92c9a749d933188600342b3c8b045f47a34915",
+      "readout_sha256": "bd2efb5ac6c31a3307a79846bd325dc3f89bb20d3e6878bcb2ce2c384d0e3d3a",
+      "physics_tick": 3012,
+      "brain_tick": 784,
+      "graph_sha256": "badc33a247894fe12c4d68d3ff791393857cffa39ff2ab81869608a11fa1e0c9"
+    },
+    {
+      "mode": "30",
+      "consumer_reads": 651,
+      "published_frames": 217,
+      "trajectory_sha256": "6d877984e5622cbed1f5e01523a4489644b49fba4030bfd21dc8d605a7b4e18d",
+      "brain_sha256": "116692ebb12f6c7de94f59a3ec92c9a749d933188600342b3c8b045f47a34915",
+      "readout_sha256": "bd2efb5ac6c31a3307a79846bd325dc3f89bb20d3e6878bcb2ce2c384d0e3d3a",
+      "physics_tick": 3012,
+      "brain_tick": 784,
+      "graph_sha256": "badc33a247894fe12c4d68d3ff791393857cffa39ff2ab81869608a11fa1e0c9"
+    },
+    {
+      "mode": "60",
+      "consumer_reads": 1302,
+      "published_frames": 217,
+      "trajectory_sha256": "6d877984e5622cbed1f5e01523a4489644b49fba4030bfd21dc8d605a7b4e18d",
+      "brain_sha256": "116692ebb12f6c7de94f59a3ec92c9a749d933188600342b3c8b045f47a34915",
+      "readout_sha256": "bd2efb5ac6c31a3307a79846bd325dc3f89bb20d3e6878bcb2ce2c384d0e3d3a",
+      "physics_tick": 3012,
+      "brain_tick": 784,
+      "graph_sha256": "badc33a247894fe12c4d68d3ff791393857cffa39ff2ab81869608a11fa1e0c9"
+    },
+    {
+      "mode": "disconnect",
+      "consumer_reads": 234,
+      "published_frames": 217,
+      "trajectory_sha256": "6d877984e5622cbed1f5e01523a4489644b49fba4030bfd21dc8d605a7b4e18d",
+      "brain_sha256": "116692ebb12f6c7de94f59a3ec92c9a749d933188600342b3c8b045f47a34915",
+      "readout_sha256": "bd2efb5ac6c31a3307a79846bd325dc3f89bb20d3e6878bcb2ce2c384d0e3d3a",
+      "physics_tick": 3012,
+      "brain_tick": 784,
+      "graph_sha256": "badc33a247894fe12c4d68d3ff791393857cffa39ff2ab81869608a11fa1e0c9"
+    }
+  ],
+  "scope": "actual full MaleCNS C2W inference, anchored controller and120Hz hold clock;0/30/60FPS-equivalent consumption and disconnect identical; no optimization in frozen model"
+}

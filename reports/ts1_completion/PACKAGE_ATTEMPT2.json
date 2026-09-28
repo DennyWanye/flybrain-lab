@@ -1,0 +1,6 @@
+{
+  "status": "FAILED_HARNESS",
+  "reason": "staged preflight generated pycache was inadvertently inventoried; extraction import rewrote bytecode path and hash failed; no final archive published",
+  "candidate_retained": true,
+  "retry_directory": "ts1-v1r-c2q-delivery-20260928-r3"
+}

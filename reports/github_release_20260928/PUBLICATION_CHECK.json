@@ -1,0 +1,11 @@
+{
+  "archive_staged_matches": 1075,
+  "mismatches": [],
+  "archive_members_verified": 15803,
+  "whitespace_warnings": {
+    "new blank line at EOF.": 1,
+    "trailing whitespace.": 266
+  },
+  "whitespace_note": "Preserved frozen source bytes and historical evidence; no functional source edits made for publication.",
+  "verification": "Existing C2W 211 tests, Shadow43 tests and full graph probes retained; archive member hashes verified without retraining."
+}

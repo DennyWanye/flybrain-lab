@@ -1,0 +1,15 @@
+{
+  "development_string_typo_in_frozen_protocol": "550000000..490000063",
+  "authoritative_development_range": [
+    550000000,
+    550000127
+  ],
+  "authoritative_development_cases": "development-cases.json",
+  "smoke_range": [
+    551000000,
+    551000007
+  ],
+  "correction_scope": "documentation only; no source/checkpoint/split bytes changed; actual formal split hashes remain authoritative",
+  "executor_semantics": "new opt-in anchored-2.0 SDK station-keeping contract, not identical legacy command semantics",
+  "physical_acceptance": "same actions, disturbance magnitudes, tolerances,2s continuous hold and180s simulator cap;120Hz success clock is stricter than legacy10Hz sampling"
+}

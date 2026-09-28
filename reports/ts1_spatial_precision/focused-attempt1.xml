@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="1" skipped="0" tests="7" time="3.178" timestamp="2026-09-28T00:45:35.632937+08:00" hostname="WIN-EVCC5DRRMBH"><testcase classname="tests.flydrone.test_spatial_precision_skill" name="test_continuous_full3d_rule_and_non1m_navigation[0.45]" time="0.962" /><testcase classname="tests.flydrone.test_spatial_precision_skill" name="test_continuous_full3d_rule_and_non1m_navigation[1.55]" time="0.956" /><testcase classname="tests.flydrone.test_spatial_precision_skill" name="test_handoff_preserves_physical_state_and_clock" time="0.098" /><testcase classname="tests.flydrone.test_spatial_precision_skill" name="test_spatial_checkpoint_and_duplicate_sample" time="0.018" /><testcase classname="tests.flydrone.test_spatial_precision_skill" name="test_absolute_simulator_deadline_propagates_once" time="0.099" /><testcase classname="tests.flydrone.test_spatial_precision_skill" name="test_navigation_encoder_body_invariance_and_distance_signal" time="0.001" /><testcase classname="tests.flydrone.test_spatial_precision_skill" name="test_closed_simulator_terminal_frame_is_flushed" time="0.129"><failure message="AttributeError: 'SpatialDiagnostic' object has no attribute 'snapshot'">project = PosixPath('/tmp/pytest-of-denny/pytest-15/test_closed_simulator_terminal0')
+
+    def test_closed_simulator_terminal_frame_is_flushed(project):
+        from flydrone.tellosim.training.spatial_precision import SpatialEnv,SpatialDiagnostic,spatial_case
+        import json
+&gt;       env=SpatialEnv(project,spatial_case(370000062),SpatialDiagnostic(),record=True,run_id='c2p-clock-fixture')
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/flydrone/test_spatial_precision_skill.py:79: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+flydrone/tellosim/training/altitude_refined.py:204: in __init__
+    super().__init__(root, case, agent, **kwargs)
+flydrone/tellosim/training/spatial_precision.py:150: in __init__
+    TrainingEnv.__init__(self,root,case,agent,**kwargs)
+flydrone/tellosim/training/env.py:130: in __init__
+    self.observe()
+flydrone/tellosim/training/env.py:147: in observe
+    self.publish()
+flydrone/tellosim/training/altitude_refined.py:234: in publish
+    super().publish(result_only)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = &lt;flydrone.tellosim.training.spatial_precision.SpatialEnv object at 0x7b6e7ea3e030&gt;
+result_only = False
+
+    def publish(self,result_only=False):
+        s=self.session
+        s.scene.update(target_yaw_rad=self.target_yaw,heading_tolerance_rad=SPATIAL_SPEC['heading_tolerance_rad'],task_kind='spatial_heading_hold')
+        s.recording.manifest.update(observation_schema=SPATIAL_SPEC['observation'],observation_names=SPATIAL_SPEC['names'],task_spec=SPATIAL_SPEC,scene=s.scene,curriculum='C2',training_method=getattr(self.agent,'training_method','heading diagnostic'),
+            observation_note='Phase-specific channels 6/7: absolute yaw in navigation; measured target error in heading. Three readouts trained on continuous 3D task; no raw-input bypass; frozen connectome')
+        s.recording.manifest.update(skill_bundle=getattr(self.agent,'bundle',None),phase_observation_names={'navigation':SPEC['names'],'heading':HEADING_SPEC['names']})
+        if self.live is None and self.observer is None:return
+        self.seq+=1
+        s=self.session;sensor=self.device.latest_observation()
+&gt;       brain=self.agent.snapshot()
+              ^^^^^^^^^^^^^^^^^^^
+E       AttributeError: 'SpatialDiagnostic' object has no attribute 'snapshot'
+
+flydrone/tellosim/training/spatial_precision.py:255: AttributeError</failure></testcase></testsuite></testsuites>

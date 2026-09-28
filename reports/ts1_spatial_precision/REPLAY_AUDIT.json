@@ -1,0 +1,77 @@
+{
+  "all_passed": true,
+  "runs": [
+    {
+      "run_id": "spatial-precision-s11-sealed_test-0",
+      "chunks": 43,
+      "frames": 708,
+      "outcome": "success"
+    },
+    {
+      "run_id": "spatial-precision-s11-sealed_test-1",
+      "chunks": 43,
+      "frames": 703,
+      "outcome": "success"
+    },
+    {
+      "run_id": "spatial-precision-s11-sealed_test-2",
+      "chunks": 29,
+      "frames": 448,
+      "outcome": "success"
+    },
+    {
+      "run_id": "spatial-precision-s11-sealed_test-3",
+      "chunks": 46,
+      "frames": 729,
+      "outcome": "success"
+    },
+    {
+      "run_id": "spatial-precision-s22-sealed_test-0",
+      "chunks": 43,
+      "frames": 708,
+      "outcome": "success"
+    },
+    {
+      "run_id": "spatial-precision-s22-sealed_test-1",
+      "chunks": 43,
+      "frames": 703,
+      "outcome": "success"
+    },
+    {
+      "run_id": "spatial-precision-s22-sealed_test-2",
+      "chunks": 29,
+      "frames": 448,
+      "outcome": "success"
+    },
+    {
+      "run_id": "spatial-precision-s22-sealed_test-3",
+      "chunks": 51,
+      "frames": 833,
+      "outcome": "success"
+    },
+    {
+      "run_id": "spatial-precision-s33-sealed_test-0",
+      "chunks": 47,
+      "frames": 760,
+      "outcome": "success"
+    },
+    {
+      "run_id": "spatial-precision-s33-sealed_test-1",
+      "chunks": 42,
+      "frames": 677,
+      "outcome": "success"
+    },
+    {
+      "run_id": "spatial-precision-s33-sealed_test-2",
+      "chunks": 29,
+      "frames": 448,
+      "outcome": "success"
+    },
+    {
+      "run_id": "spatial-precision-s33-sealed_test-3",
+      "chunks": 43,
+      "frames": 706,
+      "outcome": "success"
+    }
+  ]
+}

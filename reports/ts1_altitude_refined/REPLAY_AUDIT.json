@@ -1,0 +1,140 @@
+{
+  "all_passed": true,
+  "runs": [
+    {
+      "run_id": "altitude-refined-s11-sealed_test-0",
+      "outcome": "success",
+      "chunks_verified": 11,
+      "frames_verified": 108,
+      "vertical_force_rows": 0,
+      "measured_altitude_verified": true,
+      "policy_checkpoint_verified": true
+    },
+    {
+      "run_id": "altitude-refined-s11-sealed_test-1",
+      "outcome": "success",
+      "chunks_verified": 12,
+      "frames_verified": 130,
+      "vertical_force_rows": 0,
+      "measured_altitude_verified": true,
+      "policy_checkpoint_verified": true
+    },
+    {
+      "run_id": "altitude-refined-s11-sealed_test-2",
+      "outcome": "success",
+      "chunks_verified": 11,
+      "frames_verified": 107,
+      "vertical_force_rows": 240,
+      "measured_altitude_verified": true,
+      "policy_checkpoint_verified": true
+    },
+    {
+      "run_id": "altitude-refined-s11-sealed_test-3",
+      "outcome": "success",
+      "chunks_verified": 11,
+      "frames_verified": 107,
+      "vertical_force_rows": 240,
+      "measured_altitude_verified": true,
+      "policy_checkpoint_verified": true
+    },
+    {
+      "run_id": "altitude-refined-s11-sealed_test-7",
+      "outcome": "success",
+      "chunks_verified": 13,
+      "frames_verified": 149,
+      "vertical_force_rows": 240,
+      "measured_altitude_verified": true,
+      "policy_checkpoint_verified": true
+    },
+    {
+      "run_id": "altitude-refined-s22-sealed_test-0",
+      "outcome": "success",
+      "chunks_verified": 11,
+      "frames_verified": 108,
+      "vertical_force_rows": 0,
+      "measured_altitude_verified": true,
+      "policy_checkpoint_verified": true
+    },
+    {
+      "run_id": "altitude-refined-s22-sealed_test-1",
+      "outcome": "success",
+      "chunks_verified": 12,
+      "frames_verified": 130,
+      "vertical_force_rows": 0,
+      "measured_altitude_verified": true,
+      "policy_checkpoint_verified": true
+    },
+    {
+      "run_id": "altitude-refined-s22-sealed_test-2",
+      "outcome": "success",
+      "chunks_verified": 11,
+      "frames_verified": 107,
+      "vertical_force_rows": 240,
+      "measured_altitude_verified": true,
+      "policy_checkpoint_verified": true
+    },
+    {
+      "run_id": "altitude-refined-s22-sealed_test-3",
+      "outcome": "success",
+      "chunks_verified": 11,
+      "frames_verified": 107,
+      "vertical_force_rows": 240,
+      "measured_altitude_verified": true,
+      "policy_checkpoint_verified": true
+    },
+    {
+      "run_id": "altitude-refined-s22-sealed_test-7",
+      "outcome": "success",
+      "chunks_verified": 11,
+      "frames_verified": 107,
+      "vertical_force_rows": 240,
+      "measured_altitude_verified": true,
+      "policy_checkpoint_verified": true
+    },
+    {
+      "run_id": "altitude-refined-s33-sealed_test-0",
+      "outcome": "success",
+      "chunks_verified": 11,
+      "frames_verified": 108,
+      "vertical_force_rows": 0,
+      "measured_altitude_verified": true,
+      "policy_checkpoint_verified": true
+    },
+    {
+      "run_id": "altitude-refined-s33-sealed_test-1",
+      "outcome": "success",
+      "chunks_verified": 11,
+      "frames_verified": 107,
+      "vertical_force_rows": 0,
+      "measured_altitude_verified": true,
+      "policy_checkpoint_verified": true
+    },
+    {
+      "run_id": "altitude-refined-s33-sealed_test-2",
+      "outcome": "success",
+      "chunks_verified": 11,
+      "frames_verified": 107,
+      "vertical_force_rows": 240,
+      "measured_altitude_verified": true,
+      "policy_checkpoint_verified": true
+    },
+    {
+      "run_id": "altitude-refined-s33-sealed_test-3",
+      "outcome": "success",
+      "chunks_verified": 11,
+      "frames_verified": 107,
+      "vertical_force_rows": 240,
+      "measured_altitude_verified": true,
+      "policy_checkpoint_verified": true
+    },
+    {
+      "run_id": "altitude-refined-s33-sealed_test-7",
+      "outcome": "success",
+      "chunks_verified": 11,
+      "frames_verified": 107,
+      "vertical_force_rows": 240,
+      "measured_altitude_verified": true,
+      "policy_checkpoint_verified": true
+    }
+  ]
+}

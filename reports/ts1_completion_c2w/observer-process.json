@@ -1,0 +1,11 @@
+{
+  "pid": 33281,
+  "parent_pid": 33280,
+  "command": [
+    "/home/denny/projects/flybrain-env/bin/python",
+    "-u",
+    "-m",
+    "reports.ts1_completion_c2w.observer_audit"
+  ],
+  "cwd": "/home/denny/projects/flybrain_lab_4spark_v0_1"
+}

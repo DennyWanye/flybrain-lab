@@ -1,0 +1,12 @@
+[
+  {
+    "pid": 27999,
+    "module": "reports.ts1_spatial_stationary.run_campaign",
+    "private_kib": 5872
+  },
+  {
+    "pid": 28044,
+    "module": "reports.ts1_spatial_stationary.development_check",
+    "private_kib": 534876
+  }
+]

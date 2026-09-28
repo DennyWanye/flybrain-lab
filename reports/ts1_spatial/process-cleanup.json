@@ -1,0 +1,20 @@
+{
+  "train-11": {
+    "pid": 13281,
+    "returncode": -2,
+    "reaped": true,
+    "proc_absent": true
+  },
+  "train-22": {
+    "pid": 13282,
+    "returncode": -2,
+    "reaped": true,
+    "proc_absent": true
+  },
+  "train-33": {
+    "pid": 13283,
+    "returncode": 1,
+    "reaped": true,
+    "proc_absent": true
+  }
+}

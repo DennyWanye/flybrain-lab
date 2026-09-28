@@ -1,0 +1,47 @@
+[
+  {
+    "seed": 11,
+    "options": 2816,
+    "new_examples": 14467,
+    "settled_examples": 11651,
+    "parameter_delta_l2": 12.073343276977539,
+    "roundtrip_exact": true,
+    "heldout_overlap": 0,
+    "legacy_checkpoints_unchanged": true,
+    "label_counts": {
+      "0": 6186,
+      "5": 4566,
+      "6": 3715
+    }
+  },
+  {
+    "seed": 22,
+    "options": 2816,
+    "new_examples": 14450,
+    "settled_examples": 11634,
+    "parameter_delta_l2": 11.66218376159668,
+    "roundtrip_exact": true,
+    "heldout_overlap": 0,
+    "legacy_checkpoints_unchanged": true,
+    "label_counts": {
+      "0": 5715,
+      "5": 4699,
+      "6": 4036
+    }
+  },
+  {
+    "seed": 33,
+    "options": 2816,
+    "new_examples": 14907,
+    "settled_examples": 12091,
+    "parameter_delta_l2": 11.797469139099121,
+    "roundtrip_exact": true,
+    "heldout_overlap": 0,
+    "legacy_checkpoints_unchanged": true,
+    "label_counts": {
+      "0": 5498,
+      "5": 5405,
+      "6": 4004
+    }
+  }
+]

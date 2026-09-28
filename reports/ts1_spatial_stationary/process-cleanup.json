@@ -1,0 +1,14 @@
+{
+  "transfer": {
+    "pid": 28000,
+    "returncode": 0,
+    "reaped": true,
+    "proc_absent": true
+  },
+  "development": {
+    "pid": 28044,
+    "returncode": -15,
+    "reaped": true,
+    "proc_absent": true
+  }
+}

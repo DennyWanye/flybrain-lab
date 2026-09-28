@@ -1,0 +1,13 @@
+{
+  "case_set_sha256": "8a347ba513df85b3d0368c56eaf136609893b04dd2317d4518227b97e20b12be",
+  "checkpoint_sha256": "b657cb32ada93c8cee927e72277440702a53d74d2a16b20f3a5ef1cd77d51614",
+  "graph_sha256": "badc33a247894fe12c4d68d3ff791393857cffa39ff2ab81869608a11fa1e0c9",
+  "mapping_sha256": "623b691045f9c971271b8e48cc310dfeaaedb2a67b1bc639499bcfb24ea86d18",
+  "device": "cpu",
+  "scope": "32 diagnostic cases, fixed altitude, no obstacles/noise; distinct from Golden training case; not sealed TS1 formal test",
+  "criteria": {
+    "diagnostic_success_rate": 0.9,
+    "diagnostic_collision_boundary_rate_max": 0.01,
+    "stage_ready_requires": "3 independent training seeds x 300 sealed cases, per-seed >=90% success, <=1% collision/boundary, >=20 percentage point improvement over random"
+  }
+}

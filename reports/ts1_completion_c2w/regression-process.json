@@ -1,0 +1,13 @@
+{
+  "pid": 33255,
+  "parent_pid": 33253,
+  "command": [
+    "/home/denny/projects/flybrain-env/bin/python",
+    "-m",
+    "pytest",
+    "tests/flydrone",
+    "-q",
+    "--junitxml=reports/ts1_completion_c2w/regression.xml"
+  ],
+  "cwd": "/home/denny/projects/flybrain_lab_4spark_v0_1"
+}

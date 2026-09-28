@@ -1,0 +1,178 @@
+[
+  {
+    "case_id": "c2w-smoke-0",
+    "seed": 551000000,
+    "start": [
+      1.508766700966392,
+      1.1336626287832399,
+      1.0
+    ],
+    "goal": [
+      0.9606823021954032,
+      0.7196004476467377,
+      1.4643523140979264
+    ],
+    "noise": 0.0,
+    "delay": 0,
+    "dropout": 0.0,
+    "reply_loss": 0.0,
+    "curriculum": "C2",
+    "initial_yaw_rad": -0.24360750933672826,
+    "target_yaw_rad": 2.9941651790899253,
+    "disturbance_profile": "clean"
+  },
+  {
+    "case_id": "c2w-smoke-1",
+    "seed": 551000001,
+    "start": [
+      0.9524930470057202,
+      -1.3528028892475255,
+      1.0
+    ],
+    "goal": [
+      0.10127521205522116,
+      0.47500056574366534,
+      1.4652863098738695
+    ],
+    "noise": 0.002,
+    "delay": 1,
+    "dropout": 0.0,
+    "reply_loss": 0.0,
+    "curriculum": "C2",
+    "initial_yaw_rad": 0.3345089362473219,
+    "target_yaw_rad": -0.7071366577413967,
+    "disturbance_profile": "pose"
+  },
+  {
+    "case_id": "c2w-smoke-2",
+    "seed": 551000002,
+    "start": [
+      -0.6919642145735008,
+      1.6063483306355812,
+      1.0
+    ],
+    "goal": [
+      1.1532534098181055,
+      1.370878566621434,
+      0.4074158071883105
+    ],
+    "noise": 0.0,
+    "delay": 0,
+    "dropout": 0.0,
+    "reply_loss": 0.0,
+    "curriculum": "C2",
+    "initial_yaw_rad": 0.38790236156717217,
+    "target_yaw_rad": -0.6019809674005717,
+    "disturbance_profile": "force"
+  },
+  {
+    "case_id": "c2w-smoke-3",
+    "seed": 551000003,
+    "start": [
+      0.46413513721168353,
+      0.6212782112181778,
+      1.0
+    ],
+    "goal": [
+      1.2373289139399257,
+      0.8901141760368279,
+      1.569719533089165
+    ],
+    "noise": 0.002,
+    "delay": 1,
+    "dropout": 0.0,
+    "reply_loss": 0.0,
+    "curriculum": "C2",
+    "initial_yaw_rad": -0.0805200459658626,
+    "target_yaw_rad": 2.589139771275294,
+    "disturbance_profile": "combined"
+  },
+  {
+    "case_id": "c2w-smoke-4",
+    "seed": 551000004,
+    "start": [
+      1.9477073131933604,
+      1.3189484652579515,
+      1.0
+    ],
+    "goal": [
+      0.16618828437707212,
+      0.8739480961299733,
+      0.712943878868971
+    ],
+    "noise": 0.0,
+    "delay": 0,
+    "dropout": 0.0,
+    "reply_loss": 0.0,
+    "curriculum": "C2",
+    "initial_yaw_rad": -2.9204990967150066,
+    "target_yaw_rad": -0.38907232424186367,
+    "disturbance_profile": "clean"
+  },
+  {
+    "case_id": "c2w-smoke-5",
+    "seed": 551000005,
+    "start": [
+      1.9751970409123967,
+      -1.3777813580166485,
+      1.0
+    ],
+    "goal": [
+      1.401438940890499,
+      -1.1743859153887515,
+      1.2873787759481214
+    ],
+    "noise": 0.002,
+    "delay": 1,
+    "dropout": 0.0,
+    "reply_loss": 0.0,
+    "curriculum": "C2",
+    "initial_yaw_rad": -0.3014001280794929,
+    "target_yaw_rad": -2.1445448201414017,
+    "disturbance_profile": "pose"
+  },
+  {
+    "case_id": "c2w-smoke-6",
+    "seed": 551000006,
+    "start": [
+      -1.419944319978586,
+      1.9384905427899746,
+      1.0
+    ],
+    "goal": [
+      0.30068475517242454,
+      1.8104569083647433,
+      1.5883378742017538
+    ],
+    "noise": 0.0,
+    "delay": 0,
+    "dropout": 0.0,
+    "reply_loss": 0.0,
+    "curriculum": "C2",
+    "initial_yaw_rad": 2.732194954130578,
+    "target_yaw_rad": -0.43219672633160333,
+    "disturbance_profile": "force"
+  },
+  {
+    "case_id": "c2w-smoke-7",
+    "seed": 551000007,
+    "start": [
+      1.8763726829981842,
+      -0.3993184254903017,
+      1.0
+    ],
+    "goal": [
+      1.4001839563954568,
+      1.271325860682556,
+      1.5539169389861338
+    ],
+    "noise": 0.002,
+    "delay": 1,
+    "dropout": 0.0,
+    "reply_loss": 0.0,
+    "curriculum": "C2",
+    "initial_yaw_rad": -3.0840234048792956,
+    "target_yaw_rad": -1.7631218449471162,
+    "disturbance_profile": "combined"
+  }
+]

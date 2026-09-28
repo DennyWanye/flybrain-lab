@@ -1,0 +1,113 @@
+[
+  {
+    "seed": 11,
+    "skills": {
+      "altitude": {
+        "parameter_delta_l2": 6.383110523223877,
+        "real_actions": 1919,
+        "new_samples": 9797,
+        "rehearsal_samples": 3232,
+        "measured_height_range_m": [
+          0.16084111958342195,
+          1.8029128574639768
+        ]
+      },
+      "navigation": {
+        "parameter_delta_l2": 13.408967971801758,
+        "real_actions": 2068,
+        "new_samples": 25727,
+        "rehearsal_samples": 6579,
+        "measured_height_range_m": [
+          0.16356783141829792,
+          1.8012503861663214
+        ]
+      },
+      "heading": {
+        "parameter_delta_l2": 12.490633964538574,
+        "real_actions": 1645,
+        "new_samples": 30202,
+        "rehearsal_samples": 0,
+        "measured_height_range_m": [
+          0.15869198733404594,
+          1.7962379069261536
+        ]
+      }
+    },
+    "heldout_overlap": 0,
+    "checkpoint_sha256": "a7fbf6c8b86bc7a0cd6c89fbfb61651bf644b0f325e9e9b713d72977d03dfa96"
+  },
+  {
+    "seed": 22,
+    "skills": {
+      "altitude": {
+        "parameter_delta_l2": 6.302416801452637,
+        "real_actions": 1897,
+        "new_samples": 9894,
+        "rehearsal_samples": 3076,
+        "measured_height_range_m": [
+          0.1700197255782301,
+          1.8340206870579958
+        ]
+      },
+      "navigation": {
+        "parameter_delta_l2": 13.666455268859863,
+        "real_actions": 2124,
+        "new_samples": 26404,
+        "rehearsal_samples": 6707,
+        "measured_height_range_m": [
+          0.1594384147540025,
+          1.8429481435032986
+        ]
+      },
+      "heading": {
+        "parameter_delta_l2": 12.57458782196045,
+        "real_actions": 1611,
+        "new_samples": 29854,
+        "rehearsal_samples": 0,
+        "measured_height_range_m": [
+          0.16030933969710132,
+          1.8165322652256337
+        ]
+      }
+    },
+    "heldout_overlap": 0,
+    "checkpoint_sha256": "5ca61b0fe3209859b82b6eb2c7527b74df81bd0a562189e32e722d4789c1b4e4"
+  },
+  {
+    "seed": 33,
+    "skills": {
+      "altitude": {
+        "parameter_delta_l2": 5.156356334686279,
+        "real_actions": 1843,
+        "new_samples": 9555,
+        "rehearsal_samples": 2943,
+        "measured_height_range_m": [
+          0.17136316597012016,
+          1.9971762495326193
+        ]
+      },
+      "navigation": {
+        "parameter_delta_l2": 14.065516471862793,
+        "real_actions": 2158,
+        "new_samples": 26806,
+        "rehearsal_samples": 7047,
+        "measured_height_range_m": [
+          0.16338640749139952,
+          1.8422359002273012
+        ]
+      },
+      "heading": {
+        "parameter_delta_l2": 12.419316291809082,
+        "real_actions": 1631,
+        "new_samples": 30303,
+        "rehearsal_samples": 0,
+        "measured_height_range_m": [
+          0.16334517706655494,
+          1.823734195458403
+        ]
+      }
+    },
+    "heldout_overlap": 0,
+    "checkpoint_sha256": "a2805f97b0c96612848e710e4ec5a0ef301ec59f9c88d32009900b4545974106"
+  }
+]

@@ -1,0 +1,50 @@
+{
+  "status": "PASS",
+  "modes": [
+    {
+      "mode": "0",
+      "observer_frames": 199,
+      "consumer_reads": 0,
+      "trajectory_sha256": "3076139c667bce79acb471c82ccd2782b82e60adb51864b6f4dc1784ca83ed0f",
+      "brain_sha256": "beb443f4e96c4d5beed5cce90d48d8ee45edc8368a820b7241a9e5769e75f566",
+      "trained_model_sha256": "1d802ca93be3e1676af8b528c2d3fb9c1cc1226c3aa5815312e4785d85eaa33e",
+      "optimizer_sha256": "5e8178118993d8ccf510b03c8bae9c957a24efc135bd7294dfec914e34dc31a2",
+      "neural_graph_sha256": "badc33a247894fe12c4d68d3ff791393857cffa39ff2ab81869608a11fa1e0c9",
+      "training_samples": 10
+    },
+    {
+      "mode": "30",
+      "observer_frames": 199,
+      "consumer_reads": 597,
+      "trajectory_sha256": "3076139c667bce79acb471c82ccd2782b82e60adb51864b6f4dc1784ca83ed0f",
+      "brain_sha256": "beb443f4e96c4d5beed5cce90d48d8ee45edc8368a820b7241a9e5769e75f566",
+      "trained_model_sha256": "1d802ca93be3e1676af8b528c2d3fb9c1cc1226c3aa5815312e4785d85eaa33e",
+      "optimizer_sha256": "5e8178118993d8ccf510b03c8bae9c957a24efc135bd7294dfec914e34dc31a2",
+      "neural_graph_sha256": "badc33a247894fe12c4d68d3ff791393857cffa39ff2ab81869608a11fa1e0c9",
+      "training_samples": 10
+    },
+    {
+      "mode": "60",
+      "observer_frames": 199,
+      "consumer_reads": 1194,
+      "trajectory_sha256": "3076139c667bce79acb471c82ccd2782b82e60adb51864b6f4dc1784ca83ed0f",
+      "brain_sha256": "beb443f4e96c4d5beed5cce90d48d8ee45edc8368a820b7241a9e5769e75f566",
+      "trained_model_sha256": "1d802ca93be3e1676af8b528c2d3fb9c1cc1226c3aa5815312e4785d85eaa33e",
+      "optimizer_sha256": "5e8178118993d8ccf510b03c8bae9c957a24efc135bd7294dfec914e34dc31a2",
+      "neural_graph_sha256": "badc33a247894fe12c4d68d3ff791393857cffa39ff2ab81869608a11fa1e0c9",
+      "training_samples": 10
+    },
+    {
+      "mode": "disconnect",
+      "observer_frames": 199,
+      "consumer_reads": 234,
+      "trajectory_sha256": "3076139c667bce79acb471c82ccd2782b82e60adb51864b6f4dc1784ca83ed0f",
+      "brain_sha256": "beb443f4e96c4d5beed5cce90d48d8ee45edc8368a820b7241a9e5769e75f566",
+      "trained_model_sha256": "1d802ca93be3e1676af8b528c2d3fb9c1cc1226c3aa5815312e4785d85eaa33e",
+      "optimizer_sha256": "5e8178118993d8ccf510b03c8bae9c957a24efc135bd7294dfec914e34dc31a2",
+      "neural_graph_sha256": "badc33a247894fe12c4d68d3ff791393857cffa39ff2ab81869608a11fa1e0c9",
+      "training_samples": 10
+    }
+  ],
+  "scope": "real MaleCNS backend, actual rigid trajectories and readout gradient updates; observer consumes0/3/6 copies per10Hz frame and detaches. Browser control verified separately."
+}

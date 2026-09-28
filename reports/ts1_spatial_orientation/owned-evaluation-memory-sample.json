@@ -1,0 +1,26 @@
+[
+  {
+    "job": "baselines",
+    "pid": 26230,
+    "private_kib": 316196,
+    "command": "/home/denny/projects/flybrain-env/bin/python -u -m flydrone.tellosim.training.spatial_orientation_campaign baselines "
+  },
+  {
+    "job": "evaluate-11",
+    "pid": 26231,
+    "private_kib": 1019160,
+    "command": "/home/denny/projects/flybrain-env/bin/python -u -m flydrone.tellosim.training.spatial_orientation_campaign evaluate --seed 11 "
+  },
+  {
+    "job": "evaluate-22",
+    "pid": 26232,
+    "private_kib": 1018836,
+    "command": "/home/denny/projects/flybrain-env/bin/python -u -m flydrone.tellosim.training.spatial_orientation_campaign evaluate --seed 22 "
+  },
+  {
+    "job": "evaluate-33",
+    "pid": 26233,
+    "private_kib": 1018492,
+    "command": "/home/denny/projects/flybrain-env/bin/python -u -m flydrone.tellosim.training.spatial_orientation_campaign evaluate --seed 33 "
+  }
+]

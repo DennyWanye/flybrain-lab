@@ -1,0 +1,718 @@
+{
+  "runs": [
+    {
+      "run": "nearx-bootstrap-s11-20260926",
+      "checkpoint_sha256": "53fb5123bfce54b946c5e1ef2ea02c8e62279496801c1803e91a939cce379b20",
+      "audit": "passed"
+    },
+    {
+      "run": "nearx-bootstrap-s23-20260926",
+      "checkpoint_sha256": "33df8a04ecb661d3e8f9b5cc48ffdc8f8caee839e911ff3976f292c266f6a698",
+      "audit": "passed"
+    },
+    {
+      "run": "nearx-bootstrap-s37-20260926",
+      "checkpoint_sha256": "55455b533969549c2a558ef756d812a065ce58928caefd8b60b6837f29d1779c",
+      "audit": "passed"
+    },
+    {
+      "run": "nearx-v2-raw-s11-20260926",
+      "checkpoint_sha256": "a1272876787109c6421ced465526ba2349ca4a4727b5627c35f86c614b82420a",
+      "audit": "passed"
+    },
+    {
+      "run": "nearx-v2-raw-s23-20260926",
+      "checkpoint_sha256": "cbefffeaed5edd14ab68dbc1d160b1d11991ab8c083b8204090881d670a36b6b",
+      "audit": "passed"
+    },
+    {
+      "run": "nearx-v2-raw-s37-20260926",
+      "checkpoint_sha256": "0cb893f3f791f3e44e84079a482ea453f9ee005a72ec48038a5cc450bd9413c3",
+      "audit": "passed"
+    },
+    {
+      "run": "nearx-v2-s11-20260926",
+      "checkpoint_sha256": "67f19df02503fe9e5857b2fdb2b130fde89ca317a9887e55a15615225b5c78c3",
+      "audit": "passed"
+    },
+    {
+      "run": "nearx-v2-s23-20260926",
+      "checkpoint_sha256": "3cfe4079d4c15fac67032d311619cb1281f77fd769295be480d58b0a49368513",
+      "audit": "passed"
+    },
+    {
+      "run": "nearx-v2-s37-20260926",
+      "checkpoint_sha256": "48a201302c3feecc3d285df488b4fd8a8560fd47a93640739b9e4b60655b6185",
+      "audit": "passed"
+    },
+    {
+      "run": "nearx-v2-smoke-20260926",
+      "checkpoint_sha256": "2c819bb815224bd9d5090b99aa2c7967978759622cb1547ba2b4b5fe889076f8",
+      "audit": "passed"
+    },
+    {
+      "run": "nearx-v2-zero-s11-20260926",
+      "checkpoint_sha256": "8c94c466a806580edae6b85ae27375a12dfe91a3a71a1d912619590d6afab582",
+      "audit": "passed"
+    },
+    {
+      "run": "nearx-v2-zero-s23-20260926",
+      "checkpoint_sha256": "11b4788bf31a4008ef0171ef39d9d8dbf70dc776457896ee8c6360af4667219e",
+      "audit": "passed"
+    },
+    {
+      "run": "nearx-v2-zero-s37-20260926",
+      "checkpoint_sha256": "570fab1149b8f6d30fb5dbd701aba690ee72a9a19ae5e92aefbe7ab5fddcabc3",
+      "audit": "passed"
+    },
+    {
+      "run": "nearx-v3-s11-20260926",
+      "checkpoint_sha256": "ef9beb12f196f5842344de4b296e6c12dc10ed6108528d947b99dda535c892ce",
+      "audit": "passed"
+    }
+  ],
+  "recordings": [
+    {
+      "run_id": "nearx-bootstrap-s11-20260926-supervised-bootstrap-0",
+      "counts": {
+        "trajectory": 1717,
+        "operation": 12,
+        "transition": 93,
+        "neural": 93
+      },
+      "audit": "passed"
+    },
+    {
+      "run_id": "nearx-bootstrap-s11-20260926-teacher-0",
+      "counts": {
+        "trajectory": 1453,
+        "operation": 10,
+        "transition": 66,
+        "neural": 66
+      },
+      "audit": "passed"
+    },
+    {
+      "run_id": "nearx-bootstrap-s11-20260926-untrained-0",
+      "counts": {
+        "trajectory": 7909,
+        "transition": 661,
+        "neural": 661,
+        "operation": 64
+      },
+      "audit": "passed"
+    },
+    {
+      "run_id": "nearx-bootstrap-s23-20260926-supervised-bootstrap-0",
+      "counts": {
+        "trajectory": 1717,
+        "operation": 12,
+        "transition": 93,
+        "neural": 93
+      },
+      "audit": "passed"
+    },
+    {
+      "run_id": "nearx-bootstrap-s23-20260926-teacher-0",
+      "counts": {
+        "trajectory": 1717,
+        "operation": 12,
+        "transition": 89,
+        "neural": 89
+      },
+      "audit": "passed"
+    },
+    {
+      "run_id": "nearx-bootstrap-s23-20260926-untrained-0",
+      "counts": {
+        "trajectory": 7981,
+        "transition": 655,
+        "neural": 655,
+        "operation": 60
+      },
+      "audit": "passed"
+    },
+    {
+      "run_id": "nearx-bootstrap-s37-20260926-supervised-bootstrap-0",
+      "counts": {
+        "trajectory": 1717,
+        "operation": 12,
+        "transition": 93,
+        "neural": 93
+      },
+      "audit": "passed"
+    },
+    {
+      "run_id": "nearx-bootstrap-s37-20260926-teacher-0",
+      "counts": {
+        "trajectory": 1453,
+        "operation": 10,
+        "transition": 66,
+        "neural": 66
+      },
+      "audit": "passed"
+    },
+    {
+      "run_id": "nearx-bootstrap-s37-20260926-untrained-0",
+      "counts": {
+        "trajectory": 1477,
+        "operation": 10,
+        "transition": 71,
+        "neural": 71
+      },
+      "audit": "passed"
+    },
+    {
+      "run_id": "nearx-v2-raw-s11-20260926-fault-diagnostic-0",
+      "counts": {
+        "trajectory": 7225,
+        "transition": 594,
+        "neural": 594,
+        "operation": 54
+      },
+      "audit": "passed"
+    },
+    {
+      "run_id": "nearx-v2-raw-s11-20260926-rule-0",
+      "counts": {
+        "trajectory": 1549,
+        "operation": 18,
+        "transition": 71,
+        "neural": 71
+      },
+      "audit": "passed"
+    },
+    {
+      "run_id": "nearx-v2-raw-s11-20260926-trained-0",
+      "counts": {
+        "trajectory": 4525,
+        "transition": 349,
+        "neural": 349,
+        "operation": 34
+      },
+      "audit": "passed"
+    },
+    {
+      "run_id": "nearx-v2-raw-s11-20260926-training-0",
+      "counts": {
+        "trajectory": 7909,
+        "transition": 665,
+        "neural": 665,
+        "operation": 68
+      },
+      "audit": "passed"
+    },
+    {
+      "run_id": "nearx-v2-raw-s11-20260926-untrained-0",
+      "counts": {
+        "trajectory": 6661,
+        "transition": 543,
+        "neural": 543,
+        "operation": 50
+      },
+      "audit": "passed"
+    },
+    {
+      "run_id": "nearx-v2-raw-s23-20260926-fault-diagnostic-0",
+      "counts": {
+        "trajectory": 7909,
+        "transition": 801,
+        "neural": 801,
+        "operation": 204
+      },
+      "audit": "passed"
+    },
+    {
+      "run_id": "nearx-v2-raw-s23-20260926-rule-0",
+      "counts": {
+        "trajectory": 1549,
+        "operation": 18,
+        "transition": 71,
+        "neural": 71
+      },
+      "audit": "passed"
+    },
+    {
+      "run_id": "nearx-v2-raw-s23-20260926-trained-0",
+      "counts": {
+        "trajectory": 7909,
+        "transition": 801,
+        "neural": 801,
+        "operation": 204
+      },
+      "audit": "passed"
+    },
+    {
+      "run_id": "nearx-v2-raw-s23-20260926-training-0",
+      "counts": {
+        "trajectory": 7981,
+        "transition": 661,
+        "neural": 661,
+        "operation": 66
+      },
+      "audit": "passed"
+    },
+    {
+      "run_id": "nearx-v2-raw-s23-20260926-untrained-0",
+      "counts": {
+        "trajectory": 7909,
+        "transition": 801,
+        "neural": 801,
+        "operation": 204
+      },
+      "audit": "passed"
+    },
+    {
+      "run_id": "nearx-v2-raw-s37-20260926-fault-diagnostic-0",
+      "counts": {
+        "trajectory": 7909,
+        "transition": 801,
+        "neural": 801,
+        "operation": 204
+      },
+      "audit": "passed"
+    },
+    {
+      "run_id": "nearx-v2-raw-s37-20260926-rule-0",
+      "counts": {
+        "trajectory": 1549,
+        "operation": 18,
+        "transition": 71,
+        "neural": 71
+      },
+      "audit": "passed"
+    },
+    {
+      "run_id": "nearx-v2-raw-s37-20260926-trained-0",
+      "counts": {
+        "trajectory": 7909,
+        "transition": 801,
+        "neural": 801,
+        "operation": 204
+      },
+      "audit": "passed"
+    },
+    {
+      "run_id": "nearx-v2-raw-s37-20260926-training-0",
+      "counts": {
+        "trajectory": 7909,
+        "transition": 667,
+        "neural": 667,
+        "operation": 70
+      },
+      "audit": "passed"
+    },
+    {
+      "run_id": "nearx-v2-raw-s37-20260926-untrained-0",
+      "counts": {
+        "trajectory": 5317,
+        "transition": 421,
+        "neural": 421,
+        "operation": 40
+      },
+      "audit": "passed"
+    },
+    {
+      "run_id": "nearx-v2-s11-20260926-fault-diagnostic-0",
+      "counts": {
+        "trajectory": 7909,
+        "transition": 801,
+        "neural": 801,
+        "operation": 204
+      },
+      "audit": "passed"
+    },
+    {
+      "run_id": "nearx-v2-s11-20260926-rule-0",
+      "counts": {
+        "trajectory": 1549,
+        "operation": 18,
+        "transition": 71,
+        "neural": 71
+      },
+      "audit": "passed"
+    },
+    {
+      "run_id": "nearx-v2-s11-20260926-trained-0",
+      "counts": {
+        "trajectory": 7909,
+        "transition": 801,
+        "neural": 801,
+        "operation": 204
+      },
+      "audit": "passed"
+    },
+    {
+      "run_id": "nearx-v2-s11-20260926-training-0",
+      "counts": {
+        "trajectory": 7981,
+        "transition": 673,
+        "neural": 673,
+        "operation": 78
+      },
+      "audit": "passed"
+    },
+    {
+      "run_id": "nearx-v2-s11-20260926-untrained-0",
+      "counts": {
+        "trajectory": 7909,
+        "transition": 801,
+        "neural": 801,
+        "operation": 204
+      },
+      "audit": "passed"
+    },
+    {
+      "run_id": "nearx-v2-s23-20260926-fault-diagnostic-0",
+      "counts": {
+        "trajectory": 7981,
+        "transition": 655,
+        "neural": 655,
+        "operation": 60
+      },
+      "audit": "passed"
+    },
+    {
+      "run_id": "nearx-v2-s23-20260926-rule-0",
+      "counts": {
+        "trajectory": 1549,
+        "operation": 18,
+        "transition": 71,
+        "neural": 71
+      },
+      "audit": "passed"
+    },
+    {
+      "run_id": "nearx-v2-s23-20260926-trained-0",
+      "counts": {
+        "trajectory": 7981,
+        "transition": 655,
+        "neural": 655,
+        "operation": 60
+      },
+      "audit": "passed"
+    },
+    {
+      "run_id": "nearx-v2-s23-20260926-training-0",
+      "counts": {
+        "trajectory": 7981,
+        "transition": 655,
+        "neural": 655,
+        "operation": 60
+      },
+      "audit": "passed"
+    },
+    {
+      "run_id": "nearx-v2-s23-20260926-untrained-0",
+      "counts": {
+        "trajectory": 7981,
+        "transition": 655,
+        "neural": 655,
+        "operation": 60
+      },
+      "audit": "passed"
+    },
+    {
+      "run_id": "nearx-v2-s37-20260926-fault-diagnostic-0",
+      "counts": {
+        "trajectory": 7909,
+        "transition": 801,
+        "neural": 801,
+        "operation": 204
+      },
+      "audit": "passed"
+    },
+    {
+      "run_id": "nearx-v2-s37-20260926-rule-0",
+      "counts": {
+        "trajectory": 1549,
+        "operation": 18,
+        "transition": 71,
+        "neural": 71
+      },
+      "audit": "passed"
+    },
+    {
+      "run_id": "nearx-v2-s37-20260926-trained-0",
+      "counts": {
+        "trajectory": 7909,
+        "transition": 801,
+        "neural": 801,
+        "operation": 204
+      },
+      "audit": "passed"
+    },
+    {
+      "run_id": "nearx-v2-s37-20260926-training-0",
+      "counts": {
+        "trajectory": 7981,
+        "transition": 675,
+        "neural": 675,
+        "operation": 80
+      },
+      "audit": "passed"
+    },
+    {
+      "run_id": "nearx-v2-s37-20260926-untrained-0",
+      "counts": {
+        "trajectory": 5761,
+        "transition": 470,
+        "neural": 470,
+        "operation": 52
+      },
+      "audit": "passed"
+    },
+    {
+      "run_id": "nearx-v2-smoke-20260926-fault-diagnostic-0",
+      "counts": {
+        "trajectory": 7909,
+        "transition": 801,
+        "neural": 801,
+        "operation": 204
+      },
+      "audit": "passed"
+    },
+    {
+      "run_id": "nearx-v2-smoke-20260926-rule-0",
+      "counts": {
+        "trajectory": 1549,
+        "operation": 18,
+        "transition": 71,
+        "neural": 71
+      },
+      "audit": "passed"
+    },
+    {
+      "run_id": "nearx-v2-smoke-20260926-trained-0",
+      "counts": {
+        "trajectory": 7909,
+        "transition": 801,
+        "neural": 801,
+        "operation": 204
+      },
+      "audit": "passed"
+    },
+    {
+      "run_id": "nearx-v2-smoke-20260926-training-0",
+      "counts": {
+        "trajectory": 3325,
+        "transition": 251,
+        "neural": 251,
+        "operation": 36
+      },
+      "audit": "passed"
+    },
+    {
+      "run_id": "nearx-v2-smoke-20260926-untrained-0",
+      "counts": {
+        "trajectory": 7909,
+        "transition": 801,
+        "neural": 801,
+        "operation": 204
+      },
+      "audit": "passed"
+    },
+    {
+      "run_id": "nearx-v2-zero-s11-20260926-fault-diagnostic-0",
+      "counts": {
+        "trajectory": 2629,
+        "operation": 20,
+        "transition": 177,
+        "neural": 177
+      },
+      "audit": "passed"
+    },
+    {
+      "run_id": "nearx-v2-zero-s11-20260926-rule-0",
+      "counts": {
+        "trajectory": 1549,
+        "operation": 18,
+        "transition": 71,
+        "neural": 71
+      },
+      "audit": "passed"
+    },
+    {
+      "run_id": "nearx-v2-zero-s11-20260926-trained-0",
+      "counts": {
+        "trajectory": 5317,
+        "transition": 421,
+        "neural": 421,
+        "operation": 40
+      },
+      "audit": "passed"
+    },
+    {
+      "run_id": "nearx-v2-zero-s11-20260926-training-0",
+      "counts": {
+        "trajectory": 7909,
+        "transition": 665,
+        "neural": 665,
+        "operation": 68
+      },
+      "audit": "passed"
+    },
+    {
+      "run_id": "nearx-v2-zero-s11-20260926-untrained-0",
+      "counts": {
+        "trajectory": 4525,
+        "transition": 349,
+        "neural": 349,
+        "operation": 34
+      },
+      "audit": "passed"
+    },
+    {
+      "run_id": "nearx-v2-zero-s23-20260926-fault-diagnostic-0",
+      "counts": {
+        "trajectory": 7909,
+        "transition": 801,
+        "neural": 801,
+        "operation": 204
+      },
+      "audit": "passed"
+    },
+    {
+      "run_id": "nearx-v2-zero-s23-20260926-rule-0",
+      "counts": {
+        "trajectory": 1549,
+        "operation": 18,
+        "transition": 71,
+        "neural": 71
+      },
+      "audit": "passed"
+    },
+    {
+      "run_id": "nearx-v2-zero-s23-20260926-trained-0",
+      "counts": {
+        "trajectory": 7909,
+        "transition": 801,
+        "neural": 801,
+        "operation": 204
+      },
+      "audit": "passed"
+    },
+    {
+      "run_id": "nearx-v2-zero-s23-20260926-training-0",
+      "counts": {
+        "trajectory": 7981,
+        "transition": 661,
+        "neural": 661,
+        "operation": 66
+      },
+      "audit": "passed"
+    },
+    {
+      "run_id": "nearx-v2-zero-s23-20260926-untrained-0",
+      "counts": {
+        "trajectory": 7909,
+        "transition": 801,
+        "neural": 801,
+        "operation": 204
+      },
+      "audit": "passed"
+    },
+    {
+      "run_id": "nearx-v2-zero-s37-20260926-fault-diagnostic-0",
+      "counts": {
+        "trajectory": 7909,
+        "transition": 801,
+        "neural": 801,
+        "operation": 204
+      },
+      "audit": "passed"
+    },
+    {
+      "run_id": "nearx-v2-zero-s37-20260926-rule-0",
+      "counts": {
+        "trajectory": 1549,
+        "operation": 18,
+        "transition": 71,
+        "neural": 71
+      },
+      "audit": "passed"
+    },
+    {
+      "run_id": "nearx-v2-zero-s37-20260926-trained-0",
+      "counts": {
+        "trajectory": 7909,
+        "transition": 801,
+        "neural": 801,
+        "operation": 204
+      },
+      "audit": "passed"
+    },
+    {
+      "run_id": "nearx-v2-zero-s37-20260926-training-0",
+      "counts": {
+        "trajectory": 7909,
+        "transition": 667,
+        "neural": 667,
+        "operation": 70
+      },
+      "audit": "passed"
+    },
+    {
+      "run_id": "nearx-v2-zero-s37-20260926-untrained-0",
+      "counts": {
+        "trajectory": 5317,
+        "transition": 421,
+        "neural": 421,
+        "operation": 40
+      },
+      "audit": "passed"
+    },
+    {
+      "run_id": "nearx-v3-s11-20260926-fault-diagnostic-0",
+      "counts": {
+        "trajectory": 7909,
+        "transition": 661,
+        "neural": 661,
+        "operation": 64
+      },
+      "audit": "passed"
+    },
+    {
+      "run_id": "nearx-v3-s11-20260926-rule-0",
+      "counts": {
+        "trajectory": 1477,
+        "operation": 10,
+        "transition": 68,
+        "neural": 68
+      },
+      "audit": "passed"
+    },
+    {
+      "run_id": "nearx-v3-s11-20260926-trained-0",
+      "counts": {
+        "trajectory": 7909,
+        "transition": 661,
+        "neural": 661,
+        "operation": 64
+      },
+      "audit": "passed"
+    },
+    {
+      "run_id": "nearx-v3-s11-20260926-training-0",
+      "counts": {
+        "trajectory": 7909,
+        "transition": 657,
+        "neural": 657,
+        "operation": 60
+      },
+      "audit": "passed"
+    },
+    {
+      "run_id": "nearx-v3-s11-20260926-untrained-0",
+      "counts": {
+        "trajectory": 7909,
+        "transition": 661,
+        "neural": 661,
+        "operation": 64
+      },
+      "audit": "passed"
+    }
+  ],
+  "golden_sha256_unchanged": "08bebe5164ae67a8b66577d17c88552a5d6aed39e5ca386977d5d05ea2e04a7e",
+  "browser": "NOT_VERIFIED_POLICY_BLOCKED"
+}

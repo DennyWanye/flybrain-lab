@@ -1,0 +1,47 @@
+{
+  "all_pids_absent": true,
+  "jobs": {
+    "train-11": {
+      "pid": 17304,
+      "returncode": 0,
+      "reaped": true,
+      "proc_absent": true
+    },
+    "train-22": {
+      "pid": 17305,
+      "returncode": 0,
+      "reaped": true,
+      "proc_absent": true
+    },
+    "train-33": {
+      "pid": 17306,
+      "returncode": 0,
+      "reaped": true,
+      "proc_absent": true
+    },
+    "baselines": {
+      "pid": 18828,
+      "returncode": 0,
+      "reaped": true,
+      "proc_absent": true
+    },
+    "evaluate-11": {
+      "pid": 18829,
+      "returncode": 0,
+      "reaped": true,
+      "proc_absent": true
+    },
+    "evaluate-22": {
+      "pid": 18830,
+      "returncode": 0,
+      "reaped": true,
+      "proc_absent": true
+    },
+    "evaluate-33": {
+      "pid": 18831,
+      "returncode": 0,
+      "reaped": true,
+      "proc_absent": true
+    }
+  }
+}

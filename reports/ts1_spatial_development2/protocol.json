@@ -1,0 +1,13 @@
+{
+  "purpose": "fresh development diagnosis after C2R aggregate instruction gate failure; no sealed case inspection or tuning",
+  "seeds": [
+    350000000,
+    350000023
+  ],
+  "models": [
+    11,
+    22,
+    33
+  ],
+  "no_checkpoint_updates": true
+}

@@ -1,0 +1,44 @@
+{
+  "train-11": {
+    "pid": 21329,
+    "returncode": 0,
+    "reaped": true,
+    "proc_absent": true
+  },
+  "train-22": {
+    "pid": 21330,
+    "returncode": 0,
+    "reaped": true,
+    "proc_absent": true
+  },
+  "train-33": {
+    "pid": 21331,
+    "returncode": 0,
+    "reaped": true,
+    "proc_absent": true
+  },
+  "baselines": {
+    "pid": 22230,
+    "returncode": 0,
+    "reaped": true,
+    "proc_absent": true
+  },
+  "evaluate-11": {
+    "pid": 22231,
+    "returncode": 0,
+    "reaped": true,
+    "proc_absent": true
+  },
+  "evaluate-22": {
+    "pid": 22232,
+    "returncode": 0,
+    "reaped": true,
+    "proc_absent": true
+  },
+  "evaluate-33": {
+    "pid": 22233,
+    "returncode": 0,
+    "reaped": true,
+    "proc_absent": true
+  }
+}

@@ -1,0 +1,55 @@
+{
+  "status": "PASS",
+  "path": "/mnt/d/projects/果蝇训练/ts1-v1r-c2w-delivery-20260928-r1/FlyBrain_TS1_V1R_C2W_20260928.zip",
+  "sha256": "151026687f6aad962931730d19d6f06b37035cea9aebb2254c3363998e9a97d7",
+  "files": 15328,
+  "archive_bytes": 1225942966,
+  "uncompressed_bytes": 5684233221,
+  "fresh_extraction": true,
+  "every_file_hash_before_and_after_actual_inference": true,
+  "staging_probe": {
+    "status": "PASS",
+    "pid": 33889,
+    "sampled_private_kib": 1312992,
+    "actual_extracted_source": "/tmp/ts1-c2w-stage-1e6vll_o/flyview/tellosim_api.py",
+    "strict_full_graph_inference_checks": 9,
+    "replays_checked": 6,
+    "http_routes_checked": 3,
+    "file_hashes_before_and_after": 0,
+    "server_thread_joined": true,
+    "inference_probe_is_not_task_score": true
+  },
+  "extracted_probe": {
+    "status": "PASS",
+    "pid": 34000,
+    "sampled_private_kib": 1314220,
+    "actual_extracted_source": "/tmp/ts1-c2w-extract-pohae543/flyview/tellosim_api.py",
+    "strict_full_graph_inference_checks": 9,
+    "replays_checked": 6,
+    "http_routes_checked": 3,
+    "file_hashes_before_and_after": 15327,
+    "server_thread_joined": true,
+    "inference_probe_is_not_task_score": true
+  },
+  "probe_processes": {
+    "stage": {
+      "pid": 33889,
+      "returncode": 0,
+      "absent": true
+    },
+    "extracted": {
+      "pid": 34000,
+      "returncode": 0,
+      "absent": true
+    }
+  },
+  "new_machine_install_tested": false,
+  "REAL_FLIGHT_READY": false,
+  "excluded": [
+    "venv",
+    "Git",
+    "pycache",
+    "raw256MiB quota fill"
+  ],
+  "runtime_lock": "requirements-runtime.lock.txt"
+}

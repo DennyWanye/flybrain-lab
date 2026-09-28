@@ -1,0 +1,94 @@
+{
+  "all_passed": true,
+  "runs": [
+    {
+      "run_id": "spatial-orientation-s11-sealed_test-0",
+      "chunks": 29,
+      "frames": 443,
+      "outcome": "success"
+    },
+    {
+      "run_id": "spatial-orientation-s11-sealed_test-1",
+      "chunks": 41,
+      "frames": 666,
+      "outcome": "phase_deadline"
+    },
+    {
+      "run_id": "spatial-orientation-s11-sealed_test-2",
+      "chunks": 35,
+      "frames": 525,
+      "outcome": "success"
+    },
+    {
+      "run_id": "spatial-orientation-s11-sealed_test-3",
+      "chunks": 110,
+      "frames": 1918,
+      "outcome": "sandbox_time_limit_180s"
+    },
+    {
+      "run_id": "spatial-orientation-s22-sealed_test-0",
+      "chunks": 30,
+      "frames": 469,
+      "outcome": "success"
+    },
+    {
+      "run_id": "spatial-orientation-s22-sealed_test-1",
+      "chunks": 41,
+      "frames": 664,
+      "outcome": "phase_deadline"
+    },
+    {
+      "run_id": "spatial-orientation-s22-sealed_test-2",
+      "chunks": 39,
+      "frames": 617,
+      "outcome": "success"
+    },
+    {
+      "run_id": "spatial-orientation-s22-sealed_test-3",
+      "chunks": 110,
+      "frames": 1914,
+      "outcome": "sandbox_time_limit_180s"
+    },
+    {
+      "run_id": "spatial-orientation-s33-sealed_test-0",
+      "chunks": 29,
+      "frames": 443,
+      "outcome": "success"
+    },
+    {
+      "run_id": "spatial-orientation-s33-sealed_test-1",
+      "chunks": 41,
+      "frames": 664,
+      "outcome": "phase_deadline"
+    },
+    {
+      "run_id": "spatial-orientation-s33-sealed_test-2",
+      "chunks": 35,
+      "frames": 525,
+      "outcome": "success"
+    },
+    {
+      "run_id": "spatial-orientation-s33-sealed_test-3",
+      "chunks": 78,
+      "frames": 1346,
+      "outcome": "success"
+    }
+  ],
+  "constructor_bootstrap_rows": [
+    {
+      "run_id": "spatial-orientation-s11-sealed_test-3",
+      "stream": "trajectory",
+      "tick": 0,
+      "episode_id": "episode-0",
+      "scope": "constructor bootstrap before task manifest identity; not a policy transition"
+    },
+    {
+      "run_id": "spatial-orientation-s22-sealed_test-3",
+      "stream": "trajectory",
+      "tick": 0,
+      "episode_id": "episode-0",
+      "scope": "constructor bootstrap before task manifest identity; not a policy transition"
+    }
+  ],
+  "identity_check": "all task records match case identity; tick0 constructor trajectory explicitly audited separately"
+}

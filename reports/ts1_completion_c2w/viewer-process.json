@@ -1,0 +1,19 @@
+{
+  "pid": 33503,
+  "command": [
+    "/home/denny/projects/flybrain-env/bin/python",
+    "-u",
+    "-m",
+    "flyview",
+    "serve",
+    "--project-root",
+    "/home/denny/projects/flybrain_lab_4spark_v0_1",
+    "--port",
+    "8765"
+  ],
+  "cwd": "/home/denny/projects/flybrain_lab_4spark_v0_1",
+  "retained_service": true,
+  "replaced_pid": 25983,
+  "old_pid_absent": true,
+  "old_private_kib": 66744
+}

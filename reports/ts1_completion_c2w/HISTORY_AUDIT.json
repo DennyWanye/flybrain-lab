@@ -1,0 +1,18 @@
+{
+  "all_original_bytes_preserved": true,
+  "unchanged_files": 1373,
+  "intentional_viewer_updates": [
+    {
+      "path": "flyview/static/tellosim.js",
+      "preserved_copy": "reports/ts1_completion_c2w/history/flyview/static/tellosim.js",
+      "original_sha256": "a44ad43a339e81010272548a732eff8f477e7b70f101a8c4e960624859f66271",
+      "current_sha256": "529a16a64f91e33ce17049007079352d7723ea6a42729a54c49c6233eab7d7c2"
+    },
+    {
+      "path": "flyview/tellosim_api.py",
+      "preserved_copy": "reports/ts1_completion_c2w/history/flyview/tellosim_api.py",
+      "original_sha256": "6aa4b0afe6aae30cedd16859fe2a3b8ff8d6f1d883a2fecde7ac4fc5225e54ff",
+      "current_sha256": "2506e3aff4de0936d3637523312fc4e20bdda3ab9e21dd99e0e380b4c5a419ab"
+    }
+  ]
+}

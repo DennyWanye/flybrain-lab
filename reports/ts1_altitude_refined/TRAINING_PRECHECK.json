@@ -1,0 +1,26 @@
+[
+  {
+    "seed": 11,
+    "actions": 2816,
+    "settled_samples": 11651,
+    "parameter_delta_l2": 12.073343276977539,
+    "roundtrip_exact": true,
+    "gradient_steps": 8800
+  },
+  {
+    "seed": 22,
+    "actions": 2816,
+    "settled_samples": 11634,
+    "parameter_delta_l2": 11.66218376159668,
+    "roundtrip_exact": true,
+    "gradient_steps": 8800
+  },
+  {
+    "seed": 33,
+    "actions": 2816,
+    "settled_samples": 12091,
+    "parameter_delta_l2": 11.797469139099121,
+    "roundtrip_exact": true,
+    "gradient_steps": 8880
+  }
+]

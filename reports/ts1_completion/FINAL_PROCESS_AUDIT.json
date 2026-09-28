@@ -1,0 +1,328 @@
+{
+  "status": "PASS",
+  "owned_children_verified_absent": 51,
+  "processes": {
+    "28204": {
+      "source": "reports/ts1_completion/c2q-ui-cleanup.json",
+      "returncode": 0,
+      "proc_absent": true
+    },
+    "11965": {
+      "source": "reports/ts1_altitude_refined/process-cleanup.json",
+      "returncode": 0,
+      "proc_absent": true
+    },
+    "11966": {
+      "source": "reports/ts1_altitude_refined/process-cleanup.json",
+      "returncode": 0,
+      "proc_absent": true
+    },
+    "11967": {
+      "source": "reports/ts1_altitude_refined/process-cleanup.json",
+      "returncode": 0,
+      "proc_absent": true
+    },
+    "12359": {
+      "source": "reports/ts1_altitude_refined/process-cleanup.json",
+      "returncode": 0,
+      "proc_absent": true
+    },
+    "12360": {
+      "source": "reports/ts1_altitude_refined/process-cleanup.json",
+      "returncode": 0,
+      "proc_absent": true
+    },
+    "12361": {
+      "source": "reports/ts1_altitude_refined/process-cleanup.json",
+      "returncode": 0,
+      "proc_absent": true
+    },
+    "12362": {
+      "source": "reports/ts1_altitude_refined/process-cleanup.json",
+      "returncode": 0,
+      "proc_absent": true
+    },
+    "13281": {
+      "source": "reports/ts1_spatial/process-cleanup.json",
+      "returncode": -2,
+      "proc_absent": true
+    },
+    "13282": {
+      "source": "reports/ts1_spatial/process-cleanup.json",
+      "returncode": -2,
+      "proc_absent": true
+    },
+    "13283": {
+      "source": "reports/ts1_spatial/process-cleanup.json",
+      "returncode": 1,
+      "proc_absent": true
+    },
+    "17304": {
+      "source": "reports/ts1_spatial_refined/process-cleanup.json",
+      "returncode": 0,
+      "proc_absent": true
+    },
+    "17305": {
+      "source": "reports/ts1_spatial_refined/process-cleanup.json",
+      "returncode": 0,
+      "proc_absent": true
+    },
+    "17306": {
+      "source": "reports/ts1_spatial_refined/process-cleanup.json",
+      "returncode": 0,
+      "proc_absent": true
+    },
+    "18828": {
+      "source": "reports/ts1_spatial_refined/process-cleanup.json",
+      "returncode": 0,
+      "proc_absent": true
+    },
+    "18829": {
+      "source": "reports/ts1_spatial_refined/process-cleanup.json",
+      "returncode": 0,
+      "proc_absent": true
+    },
+    "18830": {
+      "source": "reports/ts1_spatial_refined/process-cleanup.json",
+      "returncode": 0,
+      "proc_absent": true
+    },
+    "18831": {
+      "source": "reports/ts1_spatial_refined/process-cleanup.json",
+      "returncode": 0,
+      "proc_absent": true
+    },
+    "21329": {
+      "source": "reports/ts1_spatial_precision/process-cleanup.json",
+      "returncode": 0,
+      "proc_absent": true
+    },
+    "21330": {
+      "source": "reports/ts1_spatial_precision/process-cleanup.json",
+      "returncode": 0,
+      "proc_absent": true
+    },
+    "21331": {
+      "source": "reports/ts1_spatial_precision/process-cleanup.json",
+      "returncode": 0,
+      "proc_absent": true
+    },
+    "22230": {
+      "source": "reports/ts1_spatial_precision/process-cleanup.json",
+      "returncode": 0,
+      "proc_absent": true
+    },
+    "22231": {
+      "source": "reports/ts1_spatial_precision/process-cleanup.json",
+      "returncode": 0,
+      "proc_absent": true
+    },
+    "22232": {
+      "source": "reports/ts1_spatial_precision/process-cleanup.json",
+      "returncode": 0,
+      "proc_absent": true
+    },
+    "22233": {
+      "source": "reports/ts1_spatial_precision/process-cleanup.json",
+      "returncode": 0,
+      "proc_absent": true
+    },
+    "25424": {
+      "source": "reports/ts1_spatial_orientation/process-cleanup.json",
+      "returncode": 0,
+      "proc_absent": true
+    },
+    "25425": {
+      "source": "reports/ts1_spatial_orientation/process-cleanup.json",
+      "returncode": 0,
+      "proc_absent": true
+    },
+    "25426": {
+      "source": "reports/ts1_spatial_orientation/process-cleanup.json",
+      "returncode": 0,
+      "proc_absent": true
+    },
+    "26230": {
+      "source": "reports/ts1_spatial_orientation/process-cleanup.json",
+      "returncode": 0,
+      "proc_absent": true
+    },
+    "26231": {
+      "source": "reports/ts1_spatial_orientation/process-cleanup.json",
+      "returncode": 0,
+      "proc_absent": true
+    },
+    "26232": {
+      "source": "reports/ts1_spatial_orientation/process-cleanup.json",
+      "returncode": 0,
+      "proc_absent": true
+    },
+    "26233": {
+      "source": "reports/ts1_spatial_orientation/process-cleanup.json",
+      "returncode": 0,
+      "proc_absent": true
+    },
+    "16435": {
+      "source": "reports/ts1_mlp_pilot/process-cleanup.json",
+      "returncode": 0,
+      "proc_absent": true
+    },
+    "16576": {
+      "source": "reports/ts1_mlp_pilot/process-cleanup.json",
+      "returncode": 0,
+      "proc_absent": true
+    },
+    "20578": {
+      "source": "reports/ts1_spatial_development2/cleanup.json",
+      "returncode": 0,
+      "proc_absent": true
+    },
+    "20579": {
+      "source": "reports/ts1_spatial_development2/cleanup.json",
+      "returncode": 0,
+      "proc_absent": true
+    },
+    "20580": {
+      "source": "reports/ts1_spatial_development2/cleanup.json",
+      "returncode": 0,
+      "proc_absent": true
+    },
+    "24751": {
+      "source": "reports/ts1_spatial_development3/cleanup.json",
+      "returncode": 0,
+      "proc_absent": true
+    },
+    "24752": {
+      "source": "reports/ts1_spatial_development3/cleanup.json",
+      "returncode": 0,
+      "proc_absent": true
+    },
+    "24753": {
+      "source": "reports/ts1_spatial_development3/cleanup.json",
+      "returncode": 0,
+      "proc_absent": true
+    },
+    "24576": {
+      "source": "reports/ts1_spatial_development3/cleanup-attempt1.json",
+      "returncode": 1,
+      "proc_absent": true
+    },
+    "24577": {
+      "source": "reports/ts1_spatial_development3/cleanup-attempt1.json",
+      "returncode": 1,
+      "proc_absent": true
+    },
+    "24578": {
+      "source": "reports/ts1_spatial_development3/cleanup-attempt1.json",
+      "returncode": 1,
+      "proc_absent": true
+    },
+    "27134": {
+      "source": "reports/ts1_spatial_settled/process-cleanup.json",
+      "returncode": 0,
+      "proc_absent": true
+    },
+    "27178": {
+      "source": "reports/ts1_spatial_settled/process-cleanup.json",
+      "returncode": 0,
+      "proc_absent": true
+    },
+    "28000": {
+      "source": "reports/ts1_spatial_stationary/process-cleanup.json",
+      "returncode": 0,
+      "proc_absent": true
+    },
+    "28044": {
+      "source": "reports/ts1_spatial_stationary/process-cleanup.json",
+      "returncode": -15,
+      "proc_absent": true
+    },
+    "26548": {
+      "source": "reports/ts1_rule_development/cleanup.json",
+      "returncode": 0,
+      "proc_absent": true
+    },
+    "27020": {
+      "source": "reports/ts1_phase_development/cleanup.json",
+      "returncode": 0,
+      "proc_absent": true
+    },
+    "27630": {
+      "source": "reports/ts1_phase_development2/cleanup.json",
+      "returncode": 0,
+      "proc_absent": true
+    },
+    "27835": {
+      "source": "reports/ts1_phase_development3/cleanup.json",
+      "returncode": 0,
+      "proc_absent": true
+    }
+  },
+  "cleanup_records": [
+    "reports/ts1_completion/c2q-ui-cleanup.json",
+    "reports/ts1_completion/early-process-cleanup.json",
+    "reports/ts1_altitude_refined/process-cleanup.json",
+    "reports/ts1_spatial/process-cleanup.json",
+    "reports/ts1_spatial_refined/process-cleanup.json",
+    "reports/ts1_spatial_precision/process-cleanup.json",
+    "reports/ts1_spatial_orientation/process-cleanup.json",
+    "reports/ts1_mlp_pilot/process-cleanup.json",
+    "reports/ts1_spatial_development2/cleanup.json",
+    "reports/ts1_spatial_development3/cleanup.json",
+    "reports/ts1_spatial_development3/cleanup-attempt1.json",
+    "reports/ts1_spatial_settled/process-cleanup.json",
+    "reports/ts1_spatial_stationary/process-cleanup.json",
+    "reports/ts1_rule_development/cleanup.json",
+    "reports/ts1_phase_development/cleanup.json",
+    "reports/ts1_phase_development2/cleanup.json",
+    "reports/ts1_phase_development3/cleanup.json"
+  ],
+  "private_memory_samples_kib": {
+    "28204": 1316444,
+    "12359": 325536,
+    "12360": 1016120,
+    "12361": 1015976,
+    "12362": 1015960,
+    "11965": 1006036,
+    "11966": 1004176,
+    "11967": 1005360,
+    "13281": 1049632,
+    "13282": 1047424,
+    "13283": 1049324,
+    "18828": 312800,
+    "18829": 1018400,
+    "18830": 1018412,
+    "18831": 1018364,
+    "17304": 1080256,
+    "17305": 1081840,
+    "17306": 1082336,
+    "22230": 315812,
+    "22231": 1018928,
+    "22232": 1018836,
+    "22233": 1018264,
+    "21329": 1056184,
+    "21330": 1058244,
+    "21331": 1058896,
+    "26230": 316196,
+    "26231": 1019160,
+    "26232": 1018836,
+    "26233": 1018492,
+    "25424": 1032780,
+    "25425": 1032028,
+    "25426": 1021632,
+    "24751": 996020,
+    "24752": 995116,
+    "24753": 995920,
+    "27178": 1004356,
+    "27999": 5872,
+    "28044": 534876,
+    "26548": 335204,
+    "27020": 306932,
+    "27630": 314620,
+    "27835": 315652
+  },
+  "sum_released_sampled_private_kib": 36273252,
+  "memory_note": "Sum across different completed phases, not simultaneous RAM reduction or machine memory measurement",
+  "retained_viewer_pid": 25983,
+  "remaining_owned_training_processes": []
+}

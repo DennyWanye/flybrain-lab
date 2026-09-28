@@ -1,0 +1,11 @@
+{
+  "status": "PASS",
+  "legacy_executor": "VisualSession/1.0 bytes unchanged; C2W opt-in AnchoredVisualSession; isolation regression passed",
+  "physics": "world.py and rigid.py unchanged; original T25 evidence remains applicable",
+  "sensors_and_neural_encoding": "raw26 inputs and encoders unchanged; stationary height mean only for phase management",
+  "new_continuous_hold": "120Hz evaluator clock verified with actual physical trajectories; no truth leakage into neural decisions",
+  "old_skills": "V1R/J2R source and checkpoint bytes preserved; current legacy tests pass; old formal learning scores not rerun",
+  "MLP": "same prior C0 pilot and default executor; unchanged source verified; not a new C2W MLP study",
+  "recording_and_async": "unchanged implementation; current regression and browser replay checked; old T14/T55 physicalUI stress evidence retained",
+  "regression_tests": 211
+}

@@ -1,0 +1,13 @@
+{
+  "run_id": "spatial-continuous-physical-hold-regression",
+  "outcome": "success",
+  "complete": true,
+  "graph_sha256": "badc33a247894fe12c4d68d3ff791393857cffa39ff2ab81869608a11fa1e0c9",
+  "checkpoint_sha256": "9b32b38753ed4dbfd3e6bf69b45f1174f25a2d64f485431a67ad67c0148b8efc",
+  "neural_frames": 730,
+  "policy_frames": 724,
+  "final_valid_physics_ticks": 240,
+  "required_physics_ticks": 240,
+  "neural_clock_verified": true,
+  "constructor_bootstrap_rows": []
+}

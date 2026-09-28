@@ -9,7 +9,8 @@ import os
 from pathlib import Path
 from urllib.parse import urlparse
 
-from flydrone.tellosim.visual import VisualSession, import_golden, packed, atomic_json
+from flydrone.tellosim.visual import import_golden, packed, atomic_json
+from flydrone.tellosim.recording_v3 import AuditedVisualSession as VisualSession
 
 ID = re.compile(r"^[a-zA-Z0-9_-]{1,80}$")
 
@@ -64,8 +65,18 @@ class Observatory:
         if not joint.exists():joint=self.root/'reports/ts1_joint/summary.json'
         heading=self.root/'reports/ts1_heading/summary.json'
         c1=self.root/'reports/ts1_c1/summary.json'
-        altitude=self.root/'reports/ts1_altitude/summary.json'
-        return {"altitude":json.loads(altitude.read_text()) if altitude.exists() else None,"joint":json.loads(joint.read_text()) if joint.exists() else None,"heading":json.loads(heading.read_text()) if heading.exists() else None,"c1":json.loads(c1.read_text()) if c1.exists() else None,"rigid":json.loads(rigid.read_text()) if rigid.exists() else None,"runs":rows, "evaluation":json.loads(evaluation_path.read_text()) if evaluation_path.exists() else None,
+        altitude_history=self.root/'reports/ts1_altitude/summary.json'
+        altitude=self.root/'reports/ts1_altitude_refined/summary.json'
+        if not altitude.exists():altitude=altitude_history
+        spatial=self.root/'reports/ts1_spatial_continuous/summary.json'
+        if not spatial.exists():spatial=self.root/'reports/ts1_spatial_orientation/summary.json'
+        if not spatial.exists():spatial=self.root/'reports/ts1_spatial_precision/summary.json'
+        if not spatial.exists():spatial=self.root/'reports/ts1_spatial_refined/summary.json'
+        if not spatial.exists():spatial=self.root/'reports/ts1_spatial/summary.json'
+        mlp_pilot=self.root/'reports/ts1_mlp_pilot/summary.json'
+        completion=self.root/'reports/ts1_completion_c2w/summary.json'
+        if not completion.exists():completion=self.root/'reports/ts1_completion/summary.json'
+        return {"completion":json.loads(completion.read_text()) if completion.exists() else None,"spatial":{**json.loads(spatial.read_text()),"model_version":"C2W" if "continuous" in str(spatial) else "C2", "run_prefix":"spatial-continuous" if "continuous" in str(spatial) else "spatial-orientation" if "orientation" in str(spatial) else "spatial-precision" if "precision" in str(spatial) else "spatial-refined" if "refined" in str(spatial) else "spatial"} if spatial.exists() else None,"mlp_pilot":json.loads(mlp_pilot.read_text()) if mlp_pilot.exists() else None,"altitude_history":json.loads(altitude_history.read_text()) if altitude_history.exists() else None,"altitude":json.loads(altitude.read_text()) if altitude.exists() else None,"joint":json.loads(joint.read_text()) if joint.exists() else None,"heading":json.loads(heading.read_text()) if heading.exists() else None,"c1":json.loads(c1.read_text()) if c1.exists() else None,"rigid":json.loads(rigid.read_text()) if rigid.exists() else None,"runs":rows, "evaluation":json.loads(evaluation_path.read_text()) if evaluation_path.exists() else None,
                 "comparison":json.loads(comparison.read_text()) if comparison.exists() else None,
                 "training":json.loads(training.read_text()) if training.exists() else None,
                 "learning":json.loads(learning.read_text()) if learning.exists() else None}
@@ -139,7 +150,7 @@ class Observatory:
                             raise ValueError("stale epoch")
                         if parts[2] == "close":
                             session.close()
-                            send({"closed":True})
+                            send({"closed":True,"simulation_ended":True,"device_stop_confirmed":False,"operation":session.operation.copy() if session.operation else None})
                         else:
                             if session.mode != "manual":
                                 raise PermissionError("script and policy runs are read-only")

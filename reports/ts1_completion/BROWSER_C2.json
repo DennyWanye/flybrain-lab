@@ -1,0 +1,27 @@
+{
+  "status": "PASS",
+  "run_id": "spatial-refined-s11-sealed_test-1",
+  "seek_s": [
+    20,
+    56.3,
+    40
+  ],
+  "play_from_s": 40,
+  "play_observed_s": 47.87,
+  "pause_observed_s": 47.88,
+  "final_display": {
+    "time_s": 56.3,
+    "target_distance_m": 0.13,
+    "stable_hold_s": 2,
+    "target_height_m": 1.264,
+    "measured_height_m": 1.197,
+    "measured_vz_mps": 0.049,
+    "target_yaw_deg": -155.9,
+    "measured_yaw_deg": -151.5,
+    "yaw_error_deg": -4.4
+  },
+  "actual_neural_recording_visible": true,
+  "console_errors": [],
+  "screenshot": "TS1_browser_C2_replay.png",
+  "scope": "UI functionality and one actual recorded success; not an overall model acceptance claim"
+}

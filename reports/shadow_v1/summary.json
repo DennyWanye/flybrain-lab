@@ -1,0 +1,48 @@
+{
+  "version": "Shadow V1",
+  "scope": "localization input boundary, recording/replay, observation-only C2W inference; no aircraft connection",
+  "SHADOW_SOFTWARE_VERIFIED": true,
+  "REAL_POSE_VALIDATED": false,
+  "HARDWARE_CALIBRATED": false,
+  "HARDWARE_SHADOW_VALIDATED": false,
+  "REAL_FLIGHT_READY": false,
+  "focused_tests_passed": 43,
+  "fullgraph_seeds": [
+    11,
+    22,
+    33
+  ],
+  "neurons": 166700,
+  "edges": 25582938,
+  "main_smoke_samples": 144,
+  "main_smoke_neural_substeps": 576,
+  "main_smoke_repeat_exact": true,
+  "fault_cli": {
+    "samples_per_valid_run": 24,
+    "blocked_samples_per_run": 8,
+    "direct_replay_byte_identical": true,
+    "duplicate_rejected": true,
+    "all_children_exited": true,
+    "transmitted_commands": 0,
+    "REAL_FLIGHT_READY": false
+  },
+  "live_stdin": {
+    "live_normalized_stdin_pass": true,
+    "wall_backlog_stopped_before_neural_step": true,
+    "stall_timeout_stopped_session": true,
+    "hardware_data_used": false,
+    "processes_exited": true,
+    "REAL_FLIGHT_READY": false
+  },
+  "new_training_actions": 0,
+  "real_hardware_samples": 0,
+  "network_attempts_in_audited_smoke": [],
+  "historical_files_unchanged": 199,
+  "tracked_processes_exited": 8,
+  "viewer_preserved": [
+    {
+      "pid": 33503,
+      "command": "/home/denny/projects/flybrain-env/bin/python -u -m flyview serve --project-root /home/denny/projects/flybrain_lab_4spark_v0_1 --port 8765 "
+    }
+  ]
+}

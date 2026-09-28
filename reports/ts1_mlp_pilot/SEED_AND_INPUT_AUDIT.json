@@ -1,0 +1,7 @@
+{
+  "passed": true,
+  "paired_cases": 60,
+  "training_rows": 14131,
+  "input_dim": 26,
+  "train_eval_overlap": []
+}

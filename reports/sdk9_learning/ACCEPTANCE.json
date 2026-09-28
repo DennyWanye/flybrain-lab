@@ -1,0 +1,68 @@
+{
+  "date": "2026-09-26",
+  "TRAINING_PIPELINE_READY": true,
+  "NEAR_X_LEARNING_PROGRESS_OBSERVED": true,
+  "TS1_C0_TASK_LEARNED": false,
+  "MODEL_READY_FOR_NEXT_STAGE": false,
+  "pure_ppo": {
+    "seeds": [
+      11,
+      23,
+      37
+    ],
+    "options_each": 1536,
+    "brain_argmax": "0/24",
+    "brain_sampled": "5/24",
+    "raw_sampled": "6/24",
+    "zero_sampled": "8/24"
+  },
+  "supervised_bootstrap": {
+    "method": "32 rule demonstrations + 2x16 DAgger episodes per seed; no PPO updates",
+    "seeds": [
+      11,
+      23,
+      37
+    ],
+    "initial": [
+      0,
+      0,
+      5
+    ],
+    "learned": [
+      8,
+      7,
+      8
+    ],
+    "brain_zero": [
+      0,
+      0,
+      0
+    ],
+    "same_validation_cases_per_seed": 8,
+    "critic_trained": false
+  },
+  "regression": "30 passed, 2 PyTorch sparse warnings",
+  "artifact_audit": "14 models and 64 recordings passed",
+  "browser": "NOT_VERIFIED_POLICY_BLOCKED",
+  "formal_sealed_evaluation": "NOT_RUN",
+  "real_device_adapter": "DISABLED",
+  "resource_cleanup": "All training/diagnostic Python processes exited; temporary serialization helper removed after exit",
+  "source_sha256": {
+    "flydrone/tellosim/training/runtime.py": "f02e49ac9421cf333016836ea3d0d36d1e25a7c0f47ff364d2f8803afe5e6033",
+    "flydrone/tellosim/training/diagnostics.py": "78fc811612d68fe92336c36c72f56a9f3baba27831f704cc35e93393fe7c8130",
+    "flydrone/tellosim/training/bootstrap.py": "2a4f1ffe6a39bdbdb76e7b7fbc0aea2a3e73a7f8e3507c35630cdd023e84abab",
+    "flydrone/tellosim/training/__init__.py": "c93a1628475714858c4f4038a3626253f3c4cc4116f014b05f9eb028395566a5",
+    "flydrone/tellosim/training/env.py": "00057cf77e20656e411b24344529c2c0c05d54d27058d4a8e69ce07e8cea8eec",
+    "flydrone/tellosim/training/experiments.py": "c7be525c7a289db28ed814a5dd66ced2eb85ec63896013cbab2f60ca48d9d652",
+    "flydrone/tellosim/training/sampled_comparison.py": "89b460d66d21627048548e2c168a10a1546a61c58b7645bcbc50a01d3abacf02",
+    "flydrone/tellosim/training/runner.py": "883d6180cdd6a01cd19da010dec67fba9ec6ba2db3bf72d87b1c430f777a826d",
+    "flydrone/tellosim/training/evaluation.py": "958b0e0909a6bc67ec4e653ab93db3edb8e4134e29da488206c8b0aff4b38e21",
+    "flydrone/tellosim/training/contracts.py": "f450559195817c5a95bb84678503980906f2c5d24247b0446a1ed9adc0df1c92",
+    "flydrone/tellosim/training/signal_probe.py": "e8d0cb481cb88395780f639c5de084c59c4dd04d2c18531c83f68cf70846b0b5",
+    "flydrone/brain.py": "1f9fac155472d322e3aff86d63e7ef21766c132d2ece651eb59f20e02ac37dae",
+    "flyview/tellosim_api.py": "42a4db0b9cd1e55476dc0a98769ca03d785c2a8178b965a3bbb252b94c216f59",
+    "flyview/static/tellosim.js": "a085eb80afc1e53546d19124a0389955a9a4cbf8cadbbd5cd76efbe7dccb1ef3",
+    "flyview/static/tellosim.html": "f8269d0bf111d573fdee2b507ec9e46f84e7314f02879b7e3ef902694eb33bef",
+    "tests/flydrone/test_sdk9_training.py": "ef443277f51e40335d6071cfbe0ba3eaede427f0e15c84e25f995a4474da80b5"
+  }
+}

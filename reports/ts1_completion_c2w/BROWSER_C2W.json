@@ -1,0 +1,34 @@
+{
+  "status": "PASS",
+  "url": "http://127.0.0.1:8765/tellosim",
+  "tool": "unified-computer-use browser UI; actual actions, not HTTP substitution",
+  "checks": {
+    "C2W_results_visible": [
+      290,
+      293,
+      294
+    ],
+    "source_weight_note_visible": "C2Q parameter-identical transfer;0 new training actions",
+    "fixed_model_buttons": [
+      "spatial-continuous-s11-sealed_test-3",
+      "spatial-continuous-s22-sealed_test-3",
+      "spatial-continuous-s33-sealed_test-3"
+    ],
+    "play_then_pause": "tick1 -> tick690; play button toggled pause/play",
+    "timeline_seek": "seed22 end46.1s tick5532,21 cached chunks;seed33 end46.1s tick5532,17 cached chunks",
+    "simultaneous_hold": "seed22 andseed33 show2.08/2s, measured height/yaw errors and actual reservoir probabilities/neural activity",
+    "render_fps": [
+      0,
+      30,
+      60
+    ],
+    "pan": "real pointer drag346,842 ->445,872 changed camera;task hold unchanged",
+    "reset_view": true,
+    "final_state_before_package": "model passed;software/package pending;real flight disabled"
+  },
+  "screenshots": [
+    "TS1_C2W_replay_20260928.png",
+    "TS1_C2W_pan_20260928.png"
+  ],
+  "interaction_note": "pointer click did not activate shortcut; freshly observed keyboard Space activation succeeded. Pan is aria-pressed button, verified through keyboard and pointer drag."
+}

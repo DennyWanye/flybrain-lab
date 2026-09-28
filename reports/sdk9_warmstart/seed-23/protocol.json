@@ -1,0 +1,39 @@
+{
+  "schema": "sdk9.warmstart_protocol/1.0",
+  "seed": 23,
+  "source": "runs/tellosim-sdk9/nearx-bootstrap-s23-20260926/checkpoint.pt",
+  "profile": "balanced_rate_v3",
+  "curriculum": "C0-near-x",
+  "critic_episodes": 16,
+  "critic_target": "complete-episode discounted sampled-policy return",
+  "critic_fit_epochs": 100,
+  "ppo_options": 512,
+  "rollout": 128,
+  "ppo_updates": 4,
+  "learning_rate": 3e-05,
+  "freeze_body": true,
+  "trainable_during_ppo": [
+    "actor",
+    "critic"
+  ],
+  "validation_cohorts": {
+    "previously_used": [
+      910000,
+      910007
+    ],
+    "additional": [
+      910008,
+      910015
+    ]
+  },
+  "evaluation_modes": [
+    "argmax",
+    "sampled"
+  ],
+  "sampled_repeats": 1,
+  "sampled_rng": "960000 + case_index, matched before/after",
+  "retention_gate": "Each cohort must have no reduction in successes in either evaluation mode, and no previously successful case may regress. Pilot retention only, not formal acceptance or proof of improvement.",
+  "checkpoint_selection": "Always final fixed-budget checkpoint; no best validation epoch selection.",
+  "MODEL_READY_FOR_NEXT_STAGE": false,
+  "sealed_test_opened": false
+}

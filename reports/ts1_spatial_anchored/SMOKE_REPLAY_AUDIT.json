@@ -1,0 +1,82 @@
+[
+  {
+    "run_id": "spatial-anchored-smoke-0",
+    "complete": true,
+    "full_graph_sha256": "badc33a247894fe12c4d68d3ff791393857cffa39ff2ab81869608a11fa1e0c9",
+    "policy_frames": 494,
+    "recorded_neural_frames": 500,
+    "final_physics_ticks_valid": 240,
+    "final_physics_ticks_required": 240,
+    "physical_continuous_hold_verified": true
+  },
+  {
+    "run_id": "spatial-anchored-smoke-1",
+    "complete": true,
+    "full_graph_sha256": "badc33a247894fe12c4d68d3ff791393857cffa39ff2ab81869608a11fa1e0c9",
+    "policy_frames": 789,
+    "recorded_neural_frames": 795,
+    "final_physics_ticks_valid": 240,
+    "final_physics_ticks_required": 240,
+    "physical_continuous_hold_verified": true
+  },
+  {
+    "run_id": "spatial-anchored-smoke-2",
+    "complete": true,
+    "full_graph_sha256": "badc33a247894fe12c4d68d3ff791393857cffa39ff2ab81869608a11fa1e0c9",
+    "policy_frames": 723,
+    "recorded_neural_frames": 729,
+    "final_physics_ticks_valid": 236,
+    "final_physics_ticks_required": 240,
+    "physical_continuous_hold_verified": false
+  },
+  {
+    "run_id": "spatial-anchored-smoke-3",
+    "complete": true,
+    "full_graph_sha256": "badc33a247894fe12c4d68d3ff791393857cffa39ff2ab81869608a11fa1e0c9",
+    "policy_frames": 558,
+    "recorded_neural_frames": 564,
+    "final_physics_ticks_valid": 240,
+    "final_physics_ticks_required": 240,
+    "physical_continuous_hold_verified": true
+  },
+  {
+    "run_id": "spatial-anchored-smoke-4",
+    "complete": true,
+    "full_graph_sha256": "badc33a247894fe12c4d68d3ff791393857cffa39ff2ab81869608a11fa1e0c9",
+    "policy_frames": 369,
+    "recorded_neural_frames": 375,
+    "final_physics_ticks_valid": 240,
+    "final_physics_ticks_required": 240,
+    "physical_continuous_hold_verified": true
+  },
+  {
+    "run_id": "spatial-anchored-smoke-5",
+    "complete": true,
+    "full_graph_sha256": "badc33a247894fe12c4d68d3ff791393857cffa39ff2ab81869608a11fa1e0c9",
+    "policy_frames": 661,
+    "recorded_neural_frames": 667,
+    "final_physics_ticks_valid": 240,
+    "final_physics_ticks_required": 240,
+    "physical_continuous_hold_verified": true
+  },
+  {
+    "run_id": "spatial-anchored-smoke-6",
+    "complete": true,
+    "full_graph_sha256": "badc33a247894fe12c4d68d3ff791393857cffa39ff2ab81869608a11fa1e0c9",
+    "policy_frames": 620,
+    "recorded_neural_frames": 626,
+    "final_physics_ticks_valid": 240,
+    "final_physics_ticks_required": 240,
+    "physical_continuous_hold_verified": true
+  },
+  {
+    "run_id": "spatial-anchored-smoke-7",
+    "complete": true,
+    "full_graph_sha256": "badc33a247894fe12c4d68d3ff791393857cffa39ff2ab81869608a11fa1e0c9",
+    "policy_frames": 952,
+    "recorded_neural_frames": 958,
+    "final_physics_ticks_valid": 240,
+    "final_physics_ticks_required": 240,
+    "physical_continuous_hold_verified": true
+  }
+]
