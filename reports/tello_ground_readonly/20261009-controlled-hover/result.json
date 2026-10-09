@@ -1,0 +1,67 @@
+{
+  "finished_ns": 1791515708819212500,
+  "kind": "result",
+  "mission_pad_mode_enabled": true,
+  "replies": [
+    {
+      "command": "command",
+      "error": "timeout",
+      "flight_control": false,
+      "kind": "command_reply",
+      "mission_pad_setup": false,
+      "raw_response_ascii": "",
+      "raw_response_hex": "",
+      "received_ns": null,
+      "sent_ns": 1791515691423048900
+    },
+    {
+      "command": "mon",
+      "error": "timeout",
+      "flight_control": false,
+      "kind": "command_reply",
+      "mission_pad_setup": true,
+      "raw_response_ascii": "",
+      "raw_response_hex": "",
+      "received_ns": null,
+      "sent_ns": 1791515693736890700
+    },
+    {
+      "command": "mdirection 0",
+      "error": "timeout",
+      "flight_control": false,
+      "kind": "command_reply",
+      "mission_pad_setup": true,
+      "raw_response_ascii": "",
+      "raw_response_hex": "",
+      "received_ns": null,
+      "sent_ns": 1791515695739517300
+    },
+    {
+      "command": "takeoff",
+      "error": "timeout",
+      "flight_control": true,
+      "kind": "command_reply",
+      "mission_pad_setup": false,
+      "raw_response_ascii": "",
+      "raw_response_hex": "",
+      "received_ns": null,
+      "sent_ns": 1791515697751880400
+    },
+    {
+      "command": "land",
+      "error": "timeout",
+      "flight_control": true,
+      "kind": "command_reply",
+      "mission_pad_setup": false,
+      "raw_response_ascii": "",
+      "raw_response_hex": "",
+      "received_ns": null,
+      "sent_ns": 1791515705804356300
+    }
+  ],
+  "state_packets": 144,
+  "transmitted_horizontal_commands": 0,
+  "transmitted_land": 1,
+  "transmitted_rc_commands": 0,
+  "transmitted_takeoff": 1
+}
