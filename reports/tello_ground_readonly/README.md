@@ -29,6 +29,12 @@
 
    `python -m tello_ground_readonly collect --output <目录> --duration-s 5`
 
-3. C2W Shadow 仍需要本地准备交接中已有的 MaleCNS 图和 `spatial-continuous-s11/checkpoint.pt`；这些大文件不放入 Git。没有它们时只能运行采集器和协议测试，不能声称完成 C2W 推理。
+3. C2W Shadow 所需的大文件可从已有 GitHub Release 下载：
+
+   `https://github.com/DennyWanye/flybrain-lab/releases/download/ts1-c2w-shadow-v1-20260928/FlyBrain_C2W_ShadowV1_Training_Records_20260928.zip`
+
+   文件约 1.01 GB，SHA256 为 `44737eea2b378fb6e1ec94510176b44c5be1bb86dfdd6e5fabf1cf5c701fca70`。压缩包内包含 `data/male-v1.npz`（MaleCNS 图，SHA256 `badc33a247894fe12c4d68d3ff791393857cffa39ff2ab81869608a11fa1e0c9`）和 `runs/tellosim-sdk9/spatial-continuous-s11/checkpoint.pt`（C2W seed11 checkpoint，SHA256 `9b32b38753ed4dbfd3e6bf69b45f1174f25a2d64f485431a67ad67c0148b8efc`）。
+
+   下载后在仓库根目录解压，保持这两个相对路径不变。没有它们时只能运行采集器和协议测试，不能声称完成 C2W 推理。
 
 4. `REAL_FLIGHT_READY` 保持 `false`。任务卡识别成功只证明 TT 能报告任务卡 ID，不等于已获得房间全局位姿，也不等于模型动作已执行。
