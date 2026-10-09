@@ -17,6 +17,8 @@
 
 `reports/tello_ground_readonly/20261009-controlled-hover/`：用户授权的一次受控测试。仅发送 `takeoff`、悬停读取、`land`，无水平移动、转向或 `rc`。最高高度约 60 cm，随后识别到 `mid=3` 持续 65 个状态包；额外发送 `land` 3 次后连续 `h=0` 确认落地。
 
+`reports/tello_ground_readonly/20261008-shadow/`：50 条真实地面状态的 C2W Shadow 审计输入、决策日志和结果。50/50 被阻塞，`transmitted_commands=0`。
+
 ## 另一台电脑准备
 
 1. 克隆本仓库并运行：
